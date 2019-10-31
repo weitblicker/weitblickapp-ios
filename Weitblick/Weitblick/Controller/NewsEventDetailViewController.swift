@@ -15,7 +15,7 @@ class NewsEventDetailViewController: UIViewController {
         
         // DIES IST EIN KOMMENTAR
         let a = 120
-        let b = 20
+        let b = 200
         let c = a + b
 
         // Do any additional setup after loading the view.
