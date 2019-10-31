@@ -51,7 +51,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZiE-TU-Aas" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3130" y="239"/>
+            <point key="canvasLocation" x="3704" y="252"/>
         </scene>
         <!--News&Event-->
         <scene sceneID="IYJ-co-W73">
@@ -61,16 +61,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zRd-nN-Q12">
-                                <rect key="frame" x="204" y="167" width="155" height="195"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="imS-tK-kco">
+                                <rect key="frame" x="0.0" y="70" width="414" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Event"/>
+                                </segments>
+                                <connections>
+                                    <action selector="switchView:" destination="TDg-rL-Fq5" eventType="valueChanged" id="PTy-3u-bD6"/>
+                                </connections>
+                            </segmentedControl>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uus-IM-Wod">
+                                <rect key="frame" x="0.0" y="116" width="414" height="697"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="KAc-pN-fSU" kind="embed" id="EhZ-bK-ml0"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ov3-wP-j2a">
+                                <rect key="frame" x="0.0" y="116" width="414" height="697"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="qTE-J2-juG" kind="embed" id="iUg-bN-Aof"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="MnN-VF-ntF"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="News&amp;Event" id="s6w-wa-Tua"/>
+                    <connections>
+                        <outlet property="EventView" destination="ov3-wP-j2a" id="xAN-3h-NIp"/>
+                        <outlet property="NewsView" destination="Uus-IM-Wod" id="W6D-Lw-r45"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wKK-fV-IGG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -89,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rVb-by-jDC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3124" y="-551"/>
+            <point key="canvasLocation" x="3623" y="-723"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Ate-6f-vw9">
@@ -234,6 +258,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7tm-0p-Vwj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3090" y="2498"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="sk0-EI-Xuj">
+            <objects>
+                <viewController id="KAc-pN-fSU" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mm8-ZW-FJD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="697"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gjQ-Wl-oAG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2926" y="-800"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="CvU-WM-aet">
+            <objects>
+                <viewController id="qTE-J2-juG" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="O1d-po-urV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="697"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sBq-hz-bWM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2925" y="-258"/>
         </scene>
     </scenes>
 </document>
