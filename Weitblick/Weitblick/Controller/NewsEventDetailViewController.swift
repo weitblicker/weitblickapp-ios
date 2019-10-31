@@ -12,6 +12,11 @@ class NewsEventDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // DIES IST EIN KOMMENTAR
+        let a = 1
+        let b = 2
+        let c = a + b
 
         // Do any additional setup after loading the view.
     }
