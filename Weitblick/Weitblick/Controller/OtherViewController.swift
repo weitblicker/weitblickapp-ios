@@ -1,5 +1,5 @@
 //
-//  NewsDetailViewController.swift
+//  ElseViewController.swift
 //  Weitblick
 //
 //  Created by Jana  on 31.10.19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsDetailViewController: UIViewController {
+class OtherViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

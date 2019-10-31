@@ -1,5 +1,5 @@
 //
-//  NewsViewController.swift
+//  NewsDetailViewController.swift
 //  Weitblick
 //
 //  Created by Jana  on 31.10.19.
@@ -8,15 +8,33 @@
 
 import UIKit
 
-class NewsViewController: UIViewController {
 
+class NewsEventDetailViewController: UIViewController {
+
+    
+    @IBOutlet weak var firstView: UIView!
+    
+    @IBOutlet weak var secondView: UIView!
+    
+    @IBAction func SwitchView(_ sender: UISegmentedControl) {
+        if(sender.selectedSegmentIndex==0){
+            firstView.alpha=1
+            secondView.alpha=0
+            
+        }else{
+            firstView.alpha=0
+            secondView.alpha=1
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
+   
+    
     /*
     // MARK: - Navigation
 
