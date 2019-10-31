@@ -14,8 +14,8 @@ class NewsEventDetailViewController: UIViewController {
         super.viewDidLoad()
         
         // DIES IST EIN KOMMENTAR
-        let a = 1
-        let b = 2
+        let a = 100
+        let b = 20
         let c = a + b
 
         // Do any additional setup after loading the view.
