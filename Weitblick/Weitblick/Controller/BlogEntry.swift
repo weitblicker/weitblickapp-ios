@@ -30,5 +30,38 @@ class BlogEntry{
         
     }
     
+    public var getID : Int{
+        return self.id
+    }
+    
+    public var getTitle : String {
+        return self.title
+    }
+    
+    public var getText : String{
+        return self.text
+    }
+    
+    public var getImageID : Int{
+        return self.imageID
+    }
+    
+    public var getCreationDate : Date{
+        return self.created
+    }
+    
+    public var getUpdateDate : Date{
+        return self.updated
+    }
+    
+    public var getLocationID : Int{
+        return self.locationID
+    }
+    
+    public func setText (text : String){
+        self.text = text
+        self.updated  = Date.init()
+        // DB Synchronisation
+    }
     
 }

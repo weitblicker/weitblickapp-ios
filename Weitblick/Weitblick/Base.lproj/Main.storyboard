@@ -32,7 +32,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="2db-N8-nLY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Projects" id="eso-Km-EuF"/>
+                    <tabBarItem key="tabBarItem" title="" image="projekt" id="eso-Km-EuF"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o6S-WV-WrS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -53,7 +53,7 @@
             </objects>
             <point key="canvasLocation" x="3704" y="252"/>
         </scene>
-        <!--News&Event-->
+        <!--News Event View Controller-->
         <scene sceneID="IYJ-co-W73">
             <objects>
                 <viewController id="TDg-rL-Fq5" customClass="NewsEventViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
@@ -61,41 +61,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="imS-tK-kco">
-                                <rect key="frame" x="0.0" y="103" width="414" height="32"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="imS-tK-kco">
+                                <rect key="frame" x="0.0" y="177" width="414" height="32"/>
                                 <segments>
                                     <segment title="News"/>
-                                    <segment title="Event"/>
+                                    <segment title="Events"/>
                                 </segments>
                                 <connections>
                                     <action selector="switchView:" destination="TDg-rL-Fq5" eventType="valueChanged" id="PTy-3u-bD6"/>
                                 </connections>
                             </segmentedControl>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uus-IM-Wod">
-                                <rect key="frame" x="0.0" y="134" width="414" height="679"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uus-IM-Wod">
+                                <rect key="frame" x="0.0" y="208" width="414" height="605"/>
                                 <connections>
                                     <segue destination="KAc-pN-fSU" kind="embed" id="EhZ-bK-ml0"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ov3-wP-j2a">
-                                <rect key="frame" x="0.0" y="134" width="414" height="679"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ov3-wP-j2a">
+                                <rect key="frame" x="0.0" y="208" width="414" height="605"/>
                                 <connections>
                                     <segue destination="qTE-J2-juG" kind="embed" id="iUg-bN-Aof"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OyO-k2-xnn">
-                                <rect key="frame" x="341" y="58" width="53" height="22"/>
-                                <state key="normal" title="Button" image="person.circle" catalog="system"/>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Weitblick" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="evC-wA-0ba">
-                                <rect key="frame" x="72" y="44" width="270" height="44"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Weitblick" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="evC-wA-0ba">
+                                <rect key="frame" x="72" y="103" width="270" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OyO-k2-xnn">
+                                <rect key="frame" x="335" y="59" width="35" height="35"/>
+                                <state key="normal" title="Button" image="profile"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="OyO-k2-xnn" firstAttribute="top" secondItem="MnN-VF-ntF" secondAttribute="top" constant="14" id="2oB-OF-ymL"/>
+                            <constraint firstItem="MnN-VF-ntF" firstAttribute="trailing" secondItem="OyO-k2-xnn" secondAttribute="trailing" constant="44" id="0vw-mC-ZBP"/>
                             <constraint firstItem="Uus-IM-Wod" firstAttribute="leading" secondItem="MnN-VF-ntF" secondAttribute="leading" id="5Q3-nd-OHR"/>
+                            <constraint firstItem="imS-tK-kco" firstAttribute="top" secondItem="evC-wA-0ba" secondAttribute="bottom" constant="15" id="67d-V8-VNL"/>
+                            <constraint firstItem="OyO-k2-xnn" firstAttribute="leading" secondItem="eAN-eZ-eq1" secondAttribute="leadingMargin" constant="315" id="9kA-Mh-KqI"/>
                             <constraint firstItem="Uus-IM-Wod" firstAttribute="trailing" secondItem="MnN-VF-ntF" secondAttribute="trailing" id="EFf-CB-TBJ"/>
                             <constraint firstItem="imS-tK-kco" firstAttribute="trailing" secondItem="MnN-VF-ntF" secondAttribute="trailing" id="Efm-6g-RHb"/>
                             <constraint firstItem="Uus-IM-Wod" firstAttribute="bottom" secondItem="MnN-VF-ntF" secondAttribute="bottom" id="FjA-yZ-MU5"/>
@@ -106,17 +108,13 @@
                             <constraint firstItem="ov3-wP-j2a" firstAttribute="leading" secondItem="MnN-VF-ntF" secondAttribute="leading" id="VVr-Le-J5e"/>
                             <constraint firstItem="Uus-IM-Wod" firstAttribute="top" secondItem="imS-tK-kco" secondAttribute="bottom" id="Zjm-IK-lBS"/>
                             <constraint firstItem="imS-tK-kco" firstAttribute="leading" secondItem="MnN-VF-ntF" secondAttribute="leading" id="ctH-Kb-9JD"/>
-                            <constraint firstItem="OyO-k2-xnn" firstAttribute="leading" secondItem="MnN-VF-ntF" secondAttribute="leading" constant="341" id="gQG-Qh-Tpy"/>
-                            <constraint firstItem="imS-tK-kco" firstAttribute="top" secondItem="OyO-k2-xnn" secondAttribute="bottom" constant="23" id="gfh-kk-Z4H"/>
                             <constraint firstItem="evC-wA-0ba" firstAttribute="leading" secondItem="eAN-eZ-eq1" secondAttribute="leadingMargin" constant="50" id="oYV-Hk-ntR"/>
-                            <constraint firstItem="MnN-VF-ntF" firstAttribute="trailing" secondItem="OyO-k2-xnn" secondAttribute="trailing" constant="20" id="pQD-Fe-Zwt"/>
-                            <constraint firstItem="MnN-VF-ntF" firstAttribute="trailing" secondItem="evC-wA-0ba" secondAttribute="trailing" constant="60" id="qhK-wj-1gs"/>
+                            <constraint firstItem="OyO-k2-xnn" firstAttribute="top" secondItem="MnN-VF-ntF" secondAttribute="top" constant="15" id="sdX-HI-A7D"/>
                             <constraint firstItem="ov3-wP-j2a" firstAttribute="top" secondItem="imS-tK-kco" secondAttribute="bottom" id="tc7-dL-gjI"/>
-                            <constraint firstItem="imS-tK-kco" firstAttribute="top" secondItem="evC-wA-0ba" secondAttribute="bottom" constant="15" id="uwC-9t-INx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MnN-VF-ntF"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="News&amp;Event" id="s6w-wa-Tua"/>
+                    <tabBarItem key="tabBarItem" title="" image="kalender" id="s6w-wa-Tua"/>
                     <connections>
                         <outlet property="EventView" destination="ov3-wP-j2a" id="xAN-3h-NIp"/>
                         <outlet property="NewsView" destination="Uus-IM-Wod" id="W6D-Lw-r45"/>
@@ -154,7 +152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="txN-Qy-LzD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-275" y="-382"/>
+            <point key="canvasLocation" x="-1036" y="-603"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="iuv-HK-dmR">
@@ -169,12 +167,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0jQ-fV-PAa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-275" y="528"/>
+            <point key="canvasLocation" x="-1036" y="433"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="k2F-xw-YyE">
             <objects>
-                <tabBarController id="Gug-kJ-AP2" sceneMemberID="viewController">
+                <tabBarController id="Gug-kJ-AP2" customClass="TabBarController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="m2L-4K-4Br"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9Ag-bW-FKg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -192,7 +191,7 @@
             </objects>
             <point key="canvasLocation" x="733" y="-48"/>
         </scene>
-        <!--Bike-->
+        <!--Bike View Controller-->
         <scene sceneID="OZl-9E-BxN">
             <objects>
                 <viewController id="ZAK-1p-taM" customClass="BikeViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
@@ -202,7 +201,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="gOX-4j-pS0"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Bike" id="SE4-3l-QYC"/>
+                    <tabBarItem key="tabBarItem" title="" image="bike" id="SE4-3l-QYC">
+                        <inset key="imageInsets" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9mC-r5-gK8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -238,7 +239,7 @@
             </objects>
             <point key="canvasLocation" x="4259" y="998"/>
         </scene>
-        <!--Stats-->
+        <!--Stats View Controller-->
         <scene sceneID="p6V-8p-B3u">
             <objects>
                 <viewController id="1H0-8o-YHQ" customClass="StatsViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
@@ -248,13 +249,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="C3I-JS-f9j"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Stats" id="FvL-Hr-Zo0"/>
+                    <tabBarItem key="tabBarItem" title="" image="stats" id="FvL-Hr-Zo0"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bwq-ck-vZN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1951" y="1716"/>
         </scene>
-        <!--...-->
+        <!--Other View Controller-->
         <scene sceneID="F24-Hz-x8E">
             <objects>
                 <viewController id="ToE-ha-16U" customClass="OtherViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
@@ -264,7 +265,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="184-Db-kyg"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="..." id="Reu-kq-hNV"/>
+                    <tabBarItem key="tabBarItem" title="" image="more" id="Reu-kq-hNV"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Jq-nW-Ky9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -290,7 +291,7 @@
             <objects>
                 <viewController id="KAc-pN-fSU" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mm8-ZW-FJD">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="679"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="605"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -306,7 +307,7 @@
             <objects>
                 <viewController id="qTE-J2-juG" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="O1d-po-urV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="679"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="605"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Qgt-gT-kLi"/>
@@ -319,6 +320,11 @@
     </scenes>
     <resources>
         <image name="Weitblick" width="1024" height="375"/>
-        <image name="person.circle" catalog="system" width="64" height="60"/>
+        <image name="bike" width="50" height="50"/>
+        <image name="kalender" width="30" height="30"/>
+        <image name="more" width="30" height="6"/>
+        <image name="profile" width="35" height="35"/>
+        <image name="projekt" width="30" height="30"/>
+        <image name="stats" width="30" height="30"/>
     </resources>
 </document>

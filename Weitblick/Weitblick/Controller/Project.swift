@@ -24,4 +24,28 @@ class Project{
         self.locationID = locationID
         self.partnerID = partnerID
     }
+    
+    public var getID : Int {
+        return self.id
+    }
+    public var getName : String{
+        return self.name
+    }
+    
+    public var getHosts : [String]{
+        return hosts
+    }
+    
+    public var getDescription : String {
+        return self.description
+    }
+    
+    public var getLocationID : Int{
+        return self.locationID
+    }
+    
+    public var getPartnerID : [Int]{
+        return self.partnerID
+    }
+    
 }

@@ -29,4 +29,27 @@ class Location{
         
     }
     
+    public var getID : Int{
+        return self.id
+    }
+    
+    public var getName : String{
+        return self.name
+    }
+    
+    public var getDescription : String{
+        return self.description
+    }
+    
+    public var getLatitude : Float{
+        return self.lat
+    }
+    
+    public var getLongitude : Float{
+        return self.lng
+    }
+    
+    public var getAddress : String{
+        return self.address
+    }
 }
