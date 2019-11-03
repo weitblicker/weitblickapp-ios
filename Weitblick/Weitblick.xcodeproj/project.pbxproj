@@ -32,9 +32,13 @@
 		A123D1C7236B23B8004DB13E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A123D1C6236B23B8004DB13E /* Location.swift */; };
 		A123D1C9236B398F004DB13E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A123D1C8236B398F004DB13E /* TabBarController.swift */; };
 		A123D1CD236B3D41004DB13E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A123D1CC236B3D41004DB13E /* Event.swift */; };
+		B409EA805513A38B40EFDB6D /* Pods_Weitblick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1141911C8A76C4C5F1280C67 /* Pods_Weitblick.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1141911C8A76C4C5F1280C67 /* Pods_Weitblick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weitblick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		201A7BAC4FA3B8278885E3B7 /* Pods-Weitblick.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weitblick.release.xcconfig"; path = "Target Support Files/Pods-Weitblick/Pods-Weitblick.release.xcconfig"; sourceTree = "<group>"; };
+		2D4FF62CF5135E2C9FB9ED1A /* Pods-Weitblick.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weitblick.debug.xcconfig"; path = "Target Support Files/Pods-Weitblick/Pods-Weitblick.debug.xcconfig"; sourceTree = "<group>"; };
 		3DA49A42236B0C5200AA3198 /* Weitblick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weitblick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DA49A45236B0C5200AA3198 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DA49A47236B0C5200AA3198 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,17 +73,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B409EA805513A38B40EFDB6D /* Pods_Weitblick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		388A19C884B16F0DE84DD346 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1141911C8A76C4C5F1280C67 /* Pods_Weitblick.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3DA49A39236B0C5200AA3198 = {
 			isa = PBXGroup;
 			children = (
 				3DA49A44236B0C5200AA3198 /* Weitblick */,
 				3DA49A43236B0C5200AA3198 /* Products */,
+				727170F89C8CAE5BF1F287E3 /* Pods */,
+				388A19C884B16F0DE84DD346 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,6 +155,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		727170F89C8CAE5BF1F287E3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2D4FF62CF5135E2C9FB9ED1A /* Pods-Weitblick.debug.xcconfig */,
+				201A7BAC4FA3B8278885E3B7 /* Pods-Weitblick.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +172,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3DA49A56236B0C5400AA3198 /* Build configuration list for PBXNativeTarget "Weitblick" */;
 			buildPhases = (
+				FFFDCB5241E282CFAB91D926 /* [CP] Check Pods Manifest.lock */,
 				3DA49A3E236B0C5200AA3198 /* Sources */,
 				3DA49A3F236B0C5200AA3198 /* Frameworks */,
 				3DA49A40236B0C5200AA3198 /* Resources */,
+				234B233B7DA4CB3249109C2C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -205,6 +232,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		234B233B7DA4CB3249109C2C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Weitblick/Pods-Weitblick-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Weitblick/Pods-Weitblick-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Weitblick/Pods-Weitblick-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FFFDCB5241E282CFAB91D926 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Weitblick-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3DA49A3E236B0C5200AA3198 /* Sources */ = {
@@ -374,6 +443,7 @@
 		};
 		3DA49A57236B0C5400AA3198 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D4FF62CF5135E2C9FB9ED1A /* Pods-Weitblick.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -392,6 +462,7 @@
 		};
 		3DA49A58236B0C5400AA3198 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 201A7BAC4FA3B8278885E3B7 /* Pods-Weitblick.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

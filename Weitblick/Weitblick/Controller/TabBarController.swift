@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import SwipeableTabBarController
 
-class TabBarController: UITabBarController {
+class TabBarController: SwipeableTabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        swipeAnimatedTransitioning?.animationType = SwipeAnimationType.sideBySide
     }
     override func viewWillAppear(_ animated: Bool) {
         let nav = self.navigationController?.navigationBar
