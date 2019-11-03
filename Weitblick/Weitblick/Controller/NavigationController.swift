@@ -1,20 +1,22 @@
 //
-//  ProjectViewController.swift
+//  NavigationController.swift
 //  Weitblick
 //
-//  Created by Jana  on 31.10.19.
+//  Created by Michel Einsweiler on 03.11.19.
 //  Copyright © 2019 HS Osnabrueck. All rights reserved.
 //
 
 import UIKit
+import Foundation
 
-class ProjectViewController: UIViewController {
+class NavigationController: UINavigationController {
+    
+    var image = UIImageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -25,4 +27,12 @@ class ProjectViewController: UIViewController {
     }
     */
 
+}
+
+extension UIViewController {
+    func setNavigationItem() {
+        let imageView = UIImageView(image: UIImage(named: "Weitblick"))
+        let item = UIBarButtonItem(customView: imageView)
+        self.navigationItem.rightBarButtonItem = item
+    }
 }

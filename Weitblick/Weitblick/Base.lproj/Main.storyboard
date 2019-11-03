@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gug-kJ-AP2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
@@ -61,8 +61,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="imS-tK-kco">
-                                <rect key="frame" x="0.0" y="177" width="414" height="32"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uus-IM-Wod">
+                                <rect key="frame" x="0.0" y="120" width="414" height="693"/>
+                                <connections>
+                                    <segue destination="KAc-pN-fSU" kind="embed" id="EhZ-bK-ml0"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ov3-wP-j2a">
+                                <rect key="frame" x="0.0" y="120" width="414" height="693"/>
+                                <connections>
+                                    <segue destination="qTE-J2-juG" kind="embed" id="iUg-bN-Aof"/>
+                                </connections>
+                            </containerView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="imS-tK-kco">
+                                <rect key="frame" x="0.0" y="88" width="414" height="32"/>
                                 <segments>
                                     <segment title="News"/>
                                     <segment title="Events"/>
@@ -71,46 +83,21 @@
                                     <action selector="switchView:" destination="TDg-rL-Fq5" eventType="valueChanged" id="PTy-3u-bD6"/>
                                 </connections>
                             </segmentedControl>
-                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uus-IM-Wod">
-                                <rect key="frame" x="0.0" y="208" width="414" height="605"/>
-                                <connections>
-                                    <segue destination="KAc-pN-fSU" kind="embed" id="EhZ-bK-ml0"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ov3-wP-j2a">
-                                <rect key="frame" x="0.0" y="208" width="414" height="605"/>
-                                <connections>
-                                    <segue destination="qTE-J2-juG" kind="embed" id="iUg-bN-Aof"/>
-                                </connections>
-                            </containerView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Weitblick" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="evC-wA-0ba">
-                                <rect key="frame" x="72" y="103" width="270" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OyO-k2-xnn">
-                                <rect key="frame" x="335" y="59" width="35" height="35"/>
-                                <state key="normal" title="Button" image="profile"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="MnN-VF-ntF" firstAttribute="trailing" secondItem="OyO-k2-xnn" secondAttribute="trailing" constant="44" id="0vw-mC-ZBP"/>
-                            <constraint firstItem="Uus-IM-Wod" firstAttribute="leading" secondItem="MnN-VF-ntF" secondAttribute="leading" id="5Q3-nd-OHR"/>
-                            <constraint firstItem="imS-tK-kco" firstAttribute="top" secondItem="evC-wA-0ba" secondAttribute="bottom" constant="15" id="67d-V8-VNL"/>
-                            <constraint firstItem="OyO-k2-xnn" firstAttribute="leading" secondItem="eAN-eZ-eq1" secondAttribute="leadingMargin" constant="315" id="9kA-Mh-KqI"/>
-                            <constraint firstItem="Uus-IM-Wod" firstAttribute="trailing" secondItem="MnN-VF-ntF" secondAttribute="trailing" id="EFf-CB-TBJ"/>
-                            <constraint firstItem="imS-tK-kco" firstAttribute="trailing" secondItem="MnN-VF-ntF" secondAttribute="trailing" id="Efm-6g-RHb"/>
-                            <constraint firstItem="Uus-IM-Wod" firstAttribute="bottom" secondItem="MnN-VF-ntF" secondAttribute="bottom" id="FjA-yZ-MU5"/>
-                            <constraint firstItem="ov3-wP-j2a" firstAttribute="trailing" secondItem="MnN-VF-ntF" secondAttribute="trailing" id="Lt8-6b-e1N"/>
-                            <constraint firstItem="evC-wA-0ba" firstAttribute="top" secondItem="MnN-VF-ntF" secondAttribute="top" id="OE2-wg-j4i"/>
-                            <constraint firstItem="Uus-IM-Wod" firstAttribute="top" secondItem="imS-tK-kco" secondAttribute="bottom" id="Rrd-Jr-qty"/>
-                            <constraint firstItem="ov3-wP-j2a" firstAttribute="bottom" secondItem="MnN-VF-ntF" secondAttribute="bottom" id="U7x-Be-hlL"/>
-                            <constraint firstItem="ov3-wP-j2a" firstAttribute="leading" secondItem="MnN-VF-ntF" secondAttribute="leading" id="VVr-Le-J5e"/>
-                            <constraint firstItem="Uus-IM-Wod" firstAttribute="top" secondItem="imS-tK-kco" secondAttribute="bottom" id="Zjm-IK-lBS"/>
-                            <constraint firstItem="imS-tK-kco" firstAttribute="leading" secondItem="MnN-VF-ntF" secondAttribute="leading" id="ctH-Kb-9JD"/>
-                            <constraint firstItem="evC-wA-0ba" firstAttribute="leading" secondItem="eAN-eZ-eq1" secondAttribute="leadingMargin" constant="50" id="oYV-Hk-ntR"/>
-                            <constraint firstItem="OyO-k2-xnn" firstAttribute="top" secondItem="MnN-VF-ntF" secondAttribute="top" constant="15" id="sdX-HI-A7D"/>
-                            <constraint firstItem="ov3-wP-j2a" firstAttribute="top" secondItem="imS-tK-kco" secondAttribute="bottom" id="tc7-dL-gjI"/>
+                            <constraint firstItem="imS-tK-kco" firstAttribute="leading" secondItem="MnN-VF-ntF" secondAttribute="leading" id="3nN-I4-kzg"/>
+                            <constraint firstItem="Uus-IM-Wod" firstAttribute="top" secondItem="imS-tK-kco" secondAttribute="bottom" constant="1" id="4Mt-0W-91v"/>
+                            <constraint firstItem="imS-tK-kco" firstAttribute="trailing" secondItem="MnN-VF-ntF" secondAttribute="trailing" id="FeV-cS-ieP"/>
+                            <constraint firstItem="ov3-wP-j2a" firstAttribute="bottom" secondItem="MnN-VF-ntF" secondAttribute="bottom" id="Nmm-AW-v0R"/>
+                            <constraint firstItem="Uus-IM-Wod" firstAttribute="trailing" secondItem="MnN-VF-ntF" secondAttribute="trailing" id="Qlf-K7-qWf"/>
+                            <constraint firstItem="ov3-wP-j2a" firstAttribute="trailing" secondItem="MnN-VF-ntF" secondAttribute="trailing" id="Tmk-R9-i3n"/>
+                            <constraint firstItem="Uus-IM-Wod" firstAttribute="bottom" secondItem="MnN-VF-ntF" secondAttribute="bottom" id="TnO-QA-1Xu"/>
+                            <constraint firstItem="Uus-IM-Wod" firstAttribute="top" secondItem="imS-tK-kco" secondAttribute="bottom" constant="1" id="TtQ-G0-NEX"/>
+                            <constraint firstItem="ov3-wP-j2a" firstAttribute="top" secondItem="imS-tK-kco" secondAttribute="bottom" constant="1" id="VvU-ic-urK"/>
+                            <constraint firstItem="ov3-wP-j2a" firstAttribute="leading" secondItem="MnN-VF-ntF" secondAttribute="leading" id="gVg-JG-QdI"/>
+                            <constraint firstItem="imS-tK-kco" firstAttribute="top" secondItem="MnN-VF-ntF" secondAttribute="top" id="qJp-Sl-AOt"/>
+                            <constraint firstItem="Uus-IM-Wod" firstAttribute="leading" secondItem="MnN-VF-ntF" secondAttribute="leading" id="vBJ-sA-MGb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MnN-VF-ntF"/>
                     </view>
@@ -168,6 +155,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0jQ-fV-PAa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1036" y="433"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="h4h-wg-5W0">
+            <objects>
+                <navigationController id="wHH-Vk-rTy" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WSM-Sx-XzJ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Gug-kJ-AP2" kind="relationship" relationship="rootViewController" id="IyC-P9-k80"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xG8-sy-I2t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-77" y="-48"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="k2F-xw-YyE">
@@ -291,7 +294,7 @@
             <objects>
                 <viewController id="KAc-pN-fSU" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mm8-ZW-FJD">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="605"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="693"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -307,7 +310,7 @@
             <objects>
                 <viewController id="qTE-J2-juG" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="O1d-po-urV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="605"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="693"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Qgt-gT-kLi"/>
@@ -319,11 +322,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Weitblick" width="1024" height="375"/>
         <image name="bike" width="50" height="50"/>
         <image name="kalender" width="30" height="30"/>
         <image name="more" width="30" height="6"/>
-        <image name="profile" width="35" height="35"/>
         <image name="projekt" width="30" height="30"/>
         <image name="stats" width="30" height="30"/>
     </resources>

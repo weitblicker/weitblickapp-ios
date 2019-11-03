@@ -12,11 +12,19 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        let nav = self.navigationController?.navigationBar
         
-
-
-
-        // Do any additional setup after loading the view.
+        nav?.barStyle = UIBarStyle.default
+        
+        let imageView = UIImageView(frame : CGRect(x : 0 , y : 0, width : 40 , height : 40))
+        imageView.contentMode = .scaleAspectFit
+        
+        let image = UIImage(named : "Weitblick")
+        imageView.image = image
+        
+        navigationItem.titleView = imageView
     }
 
 

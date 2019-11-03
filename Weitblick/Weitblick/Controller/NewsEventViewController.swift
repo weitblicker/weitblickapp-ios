@@ -30,9 +30,11 @@ class NewsEventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        NewsView.alpha=1
+        EventView.alpha=0
     }
+    
+
     
 
     /*
