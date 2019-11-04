@@ -16,7 +16,21 @@ class RegisterViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func MailRegField(_ sender: UITextField) {
+    }
+    
+    
+    @IBAction func passwordOneFiled(_ sender: UITextField) {
+    }
+    
+    
+    @IBAction func passwordTwoField(_ sender: UITextField) {
+    }
+    
+    @IBAction func registerButton(_ sender: UIButton) {
+    }
+    
+    
     /*
     // MARK: - Navigation
 
