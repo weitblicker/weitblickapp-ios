@@ -312,6 +312,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="JKH-Hw-CMC"/>
                     </view>
+                    <navigationItem key="navigationItem" id="FNz-He-l11"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="txN-Qy-LzD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -514,6 +515,24 @@
                     <view key="view" contentMode="scaleToFill" id="4JA-9s-rZo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7wd-C4-jnY">
+                                <rect key="frame" x="160" y="206" width="38" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <segue destination="K2U-Dr-AIy" kind="show" id="aDN-oF-9gh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l2W-Y0-f4Q">
+                                <rect key="frame" x="179" y="309" width="57" height="177"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Register"/>
+                                <connections>
+                                    <segue destination="Z2P-P4-p4J" kind="show" id="a5D-O6-eaA"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="184-Db-kyg"/>
                     </view>
@@ -521,7 +540,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Jq-nW-Ky9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1949" y="2490"/>
+            <point key="canvasLocation" x="1947.826086956522" y="2489.7321428571427"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="XyN-ug-Xqg">
@@ -692,4 +711,7 @@
         <image name="projekt" width="30" height="30"/>
         <image name="stats" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="zFH-9p-7M1"/>
+    </inferredMetricsTieBreakers>
 </document>
