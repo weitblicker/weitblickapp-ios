@@ -24,6 +24,7 @@
 		3DA49A6E236B155F00AA3198 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA49A6D236B155F00AA3198 /* OtherViewController.swift */; };
 		3DA49A70236B168F00AA3198 /* ProjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA49A6F236B168F00AA3198 /* ProjectDetailViewController.swift */; };
 		3DA49A72236B169E00AA3198 /* NewsEventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA49A71236B169E00AA3198 /* NewsEventDetailViewController.swift */; };
+		4E5B7697446E1FAC550D78A8 /* libPods-Weitblick.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8464085A66F63BEDCC2DEF /* libPods-Weitblick.a */; };
 		A123D1BD236B191F004DB13E /* ResultMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A123D1BC236B191F004DB13E /* ResultMapViewController.swift */; };
 		A123D1BF236B1957004DB13E /* FAQController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A123D1BE236B1957004DB13E /* FAQController.swift */; };
 		A123D1C1236B1F0A004DB13E /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = A123D1C0236B1F0A004DB13E /* Project.swift */; };
@@ -32,11 +33,9 @@
 		A123D1C7236B23B8004DB13E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A123D1C6236B23B8004DB13E /* Location.swift */; };
 		A123D1C9236B398F004DB13E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A123D1C8236B398F004DB13E /* TabBarController.swift */; };
 		A123D1CD236B3D41004DB13E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A123D1CC236B3D41004DB13E /* Event.swift */; };
-		B409EA805513A38B40EFDB6D /* Pods_Weitblick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1141911C8A76C4C5F1280C67 /* Pods_Weitblick.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1141911C8A76C4C5F1280C67 /* Pods_Weitblick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weitblick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		201A7BAC4FA3B8278885E3B7 /* Pods-Weitblick.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weitblick.release.xcconfig"; path = "Target Support Files/Pods-Weitblick/Pods-Weitblick.release.xcconfig"; sourceTree = "<group>"; };
 		2D4FF62CF5135E2C9FB9ED1A /* Pods-Weitblick.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weitblick.debug.xcconfig"; path = "Target Support Files/Pods-Weitblick/Pods-Weitblick.debug.xcconfig"; sourceTree = "<group>"; };
 		3DA49A42236B0C5200AA3198 /* Weitblick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weitblick.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +57,7 @@
 		3DA49A6D236B155F00AA3198 /* OtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
 		3DA49A6F236B168F00AA3198 /* ProjectDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailViewController.swift; sourceTree = "<group>"; };
 		3DA49A71236B169E00AA3198 /* NewsEventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsEventDetailViewController.swift; sourceTree = "<group>"; };
+		4D8464085A66F63BEDCC2DEF /* libPods-Weitblick.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Weitblick.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A123D1BC236B191F004DB13E /* ResultMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultMapViewController.swift; sourceTree = "<group>"; };
 		A123D1BE236B1957004DB13E /* FAQController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQController.swift; sourceTree = "<group>"; };
 		A123D1C0236B1F0A004DB13E /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Project.swift; path = Weitblick/Controller/Project.swift; sourceTree = SOURCE_ROOT; };
@@ -73,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B409EA805513A38B40EFDB6D /* Pods_Weitblick.framework in Frameworks */,
+				4E5B7697446E1FAC550D78A8 /* libPods-Weitblick.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +83,7 @@
 		388A19C884B16F0DE84DD346 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1141911C8A76C4C5F1280C67 /* Pods_Weitblick.framework */,
+				4D8464085A66F63BEDCC2DEF /* libPods-Weitblick.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -176,7 +176,6 @@
 				3DA49A3E236B0C5200AA3198 /* Sources */,
 				3DA49A3F236B0C5200AA3198 /* Frameworks */,
 				3DA49A40236B0C5200AA3198 /* Resources */,
-				234B233B7DA4CB3249109C2C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -234,23 +233,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		234B233B7DA4CB3249109C2C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Weitblick/Pods-Weitblick-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Weitblick/Pods-Weitblick-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Weitblick/Pods-Weitblick-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		FFFDCB5241E282CFAB91D926 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
