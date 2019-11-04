@@ -1,0 +1,11 @@
+ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/OAuthSwift" "${PODS_CONFIGURATION_BUILD_DIR}/SwipeableTabBarController"
+OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/OAuthSwift/OAuthSwift.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/SwipeableTabBarController/SwipeableTabBarController.modulemap"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"OAuthSwift" -l"SwipeableTabBarController"
+OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/OAuthSwift/OAuthSwift.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/SwipeableTabBarController/SwipeableTabBarController.modulemap"
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
+PODS_ROOT = ${SRCROOT}/Pods
+SWIFT_INCLUDE_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/OAuthSwift" "${PODS_CONFIGURATION_BUILD_DIR}/SwipeableTabBarController"

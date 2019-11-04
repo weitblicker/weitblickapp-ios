@@ -1,0 +1,1 @@
+../../../Target Support Files/SwipeableTabBarController/SwipeableTabBarController-umbrella.h

@@ -8,15 +8,45 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
 
+
+class LoginViewController: UIViewController {
+    
+    
+    @IBOutlet fileprivate var emailField : UITextField!
+    
+    @IBOutlet fileprivate var passwordField : UITextField!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        emailField.text=""
+        passwordField.text=""
     }
     
 
+    @IBAction func MailField(_ sender: UITextField) {
+    }
+    
+    
+    @IBAction func PaawordField(_ sender: UITextField) {
+    }
+    
+    
+    @IBAction func LoginButton(_ sender: UIButton) {
+    }
+    
+    @IBAction func newPassword(_ sender: UIButton) {
+    }
+    
+    
+    @IBAction func registerButton(_ sender: UIButton) {
+    }
+    
+    
     /*
     // MARK: - Navigation
 
