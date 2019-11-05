@@ -35,7 +35,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="84" id="Od6-ab-Zzd">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="84" id="Od6-ab-Zzd" customClass="ProjectTableViewCell" customModule="Weitblick" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Od6-ab-Zzd" id="UPm-8b-Pdh">
@@ -77,6 +77,11 @@
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="project_img" destination="TFA-Vc-WZP" id="T5m-00-EhU"/>
+                                            <outlet property="project_place" destination="bec-9V-KBF" id="G1p-pm-B2X"/>
+                                            <outlet property="project_title" destination="hKA-Ao-hek" id="y43-8U-Ko6"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -193,7 +198,7 @@
             <objects>
                 <viewController id="zDY-D6-cQA" customClass="NewsEventDetailViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tPy-Mr-XSy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="639"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="4Eb-H9-78i"/>
@@ -369,8 +374,8 @@
         <!--View Controller-->
         <scene sceneID="sk0-EI-Xuj">
             <objects>
-                <viewController id="KAc-pN-fSU" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mm8-ZW-FJD">
+                <viewController id="KAc-pN-fSU" customClass="ViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mm8-ZW-FJD" customClass="NewsEvent">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="693"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -379,7 +384,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="84" id="bRP-Lq-JUQ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="84" id="bRP-Lq-JUQ" customClass="NewsTableViewCell" customModule="Weitblick" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bRP-Lq-JUQ" id="81j-a2-DzA">
@@ -408,14 +413,14 @@
                                                     <rect key="frame" x="314" y="22" width="40" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button" image="detail"/>
-                                                    <connections>
-                                                        <segue destination="zDY-D6-cQA" kind="popoverPresentation" popoverAnchorView="Awe-jy-9yA" id="FgR-PM-KSR">
-                                                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                        </segue>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="news_description" destination="JWZ-8p-UC7" id="bfK-LH-fuZ"/>
+                                            <outlet property="news_img" destination="bSM-lb-cjc" id="fAY-1C-K5r"/>
+                                            <outlet property="news_place" destination="dar-Bd-zyh" id="A0a-7V-XDo"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -426,7 +431,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gjQ-Wl-oAG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2925" y="-1047"/>
+            <point key="canvasLocation" x="2924.6376811594205" y="-1047.65625"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="CvU-WM-aet">
