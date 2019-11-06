@@ -10,13 +10,24 @@ import UIKit
 
 class ProjectDetailViewController: UIViewController {
 
+   
+    @IBOutlet weak var ButtonFav: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
+    
+    
+    @IBAction func favButton(_ sender: Any) {
+        ButtonFav.backgroundColor=black;
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 
