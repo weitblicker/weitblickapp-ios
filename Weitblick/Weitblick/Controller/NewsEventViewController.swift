@@ -17,11 +17,16 @@ class NewsEventViewController: UIViewController {
     
     @IBOutlet weak var EventView: UIView!
     
+
+    
     
     @IBAction func switchView(_ sender: UISegmentedControl) {
         if(sender.selectedSegmentIndex==0){
             NewsView.alpha=1
             EventView.alpha=0
+            
+            
+            
         } else{
             NewsView.alpha=0
             EventView.alpha=1
