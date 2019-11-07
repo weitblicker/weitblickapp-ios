@@ -64,7 +64,7 @@ class ProjectDetailViewController: UIViewController {
     
     
     @IBAction func favButton(_ sender: Any) {
-        ButtonFav.setImag
+        //ButtonFav.setImag
         
     }
     
