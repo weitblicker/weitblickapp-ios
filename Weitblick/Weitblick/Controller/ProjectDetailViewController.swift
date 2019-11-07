@@ -14,6 +14,8 @@ class ProjectDetailViewController: UIViewController {
    
     @IBOutlet weak var ButtonFav: UIButton!
     
+    @IBOutlet weak var ButtonFilled: UIButton!
+    
     @IBOutlet weak var PieChart: PieChartView!
     
     override func viewDidLoad() {
@@ -62,9 +64,11 @@ class ProjectDetailViewController: UIViewController {
         PieChart.legend.enabled = false
     }
     
+
     
     @IBAction func favButton(_ sender: Any) {
-        //ButtonFav.setImag
+       //#imageLiteral(resourceName : "heart.fill"
+        ButtonFav.setImage(#imageLiteral(resourceName : "heart.fill"), for: .normal)
         
     }
     
