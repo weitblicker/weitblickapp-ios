@@ -48,4 +48,9 @@ class Project{
         return self.partnerID
     }
     
+    public var toString : String{
+        return "ProjektID: " + self.id.description + "\n"
+            + self.name + "\n"
+    }
+    
 }
