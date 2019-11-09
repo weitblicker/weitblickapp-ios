@@ -23,7 +23,7 @@ class ProjectDetailViewController: UIViewController {
     
     
     @IBAction func favButton(_ sender: Any) {
-        ButtonFav.backgroundColor=black;
+       // ButtonFav.backgroundColor=black;
     }
     
     
