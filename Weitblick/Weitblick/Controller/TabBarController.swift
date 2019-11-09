@@ -10,9 +10,38 @@ import UIKit
 import SwipeableTabBarController
 
 class TabBarController: SwipeableTabBarController {
+    
+    var eventCollection : EventCollection = EventCollection()
+    var newsCollection : NewsCollection = NewsCollection()
+    var blogCollection : BlogCollection = BlogCollection()
+    var projectCollection : ProjectCollection = ProjectCollection()
+    
+    var eventsLoaded : Bool = false
+    var newsLoaded : Bool = false
+    var blogsLoaded : Bool = false
+    var projectsLoaded : Bool = false
 
+    var selector : String = ""
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         swipeAnimatedTransitioning?.animationType = SwipeAnimationType.sideBySide
     }
     override func viewWillAppear(_ animated: Bool) {

@@ -16,9 +16,9 @@ class NewsEntry{
     private var imageID : Int
     private var created : Date
     private var updated : Date
-    private var locationID : Int
+    private var range : String
 
-    init(id : Int, title : String, text : String, imageID : Int, created : Date, updated : Date, locationID : Int){
+    init(id : Int, title : String, text : String, imageID : Int, created : Date, updated : Date, range : String){
         
         self.id = id
         self.title = title
@@ -26,7 +26,7 @@ class NewsEntry{
         self.imageID = imageID
         self.created = created
         self.updated = updated
-        self.locationID = locationID
+        self.range = range
         
     }
     
@@ -54,8 +54,8 @@ class NewsEntry{
         return self.updated
     }
     
-    public var getLocationID : Int{
-        return self.locationID
+    public var getRange : String{
+        return self.range
     }
     
     public func setText (text : String){

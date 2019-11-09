@@ -8,23 +8,22 @@
 
 import UIKit
 
-struct ProjectData : Codable{
+struct NewsDecodable : Codable{
     let id : String?
-    let start_date : String?
-    let end_date : String?
-    let published : String?
-    let name : String?
-    let slug : String?
-    let hosts : [String]?
-    let description : String?
-    let location : Int?
-    let partner : [Int]?
+    let title : String?
+    let text : String?
+    let image : Int?
+    let added : String?
+    let updated : String?
+    let range : String?
+    
 }
+
 
 
 class NewsEventViewController: UIViewController {
     
-    var projectList : [Project] = []
+    var newsList : [NewsEntry] = []
     
     
     @IBOutlet weak var NewsView: UIView!
@@ -49,24 +48,19 @@ class NewsEventViewController: UIViewController {
         NewsView.alpha=1
         EventView.alpha=0
     }
-//    extension String {
-//            func fromBase64() -> String? {
-//                    guard let data = Data(base64Encoded: self) else {
-//                            return nil
-//                    }
-//                    return String(data: data, encoding: .utf8)
-//            }
-//            func toBase64() -> String {
-//                    return Data(self.utf8).base64EncodedString()
-//            }
-//    }
+    
+    private func handleDate(date : String) -> Date{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        return dateFormatter.date(from:date)!
+    }
     
     private func loginWithData(){
-        //let params = ["username":"surfer", "password":"hangloose"] as Dictionary<String, String>
 
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();
-        var request = URLRequest(url: URL(string: "https://new.weitblicker.org/rest/projects/?limit=3")!)
+        var request = URLRequest(url: URL(string: "https://new.weitblicker.org/rest/news/?limit=3")!)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
@@ -82,20 +76,22 @@ class NewsEventViewController: UIViewController {
                         let data = string.data(using: .utf8)!
                         //print(string)
                         do {
-                            let f = try JSONDecoder().decode([ProjectData].self, from: data)
+                            let f = try JSONDecoder().decode([NewsDecodable].self, from: data)
                             //print(f)
-                            for project in f {
-                                guard let id = Int.init(project.id!) else { return }
-                                guard let name = project.name else { return }
-                                guard let hosts = project.hosts else { return }
-                                guard let description = project.description else { return }
-                                guard let locationID = project.location else { return }
-                                let partnerID = project.partner ?? []
-                                let project = Project(id : id,name : name,hosts : hosts,description : description,locationID : locationID,partnerID :partnerID)
-                                self.projectList.append(project)
-                                print("Project added")
-                                print(project.toString)
-                                print("\n")
+                            for news in f {
+                                guard let id = news.id else { return }
+                                guard let title = news.title else { return }
+                                guard let text = news.text else { return }
+                                guard let imageID = news.image else { return }
+                                guard let created = news.added else { return }
+                                guard let updated = news.updated else { return }
+                                guard let range = news.range else { return }
+                                let newsEntry = NewsEntry(id : Int.init(id)!, title : title, text : text, imageID : imageID, created : self.handleDate(date: created), updated : self.handleDate(date: updated), range : range);
+                                print("Name")
+                                print(newsEntry.getTitle)
+                                print("Date")
+                                print(newsEntry.getCreationDate)
+                                
                             }
                             
                         } catch {
