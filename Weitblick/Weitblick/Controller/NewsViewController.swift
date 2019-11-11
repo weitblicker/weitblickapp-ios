@@ -11,8 +11,7 @@ import UIKit
 
 class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
-   
-    
+
 
     @IBOutlet weak var tableView: UITableView!
     let fruits = ["Apple", "Orange", "Peach"]
@@ -48,6 +47,8 @@ override func viewDidLoad() {
     super.viewDidLoad()
     self.tableView.delegate = self
     self.tableView.dataSource = self
+    self.tableView.rowHeight = UITableView.automaticDimension
+    self.tableView.estimatedRowHeight = 600
 
     // Do any additional setup after loading the view.
 }

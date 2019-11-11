@@ -16,16 +16,11 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var tableView: UITableView!
     let fruits = ["Apple", "Orange", "Peach","hahha"]
     
+   
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
          return 3    }
     
-    /* func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-      // Return the count of the number of rows in the table
-      return 3
-    }*/
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
+    func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {   // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
         let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as! ProjectTableViewCell
        print("Hallo1")
         // Dafür wird der Abschnitts- und Zeilenindex in einem IndexPath-Objekt übergeben
@@ -51,7 +46,8 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-          
+          tableView.rowHeight = UITableView.automaticDimension
+          tableView.estimatedRowHeight = 600
       }
     
     override func viewWillAppear(_ animated: Bool) {
