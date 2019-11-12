@@ -40,10 +40,20 @@ let fruits = ["Apple", "Orange", "Peach"]
         cell.event_date.text = fruit
         cell.event_location.text = fruit
         cell.event_description.text = fruit
+        cell.event_button_detail.tag = indexPath.row
+        cell.event_button_detail.addTarget(self, action: #selector(showDetail(sender:)), for: .touchUpInside)
 
         return cell
     }
 
+    
+    
+    @objc func showDetail(sender: UIButton){
+           
+           self.performSegue(withIdentifier: "show_event_detail", sender: self)
+           
+       }
+    
 override func viewDidLoad() {
     super.viewDidLoad()
 

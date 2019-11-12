@@ -34,15 +34,22 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let fruit = fruits[indexPath.row]
 
         // Zelle konfigurieren
-        let text = fruits[indexPath.row]
+       // let text = fruits[indexPath.row]
         cell.news_image.image = UIImage(named: "Weitblick")
         cell.news_date.text = fruit
         cell.news_location.text = fruit
         cell.news_description.text = fruit
+        cell.news_button_detail.tag = indexPath.row
+        cell.news_button_detail.addTarget(self, action: #selector(showDetail(sender:)), for: .touchUpInside)
 
         return cell
     }
 
+    @objc func showDetail(sender: UIButton){
+        
+        self.performSegue(withIdentifier: "show_news_detail", sender: self)
+        
+    }
 override func viewDidLoad() {
     super.viewDidLoad()
     self.tableView.delegate = self

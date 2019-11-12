@@ -55,14 +55,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     
-    @objc func bikeTapped(_ sender: UIButton){
-      // use the tag of button as index
-      let alert = UIAlertController(title: "Ausgewählt!", message: "Subscribed to Project", preferredStyle: .alert)
-      let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-      alert.addAction(okAction)
-            
-      self.present(alert, animated: true, completion: nil)
-    }
+ 
  
      private func getProjectData(){
 

@@ -21,6 +21,9 @@ class ProjectTableViewCell: UITableViewCell{
     
     
     @IBOutlet weak var project_button_bike: UIButton!
+    
+    @IBOutlet weak var project_button_detail: UIButton!
+    
     override func awakeFromNib() {
          super.awakeFromNib()
          // Initialization code
