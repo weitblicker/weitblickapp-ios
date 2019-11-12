@@ -15,14 +15,18 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     
-let fruits = ["Apple", "Orange", "Peach"]
-    
+    var eventList : [Event] = []
     
      func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fruits.count
+        let tabbar = tabBarController.self as! TabBarController
+        print("In Event TableView")
+        print(tabbar.eventCollection.getEventList.count)
+        return tabbar.eventCollection.getEventList.count
+      
     }
     
      func tableView(_ tableView: UITableView,
@@ -30,33 +34,27 @@ let fruits = ["Apple", "Orange", "Peach"]
 
         // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
         let cell = tableView.dequeueReusableCell(withIdentifier:"event_cell", for: indexPath)as! EventTableViewCell
-
-        // Dafür wird der Abschnitts- und Zeilenindex in einem IndexPath-Objekt übergeben
-        let fruit = fruits[indexPath.row]
-
-        // Zelle konfigurieren
-       
+        let tabbar = tabBarController.self as! TabBarController
         cell.event_image.image = UIImage(named: "Weitblick")
-        cell.event_date.text = fruit
-        cell.event_location.text = fruit
-        cell.event_description.text = fruit
+        cell.event_description.text = tabbar.eventCollection.getEventList[indexPath.row].getName
         cell.event_button_detail.tag = indexPath.row
-    
-
         return cell
     }
 
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+          let tabbar = tabBarController.self as! TabBarController
+              tabbar.loadData()
+              tableView.reloadData()
+    }
    
     
 override func viewDidLoad() {
     super.viewDidLoad()
-
     self.tableView.delegate = self
     self.tableView.dataSource = self
     self.tableView.rowHeight = UITableView.automaticDimension
     self.tableView.estimatedRowHeight = 600
-}
+ }
 }
 

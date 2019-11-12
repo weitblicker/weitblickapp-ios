@@ -13,26 +13,17 @@ class BikeViewController: UIViewController {
 
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-
-        // Do any additional setup after loading the view.
+    
     }
 
     
     @IBAction func startDataTracking(_ sender: Any) {
         
-        let register = 0
-        
-        if(register==1){
-            performSegue(withIdentifier: "map", sender: self)
-        //ist registriert darf starten
-        }else{
-            performSegue(withIdentifier: "register", sender: self)
-        }
+    
         
     }
     

@@ -8,14 +8,56 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+extension UIImageView {
 
+    func makeRounded() {
+
+        self.layer.borderWidth = 1.0
+        self.layer.masksToBounds = false
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.cornerRadius = self.frame.size.width/2
+        self.clipsToBounds = true
+        
+      /* self.layer.cornerRadius = (self.frame.size.width ) / 2
+        self.clipsToBounds = true
+        self.layer.borderWidth = 3.0
+        self.layer.borderColor = UIColor.black.cgColor*/
+    }
+}
+
+class ProfileViewController: UIViewController {
+    
+    
+    @IBOutlet weak var profile_image: UIImageView!
+    @IBOutlet weak var profile_email: UILabel!
+    @IBOutlet weak var profile_password: UILabel!
+    @IBOutlet weak var profile_donation: UILabel!
+    @IBOutlet weak var profile_route: UILabel!
+    
+    @IBAction func button_edit_password(_ sender: Any) {
+     
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        profile_image.image = UIImage(named: "profile_image")
+        
+        
+       
+      // profile_image.makeRounded()
+        
+     /*   profile_image.layer.borderWidth = 1
+        profile_image.layer.masksToBounds = false
+        profile_image.layer.borderColor = UIColor.black.cgColor
+        profile_image.layer.cornerRadius = profile_image.frame.height/2
+        profile_image.clipsToBounds = true*/
 
         // Do any additional setup after loading the view.
     }
     
+    
+    
+    
+
 
     /*
     // MARK: - Navigation

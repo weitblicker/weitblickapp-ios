@@ -36,13 +36,15 @@ class TabBarController: SwipeableTabBarController {
         imageView.image = image
         navigationItem.titleView = imageView
         
+    
+        
         //LOADING DATA
        // fetchData(string: "news")
       
     }
     
     public func loadData(){
-        fetchData(string: "news")
+      fetchData(string: "news")
     }
 
 
@@ -75,8 +77,10 @@ class TabBarController: SwipeableTabBarController {
             guard let range = news.range else { return }
             let newsEntry = NewsEntry(id : Int.init(id)!, title : title, text : text, gallery : gallery, created : self.handleDate(date: created), updated : self.handleDate(date: updated), range : range);
             self.newsCollection.addNewsEntry(newsEntry: newsEntry)
+            //print(newsEntry.getTitle)
         }
         print("News loaded.")
+        newsLoaded = true
     }
     
     // TODO
