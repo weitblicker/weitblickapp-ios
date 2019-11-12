@@ -18,11 +18,11 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
     
    
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return 3    }
+    return projectList.count    }
     
     func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {   // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
         let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as! ProjectTableViewCell
-       print("Hallo1")
+   
         // Dafür wird der Abschnitts- und Zeilenindex in einem IndexPath-Objekt übergeben
         let fruit = fruits[indexPath.row]
 
@@ -30,14 +30,17 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
        // cell.project_title.text = fruit
         print(fruit)
         cell.imageView?.image = UIImage(named:"Weitblick")
-        cell.project_title.text = fruit
+      /*  cell.project_title.text = fruit
         cell.project_description.text = fruit
-        cell.project_location.text = fruit
-       // cell.project_title.text = projectList[indexPath.row].getName
-      //  print(cell.project_title.text ?? " ERROR")
-       // cell.project_location.text = projectList[indexPath.row]
-      //  cell.project_description.text = projectList[0].getDescription
-      //  print(cell.project_description.text ?? "ERROR ")
+        cell.project_location.text = fruit*/
+        cell.project_button_detail.tag = indexPath.row
+       
+        
+        cell.project_title.text = projectList[indexPath.row].getName
+        print(cell.project_title.text ?? " ERROR")
+       // cell.project_location.text = projectList[indexPath.row].getDescription
+        cell.project_description.text = projectList[indexPath.row].getDescription
+        print(cell.project_description.text ?? "ERROR ")
         
       return cell
     }
@@ -51,8 +54,10 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
       }
     
     override func viewWillAppear(_ animated: Bool) {
-      //    getProjectData()
+         getProjectData()
     }
+    
+
     
     
  
@@ -86,8 +91,9 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
                                 guard let description = project.description else { return }
                                 guard let locationID = project.location else { return }
                                 let partnerID = project.partner ?? []
-                         //      let project = Project(id : id, published: <#Date#>,name : name, gallery: <#[String]#>,hosts : hosts,description : description,locationID : locationID,partnerID :partnerID)
-                           //     self.projectList.append(project)
+                                
+                           //     let project = Project(id : id,published: "12.12.12",name : name,hosts : hosts,description : description,locationID : locationID,partnerID :partnerID)
+                           //    self.projectList.append(project)
                                 
                                
             

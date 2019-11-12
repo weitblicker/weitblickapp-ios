@@ -29,10 +29,7 @@ class NewsEventViewController: UIViewController {
     
     @IBOutlet weak var NewsView: UIView!
     
-    
     @IBOutlet weak var EventView: UIView!
-    
-
     
     
     @IBAction func switchView(_ sender: UISegmentedControl) {
@@ -56,7 +53,7 @@ class NewsEventViewController: UIViewController {
     }
 
     
-    private func loginWithData(){
+  /*  private func loginWithData(){
 
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();
@@ -105,7 +102,7 @@ class NewsEventViewController: UIViewController {
         task.resume()
 
         
-    }
+    }*/
     
 
     

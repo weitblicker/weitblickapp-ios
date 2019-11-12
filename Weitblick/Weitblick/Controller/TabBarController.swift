@@ -37,6 +37,11 @@ class TabBarController: SwipeableTabBarController {
         navigationItem.titleView = imageView
         
         //LOADING DATA
+       // fetchData(string: "news")
+      
+    }
+    
+    public func loadData(){
         fetchData(string: "news")
     }
 

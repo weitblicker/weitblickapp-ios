@@ -11,23 +11,35 @@ import UIKit
 
 class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
-
+    var newsList : [NewsEntry] = []
 
     @IBOutlet weak var tableView: UITableView!
     let fruits = ["Apple", "Orange", "Peach"]
+    
     
     
      func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fruits.count
+        let tabbar = tabBarController.self as! TabBarController
+        
+        print(tabbar.newsCollection.getNewsList.count)
+        return tabbar.newsCollection.getNewsList.count
     }
     
      func tableView(_ tableView: UITableView,
                              cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
+        
+       let tabbar = tabBarController.self as! TabBarController
+        
+        
+        
+        
+        
+        print("Hallo1")
         let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! NewsTableViewCell
 
         // Dafür wird der Abschnitts- und Zeilenindex in einem IndexPath-Objekt übergeben
@@ -36,21 +48,22 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Zelle konfigurieren
        // let text = fruits[indexPath.row]
         cell.news_image.image = UIImage(named: "Weitblick")
-        cell.news_date.text = fruit
+        cell.news_date.text = tabbar.newsCollection.getNewsList[indexPath.row].getText
         cell.news_location.text = fruit
         cell.news_description.text = fruit
         cell.news_button_detail.tag = indexPath.row
-        cell.news_button_detail.addTarget(self, action: #selector(showDetail(sender:)), for: .touchUpInside)
-
+        
         return cell
     }
-
-    @objc func showDetail(sender: UIButton){
-        
-        self.performSegue(withIdentifier: "show_news_detail", sender: self)
-        
+    override func viewWillAppear(_ animated: Bool) {
+        let tabbar = tabBarController.self as! TabBarController
+        tabbar.loadData()
+        self.newsList = tabbar.newsCollection.getNewsList
+        tableView.reloadData()
     }
+   
 override func viewDidLoad() {
+    
     super.viewDidLoad()
     self.tableView.delegate = self
     self.tableView.dataSource = self
