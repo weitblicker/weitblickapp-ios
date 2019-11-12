@@ -85,8 +85,8 @@ class NewsEventViewController: UIViewController {
                                 guard let description = project.description else { return }
                                 guard let locationID = project.location else { return }
                                 let partnerID = project.partner ?? []
-                                let project = Project(id : id,name : name,hosts : hosts,description : description,locationID : locationID,partnerID :partnerID)
-                                self.projectList.append(project)
+                    //            let project = Project(id : id, published: <#Date#>,name : name, gallery: <#[String]#>,hosts : hosts,description : description,locationID : locationID,partnerID :partnerID)
+                      //        self.projectList.append(project)
                             
                             }
                             
