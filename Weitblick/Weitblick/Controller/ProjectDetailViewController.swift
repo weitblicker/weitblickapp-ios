@@ -12,9 +12,13 @@ import Charts
 class ProjectDetailViewController: UIViewController {
 
    
+   
+    @IBOutlet weak var projectImage: UIImageView!
+    
+    
     @IBOutlet weak var ButtonFav: UIButton!
     
-    @IBOutlet weak var ButtonFilled: UIButton!
+    //@IBOutlet weak var ButtonFilled: UIButton!
     
     @IBOutlet weak var PieChart: PieChartView!
     
@@ -22,6 +26,10 @@ class ProjectDetailViewController: UIViewController {
         super.viewDidLoad()
 
         customizeChart(dataPoints: stats, values: goals.map{ Double($0) })
+        
+      //  setUpButton()
+    
+    
         // Do any additional setup after loading the view.
     }
     
@@ -64,12 +72,28 @@ class ProjectDetailViewController: UIViewController {
         PieChart.legend.enabled = false
     }
     
+    
+    
+    func setUpButton(){
+        ButtonFav.addTarget(self, action: Selector(("favButton:")), for : UIControl.Event.touchUpInside)
+
+    }
 
     
-    @IBAction func favButton(_ sender: Any) {
-       //#imageLiteral(resourceName : "heart.fill"
-        ButtonFav.setImage(#imageLiteral(resourceName : "heart.fill"), for: .normal)
-        
+     var clicked = 0
+    @IBAction func favButton(_ sender: UIButton) {
+       
+        if(clicked == 0){
+        let image = UIImage(systemName: "heart.fill")
+        sender.setImage(image, for: UIControl.State.normal)
+            clicked = 1
+            return
+        } else if(clicked==1){
+            let image = UIImage(systemName: "heart")
+            sender.setImage(image, for: UIControl.State.normal)
+            clicked = 0
+        }
+ 
     }
     
     
