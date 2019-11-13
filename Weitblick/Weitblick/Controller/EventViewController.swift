@@ -14,7 +14,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     
     @IBOutlet weak var tableView: UITableView!
-    
+    let fruits = ["Apple", "Orange", "Peach"]
     var eventList : [Event] = []
     
      func numberOfSections(in tableView: UITableView) -> Int {
@@ -25,7 +25,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         let tabbar = tabBarController.self as! TabBarController
         print("In Event TableView")
         print(tabbar.eventCollection.getEventList.count)
-        return tabbar.eventCollection.getEventList.count
+       // return tabbar.eventCollection.getEventList.count
+        return fruits.count
       
     }
     
@@ -35,9 +36,21 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
         let cell = tableView.dequeueReusableCell(withIdentifier:"event_cell", for: indexPath)as! EventTableViewCell
         let tabbar = tabBarController.self as! TabBarController
-        cell.event_image.image = UIImage(named: "Weitblick")
+      /*  cell.event_image.image = UIImage(named: "Weitblick")
         cell.event_description.text = tabbar.eventCollection.getEventList[indexPath.row].getName
-        cell.event_button_detail.tag = indexPath.row
+        cell.event_button_detail.tag = indexPath.row*/
+        let fruit = fruits[indexPath.row]
+
+         // Zelle konfigurieren
+        // cell.project_title.text = fruit
+         print(fruit)
+         cell.imageView?.image = UIImage(named:"Weitblick")
+        // cell.event_title.text = fruit
+         cell.event_description.text = fruit
+         cell.event_location.text = fruit
+         cell.event_button_detail.tag = indexPath.row
+        
+        
         return cell
     }
 
