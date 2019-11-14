@@ -46,6 +46,25 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
       return cell
     }
 
+        // Zelle konfigurieren
+       // cell.project_title.text = fruit
+        print(fruit)
+        cell.imageView?.image = UIImage(named:"Weitblick")
+        cell.project_title.text = fruit
+        cell.project_description.text = fruit
+        cell.project_location.text = fruit
+        cell.project_button_detail.tag = indexPath.row
+        cell.project_button_detail.addTarget(self, action: #selector(showDetail(sender:)), for: .touchUpInside)
+
+       // cell.project_title.text = projectList[indexPath.row].getName
+      //  print(cell.project_title.text ?? " ERROR")
+       // cell.project_location.text = projectList[indexPath.row]
+      //  cell.project_description.text = projectList[0].getDescription
+      //  print(cell.project_description.text ?? "ERROR ")
+
+      return cell
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.downloadData()

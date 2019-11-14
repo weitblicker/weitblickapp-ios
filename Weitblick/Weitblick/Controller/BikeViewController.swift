@@ -11,22 +11,22 @@ import MapKit
 
 class BikeViewController: UIViewController {
 
-    
-    
-    
-    
+
+
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
     }
 
-    
+
     @IBAction func startDataTracking(_ sender: Any) {
-        
-    
-        
+
+
+
     }
-    
+
     /*
     // MARK: - Navigation
 

@@ -53,3 +53,4 @@ override func viewDidLoad() {
     self.tableView.estimatedRowHeight = 600
  }
 }
+}
