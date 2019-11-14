@@ -9,10 +9,21 @@
 import UIKit
 
 class OtherViewController: UIViewController {
+    
+    
+    
 
+    @IBOutlet weak var blog_icon: UIImageView!
+    
+    @IBOutlet weak var faq_icon: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        blog_icon.layer.borderWidth = 3
+        blog_icon.layer.borderColor = UIColor.systemOrange.cgColor
+        faq_icon.layer.borderWidth = 3
+        faq_icon.layer.borderColor = UIColor.systemOrange.cgColor
+    
         // Do any additional setup after loading the view.
     }
     

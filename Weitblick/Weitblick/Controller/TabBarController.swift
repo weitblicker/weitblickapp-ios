@@ -9,7 +9,7 @@
 import UIKit
 import SwipeableTabBarController
 
-class TabBarController: SwipeableTabBarController {
+class TabBarController: SwipeableTabBarController,UINavigationControllerDelegate {
     
     var eventCollection : EventCollection = EventCollection()
     var newsCollection : NewsCollection = NewsCollection()
@@ -28,23 +28,36 @@ class TabBarController: SwipeableTabBarController {
         swipeAnimatedTransitioning?.animationType = SwipeAnimationType.sideBySide
     }
     override func viewWillAppear(_ animated: Bool) {
-        let nav = self.navigationController?.navigationBar
-        nav?.barStyle = UIBarStyle.default
-        let imageView = UIImageView(frame : CGRect(x : 0 , y : 0, width : 40 , height : 40))
-        imageView.contentMode = .scaleAspectFit
-        let image = UIImage(named : "Weitblick")
-        imageView.image = image
-        navigationItem.titleView = imageView
         
-    
+       loadNavImages()
         
-        //LOADING DATA
-       // fetchData(string: "news")
-      
     }
+    
+    @objc func goToProfile(_ sender:UIBarButtonItem!)
+       {
+           print("myRightSideBarButtonItemTapped")
+        
+        let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        self.navigationController?.pushViewController(profileViewController, animated: true)
+        
+           }
     
     public func loadData(){
       fetchData(string: "news")
+    }
+    
+    public func loadNavImages(){
+        let image = UIImage(named : "Weitblick")
+               let imageView = UIImageView(image: image)
+               imageView.frame = CGRect(x: 0, y: 0, width: 170, height: 45)
+               imageView.contentMode = .scaleAspectFit
+               let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 170, height: 60))
+               titleView.addSubview(imageView)
+               titleView.backgroundColor = .clear
+               self.navigationItem.titleView = titleView
+               let rightBarButton = UIBarButtonItem(title: "Profil", style: UIBarButtonItem.Style.plain, target: self, action: #selector(TabBarController.goToProfile(_:)))
+               self.navigationItem.rightBarButtonItem = rightBarButton
+        
     }
 
 

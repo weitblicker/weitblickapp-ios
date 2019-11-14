@@ -40,21 +40,19 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         profile_image.image = UIImage(named: "profile_image")
-        
-        
-       
-      // profile_image.makeRounded()
-        
-     /*   profile_image.layer.borderWidth = 1
-        profile_image.layer.masksToBounds = false
+        profile_image.layer.cornerRadius = profile_image.frame.size.width/2
+        profile_image.clipsToBounds = true
+        profile_image.layer.borderWidth = 2
         profile_image.layer.borderColor = UIColor.black.cgColor
-        profile_image.layer.cornerRadius = profile_image.frame.height/2
-        profile_image.clipsToBounds = true*/
+        
 
-        // Do any additional setup after loading the view.
     }
     
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     
 

@@ -12,11 +12,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    
-    @IBOutlet fileprivate var emailField : UITextField!
-    
-    @IBOutlet fileprivate var passwordField : UITextField!
-    
+
     
     
     override func viewDidLoad() {
@@ -28,15 +24,36 @@ class LoginViewController: UIViewController {
     }
     
 
-    @IBAction func MailField(_ sender: UITextField) {
-    }
+ 
     
     
-    @IBAction func PaawordField(_ sender: UITextField) {
-    }
+    @IBOutlet weak var password: UITextField!
     
+    @IBOutlet weak var email: UITextField!
     
     @IBAction func LoginButton(_ sender: UIButton) {
+        
+        if(self.email.text == ""){
+            
+            let alertView = UIAlertController(title: "Achtung!", message: "Email-Feld darf nicht leer sein", preferredStyle: UIAlertController.Style.alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alertView, animated: true, completion: nil)
+            
+            
+        }else if (self.password.text == ""){
+            
+            let alertView = UIAlertController(title: "Achtung!", message: "Password-Feld darf nicht leer sein",preferredStyle: UIAlertController.Style.alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alertView, animated: true, completion: nil)
+            
+        }else {
+            
+            //hier User einloggen
+            
+        }
+        
+        
+        
     }
     
     @IBAction func newPassword(_ sender: UIButton) {
@@ -46,15 +63,5 @@ class LoginViewController: UIViewController {
     @IBAction func registerButton(_ sender: UIButton) {
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
