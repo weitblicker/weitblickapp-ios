@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0F14A060237B08320003C79D /* ProfileChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F14A05F237B08320003C79D /* ProfileChangePasswordController.swift */; };
 		0F5284A6237DA72400553132 /* FAQTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5284A5237DA72400553132 /* FAQTableViewCell.swift */; };
-		0F5284A8237DB5C700553132 /* BlogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5284A7237DB5C700553132 /* BlogTableViewCell.swift */; };
 		0F595F302370708400602EB0 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F595F2F2370708400602EB0 /* NewsViewController.swift */; };
 		0F6E698E2377185C00D1B778 /* EventTableNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E698D2377185C00D1B778 /* EventTableNewsCell.swift */; };
 		0F6E69902377187100D1B778 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E698F2377187100D1B778 /* NewsTableViewCell.swift */; };
@@ -47,12 +46,12 @@
 		A123D1C7236B23B8004DB13E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A123D1C6236B23B8004DB13E /* Location.swift */; };
 		A123D1C9236B398F004DB13E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A123D1C8236B398F004DB13E /* TabBarController.swift */; };
 		A123D1CD236B3D41004DB13E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A123D1CC236B3D41004DB13E /* Event.swift */; };
+		A1E02C89237DDF5800A39EEC /* BlogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E02C88237DDF5800A39EEC /* BlogTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0F14A05F237B08320003C79D /* ProfileChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChangePasswordController.swift; sourceTree = "<group>"; };
 		0F5284A5237DA72400553132 /* FAQTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQTableViewCell.swift; sourceTree = "<group>"; };
-		0F5284A7237DB5C700553132 /* BlogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogTableViewCell.swift; sourceTree = "<group>"; };
 		0F595F2F2370708400602EB0 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		0F6E698D2377185C00D1B778 /* EventTableNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableNewsCell.swift; sourceTree = "<group>"; };
 		0F6E698F2377187100D1B778 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -94,6 +93,7 @@
 		A123D1C6236B23B8004DB13E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Location.swift; path = Weitblick/Controller/Location.swift; sourceTree = SOURCE_ROOT; };
 		A123D1C8236B398F004DB13E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A123D1CC236B3D41004DB13E /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Event.swift; path = Weitblick/Controller/Event.swift; sourceTree = SOURCE_ROOT; };
+		A1E02C88237DDF5800A39EEC /* BlogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BlogTableViewCell.swift; path = Controller/BlogTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,8 +145,8 @@
 				3DA49A4B236B0C5200AA3198 /* Main.storyboard */,
 				0F5284A5237DA72400553132 /* FAQTableViewCell.swift */,
 				0F6E698D2377185C00D1B778 /* EventTableNewsCell.swift */,
-				0F5284A7237DB5C700553132 /* BlogTableViewCell.swift */,
 				0F6E698F2377187100D1B778 /* NewsTableViewCell.swift */,
+				A1E02C88237DDF5800A39EEC /* BlogTableViewCell.swift */,
 				0F9375FC2376F92A00EB26FF /* ProjectTableViewCell.swift */,
 				3DA49A4E236B0C5400AA3198 /* Assets.xcassets */,
 				3DA49A50236B0C5400AA3198 /* LaunchScreen.storyboard */,
@@ -304,7 +304,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A123D1C3236B2140004DB13E /* BlogEntry.swift in Sources */,
-				0F5284A8237DB5C700553132 /* BlogTableViewCell.swift in Sources */,
 				3DA49A6A236B153C00AA3198 /* MapViewController.swift in Sources */,
 				A123D1C7236B23B8004DB13E /* Location.swift in Sources */,
 				A123D1BD236B191F004DB13E /* ResultMapViewController.swift in Sources */,
@@ -341,6 +340,7 @@
 				A123D1C9236B398F004DB13E /* TabBarController.swift in Sources */,
 				3DA49A6E236B155F00AA3198 /* OtherViewController.swift in Sources */,
 				A114CB7E23771A8F006EAE45 /* EventCollection.swift in Sources */,
+				A1E02C89237DDF5800A39EEC /* BlogTableViewCell.swift in Sources */,
 				3DA49A48236B0C5200AA3198 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,13 +487,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QZ2SL24595;
+				DEVELOPMENT_TEAM = N89CU69VYF;
 				INFOPLIST_FILE = Weitblick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.hsos.Software-Engineering.Weitblick.iosj";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.hsos.Software-Engineering.Weitblick.IOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -506,13 +506,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QZ2SL24595;
+				DEVELOPMENT_TEAM = N89CU69VYF;
 				INFOPLIST_FILE = Weitblick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.hsos.Software-Engineering.Weitblick.iosj";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.hsos.Software-Engineering.Weitblick.IOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
