@@ -37,7 +37,7 @@ class NewsEntry{
     private var range : String
 
     init(id : Int, title : String, text : String, gallery : Gallery, created : Date, updated : Date, range : String, image : Image){
-        
+
         self.id = id
         self.title = title
         self.text = text
@@ -46,21 +46,21 @@ class NewsEntry{
         self.updated = updated
         self.range = range
         self.image = image
-        
+
     }
-    
+
     public var getID : Int{
         return self.id
     }
-    
+
     public var getTitle : String {
         return self.title
     }
-    
+
     public var getText : String{
         return self.text
     }
-    
+
     public func getImageURLFromGallery(index : Int) -> String{
         if(index >= 0 && index < self.gallery.images!.count){
             return self.gallery.images![index].imageURL!
@@ -68,27 +68,27 @@ class NewsEntry{
             return "NO_IMAGES_IN_GALLERY_ERROR"
         }
     }
-    
+
     public var getImageURL : String{
         return self.image.imageURL!
     }
-    
+
     public var getCreationDate : Date{
         return self.created
     }
-    
+
     public var getUpdateDate : Date{
         return self.updated
     }
-    
+
     public var getRange : String{
         return self.range
     }
-    
+
     public func setText (text : String){
         self.text = text
         self.updated  = Date.init()
         // DB Synchronisation
     }
-    
+
 }

@@ -10,23 +10,23 @@ import Foundation
 import UIKit
 
 class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
-    
-    
+
+
     var imagesLoaded : Bool = false
     var postCount : Int = 3
     var count : Int = 0
     var newsList : [NewsEntry] = []
     @IBOutlet weak var tableView: UITableView!
-    
-    
-    
+
+
+
      func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsList.count
     }
-    
+
      func tableView(_ tableView: UITableView,
                              cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
@@ -34,7 +34,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! NewsTableViewCell
         // Zelle konfigurieren
         let defaultstring = "https://new.weitblicker.org"
-        
+
        // let imgURL = NSURL(string : defaultstring + tabbar.newsCollection.getNewsList[indexPath.row].getImageURL)
         if(count < postCount){
             let imgURL = NSURL(string : defaultstring + self.newsList[indexPath.row].getImageURL)
@@ -43,23 +43,23 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.news_image.image = UIImage(data: data! as Data)
             }
             count += 1
-            
+
         }
 //        let imgURL = NSURL(string : defaultstring + self.newsList[indexPath.row].getImageURL)
         //print(imgURL)
 //        let location : Location = getLocation(InputId: self.newsList[indexPath.row].g)
-        
-        
-        
+
+
+
         //cell.news_description.text = tabbar.newsCollection.getNewsList[indexPath.row].getTitle
         cell.news_date.text = newsList[indexPath.row].getCreationDate.description
-        
+
         cell.news_description.text = newsList[indexPath.row].getTitle
         cell.news_button_detail.tag = indexPath.row
-        
+
         return cell
     }
-   
+
 override func viewDidLoad() {
     super.viewDidLoad()
     self.downloadData()
@@ -74,7 +74,7 @@ override func viewDidLoad() {
        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
        return dateFormatter.date(from:date)!
    }
-    
+
     public func getLocation (InputId : Int) -> Location{
         var resultLocation = Location(id: 0, name: "", description: "", lat: 0.0, lng: 0.0, address: "")
         let url = NSURL(string: "https://new.weitblicker.org/rest/locations")
@@ -84,7 +84,7 @@ override func viewDidLoad() {
         task.httpMethod = "GET"
         task.addValue("application/json", forHTTPHeaderField: "Content-Type")
         task.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-        
+
         URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
         let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
         if let locationsArray = jsondata as? NSArray{
@@ -108,7 +108,7 @@ override func viewDidLoad() {
                         let locationLngFloat = Float.init(locationLngInt!)
                         guard let address = locationDict.value(forKey: "address") else { return }
                         let locationAddress = address as! String
-                        
+
                         resultLocation = Location(id: locationID!, name: locationName, description: locationDescription, lat: locationLatFloat, lng: locationLngFloat, address: locationAddress)
                     }
                 }
@@ -117,7 +117,7 @@ override func viewDidLoad() {
     })
     return resultLocation
     }
-    
+
     public func downloadData(){
         var resultimages : [Image] = []
         let url = NSURL(string: "https://new.weitblicker.org/rest/news/?format=json&limit=3")
@@ -127,7 +127,7 @@ override func viewDidLoad() {
         task.httpMethod = "GET"
         task.addValue("application/json", forHTTPHeaderField: "Content-Type")
         task.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-        
+
         URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
             let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
             if let newsArray = jsondata as? NSArray{
@@ -136,28 +136,28 @@ override func viewDidLoad() {
                         guard let id = newsDict.value(forKey: "id")  else { return }
                         let IDString = id as! String
                         let newsID = Int.init(IDString)
-                        
+
                         guard let title = newsDict.value(forKey: "title") else { return }
                         let newsTitle = title as! String
-                        
+
                         guard let text = newsDict.value(forKey: "text") else { return }
                         let newsText = text as! String
-                        
+
                         guard let created = newsDict.value(forKey: "added") else { return }
                         let createdString = created as! String
                         let newsCreated = self.handleDate(date: createdString)
-                        
+
                         guard let imageURLJSON = newsDict.value(forKey : "image") else { return }
                         var imageURL = ""
                         if let mainImageDict = imageURLJSON as? NSDictionary{
                             guard let imgURL = mainImageDict.value(forKey: "url") else { return }
                             imageURL = imgURL as! String
                         }
-                        
+
                         guard let updated = newsDict.value(forKey: "updated") else { return }
                         let upDatedString = updated as! String
                         let newsUpdated = self.handleDate(date: upDatedString)
-                        
+
                         guard let range = newsDict.value(forKey: "range") else { return }
                         let newsRange = range as! String
 
@@ -187,9 +187,8 @@ override func viewDidLoad() {
                 OperationQueue.main.addOperation {
                     self.tableView.reloadData()
                 }
-                
+
             }
             }).resume()
     }
 }
-

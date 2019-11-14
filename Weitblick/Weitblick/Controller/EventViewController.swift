@@ -11,21 +11,21 @@ import Foundation
 import UIKit
 
 class EventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
-    
-    
+
+
     @IBOutlet weak var tableView: UITableView!
-    
+
     var eventList : [Event] = []
-    
+
      func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
-      
+
     }
-    
+
      func tableView(_ tableView: UITableView,
                              cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
@@ -37,14 +37,14 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
 
-    
+
 //    override func viewDidAppear(_ animated: Bool) {
 //          let tabbar = tabBarController.self as! TabBarController
 //              tabbar.loadData()
 //              tableView.reloadData()
 //    }
-   
-    
+
+
 override func viewDidLoad() {
     super.viewDidLoad()
     self.tableView.delegate = self
@@ -53,4 +53,3 @@ override func viewDidLoad() {
     self.tableView.estimatedRowHeight = 600
  }
 }
-

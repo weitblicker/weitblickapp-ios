@@ -16,19 +16,52 @@ class RegisterViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func MailRegField(_ sender: UITextField) {
-    }
     
     
-    @IBAction func passwordOneFiled(_ sender: UITextField) {
-    }
+    @IBOutlet weak var email: UITextField!
     
     
-    @IBAction func passwordTwoField(_ sender: UITextField) {
-    }
+    
+    @IBOutlet weak var password: UITextField!
+    
+    
+    @IBOutlet weak var password2: UITextField!
     
     @IBAction func registerButton(_ sender: UIButton) {
+        
+        if (self.email.text == ""){
+            let alertView = UIAlertController(title: "Achtung!", message: "Email-Feld darf nicht leer sein", preferredStyle: UIAlertController.Style.alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+            self.present(alertView, animated: true, completion: nil)
+        }else if (self.password.text == ""){
+            let alertView = UIAlertController(title: "Achtung!", message: "Passwot-Feld darf nicht leer sein", preferredStyle: UIAlertController.Style.alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+            self.present(alertView, animated: true, completion: nil)
+            
+        }else if (self.password2.text == ""){
+            let alertView = UIAlertController(title: "Achtung!", message: "Password wiederholen- Feld darf nicht leer sein", preferredStyle: UIAlertController.Style.alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+            self.present(alertView, animated: true, completion: nil)
+            
+        }
+        
+        else if (self.password2.text != self.password.text){
+            let alertView = UIAlertController(title: "Achtung!", message: "Passwörter sind nicht gleich", preferredStyle: UIAlertController.Style.alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+            self.present(alertView, animated: true, completion: nil)
+        }else{
+            //POST-Request zum Registrieren des Users
+            
+        }
+        
     }
+    
+    
+    
     
     
     /*

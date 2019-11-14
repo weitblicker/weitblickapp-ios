@@ -13,14 +13,14 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
     var postCount = 3;
     var projectList : [Project] = []
     var locationList : [Location] = []
-    
-    
+
+
     @IBOutlet weak var tableView: UITableView!
-    
-   
+
+
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return projectList.count    }
-    
+
     func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {   // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
         let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as! ProjectTableViewCell
         let defaultstring = "https://new.weitblicker.org"
@@ -31,21 +31,21 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
                 cell.project_image.image = UIImage(data: data! as Data)
             }
             count += 1
-            
+
         }
         cell.project_title.text = projectList[indexPath.row].getName
-        
-        
+
+
         cell.project_description.text = projectList[indexPath.row].getDescription
         cell.project_button_detail.tag = indexPath.row
-        
+
 //        guard case let cell.project_location.text = self.getLocationAddressWithID(id: self.locationList[indexPath.row].getID) else { return cell}
-        
-       
+
+
 
       return cell
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.downloadData()
@@ -54,7 +54,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
           tableView.rowHeight = UITableView.automaticDimension
           tableView.estimatedRowHeight = 600
       }
-    
+
     private func handleDate(date : String) -> Date{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
@@ -62,10 +62,10 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         print("/n/n/n")
         print(dateFormatter.date(from:date))
         print("/n/n/n")
-        
+
         return dateFormatter.date(from:date) ?? Date.init()
     }
-     
+
     public func getLocationAddressWithID( id :Int) -> String{
         for location in self.locationList{
             if(location.getID == id){
@@ -74,7 +74,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         return "Adress not found"
     }
-    
+
     public func loadLocations(){
         let url = NSURL(string: "https://new.weitblicker.org/rest/locations/?format=json")
         let str = "surfer:hangloose"
@@ -113,7 +113,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         }).resume()
     }
-     
+
      public func downloadData(){
         var resultPartnerID : [Int] = []
         var resultHosts : [String] = []
@@ -125,7 +125,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
          task.httpMethod = "GET"
          task.addValue("application/json", forHTTPHeaderField: "Content-Type")
          task.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-         
+
          URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
              let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
              if let projectArray = jsondata as? NSArray{
@@ -134,19 +134,19 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
                          guard let id = projectDict.value(forKey: "id")  else { return }
                          let IDString = id as! String
                          let projectID = Int.init(IDString)
-                         
+
                          guard let title = projectDict.value(forKey: "name") else { return }
                          let projectTitle = title as! String
-                         
+
                          guard let description = projectDict.value(forKey: "description") else { return }
                          let projectDescription = description as! String
-                         
+
                         guard let location = projectDict.value(forKey: "location") else { return }
                         let projectLocationID = location as! Int
-                        
+
                         //guard let partner = projectDict.value(forKey: "partner") else { return }
-                        
-  
+
+
                         guard let published = projectDict.value(forKey: "published") else { return }
                          let publishedString = published as! String
                          let projectPublished = self.handleDate(date: publishedString)
@@ -179,14 +179,14 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
                     self.loadLocations()
                     self.tableView.reloadData()
                  }
-                 
+
              }
              }).resume()
      }
-    
 
 
-    
+
+
 
 
 

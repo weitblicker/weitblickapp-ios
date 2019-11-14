@@ -29,7 +29,7 @@ class Project{
     private var description : String
     private var locationID : Int
     private var partnerID : [Int]
-    
+
     init(id : Int,published : Date, name : String, gallery : Gallery, hosts : [String], description : String, locationID : Int, partnerID : [Int]){
         self.id = id
         self.published = published
@@ -41,45 +41,45 @@ class Project{
         self.locationID = locationID
         self.partnerID = partnerID
     }
-    
+
     public var getID : Int {
         return self.id
     }
-    
+
     public var getPublished : Date{
         return self.published
     }
     public var getName : String{
         return self.name
     }
-    
+
     public var getGalleryCount : Int{
         return self.galleryCount
     }
-    
+
     public func getImageURL(index : Int) -> String{
         return self.gallery.images![index].imageURL!
     }
-    
+
     public var getHosts : [String]{
         return self.hosts
     }
-    
+
     public var getDescription : String {
         return self.description
     }
-    
+
     public var getLocationID : Int{
         return self.locationID
     }
-    
+
     public var getPartnerID : [Int]{
         return self.partnerID
     }
-    
+
     public var toString : String{
         return "ProjektID: " + self.id.description + "\n"
             + self.name + "\n"
     }
-    
+
 }
