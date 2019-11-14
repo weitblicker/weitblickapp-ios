@@ -8,17 +8,34 @@
 
 import Foundation
 
+struct ProjectDecodable : Codable{
+    let id : String?
+    let published : String?
+    let name : String?
+    let gallery : [String]?
+    let hosts : [String]?
+    let description : String?
+    let location : Int?
+    let partner : [Int]?
+}
+
 class Project{
     private var id : Int
+    private var published : Date
     private var name : String
+    private var gallery : Gallery
+    private var galleryCount : Int
     private var hosts : [String]
     private var description : String
     private var locationID : Int
     private var partnerID : [Int]
     
-    init(id : Int,name : String,hosts : [String],description : String,locationID : Int,partnerID : [Int]){
+    init(id : Int,published : Date, name : String, gallery : Gallery, hosts : [String], description : String, locationID : Int, partnerID : [Int]){
         self.id = id
+        self.published = published
         self.name = name
+        self.gallery = gallery
+        self.galleryCount = self.gallery.images!.count
         self.hosts = hosts
         self.description = description
         self.locationID = locationID
@@ -28,12 +45,24 @@ class Project{
     public var getID : Int {
         return self.id
     }
+    
+    public var getPublished : Date{
+        return self.published
+    }
     public var getName : String{
         return self.name
     }
     
+    public var getGalleryCount : Int{
+        return self.galleryCount
+    }
+    
+    public func getImageURL(index : Int) -> String{
+        return self.gallery.images![index].imageURL!
+    }
+    
     public var getHosts : [String]{
-        return hosts
+        return self.hosts
     }
     
     public var getDescription : String {
@@ -46,6 +75,11 @@ class Project{
     
     public var getPartnerID : [Int]{
         return self.partnerID
+    }
+    
+    public var toString : String{
+        return "ProjektID: " + self.id.description + "\n"
+            + self.name + "\n"
     }
     
 }

@@ -2,29 +2,55 @@
 //  EventViewController.swift
 //  Weitblick
 //
-//  Created by Jana  on 31.10.19.
+//  Created by Zuzanna Mielczarek on 09.11.19.
 //  Copyright © 2019 HS Osnabrueck. All rights reserved.
 //
 
+import Foundation
+import Foundation
 import UIKit
 
-class EventViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+class EventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+    
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    var eventList : [Event] = []
+    
+     func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+      
     }
-    */
+    
+     func tableView(_ tableView: UITableView,
+                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+        // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
+        let cell = tableView.dequeueReusableCell(withIdentifier:"event_cell", for: indexPath)as! EventTableViewCell
+        let tabbar = tabBarController.self as! TabBarController
+        cell.event_image.image = UIImage(named: "Weitblick")
+        cell.event_button_detail.tag = indexPath.row
+        return cell
+    }
+
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//          let tabbar = tabBarController.self as! TabBarController
+//              tabbar.loadData()
+//              tableView.reloadData()
+//    }
+   
+    
+override func viewDidLoad() {
+    super.viewDidLoad()
+    self.tableView.delegate = self
+    self.tableView.dataSource = self
+    self.tableView.rowHeight = UITableView.automaticDimension
+    self.tableView.estimatedRowHeight = 600
+ }
 }
+
