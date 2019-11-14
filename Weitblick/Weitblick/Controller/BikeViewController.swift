@@ -23,7 +23,19 @@ class BikeViewController: UIViewController {
     }
 
     
-
+    @IBAction func startDataTracking(_ sender: Any) {
+        
+        let register = 0
+        
+        if(register==1){
+            performSegue(withIdentifier: "map", sender: self)
+        //ist registriert darf starten
+        }else{
+            performSegue(withIdentifier: "register", sender: self)
+        }
+        
+    }
+    
     /*
     // MARK: - Navigation
 
