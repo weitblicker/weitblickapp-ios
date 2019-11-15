@@ -28,8 +28,7 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
         cell.blog_image.image = UIImage(named:"Weitblick")
         cell.blog_description.text = blog
         cell.blog_date.text = date
-        
-        print(cell.blog_description.text)
+        cell.blog_button_detail.tag = indexPath.row
         
         return cell
          

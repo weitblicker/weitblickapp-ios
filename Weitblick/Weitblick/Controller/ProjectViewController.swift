@@ -15,7 +15,9 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
     var postCount = 3;
     var projectList : [Project] = []
     var locationList : [Location] = []
-    var locationListID : [Int] = []
+    var project_object : Project?
+    var count2 = 0
+    var postCount2 = 3
 
 
     @IBOutlet weak var tableView: UITableView!
@@ -32,12 +34,14 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
             if(imgURL != nil){
                 let data = NSData(contentsOf: (imgURL as URL?)!)
                 cell.project_image.image = UIImage(data: data! as Data)
+
             }
+
             count += 1
 
         }
         cell.project_title.text = projectList[indexPath.row].getName
-        
+
         let id = self.locationListID[indexPath.row]
         let locationString = self.getLocationAddressWithID(id: id)
         cell.project_location.text = locationString
@@ -50,6 +54,14 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
 
       return cell
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.project_object = projectList[indexPath.row]
+     print("Index: ")
+     print (indexPath.row)
+        self.performSegue(withIdentifier: "goToProjectDetail", sender: self)
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,7 +123,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
                         let locationAddress = address as! String
                         let location = Location(id: locationID!, name: locationName, description: locationDescription, lat: locationLatFloat, lng: locationLngFloat, address: locationAddress)
                         self.locationList.append(location)
-                        
+
                     }
                 }
                 OperationQueue.main.addOperation {
@@ -190,11 +202,18 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
              }).resume()
      }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+              if segue.destination is ProjectDetailViewController
+              {
+                  let projectDetailViewController = segue.destination as? ProjectDetailViewController
+                  projectDetailViewController?.project_object = self.project_object
+                projectDetailViewController?.count = self.count
+
+
+
+              }
+          }
+
+
+
 }
-
-
-
-
-
-
-

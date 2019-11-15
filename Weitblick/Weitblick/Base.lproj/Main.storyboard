@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -99,7 +99,7 @@
                                                     <attributedString key="attributedText">
                                                         <fragment content="Description">
                                                             <attributes>
-                                                                <font key="NSFont" size="13" name="OpenSans"/>
+                                                                <font key="NSFont" metaFont="system"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -113,7 +113,7 @@
                                                     </constraints>
                                                     <state key="normal" title="Button" image="detail"/>
                                                     <connections>
-                                                        <segue destination="Iga-6e-GSm" kind="show" identifier="show_project_detail" id="zT0-qc-dwG"/>
+                                                        <segue destination="Iga-6e-GSm" kind="show" identifier="goToProjectDetail" id="zT0-qc-dwG"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -173,7 +173,7 @@
         <!--Project Detail View Controller-->
         <scene sceneID="Pvk-Mj-ggc">
             <objects>
-                <viewController autoresizesArchivedViewToFullSize="NO" modalPresentationStyle="fullScreen" id="Iga-6e-GSm" customClass="ProjectDetailViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProjectDetailViewController" autoresizesArchivedViewToFullSize="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Iga-6e-GSm" customClass="ProjectDetailViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="izK-QV-4jC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -319,6 +319,10 @@
                     <connections>
                         <outlet property="ButtonFav" destination="Ioj-iO-8LB" id="kop-1J-chh"/>
                         <outlet property="PieChart" destination="gPb-4M-jQz" id="h2v-tc-UDU"/>
+                        <outlet property="project_detail_description" destination="JB4-4D-DAM" id="QSg-ih-5Jv"/>
+                        <outlet property="project_detail_image" destination="rCG-0b-FrA" id="dfc-97-32a"/>
+                        <outlet property="project_detail_location" destination="RuQ-Um-Ois" id="CL4-61-y0C"/>
+                        <outlet property="project_detail_title" destination="VG9-jK-2nx" id="2yd-xA-dX2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZiE-TU-Aas" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -383,10 +387,10 @@
             </objects>
             <point key="canvasLocation" x="2024.6376811594205" y="-546.42857142857144"/>
         </scene>
-        <!--News Event Detail View Controller-->
+        <!--News Detail View Controller-->
         <scene sceneID="aVN-h3-6Ng">
             <objects>
-                <viewController id="zDY-D6-cQA" customClass="NewsEventDetailViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewsDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zDY-D6-cQA" customClass="NewsDetailViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tPy-Mr-XSy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="946"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -490,6 +494,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="gmG-Oz-7UK"/>
                     <size key="freeformSize" width="414" height="1000"/>
+                    <connections>
+                        <outlet property="news_detail_date" destination="zzk-bo-qdc" id="vgD-fm-K48"/>
+                        <outlet property="news_detail_description" destination="usa-Xp-GY7" id="ZW4-HE-Mgj"/>
+                        <outlet property="news_detail_image" destination="Aev-sL-1Ov" id="dvr-UQ-O7c"/>
+                        <outlet property="news_detail_loaction" destination="Vo3-al-aZO" id="aUC-sx-i0T"/>
+                        <outlet property="news_detail_title" destination="ol9-z7-7Gy" id="ELq-q4-B9X"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rVb-by-jDC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1104,6 +1115,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="blog_button_detail" destination="9im-6V-0Fm" id="24C-pr-92x"/>
                                             <outlet property="blog_date" destination="nVV-z4-cp1" id="9Zw-0Y-bEB"/>
                                             <outlet property="blog_description" destination="Gya-kV-gC5" id="Vfn-S0-Rvr"/>
                                             <outlet property="blog_image" destination="xQK-WP-v3d" id="4ft-NB-r0r"/>
@@ -1405,8 +1417,16 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59a-hb-LOt">
-                                                    <rect key="frame" x="127" y="204" width="26" height="0.0"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rYV-KX-R3u">
+                                                    <rect key="frame" x="320" y="195" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="detail"/>
+                                                    <connections>
+                                                        <segue destination="zDY-D6-cQA" kind="show" identifier="goToNewsDetail" destinationCreationSelector="NewsEventDetailViewController" id="lC3-1z-Jpp"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59a-hb-LOt">
+                                                    <rect key="frame" x="262" y="200" width="26" height="0.0"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="26" id="DPK-5C-aKE"/>
                                                     </constraints>
@@ -1533,7 +1553,7 @@
                                                     <attributedString key="attributedText">
                                                         <fragment content="Datum">
                                                             <attributes>
-                                                                <font key="NSFont" size="11" name="OpenSans"/>
+                                                                <font key="NSFont" metaFont="smallSystem"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -1558,7 +1578,7 @@
                                                     <attributedString key="attributedText">
                                                         <fragment content="Kurzbeschreibung">
                                                             <attributes>
-                                                                <font key="NSFont" size="13" name="OpenSans"/>
+                                                                <font key="NSFont" metaFont="system"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -1607,10 +1627,10 @@
             </objects>
             <point key="canvasLocation" x="2924.6376811594205" y="-426.22767857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--News Event Detail View Controller-->
         <scene sceneID="TPi-jy-Fiu">
             <objects>
-                <viewController id="6mT-4g-bdI" customClass="fViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6mT-4g-bdI" customClass="NewsEventDetailViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZQV-pp-Nvv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="946"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

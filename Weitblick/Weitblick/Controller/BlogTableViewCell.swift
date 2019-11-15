@@ -19,6 +19,8 @@ class BlogTableViewCell: UITableViewCell {
     
     @IBOutlet weak var blog_description: UILabel!
     
+    @IBOutlet weak var blog_button_detail: UIView!
+    
     
     
     override func awakeFromNib() {

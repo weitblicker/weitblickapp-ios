@@ -35,7 +35,6 @@ class TabBarController: SwipeableTabBarController,UINavigationControllerDelegate
 
     @objc func goToProfile(_ sender:UIBarButtonItem!)
        {
-           print("myRightSideBarButtonItemTapped")
 
         let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         self.navigationController?.pushViewController(profileViewController, animated: true)
@@ -45,7 +44,7 @@ class TabBarController: SwipeableTabBarController,UINavigationControllerDelegate
 
 
     public func loadNavImages(){
-        let image = UIImage(named : "Weitblick")
+               let image = UIImage(named : "Weitblick")
                let imageView = UIImageView(image: image)
                imageView.frame = CGRect(x: 0, y: 0, width: 170, height: 45)
                imageView.contentMode = .scaleAspectFit
@@ -53,22 +52,13 @@ class TabBarController: SwipeableTabBarController,UINavigationControllerDelegate
                titleView.addSubview(imageView)
                titleView.backgroundColor = .clear
                self.navigationItem.titleView = titleView
-               let rightBarButton = UIBarButtonItem(title: "Profil", style: UIBarButtonItem.Style.plain, target: self, action: #selector(TabBarController.goToProfile(_:)))
+        let rightBarButton = UIBarButtonItem(title: "Profil", style: UIBarButtonItem.Style.plain, target: self, action: #selector(TabBarController.goToProfile(_:)))
                self.navigationItem.rightBarButtonItem = rightBarButton
 
     }
 
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+  
 
    
 
