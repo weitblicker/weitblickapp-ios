@@ -16,19 +16,30 @@ class ProjectDetailViewController: UIViewController {
 
 
 
-    @IBOutlet weak var projectImage: UIImageView!
-
+    @IBOutlet weak var project_detail_image: UIImageView!
+    
+    @IBOutlet weak var project_detail_title: UILabel!
+    
+    @IBOutlet weak var project_detail_location: UILabel!
+    
+    @IBOutlet weak var project_detail_description: UILabel!
+    var count = 0
+    var postCount = 0
+    
 
     @IBOutlet weak var ButtonFav: UIButton!
 
     //@IBOutlet weak var ButtonFilled: UIButton!
 
     @IBOutlet weak var PieChart: PieChartView!
+    
+    var project_object: Project?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         customizeChart(dataPoints: stats, values: goals.map{ Double($0) })
+        loadProjectDetail()
 
       //  setUpButton()
 
@@ -99,6 +110,22 @@ class ProjectDetailViewController: UIViewController {
 
     }
 
+    func loadProjectDetail(){
+        project_detail_description.text = project_object?.getDescription
+        project_detail_title.text = project_object?.getName
+        project_detail_location.text = "Osnabrück"
+       // project_detail_image.image = img
+       let defaultstring = "https://new.weitblicker.org"
+    
+        let imgURL = NSURL(string : defaultstring + project_object!.getImageURL(index: 0))
+           if(imgURL != nil){
+               let data = NSData(contentsOf: (imgURL as URL?)!)
+            project_detail_image.image = UIImage(data: data! as Data)
+       
+           }
+                   
+        
+    }
 
     
     /*

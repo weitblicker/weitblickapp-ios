@@ -16,6 +16,12 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var postCount : Int = 3
     var count : Int = 0
     var newsList : [NewsEntry] = []
+    var news_title = ""
+    var news_description = ""
+    var news_location = ""
+    var news_date = ""
+    var news_object : NewsEntry?
+    
     @IBOutlet weak var tableView: UITableView!
 
 
@@ -26,6 +32,8 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsList.count
     }
+    
+   
 
      func tableView(_ tableView: UITableView,
                              cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,12 +61,21 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         //cell.news_description.text = tabbar.newsCollection.getNewsList[indexPath.row].getTitle
         cell.news_date.text = newsList[indexPath.row].getCreationDate.description
-
+        self.news_object = newsList [indexPath.row]
         cell.news_description.text = newsList[indexPath.row].getTitle
         cell.news_button_detail.tag = indexPath.row
+      //  cell.news_button_detail.addTarget(self, action: #selector(goToDetail( _:)), for: .touchUpInside)
 
         return cell
     }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+           self.news_object = newsList[indexPath.row]
+        print("Index: ")
+        print (indexPath.row)
+           self.performSegue(withIdentifier: "goToNewsDetail", sender: self)
+       }
 
 override func viewDidLoad() {
     super.viewDidLoad()
@@ -67,6 +84,7 @@ override func viewDidLoad() {
     self.tableView.dataSource = self
     self.tableView.rowHeight = UITableView.automaticDimension
     self.tableView.estimatedRowHeight = 600
+    
 }
     private func handleDate(date : String) -> Date{
        let dateFormatter = DateFormatter()
@@ -191,4 +209,20 @@ override func viewDidLoad() {
             }
             }).resume()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+           if segue.destination is NewsDetailViewController
+           {
+               let newsDetailViewController = segue.destination as? NewsDetailViewController
+               newsDetailViewController?.news_object = self.news_object
+        
+            
+           }
+       }
+    
+    
+    
+    
+    
+    
 }
