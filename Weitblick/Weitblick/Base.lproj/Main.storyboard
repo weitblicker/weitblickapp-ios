@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1417,16 +1417,8 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rYV-KX-R3u">
-                                                    <rect key="frame" x="320" y="195" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button" image="detail"/>
-                                                    <connections>
-                                                        <segue destination="zDY-D6-cQA" kind="show" identifier="goToNewsDetail" destinationCreationSelector="NewsEventDetailViewController" id="lC3-1z-Jpp"/>
-                                                    </connections>
-                                                </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59a-hb-LOt">
-                                                    <rect key="frame" x="262" y="200" width="26" height="0.0"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59a-hb-LOt">
+                                                    <rect key="frame" x="262" y="204" width="26" height="0.0"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="26" id="DPK-5C-aKE"/>
                                                     </constraints>
@@ -1460,7 +1452,7 @@
                                                     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <state key="normal" title="Button" image="chevron.right" catalog="system"/>
                                                     <connections>
-                                                        <segue destination="zDY-D6-cQA" kind="show" identifier="show_news_detail" id="Qe6-fN-TMM"/>
+                                                        <segue destination="zDY-D6-cQA" kind="show" identifier="goToNewsDetail" id="Qe6-fN-TMM"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1553,7 +1545,7 @@
                                                     <attributedString key="attributedText">
                                                         <fragment content="Datum">
                                                             <attributes>
-                                                                <font key="NSFont" metaFont="smallSystem"/>
+                                                                <font key="NSFont" metaFont="message" size="11"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>

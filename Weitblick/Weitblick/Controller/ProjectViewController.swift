@@ -15,6 +15,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
     var postCount = 3;
     var projectList : [Project] = []
     var locationList : [Location] = []
+    var locationListID : [Int] = []
     var project_object : Project?
     var count2 = 0
     var postCount2 = 3
