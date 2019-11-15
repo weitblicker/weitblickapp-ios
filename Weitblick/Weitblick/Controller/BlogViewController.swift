@@ -15,6 +15,7 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
     var count = 0
     var postCount = 3
     var blog_object : BlogEntry?
+    var image: UIImageView?
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -37,6 +38,7 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
                 if(imgURL != nil){
                     let data = NSData(contentsOf: (imgURL as URL?)!)
                     cell.blog_image.image = UIImage(data: data! as Data)
+                    image?.image = UIImage(data: data! as Data)
                 }
             }
             count += 1
@@ -49,6 +51,11 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
         return cell
          
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    self.blog_object = blogList[indexPath.row]
+        self.performSegue(withIdentifier: "goToBlogDetail", sender: self)
     }
 
     
@@ -154,6 +161,7 @@ print("9")
            {
                let blogDetailViewController = segue.destination as? BlogDetailViewController
                blogDetailViewController?.blog_object = self.blog_object
+            blogDetailViewController?.image = self.image?.image
 
 
            }

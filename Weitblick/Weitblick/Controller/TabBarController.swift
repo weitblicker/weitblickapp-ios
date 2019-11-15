@@ -52,7 +52,7 @@ class TabBarController: SwipeableTabBarController,UINavigationControllerDelegate
                titleView.addSubview(imageView)
                titleView.backgroundColor = .clear
                self.navigationItem.titleView = titleView
-        let rightBarButton = UIBarButtonItem(title: "Profil", style: UIBarButtonItem.Style.plain, target: self, action: #selector(TabBarController.goToProfile(_:)))
+            let rightBarButton = UIBarButtonItem(title: "Profil", style: UIBarButtonItem.Style.plain, target: self, action: #selector(TabBarController.goToProfile(_:)))
                self.navigationItem.rightBarButtonItem = rightBarButton
 
     }

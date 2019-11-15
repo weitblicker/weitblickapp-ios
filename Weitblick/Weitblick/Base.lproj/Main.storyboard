@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -63,7 +63,7 @@
                                                     <attributedString key="attributedText">
                                                         <fragment content="Title">
                                                             <attributes>
-                                                                <font key="NSFont" size="24" name="OpenSans"/>
+                                                                <font key="NSFont" metaFont="system" size="24"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -1011,7 +1011,7 @@
                                     <attributedString key="attributedTitle">
                                         <fragment content="Login">
                                             <attributes>
-                                                <font key="NSFont" size="24" name="OpenSans"/>
+                                                <font key="NSFont" metaFont="system" size="24"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
@@ -1064,7 +1064,7 @@
                                 <rect key="frame" x="20" y="88" width="374" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="blog_cell" rowHeight="456" translatesAutoresizingMaskIntoConstraints="NO" id="aDX-jY-kSe" customClass="BlogTableViewCell" customModule="Weitblick" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="blog_cell" rowHeight="456" translatesAutoresizingMaskIntoConstraints="NO" id="aDX-jY-kSe" customClass="BlogTableViewCell" customModule="Weitblick" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="456"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aDX-jY-kSe" translatesAutoresizingMaskIntoConstraints="NO" id="9im-6V-0Fm">
@@ -1095,32 +1095,32 @@
                                                     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <state key="normal" title="Button" image="chevron.right" catalog="system"/>
                                                     <connections>
-                                                        <segue destination="Cb6-06-Rki" kind="show" id="5hQ-0q-Hqa"/>
+                                                        <segue destination="Cb6-06-Rki" kind="show" identifier="goToBlogDetail" id="5hQ-0q-Hqa"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gu9-Mw-8Ra">
-                                                    <rect key="frame" x="20" y="215" width="0.0" height="23.5"/>
+                                                    <rect key="frame" x="20" y="215" width="0.0" height="22.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="51" id="flM-zg-mur"/>
                                                     </constraints>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Titel">
                                                             <attributes>
-                                                                <font key="NSFont" size="20" name="OpenSans"/>
+                                                                <font key="NSFont" metaFont="system" size="20"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gya-kV-gC5">
-                                                    <rect key="frame" x="20" y="-33" width="0.0" height="14"/>
+                                                    <rect key="frame" x="20" y="-33.5" width="0.0" height="14.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="110" id="lTS-wC-3cM"/>
                                                     </constraints>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Description">
                                                             <attributes>
-                                                                <font key="NSFont" size="12" name="OpenSans"/>
+                                                                <font key="NSFont" metaFont="cellTitle"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -1187,7 +1187,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zDe-uw-oGK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4070" y="2498"/>
+            <point key="canvasLocation" x="4020" y="3283"/>
         </scene>
         <!--Blog Detail View Controller-->
         <scene sceneID="tSy-Sc-HpF">
@@ -1299,6 +1299,12 @@
                         <viewLayoutGuide key="safeArea" id="uXX-FI-w3B"/>
                     </view>
                     <size key="freeformSize" width="414" height="1000"/>
+                    <connections>
+                        <outlet property="blog_detail_date" destination="A8B-Gu-h8w" id="Rkt-m4-bKl"/>
+                        <outlet property="blog_detail_description" destination="igx-7I-BaW" id="TPO-Pa-N1D"/>
+                        <outlet property="blog_detail_image" destination="hDC-BG-HWu" id="CAQ-ul-iql"/>
+                        <outlet property="blog_detail_title" destination="BLi-W5-awz" id="WLq-gX-e5I"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pLc-sX-7fm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1558,7 +1564,7 @@
                                                     <attributedString key="attributedText">
                                                         <fragment content="Datum">
                                                             <attributes>
-                                                                <font key="NSFont" size="13" name="OpenSans-Italic"/>
+                                                                <font key="NSFont" metaFont="system"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -1583,7 +1589,7 @@
                                                         <fragment content="Kurzbeschreibung .....................................................">
                                                             <attributes>
                                                                 <color key="NSBackgroundColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="13" name="OpenSans-Bold"/>
+                                                                <font key="NSFont" metaFont="system"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -1598,9 +1604,6 @@
                                                     </constraints>
                                                     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <state key="normal" title="Button" image="chevron.right" catalog="system"/>
-                                                    <connections>
-                                                        <segue destination="zDY-D6-cQA" kind="show" identifier="goToNewsDetail" id="Qe6-fN-TMM"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1640,6 +1643,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="8tY-9w-6YY" id="GRf-iI-NcW"/>
+                        <segue destination="zDY-D6-cQA" kind="show" identifier="goToNewsDetail" id="EIF-0G-zRz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gjQ-Wl-oAG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

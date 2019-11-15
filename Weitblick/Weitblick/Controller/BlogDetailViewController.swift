@@ -9,24 +9,49 @@
 import UIKit
 
 class BlogDetailViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var blog_detail_image: UIImageView!
+    
+    @IBOutlet weak var blog_detail_title: UILabel!
+    
+    @IBOutlet weak var blog_detail_date: UILabel!
+    
+    
+    @IBOutlet weak var blog_detail_description: UILabel!
+    
     var blog_object : BlogEntry?
+    var image : UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadDetailBlog()
 
-        // Do any additional setup after loading the view.
+        
+    }
+    func loadDetailBlog(){
+        
+        blog_detail_title.text = blog_object?.getTitle
+        blog_detail_description.text = blog_object?.getText
+        blog_detail_date.text = blog_object?.getCreationDate.description
+       // blog_detail_image.image = self.image
+      
+        let defaultstring = "https://new.weitblicker.org"
+       let imgURL = NSURL(string : defaultstring + blog_object!.getImageMainURL)
+        if(imgURL != nil){
+            let data = NSData(contentsOf: (imgURL as URL?)!)
+            if(data == nil){
+                blog_detail_image.image = UIImage(named: "Weitblick")
+            }else{
+            blog_detail_image.image = UIImage(data: data! as Data)
+            }
+        }
+        
+        
+        
+        
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
