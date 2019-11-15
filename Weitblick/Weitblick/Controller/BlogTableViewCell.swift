@@ -17,6 +17,7 @@ class BlogTableViewCell: UITableViewCell {
     
     @IBOutlet weak var blog_date: UILabel!
     
+    @IBOutlet weak var blog_title: UILabel!
     @IBOutlet weak var blog_description: UILabel!
     
     @IBOutlet weak var blog_button_detail: UIView!

@@ -10,6 +10,8 @@ import UIKit
 
 class BlogDetailViewController: UIViewController {
 
+    var blog_object : BlogEntry?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
