@@ -19,10 +19,6 @@ class OtherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        blog_icon.layer.borderWidth = 3
-        blog_icon.layer.borderColor = UIColor.systemOrange.cgColor
-        faq_icon.layer.borderWidth = 3
-        faq_icon.layer.borderColor = UIColor.systemOrange.cgColor
     
         // Do any additional setup after loading the view.
     }

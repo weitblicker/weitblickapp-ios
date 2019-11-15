@@ -9,6 +9,15 @@
 import Foundation
 import UIKit
 
+extension Date{
+    func dateAndTimetoString(format: String = "dd.MM.yyyy") -> String {
+    let formatter = DateFormatter()
+            formatter.dateStyle = .short
+            formatter.dateFormat = format
+    return formatter.string(from: self)
+        }
+}
+
 class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
 
@@ -52,9 +61,9 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
 
         //cell.news_description.text = tabbar.newsCollection.getNewsList[indexPath.row].getTitle
-        cell.news_date.text = newsList[indexPath.row].getCreationDate.description
+        cell.news_date.text = newsList[indexPath.row].getCreationDate.dateAndTimetoString()
 
-        cell.news_description.text = newsList[indexPath.row].getTitle
+        cell.news_description.text = newsList[indexPath.row].getTeaser
         cell.news_button_detail.tag = indexPath.row
 
         return cell
@@ -160,6 +169,9 @@ override func viewDidLoad() {
 
                         guard let range = newsDict.value(forKey: "range") else { return }
                         let newsRange = range as! String
+                        
+                        guard let Dictteaser = newsDict.value(forKey: "teaser") else { return }
+                        let newsTeaser = Dictteaser as! String
 
                         guard let gallery = newsDict.value(forKey: "gallery") else { return }
                         // Gallery
@@ -179,7 +191,7 @@ override func viewDidLoad() {
                         let resultGallery = Gallery(images: resultimages)
                         resultimages = []
                         let imageItem = Image(imageURL: imageURL)
-                        let newsEntry = NewsEntry(id: newsID!, title: newsTitle, text: newsText, gallery: resultGallery, created: newsCreated , updated: newsUpdated, range: newsRange, image: imageItem)
+                        let newsEntry = NewsEntry(id: newsID!, title: newsTitle, text: newsText, gallery: resultGallery, created: newsCreated , updated: newsUpdated, range: newsRange, image: imageItem, teaser: newsTeaser)
                         self.newsList.append(newsEntry)
                     }
                 }

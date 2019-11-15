@@ -8,11 +8,14 @@
 
 import UIKit
 
+
+
 class ProjectViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var count = 0;
     var postCount = 3;
     var projectList : [Project] = []
     var locationList : [Location] = []
+    var locationListID : [Int] = []
 
 
     @IBOutlet weak var tableView: UITableView!
@@ -34,8 +37,10 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
 
         }
         cell.project_title.text = projectList[indexPath.row].getName
-
-
+        
+        let id = self.locationListID[indexPath.row]
+        let locationString = self.getLocationAddressWithID(id: id)
+        cell.project_location.text = locationString
         cell.project_description.text = projectList[indexPath.row].getDescription
         cell.project_button_detail.tag = indexPath.row
 
@@ -48,6 +53,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loadLocations()
         self.downloadData()
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -59,15 +65,12 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        print("/n/n/n")
-        print(dateFormatter.date(from:date))
-        print("/n/n/n")
-
         return dateFormatter.date(from:date) ?? Date.init()
     }
 
     public func getLocationAddressWithID( id :Int) -> String{
         for location in self.locationList{
+            print(id.description + " = = " + location.getID.description)
             if(location.getID == id){
                 return location.getAddress
             }
@@ -79,12 +82,12 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         let url = NSURL(string: "https://new.weitblicker.org/rest/locations/?format=json")
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();
-        var task = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
-        task.httpMethod = "GET"
-        task.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        task.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+        var task2 = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
+        task2.httpMethod = "GET"
+        task2.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        task2.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
 
-        URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
+        URLSession.shared.dataTask(with: task2, completionHandler: {(data,response,error) -> Void in
             let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
             if let locationsArray = jsondata as? NSArray{
                 for location in locationsArray{
@@ -108,7 +111,11 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
                         let locationAddress = address as! String
                         let location = Location(id: locationID!, name: locationName, description: locationDescription, lat: locationLatFloat, lng: locationLngFloat, address: locationAddress)
                         self.locationList.append(location)
+                        
                     }
+                }
+                OperationQueue.main.addOperation {
+                   self.tableView.reloadData()
                 }
             }
         }).resume()
@@ -143,7 +150,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
 
                         guard let location = projectDict.value(forKey: "location") else { return }
                         let projectLocationID = location as! Int
-
+                        self.locationListID.append(projectLocationID)
                         //guard let partner = projectDict.value(forKey: "partner") else { return }
 
 
@@ -176,7 +183,6 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
                  }
                  // Do after Loading
                  OperationQueue.main.addOperation {
-                    self.loadLocations()
                     self.tableView.reloadData()
                  }
 

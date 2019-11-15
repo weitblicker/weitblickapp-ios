@@ -35,8 +35,9 @@ class NewsEntry{
     private var created : Date
     private var updated : Date
     private var range : String
+    private var teaser : String
 
-    init(id : Int, title : String, text : String, gallery : Gallery, created : Date, updated : Date, range : String, image : Image){
+    init(id : Int, title : String, text : String, gallery : Gallery, created : Date, updated : Date, range : String, image : Image, teaser: String){
 
         self.id = id
         self.title = title
@@ -46,6 +47,7 @@ class NewsEntry{
         self.updated = updated
         self.range = range
         self.image = image
+        self.teaser = teaser
 
     }
 
@@ -83,6 +85,10 @@ class NewsEntry{
 
     public var getRange : String{
         return self.range
+    }
+    
+    public var getTeaser : String{
+        return self.teaser
     }
 
     public func setText (text : String){
