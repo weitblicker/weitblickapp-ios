@@ -72,6 +72,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.news_date.text = newsList[indexPath.row].getCreationDate.dateAndTimetoString()
 
         cell.news_description.text = newsList[indexPath.row].getTeaser
+        cell.news_description.sizeToFit()
         cell.news_button_detail.tag = indexPath.row
       //  cell.news_button_detail.addTarget(self, action: #selector(goToDetail( _:)), for: .touchUpInside)
 
@@ -147,7 +148,7 @@ override func viewDidLoad() {
 
     public func downloadData(){
         var resultimages : [Image] = []
-        let url = NSURL(string: "https://new.weitblicker.org/rest/news/?format=json&limit=3")
+        let url = NSURL(string: "https://new.weitblicker.org/rest/news/?limit=3")
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();
         var task = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)

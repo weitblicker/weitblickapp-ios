@@ -33,7 +33,10 @@ class BlogDetailViewController: UIViewController {
         
         blog_detail_title.text = blog_object?.getTitle
         blog_detail_description.text = blog_object?.getText
-        blog_detail_date.text = blog_object?.getCreationDate.description
+        blog_detail_description.sizeToFit()
+        print(blog_detail_description.text)
+        blog_detail_date.text = blog_object?.getCreationDate.dateAndTimetoString()
+        print("Test1")
        // blog_detail_image.image = self.image
       
         let defaultstring = "https://new.weitblicker.org"
@@ -41,10 +44,13 @@ class BlogDetailViewController: UIViewController {
         if(imgURL != nil){
             let data = NSData(contentsOf: (imgURL as URL?)!)
             if(data == nil){
+                print("Test2")
                 blog_detail_image.image = UIImage(named: "Weitblick")
             }else{
+                print("Test3")
             blog_detail_image.image = UIImage(data: data! as Data)
             }
+            print("Test4")
         }
         
         
