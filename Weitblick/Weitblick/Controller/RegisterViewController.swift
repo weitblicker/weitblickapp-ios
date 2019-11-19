@@ -62,7 +62,20 @@ class RegisterViewController: UIViewController {
     
     
     
+    @IBAction func InfoButton(_ sender: UIButton) {
+        let message:String = "Der Username wird öffentlich sichtbar sein"
+   
+                       let alertController:UIAlertController = UIAlertController(title: "", message: message, preferredStyle: UIAlertController.Style.alert)
+
+                       let alertAction:UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:nil)
+                       alertController.addAction(alertAction)
+                       present(alertController, animated: true, completion: nil)
+    }
     
+    
+           
+          
+       
     
     /*
     // MARK: - Navigation
