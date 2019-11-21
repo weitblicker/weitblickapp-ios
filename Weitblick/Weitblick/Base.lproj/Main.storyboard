@@ -1058,9 +1058,6 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVV-z4-cp1">
                                                     <rect key="frame" x="8" y="191" width="358" height="28"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="200" id="DPZ-xx-ROP"/>
-                                                    </constraints>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Datum">
                                                             <attributes>
@@ -1070,10 +1067,10 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gu9-Mw-8Ra">
-                                                    <rect key="frame" x="8" y="234" width="358" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gu9-Mw-8Ra">
+                                                    <rect key="frame" x="8" y="238" width="0.0" height="22.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="200" id="VJ7-jM-kQX"/>
+                                                        <constraint firstAttribute="width" constant="330" id="VJ7-jM-kQX"/>
                                                     </constraints>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Titel">
@@ -1084,9 +1081,12 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Kurzbeschreibung" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VrG-BS-jQD">
-                                                    <rect key="frame" x="8" y="271" width="358" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kurzbeschreibung" lineBreakMode="wordWrap" numberOfLines="5" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VrG-BS-jQD">
+                                                    <rect key="frame" x="8" y="273.5" width="339" height="19.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="339" id="A6N-Vy-3oO"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1099,20 +1099,19 @@
                                                 <constraint firstItem="VrG-BS-jQD" firstAttribute="leading" secondItem="9im-6V-0Fm" secondAttribute="leading" constant="8" id="4zc-kj-I1k"/>
                                                 <constraint firstAttribute="trailing" secondItem="gu9-Mw-8Ra" secondAttribute="trailing" constant="8" id="Chn-ce-j3w"/>
                                                 <constraint firstAttribute="trailing" secondItem="nVV-z4-cp1" secondAttribute="trailing" constant="8" id="GeS-lt-xgN"/>
+                                                <constraint firstAttribute="bottom" secondItem="VrG-BS-jQD" secondAttribute="bottom" constant="15" id="HcG-HC-4Rt"/>
                                                 <constraint firstItem="nVV-z4-cp1" firstAttribute="top" secondItem="xQK-WP-v3d" secondAttribute="bottom" id="Kf5-ha-VaJ"/>
                                                 <constraint firstAttribute="height" constant="308" id="RYQ-c8-dt5"/>
-                                                <constraint firstAttribute="bottom" secondItem="VrG-BS-jQD" secondAttribute="bottom" constant="16" id="RkQ-dF-qMU"/>
-                                                <constraint firstItem="VrG-BS-jQD" firstAttribute="width" secondItem="xQK-WP-v3d" secondAttribute="width" constant="80" id="SYb-jN-XYX"/>
                                                 <constraint firstItem="nVV-z4-cp1" firstAttribute="width" secondItem="xQK-WP-v3d" secondAttribute="width" id="VrX-F2-Pja"/>
-                                                <constraint firstItem="gu9-Mw-8Ra" firstAttribute="centerX" secondItem="9im-6V-0Fm" secondAttribute="centerX" id="X4M-sh-8PH"/>
                                                 <constraint firstAttribute="trailing" secondItem="xQK-WP-v3d" secondAttribute="trailing" constant="8" id="agU-vo-V3a"/>
                                                 <constraint firstItem="VrG-BS-jQD" firstAttribute="top" secondItem="gu9-Mw-8Ra" secondAttribute="bottom" constant="13" id="fYG-im-9a4"/>
                                                 <constraint firstItem="xQK-WP-v3d" firstAttribute="top" secondItem="9im-6V-0Fm" secondAttribute="top" constant="11" id="htf-qf-QSQ"/>
                                                 <constraint firstItem="gu9-Mw-8Ra" firstAttribute="top" secondItem="nVV-z4-cp1" secondAttribute="bottom" constant="15" id="iaD-ab-R8Y"/>
+                                                <constraint firstAttribute="trailing" secondItem="VrG-BS-jQD" secondAttribute="trailing" constant="8" id="j8P-pa-75E"/>
                                                 <constraint firstItem="gu9-Mw-8Ra" firstAttribute="width" secondItem="xQK-WP-v3d" secondAttribute="width" id="kPx-cj-WUZ"/>
                                                 <constraint firstItem="gu9-Mw-8Ra" firstAttribute="leading" secondItem="9im-6V-0Fm" secondAttribute="leading" constant="8" id="tNr-gl-2re"/>
+                                                <constraint firstItem="VrG-BS-jQD" firstAttribute="leading" secondItem="9im-6V-0Fm" secondAttribute="leading" constant="8" id="uUT-cw-d0c"/>
                                                 <constraint firstItem="xQK-WP-v3d" firstAttribute="leading" secondItem="9im-6V-0Fm" secondAttribute="leading" constant="8" id="wT8-e0-qfF"/>
-                                                <constraint firstAttribute="trailing" secondItem="VrG-BS-jQD" secondAttribute="trailing" constant="8" id="wUs-ue-Mko"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <constraints>
