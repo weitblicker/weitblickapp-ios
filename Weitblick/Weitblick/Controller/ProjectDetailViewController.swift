@@ -72,6 +72,10 @@ class ProjectDetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    
+    @IBOutlet var photoSliderView: PhotoSliderView!
+    
 
     func customizeChart(dataPoints: [String], values: [Double]) {
       // TO-DO: customize the chart here
@@ -141,16 +145,18 @@ class ProjectDetailViewController: UIViewController {
         project_detail_description.text = project_object?.getDescription
         project_detail_title.text = project_object?.getName
         project_detail_location.text = "Osnabrück"
-       // project_detail_image.image = img
-       let defaultstring = "https://new.weitblicker.org"
-    
-        let imgURL = NSURL(string : defaultstring + project_object!.getImageURL(index: 0))
-           if(imgURL != nil){
-               let data = NSData(contentsOf: (imgURL as URL?)!)
-            project_detail_image.image = UIImage(data: data! as Data)
-       
-           }
-                   
+        // project_detail_image.image = img
+        let defaultstring = "https://new.weitblicker.org"
+        var images: [UIImage] = []
+        
+        for image in (self.project_object?.getGallery.images)!{
+            let imgURL = NSURL(string : defaultstring + image.imageURL!)
+            if(imgURL != nil){
+                let data = NSData(contentsOf: (imgURL as URL?)!)
+                images.append(UIImage(data : data! as Data)!)
+            }
+        }
+        photoSliderView.configure(with: images)
         
     }
 

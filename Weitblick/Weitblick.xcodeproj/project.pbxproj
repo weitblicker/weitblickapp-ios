@@ -16,6 +16,9 @@
 		0F9375FD2376F92A00EB26FF /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9375FC2376F92A00EB26FF /* ProjectTableViewCell.swift */; };
 		0FC53FCA237D98A500E6326D /* BlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC53FC9237D98A500E6326D /* BlogViewController.swift */; };
 		3D0FD1C1237E83D900456548 /* BlogDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0FD1C0237E83D900456548 /* BlogDetailViewController.swift */; };
+		3D894BB72386924500B29C98 /* PhotoSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D894BB62386924500B29C98 /* PhotoSliderView.xib */; };
+		3D894BB92386926600B29C98 /* PhotoSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D894BB82386926600B29C98 /* PhotoSliderView.swift */; };
+		3D894BBB2386927C00B29C98 /* PhotoSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D894BBA2386927C00B29C98 /* PhotoSliderViewController.swift */; };
 		3DA49A46236B0C5200AA3198 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA49A45236B0C5200AA3198 /* AppDelegate.swift */; };
 		3DA49A48236B0C5200AA3198 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA49A47236B0C5200AA3198 /* SceneDelegate.swift */; };
 		3DA49A4A236B0C5200AA3198 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA49A49236B0C5200AA3198 /* ViewController.swift */; };
@@ -72,6 +75,9 @@
 		3D0FD1BA237D609700456548 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Bold.ttf"; path = "../../fonts/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		3D0FD1BE237D626B00456548 /* BreeSerif-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "BreeSerif-Regular.otf"; path = "fonts/BreeSerif-Regular.otf"; sourceTree = SOURCE_ROOT; };
 		3D0FD1C0237E83D900456548 /* BlogDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogDetailViewController.swift; sourceTree = "<group>"; };
+		3D894BB62386924500B29C98 /* PhotoSliderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PhotoSliderView.xib; path = "../../../../../../Downloads/PhotoSlider-master/PhotoSlider/PhotoSliderView.xib"; sourceTree = "<group>"; };
+		3D894BB82386926600B29C98 /* PhotoSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoSliderView.swift; path = "../../../../../../Downloads/PhotoSlider-master/PhotoSlider/PhotoSliderView.swift"; sourceTree = "<group>"; };
+		3D894BBA2386927C00B29C98 /* PhotoSliderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoSliderViewController.swift; path = "../../../../../../Downloads/PhotoSlider-master/PhotoSlider/PhotoSliderViewController.swift"; sourceTree = "<group>"; };
 		3DA49A42236B0C5200AA3198 /* Weitblick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weitblick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DA49A45236B0C5200AA3198 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DA49A47236B0C5200AA3198 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -206,6 +212,9 @@
 				A123D1C8236B398F004DB13E /* TabBarController.swift */,
 				0F595F2F2370708400602EB0 /* NewsViewController.swift */,
 				0F6E699123771A7400D1B778 /* EventViewController.swift */,
+				3D894BB62386924500B29C98 /* PhotoSliderView.xib */,
+				3D894BB82386926600B29C98 /* PhotoSliderView.swift */,
+				3D894BBA2386927C00B29C98 /* PhotoSliderViewController.swift */,
 				0F14A05F237B08320003C79D /* ProfileChangePasswordController.swift */,
 				0FC53FC9237D98A500E6326D /* BlogViewController.swift */,
 			);
@@ -296,6 +305,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D894BB72386924500B29C98 /* PhotoSliderView.xib in Resources */,
 				3DA49A52236B0C5400AA3198 /* LaunchScreen.storyboard in Resources */,
 				3DA49A4F236B0C5400AA3198 /* Assets.xcassets in Resources */,
 				3DA49A4D236B0C5200AA3198 /* Main.storyboard in Resources */,
@@ -362,6 +372,7 @@
 				3DF7FD962373328E00F250AF /* CommonData.swift in Sources */,
 				A123D1C5236B2302004DB13E /* NewsEntry.swift in Sources */,
 				A123D1C1236B1F0A004DB13E /* Project.swift in Sources */,
+				3D894BBB2386927C00B29C98 /* PhotoSliderViewController.swift in Sources */,
 				0F5284A6237DA72400553132 /* FAQTableViewCell.swift in Sources */,
 				3DF7FD962373328E00F250AF /* CommonData.swift in Sources */,
 				A123D1C5236B2302004DB13E /* NewsEntry.swift in Sources */,
@@ -370,6 +381,7 @@
 				0F14A060237B08320003C79D /* ProfileChangePasswordController.swift in Sources */,
 				0F6E698E2377185C00D1B778 /* EventTableNewsCell.swift in Sources */,
 				A123D1C9236B398F004DB13E /* TabBarController.swift in Sources */,
+				3D894BB92386926600B29C98 /* PhotoSliderView.swift in Sources */,
 				3DA49A6E236B155F00AA3198 /* OtherViewController.swift in Sources */,
 				A114CB7E23771A8F006EAE45 /* EventCollection.swift in Sources */,
 				A1E02C89237DDF5800A39EEC /* BlogTableViewCell.swift in Sources */,
