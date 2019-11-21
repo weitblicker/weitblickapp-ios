@@ -50,13 +50,11 @@
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="projectCell" rowHeight="347" translatesAutoresizingMaskIntoConstraints="NO" id="D1f-xH-bHk" customClass="ProjectTableViewCell" customModule="Weitblick" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="347"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D1f-xH-bHk" id="soi-5O-liO">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D1f-xH-bHk" translatesAutoresizingMaskIntoConstraints="NO" id="soi-5O-liO">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="347"/>
-                                            <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y7b-yE-EmI">
-                                                    <rect key="frame" x="8" y="243" width="358" height="75"/>
+                                                    <rect key="frame" x="8" y="243.5" width="358" height="75"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="75" id="LjU-mO-8rN"/>
                                                     </constraints>
@@ -65,7 +63,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="quc-na-ojQ">
-                                                    <rect key="frame" x="290" y="204" width="30" height="30"/>
+                                                    <rect key="frame" x="290" y="204.5" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="d3s-8N-vwt"/>
                                                         <constraint firstAttribute="width" constant="30" id="yKV-0r-Dal"/>
@@ -73,7 +71,7 @@
                                                     <state key="normal" title="Button" image="bike"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TMH-Xj-M1q">
-                                                    <rect key="frame" x="8" y="204" width="180" height="23"/>
+                                                    <rect key="frame" x="8" y="204.5" width="180" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="23" id="6Xh-mb-4FR"/>
                                                         <constraint firstAttribute="width" constant="180" id="h0s-tZ-ger"/>
@@ -83,13 +81,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e90-sR-6Cs">
-                                                    <rect key="frame" x="8" y="8" width="358" height="180"/>
+                                                    <rect key="frame" x="8" y="8" width="358" height="180.5"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="358" id="9hx-q8-ioW"/>
                                                         <constraint firstAttribute="height" constant="180" id="pCK-El-lvY"/>
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cai-Xa-ghw">
-                                                    <rect key="frame" x="336" y="203" width="30" height="30"/>
+                                                    <rect key="frame" x="336" y="203.5" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="7jP-wS-Yle"/>
                                                         <constraint firstAttribute="width" constant="30" id="z2x-Rr-uY7"/>
@@ -102,6 +101,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="e90-sR-6Cs" secondAttribute="trailing" constant="8" id="0mh-Ti-Exu"/>
+                                                <constraint firstAttribute="bottom" secondItem="Y7b-yE-EmI" secondAttribute="bottom" constant="29" id="1eU-oM-IXV"/>
                                                 <constraint firstItem="e90-sR-6Cs" firstAttribute="leading" secondItem="soi-5O-liO" secondAttribute="leading" constant="8" id="2FM-5X-jHJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="Y7b-yE-EmI" secondAttribute="trailing" constant="8" id="EhP-Ls-uqV"/>
                                                 <constraint firstItem="TMH-Xj-M1q" firstAttribute="top" secondItem="e90-sR-6Cs" secondAttribute="bottom" constant="16" id="Hlg-Yh-UAR"/>
@@ -115,6 +115,12 @@
                                                 <constraint firstAttribute="trailing" secondItem="cai-Xa-ghw" secondAttribute="trailing" constant="8" id="zga-Jw-8bB"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="soi-5O-liO" firstAttribute="leading" secondItem="D1f-xH-bHk" secondAttribute="leading" id="IRw-wf-z3H"/>
+                                            <constraint firstAttribute="trailing" secondItem="soi-5O-liO" secondAttribute="trailing" id="Lbr-6n-RCL"/>
+                                            <constraint firstAttribute="bottom" secondItem="soi-5O-liO" secondAttribute="bottom" id="ekb-XY-snd"/>
+                                            <constraint firstItem="soi-5O-liO" firstAttribute="top" secondItem="D1f-xH-bHk" secondAttribute="top" id="tvS-sf-aZ0"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="project_button_bike" destination="quc-na-ojQ" id="ZyV-1q-0H1"/>
                                             <outlet property="project_button_detail" destination="cai-Xa-ghw" id="XY3-ZX-Leu"/>
