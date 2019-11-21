@@ -70,6 +70,10 @@ class NewsEntry{
             return "NO_IMAGES_IN_GALLERY_ERROR"
         }
     }
+    
+    public var getGallery : Gallery{
+           return self.gallery
+       }
 
     public var getImageURL : String{
         return self.image.imageURL!

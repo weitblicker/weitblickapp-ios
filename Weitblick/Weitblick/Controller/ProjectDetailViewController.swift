@@ -142,7 +142,7 @@ class ProjectDetailViewController: UIViewController {
     }
 
     func loadProjectDetail(){
-        project_detail_description.text = project_object?.getDescription
+        project_detail_description.text = project_object?.getDescription.html2String
         project_detail_title.text = project_object?.getName
         project_detail_location.text = "Osnabrück"
         // project_detail_image.image = img
