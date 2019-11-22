@@ -16,7 +16,7 @@ class NewsDetailViewController: UIViewController {
     @IBOutlet weak var news_detail_date: UILabel!
     @IBOutlet weak var news_detail_title: UILabel!
     @IBOutlet weak var news_detail_description: UILabel!
-    
+     @IBOutlet var photoSliderView: PhotoSliderView!
     @IBOutlet weak var news_detail_image: UIImageView!
     
     //EVENT Variablen
@@ -47,17 +47,23 @@ class NewsDetailViewController: UIViewController {
     
     
     func loadNewsDetail(){
-        news_detail_description.text = news_object?.getText
+        news_detail_description.text = news_object?.getText.html2String
         news_detail_description.sizeToFit()
         news_detail_date.text = news_object?.getCreationDate.dateAndTimetoString()
         news_detail_title.text = news_object?.getTitle
         news_detail_loaction.text = "Osnabrück"
         let defaultstring = "https://new.weitblicker.org"
-        let imgURL = NSURL(string : defaultstring + news_object!.getImageURL)
-        if(imgURL != nil){
-          let data = NSData(contentsOf: (imgURL as URL?)!)
-          news_detail_image.image = UIImage(data: data! as Data)
+        var images: [UIImage] = []
+        
+        for image in (self.news_object?.getGallery.images)!{
+            let imgURL = NSURL(string : defaultstring + image.imageURL!)
+            if(imgURL != nil){
+                let data = NSData(contentsOf: (imgURL as URL?)!)
+                images.append(UIImage(data : data! as Data)!)
+            }
         }
+        photoSliderView.configure(with: images)
+        
         
     }
     

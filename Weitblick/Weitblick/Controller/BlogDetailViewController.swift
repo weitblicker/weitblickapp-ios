@@ -16,10 +16,12 @@ class BlogDetailViewController: UIViewController {
     @IBOutlet weak var blog_detail_title: UILabel!
     
     @IBOutlet weak var blog_detail_date: UILabel!
-    
+      
     
     @IBOutlet weak var blog_detail_description: UILabel!
     
+     @IBOutlet var photoSliderView: PhotoSliderView!
+     
     var blog_object : BlogEntry?
     var image : UIImage?
     
@@ -32,32 +34,26 @@ class BlogDetailViewController: UIViewController {
     func loadDetailBlog(){
         
         blog_detail_title.text = blog_object?.getTitle
-        blog_detail_description.text = blog_object?.getText
+        blog_detail_description.text = blog_object?.getText.html2String
         blog_detail_description.sizeToFit()
-        print(blog_detail_description.text)
         blog_detail_date.text = blog_object?.getCreationDate.dateAndTimetoString()
         print("Test1")
        // blog_detail_image.image = self.image
       
         let defaultstring = "https://new.weitblicker.org"
-       let imgURL = NSURL(string : defaultstring + blog_object!.getImageMainURL)
-        if(imgURL != nil){
-            let data = NSData(contentsOf: (imgURL as URL?)!)
-            if(data == nil){
-                print("Test2")
-                blog_detail_image.image = UIImage(named: "Weitblick")
-            }else{
-                print("Test3")
-            blog_detail_image.image = UIImage(data: data! as Data)
+        var images: [UIImage] = []
+        if(blog_object?.getGallery.images?.count != 0){
+            for image in (self.blog_object?.getGallery.images)!{
+                let imgURL = NSURL(string : defaultstring + image.imageURL!)
+                let data = NSData(contentsOf: (imgURL as URL?)!)
+                images.append(UIImage(data : data! as Data)!)
             }
-            print("Test4")
+            photoSliderView.configure(with: images)
+        }else{
+            //photoSliderView.alpha = 0.0
+            guard let image = UIImage(named : "Weitblick") else { return }
+            images.append(image)
+            photoSliderView.configure(with: images)
         }
-        
-        
-        
-        
     }
-    
-
-    
 }

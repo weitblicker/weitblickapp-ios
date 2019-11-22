@@ -45,8 +45,10 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
 
         }
        // cell.blog_description.text = blogList[indexPath.row].getTeaser
+       // cell.blog_description.sizeToFit()
         cell.blog_date.text = blogList[indexPath.row].getCreationDate.dateAndTimetoString()
         cell.blog_title.text = blogList[indexPath.row].getTitle
+        cell.blog_title.sizeToFit()
         cell.blog_button_detail.tag = indexPath.row
         return cell
          
