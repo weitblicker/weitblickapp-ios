@@ -8,33 +8,79 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class BikeViewController: UIViewController {
 
+    let locationManager = CLLocationManager()
 
-
-
+    @IBOutlet weak var mapView: MKMapView!
+    @IBAction func startDataTracking(_ sender: Any) {
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkLocationServices()
 
     }
-
-
-    @IBAction func startDataTracking(_ sender: Any) {
-
-
-
+    
+    func setupLocationManager(){
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func checkLocationServices(){
+        if CLLocationManager.locationServicesEnabled(){
+            setupLocationManager()
+            checkLocationAuthorization()
+        }else{
+            // SHOW ALERT TO TURN GPS ON
+        }
     }
-    */
+    
+    func centerViewOnUserLocation(){
+        if let location = locationManager.location?.coordinate{
+            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 10000, longitudinalMeters: 10000)
+            self.mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    func checkLocationAuthorization(){
+        print("In checkLocationAuthorization")
+        switch CLLocationManager.authorizationStatus(){
+        case .authorizedWhenInUse:
+            print("AUTHORIZED")
+            self.mapView.showsUserLocation = true
+            centerViewOnUserLocation()
+            break
+        case .denied:
+            print("DENIED")
+            // SHOW ALERT HOW TO TURN ON PERMISSIONS
+            break
+        case .notDetermined:
+            print("NOT DETERMINED")
+            locationManager.requestAlwaysAuthorization()
+            break
+        case .restricted:
+            print("RESTRICTED")
+            // SHOW ALERT
+            break
+        case .authorizedAlways:
+            print("AUTHORIZED ALWAYS")
+            self.mapView.showsUserLocation = true
+            centerViewOnUserLocation()
+            break
+        }
+    }
+}
 
+extension BikeViewController : CLLocationManagerDelegate{
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // TODO
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        // TODO
+    }
 }
