@@ -14,7 +14,6 @@ class ProjectTableViewCell: UITableViewCell{
     
     @IBOutlet weak var project_image: UIImageView!
     @IBOutlet weak var project_location: UILabel!
-    @IBOutlet weak var project_description: UILabel!
     
     
     @IBOutlet weak var project_title: UILabel!
@@ -30,8 +29,7 @@ class ProjectTableViewCell: UITableViewCell{
      }
 
      override func setSelected(_ selected: Bool, animated: Bool) {
-         super.setSelected(selected, animated: animated)
-
+        super.setSelected(selected, animated: animated)
          // Configure the view for the selected state
      }
 

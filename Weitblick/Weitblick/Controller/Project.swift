@@ -61,12 +61,12 @@ class Project{
     }
 
     public func getImageURL(index : Int) -> String{
-               
        return self.gallery.images![index].imageURL!
-    
-        
     }
 
+    public var getGallery : Gallery{
+        return self.gallery
+    }
    
 
     public var getHosts : [String]{

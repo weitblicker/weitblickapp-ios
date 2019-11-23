@@ -90,4 +90,9 @@ class BlogEntry{
         // DB Synchronisation
     }
     
+    public var getGallery : Gallery{
+           return self.gallery
+       }
+      
+    
 }
