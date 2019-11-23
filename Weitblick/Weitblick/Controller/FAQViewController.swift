@@ -36,6 +36,7 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.navigationController!.navigationBar.topItem!.title = "Zurück"
 
         // Do any additional setup after loading the view.
     }
