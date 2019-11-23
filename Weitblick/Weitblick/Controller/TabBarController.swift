@@ -54,6 +54,7 @@ class TabBarController: SwipeableTabBarController,UINavigationControllerDelegate
     override func viewWillAppear(_ animated: Bool) {
 
        loadNavImages()
+    self.navigationController!.navigationBar.topItem!.title = "Zurück"
 
     }
 

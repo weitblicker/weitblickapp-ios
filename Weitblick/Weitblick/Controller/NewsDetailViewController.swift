@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class NewsDetailViewController: UIViewController {
     
@@ -19,6 +20,8 @@ class NewsDetailViewController: UIViewController {
      @IBOutlet var photoSliderView: PhotoSliderView!
     @IBOutlet weak var news_detail_image: UIImageView!
     
+    
+   
     //EVENT Variablen
   
     var news_object : NewsEntry?
@@ -43,6 +46,8 @@ class NewsDetailViewController: UIViewController {
         imageView.image = image
         
         navigationItem.titleView = imageView
+      
+
     }
     
     
@@ -66,7 +71,7 @@ class NewsDetailViewController: UIViewController {
         
         
     }
-    
+   
 
     /*
     // MARK: - Navigation
