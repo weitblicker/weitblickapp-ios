@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDelegate{
-    
+
     var blogList : [BlogEntry] = []
     var count = 0
     var postCount = 3
@@ -18,18 +18,18 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
     var image: UIImageView?
 
     @IBOutlet weak var tableView: UITableView!
-    
-    
+
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return blogList.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier:"blog_cell", for: indexPath)as! BlogTableViewCell
-        
-        
+
+
         let defaultstring = "https://new.weitblicker.org"
-        
+
         if(count < postCount){
             if(self.blogList[indexPath.row].getImageMainURL == "default"){
                 cell.blog_image.image = UIImage(named: "Weitblick")
@@ -51,16 +51,16 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
         cell.blog_title.sizeToFit()
         cell.blog_button_detail.tag = indexPath.row
         return cell
-         
-        
+
+
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     self.blog_object = blogList[indexPath.row]
         self.performSegue(withIdentifier: "goToBlogDetail", sender: self)
     }
 
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.downloadData()
@@ -75,7 +75,7 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.date(from:date) ?? Date.init()
     }
-    
+
     public func downloadData(){
         var resultimages : [Image] = []
         let url = NSURL(string: "https://new.weitblicker.org/rest/blog/?limit=3")
@@ -169,7 +169,7 @@ print("9")
            }
        }
 
-    
+
 
 
 }

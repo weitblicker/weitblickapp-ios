@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import MapKit
 
 
 
@@ -49,10 +50,12 @@ class ProjectDetailViewController: UIViewController {
     @IBOutlet weak var project_detail_location: UILabel!
     
     @IBOutlet weak var project_detail_description: UILabel!
+    
+    
+    @IBOutlet weak var map: MKMapView!
     var count = 0
     var postCount = 0
     
-
     @IBOutlet weak var ButtonFav: UIButton!
 
     //@IBOutlet weak var ButtonFilled: UIButton!
@@ -69,8 +72,6 @@ class ProjectDetailViewController: UIViewController {
 
       //  setUpButton()
 
-
-        // Do any additional setup after loading the view.
     }
     
     
@@ -115,6 +116,18 @@ class ProjectDetailViewController: UIViewController {
         pieChartDataSet.drawValuesEnabled = false
         //Legende ausblenden
         PieChart.legend.enabled = false
+        
+       loadMap()
+        
+        
+    }
+    
+    func loadMap(){
+        let annotation = MKPointAnnotation()
+                     annotation.title = "Osnabrück"
+                     annotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(52.2799112),
+                                                                     longitude: CLLocationDegrees(8.0471788))
+                   self.map.addAnnotation(annotation)
     }
 
 
