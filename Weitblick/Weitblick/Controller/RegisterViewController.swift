@@ -18,45 +18,67 @@ class RegisterViewController: UIViewController {
     
     
     
+    
+    @IBOutlet weak var username: UITextField!
     @IBOutlet weak var email: UITextField!
-    
-    
-    
     @IBOutlet weak var password: UITextField!
-    
-    
     @IBOutlet weak var password2: UITextField!
+  
     
     @IBAction func registerButton(_ sender: UIButton) {
+        if (self.username.text!.isEmpty){
+                   showAlertMess(userMessage: "Username-Feld darf nicht leer sein")
+                   return;
+
+               }
         
-        if (self.email.text == ""){
-            let alertView = UIAlertController(title: "Achtung!", message: "Email-Feld darf nicht leer sein", preferredStyle: UIAlertController.Style.alert)
-            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        if (self.email.text!.isEmpty){
+            showAlertMess(userMessage: "Email-Feld darf nicht leer sein")
+            return;
 
-            self.present(alertView, animated: true, completion: nil)
-        }else if (self.password.text == ""){
-            let alertView = UIAlertController(title: "Achtung!", message: "Passwot-Feld darf nicht leer sein", preferredStyle: UIAlertController.Style.alert)
-            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-
-            self.present(alertView, animated: true, completion: nil)
+        }
+        if (self.password.text!.isEmpty){
+            showAlertMess(userMessage: "Passwort-Feld darf nicht leer sein")
+             return;
             
-        }else if (self.password2.text == ""){
-            let alertView = UIAlertController(title: "Achtung!", message: "Password wiederholen- Feld darf nicht leer sein", preferredStyle: UIAlertController.Style.alert)
-            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-
-            self.present(alertView, animated: true, completion: nil)
+        }
+        if (self.password2.text!.isEmpty){
+            showAlertMess(userMessage: "Passwort wiederholen- Feld darf nicht leer sein")
+             return;
             
         }
         
-        else if (self.password2.text != self.password.text){
-            let alertView = UIAlertController(title: "Achtung!", message: "Passwörter sind nicht gleich", preferredStyle: UIAlertController.Style.alert)
-            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-
-            self.present(alertView, animated: true, completion: nil)
-        }else{
+      
+        if (self.password.text != self.password2.text){
+            showAlertMess(userMessage: "Passwörter sind nicht gleich!")
+             return;
+           
+        }
             //POST-Request zum Registrieren des Users
+        
+        //Store Data
+        UserDefaults.standard.set(self.email.text, forKey:"userEmail")
+        UserDefaults.standard.set(self.password.text, forKey:"userPassword")
+        UserDefaults.standard.synchronize()
             
-        }
+            let alertView = UIAlertController(title: "Achtung!", message: "Registrierung erfolgreich. Vielen Dank!", preferredStyle: UIAlertController.Style.alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default){
+                action in
+                self.dismiss(animated: true,completion:nil)
+            }
+            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+            self.present(alertView, animated: true, completion: nil)
+            print("User registriert")  
+        
+        
+    }
+    
+    func showAlertMess(userMessage: String){
+        let alertView = UIAlertController(title: "Achtung!", message: userMessage, preferredStyle: UIAlertController.Style.alert)
+        alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        self.present(alertView, animated: true, completion: nil)
         
     }
     

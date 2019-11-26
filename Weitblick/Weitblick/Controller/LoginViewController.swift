@@ -28,33 +28,44 @@ class LoginViewController: UIViewController {
     
     
     @IBOutlet weak var password: UITextField!
-    
     @IBOutlet weak var email: UITextField!
     
     @IBAction func LoginButton(_ sender: UIButton) {
         
-        if(self.email.text == ""){
+        if(self.email.text!.isEmpty){
+            showAlertMess(userMessage: "Email-Feld darf nicht leer sein")
+            return;
+        }
+        if (self.password.text!.isEmpty){
             
-            let alertView = UIAlertController(title: "Achtung!", message: "Email-Feld darf nicht leer sein", preferredStyle: UIAlertController.Style.alert)
-            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alertView, animated: true, completion: nil)
-            
-            
-        }else if (self.password.text == ""){
-            
-            let alertView = UIAlertController(title: "Achtung!", message: "Password-Feld darf nicht leer sein",preferredStyle: UIAlertController.Style.alert)
-            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alertView, animated: true, completion: nil)
-            
-        }else {
-            
-            //hier User einloggen
+            showAlertMess(userMessage: "Passwort-Feld darf nicht leer sein")
+                       return;
             
         }
+            
+            //hier User einloggen
+        let userEmailStored = UserDefaults.standard.string(forKey: "userEmail")
+        let userPasswordStored = UserDefaults.standard.string(forKey: "userPassword")
+        if(userEmailStored == self.email.text){
+            UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
+            UserDefaults.standard.synchronize()
+            print("User loggedIn")
+            
+        }
+            
+        
         
         
         
     }
+    
+    func showAlertMess(userMessage: String){
+           let alertView = UIAlertController(title: "Achtung!", message: userMessage, preferredStyle: UIAlertController.Style.alert)
+           alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+           self.present(alertView, animated: true, completion: nil)
+           
+       }
     
     @IBAction func newPassword(_ sender: UIButton) {
     }
