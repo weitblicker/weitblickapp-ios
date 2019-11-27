@@ -44,16 +44,31 @@ class LoginViewController: UIViewController {
         }
             
             //hier User einloggen
-        let userEmailStored = UserDefaults.standard.string(forKey: "userEmail")
+      /*  let userEmailStored = UserDefaults.standard.string(forKey: "userEmail")
         let userPasswordStored = UserDefaults.standard.string(forKey: "userPassword")
         if(userEmailStored == self.email.text){
             UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
             UserDefaults.standard.synchronize()
             print("User loggedIn")
             
-        }
-            
+        }*/
         
+        
+         let url = URL(string: "https://new.weitblicker.org/rest/auth/login")
+        var request = URLRequest(url:url!)
+        request.httpMethod = "POST"//Query string erstellen
+        request.addValue("application/json", forHTTPHeaderField: "content-tye")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        let postString = ["email": self.email.text!, "password": self.password.text!] as [String: String]
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: postString, options: .prettyPrinted)
+        }catch let error{
+            print(error.localizedDescription)
+            showAlertMess(userMessage: "Irgendwas ist nicht richtig beim Login")
+            return
+            
+            
+        }
         
         
         
