@@ -31,15 +31,16 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         self.navigationItem.hidesBackButton = true
         super.viewDidLoad()
-        if(self.trackFinished){
-            dismiss(animated: true, completion: nil)
-            self.trackFinished = false;
-        }
         self.startTracking = true;
         checkLocationServices()
     }
 
-
+    override func viewWillAppear(_ animated: Bool) {
+        if(self.trackFinished){
+            self.trackFinished = false;
+            dismiss(animated: true, completion: nil)
+        }
+    }
 
     func setupLocationManager(){
         locationManager.delegate = self
@@ -104,9 +105,7 @@ class MapViewController: UIViewController {
 
 
     @IBAction func EndTrackingClicked(_ sender: Any) {
-
         self.trackFinished = true;
-
         self.performSegue(withIdentifier: "goToTrackResult", sender: self)
     }
 
