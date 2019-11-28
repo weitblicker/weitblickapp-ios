@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class RegisterViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -74,94 +75,77 @@ class RegisterViewController: UIViewController {
             self.present(alertView, animated: true, completion: nil)
             print("User registriert")*/
         
-        let myActivityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
         
-        // Position Activity Indicator in the center of the main view
-        myActivityIndicator.center = view.center
+        //POST-Request zum Registrieren des Users
         
-        // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
-        myActivityIndicator.hidesWhenStopped = false
-        
-        // Start Activity Indicator
-        myActivityIndicator.startAnimating()
-        
-        view.addSubview(myActivityIndicator)
-        
-        //HTTP Request
-        
-        let myUrl = URL(string: "https://new.weitblicker.org/rest/auth/registration")
-        var request = URLRequest(url:myUrl!)
-        request.httpMethod = "POST"// Compose a query string
-        request.addValue("application/json", forHTTPHeaderField: "content-type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-           
-        let postString = ["username": self.username.text!,
-                          "email": self.email.text!,
-                          "password1": self.password.text!,
-                          "password2": self.password2.text!,
-                             ] as [String: String]
-           
-           do {
-               request.httpBody = try JSONSerialization.data(withJSONObject: postString, options: .prettyPrinted)
-           } catch let error {
-               print(error.localizedDescription)
-              self.showAlertMess(userMessage: "Irgendwas hat nicht geklappt. Versuche es nochmal")
-               return
-           }
-           
-        let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
-            self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-          if (error != nil){
-               self.showAlertMess(userMessage: "Request konnte nicht durchegführt werden")
-               print("error=\(String(describing: error))")
-               return
-           }
-           
-           //Let's convert response sent from a server side code to a NSDictionary object:
-      /*     do {
-               let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+       
+            
                
-               if let parseJSON = json {
-                   
-                   let userId = parseJSON["userId"] as? String
-                   print("User id: \(String(describing: userId!))")
-                   
-                   if (userId?.isEmpty)!{
-                
-                     self.showAlertMess(userMessage: "Request konnte nicht durchegführt werden")
-                       return
-                   } else {
-                       self.showAlertMess(userMessage: "Request konnte nicht durchegführt werden")
-                   }
-                   
-               } else {
-                  
-                   self.showAlertMess(userMessage: "Request konnte nicht durchegführt werden")
-               }
-           } catch {
-               
+            
+           
+        let url = NSURL(string: "https://new.weitblicker.org/rest/auth/registration/")
+        let str = "surfer:hangloose"
+        let test2 = Data(str.utf8).base64EncodedString();
+        var urlRequest = URLRequest(url : (url as URL?)!,cachePolicy:URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
+              urlRequest.httpMethod = "POST"
+              urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+              urlRequest.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+             // urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
               
-              self.removeActivityIndicator(activityIndicator: myActivityIndicator)
-              self.showAlertMess(userMessage: "Request konnte nicht durchegführt werden")
-               print(error)
-           }*/
-           }
-           
-           task.resume()
-      
-        
-        
-        
+         let postString = ["username": self.username.text!,
+                               "email": self.email.text!,
+                               "password1": self.password.text!,
+                               "password2": self.password2.text!,
+                                         ] as [String: String]
+       
+    
+           // let jsonUser: Data
+             // do{
+            let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
+                urlRequest.httpBody = jsonUser
+                print("User: ")
+                print(jsonUser.html2String)
+            /*  }catch {
+                print("Error: cannot create JSON from todo")
+                return
+              }*/
+              let session = URLSession.shared
+              let task = session.dataTask(with: urlRequest){
+               (data, response, error) in
+               guard error == nil else{
+                 print("error calling POST on /user/1")
+                 print(error!)
+                 return
+               }
+               guard let responseData = data else {
+                 print("Error: did not receive data")
+                 return
+               }
+
+               // parse the result as JSON, since that's what the API provides
+               do{
+                 guard let received = try JSONSerialization.jsonObject(with: responseData,
+                   options: []) as? [String: Any] else {
+                     print("Could not get JSON from responseData as dictionary")
+                     return
+                 }
+                 print("The Recieved User is: " + received.description)
+
+                 guard let userID = received["id"] as? Int else {
+                   print("Could not get User as int from JSON")
+                   return
+                 }
+                 print("The ID is: \(userID)")
+               }catch{
+                 print("error parsing response from POST on /user")
+                 return
+               }
+             }
+             task.resume()
+  
+
     }
     
-    func removeActivityIndicator(activityIndicator: UIActivityIndicatorView)
-           {
-               DispatchQueue.main.async
-                {
-                       activityIndicator.stopAnimating()
-                       activityIndicator.removeFromSuperview()
-               }
-           }
     
     func showAlertMess(userMessage: String){
         let alertView = UIAlertController(title: "Achtung!", message: userMessage, preferredStyle: UIAlertController.Style.alert)

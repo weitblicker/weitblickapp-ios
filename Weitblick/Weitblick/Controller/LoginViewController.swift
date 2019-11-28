@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SwiftKeychainWrapper
 
 
 class LoginViewController: UIViewController {
@@ -54,11 +54,15 @@ class LoginViewController: UIViewController {
         }*/
         
         
-         let url = URL(string: "https://new.weitblicker.org/rest/auth/login")
-        var request = URLRequest(url:url!)
-        request.httpMethod = "POST"//Query string erstellen
-        request.addValue("application/json", forHTTPHeaderField: "content-tye")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let url = NSURL(string: "https://new.weitblicker.org/rest/auth/login/")
+        let str = "surfer:hangloose"
+        let test2 = Data(str.utf8).base64EncodedString();
+        var request = URLRequest(url : (url as URL?)!,cachePolicy:URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+                    // urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
         let postString = ["email": self.email.text!, "password": self.password.text!] as [String: String]
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: postString, options: .prettyPrinted)
@@ -66,15 +70,57 @@ class LoginViewController: UIViewController {
             print(error.localizedDescription)
             showAlertMess(userMessage: "Irgendwas ist nicht richtig beim Login")
             return
-            
-            
         }
         
+        let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
         
-        
+        do{
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                if let parseJSON = json {
+                    
+                    if parseJSON["errorMessageKey"] != nil
+                    {
+                         self.showAlertMess(userMessage: parseJSON["errorMessage"] as! String)
+                        return
+                    }
+            
+                    let accessToken = parseJSON["token"] as? String
+                    let userId = parseJSON["id"] as? String
+                    //Token abspeichern
+                    
+                    let saveAccesssToken: Bool = KeychainWrapper.standard.set(accessToken!, forKey: "accessToken")
+                    let saveUserId: Bool = KeychainWrapper.standard.set(userId!, forKey: "userId")
+                    print("Acces token true or false: \(saveAccesssToken)")
+                    print("Userid token true or false: \(saveUserId)")
+                    
+                    if (accessToken?.isEmpty)!{
+                        self.showAlertMess(userMessage: "Could not successfully perform this request. Please try again later")
+                        return
+                    }
+                    
+                    DispatchQueue.main.async {
+                            let startPage = self.storyboard?.instantiateViewController(withIdentifier: "NewsEventViewController") as! NewsEventViewController
+                            let appDelegate = UIApplication.shared.delegate
+                            appDelegate?.window??.rootViewController = startPage
+                    }
+
+                }else{
+                   
+                    self.showAlertMess(userMessage: "Der Request konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut")
+                }
+                
+            }catch{
+                self.showAlertMess(userMessage: "Could not successfully perform this request. Please try again later")
+                print(error)
+            }
+ 
+         }
+        task.resume()
+  
     }
     
     func showAlertMess(userMessage: String){
+    
            let alertView = UIAlertController(title: "Achtung!", message: userMessage, preferredStyle: UIAlertController.Style.alert)
            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
 
