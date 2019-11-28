@@ -8,8 +8,25 @@
 
 import UIKit
 
-class ResultMapViewController: UIViewController {
+class ResultMapViewController: UIViewController ,UITableViewDataSource, UITableViewDelegate  {
 
+    @IBOutlet weak var tableView: UITableView!
+      let names = ["SponsorA", "SponsorB", "SponsorC","SponsorD"]
+      
+      
+      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+          return names.count
+      }
+      
+      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+          let cell =  tableView.dequeueReusableCell(withIdentifier:"sponsor_cell", for: indexPath)as! SponsorTableViewCell
+          let name = names[indexPath.row]
+          cell.name.text = name
+          return cell
+          
+      }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
