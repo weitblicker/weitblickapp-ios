@@ -17,6 +17,7 @@ class MapViewController: UIViewController {
     var locationSaved = CLLocation()
     var startTracking = false;
     var startCalculateDistance = false;
+    var trackFinished = false;
     var distance = CLLocationDistance();
     var locationManager = CLLocationManager()
     let regionInMeters : Double = 100;
@@ -29,7 +30,12 @@ class MapViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        self.navigationItem.hidesBackButton = true
         super.viewDidLoad()
+        if(self.trackFinished){
+            dismiss(animated: true, completion: nil)
+            self.trackFinished = false;
+        }
         self.startTracking = true;
         checkLocationServices()
     }
@@ -98,6 +104,21 @@ class MapViewController: UIViewController {
     }
     
     
+    @IBAction func EndTrackingClicked(_ sender: Any) {
+        
+        self.trackFinished = true;
+        
+        self.performSegue(withIdentifier: "goToTrackResult", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is ResultMapViewController
+        {
+            let resultMapViewController = segue.destination as? ResultMapViewController
+            // TODO DATA PASSING
+        }
+    }
+    
 }
 
 extension MapViewController : CLLocationManagerDelegate{
@@ -127,6 +148,7 @@ extension MapViewController : CLLocationManagerDelegate{
             }
         }
     }
+    
     
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

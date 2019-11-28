@@ -306,6 +306,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3OI-mB-Dk8"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ZpU-kK-9oN"/>
                     <value key="contentSizeForViewInPopover" type="size" width="414" height="800"/>
                     <size key="freeformSize" width="414" height="1000"/>
                     <connections>
@@ -784,7 +785,7 @@
         <!--Bike View Controller-->
         <scene sceneID="OZl-9E-BxN">
             <objects>
-                <viewController id="ZAK-1p-taM" customClass="BikeViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="ZAK-1p-taM" customClass="BikeViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tvC-Ya-RC1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -851,7 +852,7 @@
                     <navigationItem key="navigationItem" id="Phq-bv-g8i"/>
                     <connections>
                         <outlet property="mapView" destination="EKi-jp-S9g" id="rNA-Na-THS"/>
-                        <segue destination="jM0-XC-gLU" kind="presentation" identifier="goToMapView" id="dBa-da-gue"/>
+                        <segue destination="jM0-XC-gLU" kind="show" identifier="goToMapView" id="dBa-da-gue"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9mC-r5-gK8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -874,32 +875,32 @@
                                 </constraints>
                                 <state key="normal" title="Button" image="stop"/>
                                 <connections>
-                                    <segue destination="le4-IP-dCU" kind="presentation" modalPresentationStyle="fullScreen" id="iWF-jV-yOp"/>
+                                    <action selector="EndTrackingClicked:" destination="jM0-XC-gLU" eventType="touchUpInside" id="FqA-Y2-jlH"/>
                                 </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jv4-Pi-exn">
-                                <rect key="frame" x="20" y="476" width="374" height="224"/>
+                                <rect key="frame" x="20" y="520" width="374" height="180"/>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geschwindigkeit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="trB-ZO-Gvb">
-                                <rect key="frame" x="20" y="326" width="206" height="34.5"/>
+                                <rect key="frame" x="20" y="370" width="206" height="34.5"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="25"/>
                                 <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Strecke" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R76-Lb-x2q">
-                                <rect key="frame" x="101" y="112" width="211" height="48"/>
+                                <rect key="frame" x="101" y="156" width="211" height="48"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="35"/>
                                 <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Spende" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHH-oU-FKg">
-                                <rect key="frame" x="302" y="326" width="91.5" height="34.5"/>
+                                <rect key="frame" x="302" y="370" width="91.5" height="34.5"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="25"/>
                                 <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBf-40-Vp1">
-                                <rect key="frame" x="87" y="179" width="240" height="68.5"/>
+                                <rect key="frame" x="87" y="223" width="240" height="68.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="CGB-XA-7WI"/>
                                 </constraints>
@@ -908,7 +909,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4,5€" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DB3-QT-6ap">
-                                <rect key="frame" x="264" y="374.5" width="130" height="34.5"/>
+                                <rect key="frame" x="264" y="418.5" width="130" height="34.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="Db5-Uk-V2x"/>
                                 </constraints>
@@ -928,7 +929,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6 km/h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4JD-7i-ixv">
-                                <rect key="frame" x="20" y="374.5" width="130" height="34.5"/>
+                                <rect key="frame" x="20" y="418.5" width="130" height="34.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="ytB-VJ-xED"/>
                                 </constraints>
@@ -974,6 +975,7 @@
                         <outlet property="map" destination="Jv4-Pi-exn" id="JYm-e4-Lny"/>
                         <outlet property="speedLbl" destination="4JD-7i-ixv" id="pVB-ok-7Py"/>
                         <outlet property="stopPlayButton" destination="VRs-ev-0P4" id="p9D-6a-IOi"/>
+                        <segue destination="le4-IP-dCU" kind="show" identifier="goToTrackResult" id="5z7-Hy-q4a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Gr-lA-3Wi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -983,7 +985,7 @@
         <!--Result Map View Controller-->
         <scene sceneID="pet-hb-mMS">
             <objects>
-                <viewController id="le4-IP-dCU" customClass="ResultMapViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="le4-IP-dCU" customClass="ResultMapViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cYi-wh-QTh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1070,6 +1072,9 @@
                                 <rect key="frame" x="152" y="807" width="109" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Zurück"/>
+                                <connections>
+                                    <action selector="backButtonClicked:" destination="le4-IP-dCU" eventType="touchUpInside" id="1cL-Kl-4Vd"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Die Sponsoren dieses Projektes sind : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJx-b9-UzG">
                                 <rect key="frame" x="48" y="382" width="318" height="24"/>
@@ -1103,6 +1108,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="P9A-wf-GtP"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ecI-wN-N6F"/>
                     <connections>
                         <outlet property="tableView" destination="pdS-a8-lPE" id="Oir-lP-P1R"/>
                     </connections>
