@@ -532,11 +532,17 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="K2U-Dr-AIy" id="TO7-V5-GVz"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="15" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="sif-Mw-SCE">
                                 <rect key="frame" x="39" y="493" width="335" height="34"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="K2U-Dr-AIy" id="dpr-4b-fyW"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vg1-HX-SHP">
                                 <rect key="frame" x="39" y="574" width="335" height="40"/>
@@ -646,6 +652,7 @@
                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
+                                    <action selector="usernameClose:" destination="Z2P-P4-p4J" eventType="editingDidEnd" id="dJ5-Kp-Dl2"/>
                                     <outlet property="delegate" destination="Z2P-P4-p4J" id="PUQ-PO-QKu"/>
                                 </connections>
                             </textField>
@@ -653,11 +660,19 @@
                                 <rect key="frame" x="45" y="490.5" width="325" height="34"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="mailClose:" destination="Z2P-P4-p4J" eventType="editingDidEnd" id="ivN-bc-zcT"/>
+                                    <outlet property="delegate" destination="Z2P-P4-p4J" id="xRx-jt-GtL"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password " textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="3qO-4e-sC1">
                                 <rect key="frame" x="45" y="579.5" width="325" height="34"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldShouldReturn:" destination="Z2P-P4-p4J" eventType="editingDidEnd" id="NGP-Wv-hU6"/>
+                                    <outlet property="delegate" destination="Z2P-P4-p4J" id="1hl-Rd-oiu"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acQ-Pg-84n">
                                 <rect key="frame" x="45" y="746.5" width="325" height="30"/>
@@ -681,6 +696,10 @@
                                 <rect key="frame" x="45" y="663.5" width="325" height="34"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="passwortWiederholenClose:" destination="Z2P-P4-p4J" eventType="editingDidEnd" id="22w-dX-mSk"/>
+                                    <outlet property="delegate" destination="Z2P-P4-p4J" id="YIE-pu-o9p"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NaN-b4-ZZ5">
                                 <rect key="frame" x="382" y="407.5" width="20" height="22"/>

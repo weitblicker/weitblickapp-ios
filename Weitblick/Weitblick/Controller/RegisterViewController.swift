@@ -73,17 +73,24 @@ class RegisterViewController: UIViewController {
     }
     
     
-           // 11
-           func textFieldShouldReturn(textField: UITextField) -> Bool {
-                
-               self.view.endEditing(true)
-                
-               return true
-            
-           }
-          
-       
+         
+    @IBAction func textFieldShouldReturn(_ sender: UITextField) {
+        self.view.endEditing(true)
+                       
+                      
+    }
     
+    @IBAction func passwortWiederholenClose(_ sender: UITextField) {
+          self.view.endEditing(true)
+    }
+    
+    @IBAction func mailClose(_ sender: UITextField) {
+         self.view.endEditing(true)
+    }
+    
+    @IBAction func usernameClose(_ sender: UITextField) {
+        self.view.endEditing(true)
+    }
     /*
     // MARK: - Navigation
 
