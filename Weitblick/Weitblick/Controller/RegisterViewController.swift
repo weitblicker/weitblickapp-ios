@@ -73,7 +73,14 @@ class RegisterViewController: UIViewController {
     }
     
     
-           
+           // 11
+           func textFieldShouldReturn(textField: UITextField) -> Bool {
+                
+               self.view.endEditing(true)
+                
+               return true
+            
+           }
           
        
     

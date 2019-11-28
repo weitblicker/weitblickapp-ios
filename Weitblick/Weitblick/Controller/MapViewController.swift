@@ -10,11 +10,13 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController {
-    
+
     var list : [CLLocation] = []
     var i = 0;
     var totalDistance : Double = 0;
     var startTracking = false;
+    var startCalculateDistance = false;
+    var trackFinished = false;
     var distance = CLLocationDistance();
     var locationManager = CLLocationManager()
     let regionInMeters : Double = 100;
@@ -24,21 +26,26 @@ class MapViewController: UIViewController {
     @IBOutlet weak var donationLbl: UILabel!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var stopPlayButton: UIButton!
-    
-    
+
+
     override func viewDidLoad() {
+        self.navigationItem.hidesBackButton = true
         super.viewDidLoad()
+        if(self.trackFinished){
+            dismiss(animated: true, completion: nil)
+            self.trackFinished = false;
+        }
         self.startTracking = true;
         checkLocationServices()
     }
-    
-    
-    
+
+
+
     func setupLocationManager(){
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
     }
-    
+
     func checkLocationServices(){
         if CLLocationManager.locationServicesEnabled(){
             setupLocationManager()
@@ -47,14 +54,14 @@ class MapViewController: UIViewController {
             // SHOW ALERT TO TURN GPS ON
         }
     }
-    
+
     func centerViewOnUserLocation(){
         if let location = locationManager.location?.coordinate{
             let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
             self.map.setRegion(region, animated: true)
         }
     }
-    
+
     func checkLocationAuthorization(){
         print("In checkLocationAuthorization")
         switch CLLocationManager.authorizationStatus(){
@@ -84,7 +91,7 @@ class MapViewController: UIViewController {
             break
         }
     }
-    
+
     @IBAction func clickPauseContinue(_ sender: Any) {
         if(startTracking){
             startTracking = false
@@ -94,18 +101,33 @@ class MapViewController: UIViewController {
             self.stopPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
         }
     }
-    
-    
+
+
+    @IBAction func EndTrackingClicked(_ sender: Any) {
+
+        self.trackFinished = true;
+
+        self.performSegue(withIdentifier: "goToTrackResult", sender: self)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is ResultMapViewController
+        {
+            let resultMapViewController = segue.destination as? ResultMapViewController
+            // TODO DATA PASSING
+        }
+    }
+
 }
 
 extension MapViewController : CLLocationManagerDelegate{
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else{ return }
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
         self.map.setRegion(region, animated: true)
-        
+
         if(self.startTracking){
             self.list.append(location)
             if(self.list.count >= 2){
@@ -115,10 +137,10 @@ extension MapViewController : CLLocationManagerDelegate{
                 //print(totalDistance.description + " m")
                 let distanceinKM = self.totalDistance/1000
                 //print((round(distanceinKM*100)/100).description + " km")
-                
+
                 //self.distanceLbl.text = (round(distanceinKM*100)/100).description + " km"
                 self.distanceLbl.text = doubleToKm(double: totalDistance)
-                
+
                 if(location.speed < 0){
                     self.speedLbl.text = "0 km/h"
                 }else{
@@ -128,13 +150,14 @@ extension MapViewController : CLLocationManagerDelegate{
             }
         }
     }
-    
+
     func doubleToKm(double : Double) -> String{
         let s = round((double/1000)*100)/100
         return s.description + " km"
     }
-    
-    
+
+
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
     }
