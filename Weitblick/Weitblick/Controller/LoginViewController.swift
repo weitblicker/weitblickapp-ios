@@ -63,5 +63,11 @@ class LoginViewController: UIViewController {
     @IBAction func registerButton(_ sender: UIButton) {
     }
     
-
+    @IBAction func mailClose(_ sender: UITextField) {
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func passwordClose(_ sender: UITextField) {
+        self.view.endEditing(true)
+    }
 }
