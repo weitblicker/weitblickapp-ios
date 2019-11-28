@@ -14,9 +14,7 @@ class MapViewController: UIViewController {
     var list : [CLLocation] = []
     var i = 0;
     var totalDistance : Double = 0;
-    var locationSaved = CLLocation()
     var startTracking = false;
-    var startCalculateDistance = false;
     var distance = CLLocationDistance();
     var locationManager = CLLocationManager()
     let regionInMeters : Double = 100;
@@ -38,7 +36,7 @@ class MapViewController: UIViewController {
     
     func setupLocationManager(){
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
     }
     
     func checkLocationServices(){
@@ -114,10 +112,13 @@ extension MapViewController : CLLocationManagerDelegate{
                 let start = self.list[self.list.count-2]
                 let end = self.list[self.list.count-1]
                 self.totalDistance += end.distance(from: start)
-                print(totalDistance.description + " m")
+                //print(totalDistance.description + " m")
                 let distanceinKM = self.totalDistance/1000
-                print((round(distanceinKM*100)/100).description + " km")
-                self.distanceLbl.text = (round(distanceinKM*100)/100).description + " km"
+                //print((round(distanceinKM*100)/100).description + " km")
+                
+                //self.distanceLbl.text = (round(distanceinKM*100)/100).description + " km"
+                self.distanceLbl.text = doubleToKm(double: totalDistance)
+                
                 if(location.speed < 0){
                     self.speedLbl.text = "0 km/h"
                 }else{
@@ -126,6 +127,11 @@ extension MapViewController : CLLocationManagerDelegate{
                 self.donationLbl.text = (round((distanceinKM*0.1)*100)/100).description + " €"
             }
         }
+    }
+    
+    func doubleToKm(double : Double) -> String{
+        let s = round((double/1000)*100)/100
+        return s.description + " km"
     }
     
     
