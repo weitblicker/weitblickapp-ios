@@ -533,7 +533,8 @@
                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="K2U-Dr-AIy" id="TO7-V5-GVz"/>
+                                    <action selector="closeName:" destination="K2U-Dr-AIy" eventType="editingDidEnd" id="8Ha-Hd-Tpj"/>
+                                    <outlet property="delegate" destination="K2U-Dr-AIy" id="pXh-Jo-szT"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="15" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="sif-Mw-SCE">
@@ -1885,7 +1886,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59a-hb-LOt">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59a-hb-LOt">
                                                     <rect key="frame" x="262" y="204" width="26" height="0.0"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="26" id="DPK-5C-aKE"/>
@@ -1915,6 +1916,7 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="59a-hb-LOt" secondAttribute="trailing" constant="66" id="2ve-uJ-lCN"/>
                                                 <constraint firstItem="rYV-KX-R3u" firstAttribute="top" secondItem="Rr2-VQ-CDZ" secondAttribute="bottom" constant="7.5" id="54e-W9-AN5"/>
                                                 <constraint firstItem="gtD-Hg-o6j" firstAttribute="top" secondItem="mZe-3e-yv8" secondAttribute="bottom" constant="8" id="GMr-eE-jo2"/>
                                                 <constraint firstItem="Rr2-VQ-CDZ" firstAttribute="leading" secondItem="caN-oJ-AZJ" secondAttribute="leadingMargin" id="GTU-Ii-3TZ"/>
