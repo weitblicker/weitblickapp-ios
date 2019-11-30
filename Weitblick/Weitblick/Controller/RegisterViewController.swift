@@ -13,6 +13,7 @@ class RegisterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+       
 
         // Do any additional setup after loading the view.
     }
@@ -27,7 +28,8 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var password2: UITextField!
-  
+    @IBOutlet weak var errorText: UILabel!
+    
     
     @IBAction func registerButton(_ sender: UIButton) {
         if (self.username.text!.isEmpty){
@@ -78,11 +80,7 @@ class RegisterViewController: UIViewController {
         
         //POST-Request zum Registrieren des Users
         
-       
-            
-               
-            
-           
+
         let url = NSURL(string: "https://new.weitblicker.org/rest/auth/registration/")
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();
@@ -100,22 +98,22 @@ class RegisterViewController: UIViewController {
        
     
            // let jsonUser: Data
-             // do{
+            do{
             let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
                 urlRequest.httpBody = jsonUser
                 print("User: ")
                 print(jsonUser.html2String)
-            /*  }catch {
+              }catch {
                 print("Error: cannot create JSON from todo")
                 return
-              }*/
+              }
               let session = URLSession.shared
               let task = session.dataTask(with: urlRequest){
                (data, response, error) in
                guard error == nil else{
                  print("error calling POST on /user/1")
                  print(error!)
-                 return
+                return
                }
                guard let responseData = data else {
                  print("Error: did not receive data")
@@ -129,8 +127,24 @@ class RegisterViewController: UIViewController {
                      print("Could not get JSON from responseData as dictionary")
                      return
                  }
-                 print("The Recieved User is: " + received.description)
+                
+                 print("The Recieved Message is: " + received.description)
+                 print (received.description)
+               /* if (!received.description.isEmpty){
+                    self.showAlertMess(userMessage: "Halloo333")
+                    print("Hallooooooooo")
+                }*/
+                if received.values.count != 0
+                                   {
+                                    DispatchQueue.main.async {
 
+                                        self.showErrorMessage(message: received.description)
+                                        return
+                                                              
+                                                      }
+                                    
+                                   }
+                 
                  guard let userID = received["id"] as? Int else {
                    print("Could not get User as int from JSON")
                    return
@@ -153,6 +167,17 @@ class RegisterViewController: UIViewController {
 
         self.present(alertView, animated: true, completion: nil)
         
+    }
+    func  showErrorMessage(message:String) {
+        let alertView = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+        }
+        alertView.addAction(OKAction)
+      /*  if let presenter = alertView.popoverPresentationController {
+            presenter.sourceView = self.view
+            presenter.sourceRect = self.view.bounds
+        }*/
+        self.present(alertView, animated: true, completion:nil)
     }
     
     

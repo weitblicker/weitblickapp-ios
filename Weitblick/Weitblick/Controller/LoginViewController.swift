@@ -88,13 +88,13 @@ class LoginViewController: UIViewController {
                     let userId = parseJSON["id"] as? String
                     //Token abspeichern
                     
-                    let saveAccesssToken: Bool = KeychainWrapper.standard.set(accessToken!, forKey: "accessToken")
-                    let saveUserId: Bool = KeychainWrapper.standard.set(userId!, forKey: "userId")
+                     let saveAccesssToken: Bool = KeychainWrapper.standard.set(accessToken!, forKey: "accessToken")
+                     let saveUserId: Bool = KeychainWrapper.standard.set(userId!, forKey: "userId")
                     print("Acces token true or false: \(saveAccesssToken)")
                     print("Userid token true or false: \(saveUserId)")
                     
-                    if (accessToken?.isEmpty)!{
-                        self.showAlertMess(userMessage: "Could not successfully perform this request. Please try again later")
+                    if (accessToken!.isEmpty){
+                       self.showAlertMess(userMessage: "Could not successfully perform this request. Please try again later")
                         return
                     }
                     
