@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -755,9 +755,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="PAU-SR-Iu8"/>
                     <connections>
-                        <outlet property="email" destination="30i-a8-gkm" id="gu7-cd-MFT"/>
-                        <outlet property="password" destination="gIs-m7-TWx" id="ZLi-Fr-qpL"/>
-                        <outlet property="password2" destination="3qO-4e-sC1" id="Szn-oO-12s"/>
+                        <outlet property="email" destination="gIs-m7-TWx" id="mUZ-gR-lmg"/>
+                        <outlet property="password" destination="3qO-4e-sC1" id="K7Y-mH-uGC"/>
+                        <outlet property="password2" destination="u4F-uX-OhA" id="iSd-lD-o6y"/>
+                        <outlet property="username" destination="30i-a8-gkm" id="bsb-Xy-te7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0jQ-fV-PAa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1447,7 +1448,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1034"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5PK-qv-6yq">
-                                        <rect key="frame" x="0.0" y="54" width="401" height="940.5"/>
+                                        <rect key="frame" x="0.0" y="22" width="401" height="940.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H67-Rk-GTF">
                                                 <rect key="frame" x="186" y="8" width="29" height="21"/>
@@ -1455,8 +1456,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Bottom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUf-cW-Ftf">
-                                                <rect key="frame" x="173" y="784" width="56" height="60"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bottom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUf-cW-Ftf">
+                                                <rect key="frame" x="172.5" y="784.5" width="56" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="Syc-uv-Beh"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1481,7 +1485,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="War-NI-c3f">
-                                                <rect key="frame" x="20" y="373" width="373" height="16"/>
+                                                <rect key="frame" x="20" y="373" width="373" height="403.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1495,13 +1499,12 @@
                                             <constraint firstAttribute="trailing" secondItem="u8M-Lg-FGw" secondAttribute="trailing" constant="14" id="HYQ-P6-CxI"/>
                                             <constraint firstAttribute="trailing" secondItem="H67-Rk-GTF" secondAttribute="trailing" constant="186" id="HYq-f9-3yI"/>
                                             <constraint firstAttribute="height" constant="940.5" id="Q4D-h1-xZo"/>
-                                            <constraint firstItem="qUf-cW-Ftf" firstAttribute="top" secondItem="War-NI-c3f" secondAttribute="bottom" constant="10" id="QCZ-t8-eCB"/>
+                                            <constraint firstItem="qUf-cW-Ftf" firstAttribute="top" secondItem="War-NI-c3f" secondAttribute="bottom" constant="8" symbolic="YES" id="QCZ-t8-eCB"/>
                                             <constraint firstItem="War-NI-c3f" firstAttribute="top" secondItem="MmM-QM-5v4" secondAttribute="bottom" constant="39.5" id="QWe-ya-pjT"/>
                                             <constraint firstItem="MmM-QM-5v4" firstAttribute="leading" secondItem="5PK-qv-6yq" secondAttribute="leading" constant="20" id="R3c-CK-PIZ"/>
                                             <constraint firstItem="MmM-QM-5v4" firstAttribute="leading" secondItem="War-NI-c3f" secondAttribute="leading" id="RfG-fz-nAr"/>
+                                            <constraint firstItem="qUf-cW-Ftf" firstAttribute="centerX" secondItem="H67-Rk-GTF" secondAttribute="centerX" id="Set-0L-SVP"/>
                                             <constraint firstItem="kUk-Ju-9a6" firstAttribute="trailing" secondItem="u8M-Lg-FGw" secondAttribute="trailing" id="Y2q-W8-D99"/>
-                                            <constraint firstAttribute="bottom" secondItem="H67-Rk-GTF" secondAttribute="bottom" constant="911.5" id="YIA-36-sxc"/>
-                                            <constraint firstItem="qUf-cW-Ftf" firstAttribute="centerX" secondItem="H67-Rk-GTF" secondAttribute="centerX" id="ZOl-bg-JI6"/>
                                             <constraint firstItem="H67-Rk-GTF" firstAttribute="top" secondItem="5PK-qv-6yq" secondAttribute="top" constant="8" id="bHh-3o-ikm"/>
                                             <constraint firstItem="u8M-Lg-FGw" firstAttribute="top" secondItem="kUk-Ju-9a6" secondAttribute="bottom" constant="39" id="br6-BS-pnL"/>
                                             <constraint firstItem="MmM-QM-5v4" firstAttribute="trailing" secondItem="u8M-Lg-FGw" secondAttribute="trailing" id="egT-hN-eaB"/>
@@ -1516,10 +1519,10 @@
                                 <constraints>
                                     <constraint firstItem="5PK-qv-6yq" firstAttribute="height" secondItem="DBS-I9-72M" secondAttribute="height" multiplier="0.909574" priority="750" id="9Vw-Ov-pLb"/>
                                     <constraint firstAttribute="trailing" secondItem="5PK-qv-6yq" secondAttribute="trailing" constant="13" id="Gck-q3-oZm"/>
-                                    <constraint firstAttribute="bottom" secondItem="5PK-qv-6yq" secondAttribute="bottom" constant="39.5" id="JZT-DY-0za"/>
+                                    <constraint firstAttribute="bottom" secondItem="5PK-qv-6yq" secondAttribute="bottom" constant="71.5" id="JZT-DY-0za"/>
                                     <constraint firstItem="5PK-qv-6yq" firstAttribute="leading" secondItem="DBS-I9-72M" secondAttribute="leading" id="MhO-5A-nsG"/>
                                     <constraint firstItem="5PK-qv-6yq" firstAttribute="width" secondItem="DBS-I9-72M" secondAttribute="width" multiplier="0.968599" id="lW8-iY-EoW"/>
-                                    <constraint firstItem="5PK-qv-6yq" firstAttribute="top" secondItem="DBS-I9-72M" secondAttribute="top" constant="54" id="zqh-2m-rGc"/>
+                                    <constraint firstItem="5PK-qv-6yq" firstAttribute="top" secondItem="DBS-I9-72M" secondAttribute="top" constant="22" id="zqh-2m-rGc"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -2447,7 +2450,7 @@
         <image name="projekt" width="30" height="30"/>
         <image name="questionmark.circle" catalog="system" width="64" height="60"/>
         <image name="stats" width="30" height="30"/>
-        <image name="stop" width="512" height="512"/>
+        <image name="stop" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xNn-lR-evC"/>
