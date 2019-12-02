@@ -526,18 +526,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-Mail " minimumFontSize="15" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="y4m-QC-HEG">
-                                <rect key="frame" x="39" y="412" width="335" height="34"/>
+                                <rect key="frame" x="39" y="599.5" width="335" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="335" id="475-NA-wxN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="K2U-Dr-AIy" id="TO7-V5-GVz"/>
+                                    <action selector="closeName:" destination="K2U-Dr-AIy" eventType="editingDidEnd" id="8Ha-Hd-Tpj"/>
+                                    <outlet property="delegate" destination="K2U-Dr-AIy" id="pXh-Jo-szT"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="15" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="sif-Mw-SCE">
-                                <rect key="frame" x="39" y="493" width="335" height="34"/>
+                                <rect key="frame" x="39" y="680.5" width="335" height="34"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -545,7 +546,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vg1-HX-SHP">
-                                <rect key="frame" x="39" y="574" width="335" height="40"/>
+                                <rect key="frame" x="39" y="761.5" width="335" height="40"/>
                                 <color key="backgroundColor" red="0.92156862745098034" green="0.50196078431372548" blue="0.058823529411764705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="1yj-7v-Y2q"/>
@@ -565,7 +566,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDX-jU-MZt">
-                                <rect key="frame" x="94" y="650" width="226" height="29"/>
+                                <rect key="frame" x="94" y="837.5" width="226" height="29"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="14"/>
                                 <state key="normal" title="Forgot Password?">
                                     <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -575,7 +576,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTv-LM-dbK">
-                                <rect key="frame" x="94" y="714" width="128" height="14"/>
+                                <rect key="frame" x="94" y="901.5" width="128" height="14"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -587,7 +588,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GgY-VN-we2">
-                                <rect key="frame" x="231" y="707" width="93" height="29"/>
+                                <rect key="frame" x="231" y="894.5" width="93" height="29"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                 <state key="normal" title="Register here!">
                                     <color key="titleColor" red="0.92156862750000001" green="0.50196078430000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1893,7 +1894,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59a-hb-LOt">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59a-hb-LOt">
                                                     <rect key="frame" x="262" y="204" width="26" height="0.0"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="26" id="DPK-5C-aKE"/>
@@ -1923,6 +1924,7 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="59a-hb-LOt" secondAttribute="trailing" constant="66" id="2ve-uJ-lCN"/>
                                                 <constraint firstItem="rYV-KX-R3u" firstAttribute="top" secondItem="Rr2-VQ-CDZ" secondAttribute="bottom" constant="7.5" id="54e-W9-AN5"/>
                                                 <constraint firstItem="gtD-Hg-o6j" firstAttribute="top" secondItem="mZe-3e-yv8" secondAttribute="bottom" constant="8" id="GMr-eE-jo2"/>
                                                 <constraint firstItem="Rr2-VQ-CDZ" firstAttribute="leading" secondItem="caN-oJ-AZJ" secondAttribute="leadingMargin" id="GTU-Ii-3TZ"/>

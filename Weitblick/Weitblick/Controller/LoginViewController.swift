@@ -20,9 +20,16 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
         //emailField.text=""
         //spasswordField.text=""
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+           tap.cancelsTouchesInView = false
+         view.addGestureRecognizer(tap)
     }
     
- 
+ @objc func dismissKeyboard() {
+     //Causes the view (or one of its embedded text fields) to resign the first responder status.
+     view.endEditing(true)
+ }
     
     
     @IBOutlet weak var password: UITextField!
@@ -54,9 +61,9 @@ class LoginViewController: UIViewController {
         
     }
     
-    @objc func dismissKeyboard(){
-        view.endEditing(true)
-    }
+   // @objc func dismissKeyboard(){
+     //   view.endEditing(true)
+   // }
     
     @IBAction func newPassword(_ sender: UIButton) {
     }
@@ -66,5 +73,8 @@ class LoginViewController: UIViewController {
     }
     
    
-   
+    @IBAction func closeName(_ sender: UITextField) {
+        self.view.endEditing(true)
+    }
+    
 }
