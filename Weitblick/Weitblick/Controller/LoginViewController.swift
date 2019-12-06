@@ -24,6 +24,14 @@ class LoginViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
            tap.cancelsTouchesInView = false
          view.addGestureRecognizer(tap)
+
+
+        //view verschieben bei tastatur
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil);
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil);
+
+
     }
 
  @objc func dismissKeyboard() {
@@ -31,6 +39,17 @@ class LoginViewController: UIViewController {
      view.endEditing(true)
  }
 
+
+
+
+    //view verschieben wenn tastaur erscheint
+    @objc func keyboardWillShow(sender: NSNotification) {
+         self.view.frame.origin.y = -150 // Move view 150 points upward
+    }
+
+    @objc func keyboardWillHide(sender: NSNotification) {
+         self.view.frame.origin.y = 0 // Move view to original position
+    }
 
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var email: UITextField!
@@ -47,7 +66,7 @@ class LoginViewController: UIViewController {
                        return;
 
         }
-        
+
         // Login Request
         let url = NSURL(string: "https://new.weitblicker.org/rest/auth/login/")
         let str = "surfer:hangloose"
@@ -56,137 +75,71 @@ class LoginViewController: UIViewController {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-                    // urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        let postString = ["email": self.email.text!, "password": self.password.text!] as [String: String]
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: postString, options: .prettyPrinted)
-        }catch let error{
-            print(error.localizedDescription)
-            showAlertMess(userMessage: "Irgendwas ist nicht richtig beim Login")
-            return
-        }
-       /* let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
-        urlRequest.httpBody = jsonUser*/
-    //    let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
-       /*     do{
-              let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
-              request.httpBody = jsonUser
-                print(jsonUser)
-                if let parseJSON = jsonUser {
+        // urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        let postString = ["username": "","email": self.email.text!, "password": self.password.text!] as [String: String]
 
-                    let accessToken = parseJSON["key"] as? String
-                    print("ACCESSTOKEN=====")
-                    print(accessToken)
-                    //let userId = parseJSON["id"] as? String
-                    //Token abspeichern
 
-                     let saveAccesssToken: Bool = KeychainWrapper.standard.set(accessToken!, forKey: "accessToken")
-                     //let saveUserId: Bool = KeychainWrapper.standard.set(userId!, forKey: "userId")
-                    print("Acces token true or false: \(saveAccesssToken)")
-                    print(accessToken)
-                    //print("Userid token true or false: \(saveUserId)")
-
-                    if (accessToken!.isEmpty){
-                       self.showAlertMess(userMessage: "Could not successfully perform this request. Please try again later")
-                        return
-                    }
-
-                    DispatchQueue.main.async {
-                            let startPage = self.storyboard?.instantiateViewController(withIdentifier: "NewsEventViewController") as! NewsEventViewController
-                            let appDelegate = UIApplication.shared.delegate
-                            appDelegate?.window??.rootViewController = startPage
-                    }
-
-                }else{
-
-                    self.showAlertMess(userMessage: "Der Request konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut")
-                }
-
-            }catch{
-                self.showAlertMess(userMessage: "Could not successfully perform this request. Please try again later")
-                print(error)
-            }
-
-         }
-        task.resume()*/
         do{
-                   let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
-                       request.httpBody = jsonUser
-                       print("User: ")
-                       print(jsonUser.html2String)
-                     }catch {
-                       print("Error: cannot create JSON from todo")
-                       return
-                     }
-                     let session = URLSession.shared
-                     let task = session.dataTask(with: request){
-                      (data, response, error) in
-                      guard error == nil else{
-                        print("error calling POST on /user/1")
-                        print(error!)
-                       return
-                      }
-                      guard let responseData = data else {
-                        print("Error: did not receive data")
-                        return
-                      }
+        let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
+           request.httpBody = jsonUser
+            print("User: ")
+            print(jsonUser.html2String)
+          }catch {
+            print("Error: cannot create JSON from todo")
+            return
+          }
+          let session = URLSession.shared
+          let task = session.dataTask(with: request){
+           (data, response, error) in
+           guard error == nil else{
+             print("error calling POST in Login")
+             print(error!)
+            return
+           }
+           guard let responseData = data else {
+             print("Error: did not receive data")
+             return
+           }
 
-                      // parse the result as JSON, since that's what the API provides
-                      do{
-                        guard let received = try JSONSerialization.jsonObject(with: responseData,
-                          options: []) as? [String: Any] else {
-                            print("Could not get JSON from responseData as dictionary")
-                            return
-                        }
-                        
-                        let accessToken = received["key"] as? String
-                        print("ACCESSTOKEN=====")
-                        print(accessToken)
-                        let saveAccesssToken: Bool = KeychainWrapper.standard.set(accessToken!, forKey: "accessToken")
-                         //let saveUserId: Bool = KeychainWrapper.standard.set(userId!, forKey: "userId")
-                        print("Acces token true or false: \(saveAccesssToken)")
-                        print(accessToken)
-                        //print("Userid token true or false: \(saveUserId)")
+           // parse the result as JSON, since that's what the API provides
+           do{
+             guard let received = try JSONSerialization.jsonObject(with: responseData,
+               options: []) as? [String: Any] else {
+                 print("Could not get JSON from responseData as dictionary")
+                 return
+             }
 
-                        if (accessToken!.isEmpty){
-                           self.showAlertMess(userMessage: "Could not successfully perform this request. Please try again later")
-                            return
-                        }
-                        
-                        print("The Recieved Message is: " + received.description)
-                        print (received.description)
-                       if received.values.count != 0
-                                          {
-                                           DispatchQueue.main.async {
+            print("The Recieved Message is: " + received.description)
 
-                                               self.showErrorMess(message: received.description)
-                                               return
-                                                             }
-                                          }
+            let userKey  = received["key"] as? String
+           /* let user = UserDefaults.standard
+            user.set(userKey, forKey: "key")*/
+            if (userKey == nil){
+               DispatchQueue.main.async {
+               self.showErrorMessage(message: received.description)
+               return
+                             }
+            }
+            print("TOKEN: ")
+            print (userKey)
+            //Token abspeichern
+             let saveAccesssToken: Bool = KeychainWrapper.standard.set(userKey!, forKey: "Key")
+            // let saveUserId: Bool = KeychainWrapper.standard.set(userId!, forKey: "userId")
+            print("Acces token true or false: \(saveAccesssToken)")
 
-                        guard let userID = received["id"] as? Int else {
-                          print("Could not get User as int from JSON")
-                          return
-                        }
-                        print("The ID is: \(userID)")
-                      }catch{
-                        print("error parsing response from POST on /user")
-                        return
-                      }
-                    }
-                    task.resume()
+           }catch{
+             print("error parsing response from POST on /user")
+             return
+           }
+         }
+         task.resume()
 
     }
-    
-    func showErrorMess(message: String){
-      let alertView = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
+    func  showErrorMessage(message:String) {
+        let alertView = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
         }
         alertView.addAction(OKAction)
-      /*  if let presenter = alertView.popoverPresentationController {
-            presenter.sourceView = self.view
-            presenter.sourceRect = self.view.bounds
-        }*/
         self.present(alertView, animated: true, completion:nil)
     }
 

@@ -18,7 +18,10 @@ class RegisterViewController: UIViewController {
                   tap.cancelsTouchesInView = false
                 view.addGestureRecognizer(tap)
 
+        //view verschieben bei tastatur
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil);
 
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil);
     }
     override func didReceiveMemoryWarning() {
            super.didReceiveMemoryWarning()
@@ -29,6 +32,16 @@ class RegisterViewController: UIViewController {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
+
+
+    //view verschieben wenn tastaur erscheint
+       @objc func keyboardWillShow(sender: NSNotification) {
+            self.view.frame.origin.y = -230 // Move view 150 points upward
+       }
+
+       @objc func keyboardWillHide(sender: NSNotification) {
+            self.view.frame.origin.y = 0 // Move view to original position
+       }
 
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var email: UITextField!
@@ -96,14 +109,14 @@ class RegisterViewController: UIViewController {
               urlRequest.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
              // urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
 
-         let postString = [     "username": self.username.text!,
-                                   "email": self.email.text!,
-                               "password1": self.password.text!,
-                               "password2": self.password2.text!,
-                                         ] as [String: String]
+         let postString = ["username": self.username.text!,
+                           "email": self.email.text!,
+                          "password1": self.password.text!,
+                          "password2": self.password2.text!,
+                          ] as [String: String]
 
 
-        
+           // let jsonUser: Data
             do{
             let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
                 urlRequest.httpBody = jsonUser
@@ -135,15 +148,10 @@ class RegisterViewController: UIViewController {
                  }
 
                  print("The Recieved Message is: " + received.description)
-                 print (received.description)
-               /* if (!received.description.isEmpty){
-                    self.showAlertMess(userMessage: "Halloo333")
-                    print("Hallooooooooo")
-                }*/
+
                 if received.values.count != 0
                                    {
                                     DispatchQueue.main.async {
-
                                         self.showErrorMessage(message: received.description)
                                         return
 
@@ -151,11 +159,18 @@ class RegisterViewController: UIViewController {
 
                                    }
 
-                 guard let userID = received["id"] as? Int else {
+
+                 guard let userKey = received["key"] as? Int else {
                    print("Could not get User as int from JSON")
                    return
                  }
-                 print("The ID is: \(userID)")
+                let user = UserDefaults.standard
+                user.set(userKey, forKey: "key")
+                user.set(self.username.text, forKey: "name")
+                user.set(self.email.text, forKey: "email")
+                user.set(self.password.text, forKey: "password")
+
+                 print("The Key is: \(userKey)")
                }catch{
                  print("error parsing response from POST on /user")
                  return
