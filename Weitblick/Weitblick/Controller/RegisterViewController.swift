@@ -96,14 +96,14 @@ class RegisterViewController: UIViewController {
               urlRequest.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
              // urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
 
-         let postString = ["username": self.username.text!,
-                               "email": self.email.text!,
+         let postString = [     "username": self.username.text!,
+                                   "email": self.email.text!,
                                "password1": self.password.text!,
                                "password2": self.password2.text!,
                                          ] as [String: String]
 
 
-           // let jsonUser: Data
+        
             do{
             let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
                 urlRequest.httpBody = jsonUser

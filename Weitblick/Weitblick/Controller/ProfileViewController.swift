@@ -53,7 +53,12 @@ class ProfileViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    
+    @IBAction func logOutButtonClicked(_ sender: Any) {
+        
+    }
+    
 
 
 

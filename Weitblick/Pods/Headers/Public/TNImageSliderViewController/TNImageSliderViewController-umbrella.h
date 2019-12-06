@@ -1,1 +1,0 @@
-../../../Target Support Files/TNImageSliderViewController/TNImageSliderViewController-umbrella.h

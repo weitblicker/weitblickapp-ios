@@ -27,9 +27,9 @@ class MapViewController: UIViewController {
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var stopPlayButton: UIButton!
 
-
     override func viewDidLoad() {
         self.navigationItem.hidesBackButton = true
+        self.stopPlayButton.setImage(UIImage(named: "play"), for: UIControl.State.normal)
         super.viewDidLoad()
         self.startTracking = true;
         checkLocationServices()
@@ -103,9 +103,11 @@ class MapViewController: UIViewController {
         }
     }
 
-
     @IBAction func EndTrackingClicked(_ sender: Any) {
         self.trackFinished = true;
+        // PASS DATA TO SERVER
+        // Alle 30 Sekunden POST Request
+        // 
         self.performSegue(withIdentifier: "goToTrackResult", sender: self)
     }
 
@@ -116,7 +118,6 @@ class MapViewController: UIViewController {
             // TODO DATA PASSING
         }
     }
-
 }
 
 extension MapViewController : CLLocationManagerDelegate{
@@ -136,7 +137,6 @@ extension MapViewController : CLLocationManagerDelegate{
                 //print(totalDistance.description + " m")
                 let distanceinKM = self.totalDistance/1000
                 //print((round(distanceinKM*100)/100).description + " km")
-
                 //self.distanceLbl.text = (round(distanceinKM*100)/100).description + " km"
                 self.distanceLbl.text = doubleToKm(double: totalDistance)
 
@@ -155,9 +155,30 @@ extension MapViewController : CLLocationManagerDelegate{
         return s.description + " km"
     }
 
-
-
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
     }
 }
+
+
+
+
+/*
+ 
+ let url = NSURL(string: "https://new.weitblicker.org/rest/cycle/segment")
+        let str = "surfer:hangloose"
+        let test2 = Data(str.utf8).base64EncodedString();
+        var request = URLRequest(url : (url as URL?)!,cachePolicy:URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+                    // urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        let postString = ["project" : Int, "tour" : Int, "token": String , "distance": float , "start" : YYYY-MM-DDTHH:MM:SS+2:00, "end" : YYYY-MM-DDTHH:MM:SS+2:00 ] as [String: String]
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: postString, options: .prettyPrinted)
+        }catch let error{
+            print(error.localizedDescription)
+            showAlertMess(userMessage: "Irgendwas ist nicht richtig beim Login")
+            return
+        }
+ */
