@@ -85,10 +85,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print("In WillDisplay TableView")
         let lastElement = self.newsList.count - 1
-        print(indexPath.row)
-        print(lastElement)
         if ((indexPath.row) == lastElement) {
             DataService.loadNews(date: self.date) { (list) in
                 //self.newsList += list
