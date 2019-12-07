@@ -128,6 +128,9 @@ class ProjectDetailViewController: UIViewController {
                      annotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(52.2799112),
                                                                      longitude: CLLocationDegrees(8.0471788))
                    self.map.addAnnotation(annotation)
+        map.setCenter(annotation.coordinate, animated: true)
+        let region = MKCoordinateRegion.init(center: annotation.coordinate, latitudinalMeters: 100000, longitudinalMeters: 100000)
+        self.map.setRegion(region, animated: true)
     }
 
 
@@ -164,6 +167,7 @@ class ProjectDetailViewController: UIViewController {
         
         for image in (self.project_object?.getGallery.images)!{
             let imgURL = NSURL(string : defaultstring + image.imageURL!)
+            print("== "+image.imageURL!)
             if(imgURL != nil){
                 let data = NSData(contentsOf: (imgURL as URL?)!)
                 images.append(UIImage(data : data! as Data)!)

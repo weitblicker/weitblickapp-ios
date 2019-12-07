@@ -13,9 +13,29 @@ class ProfileChangePasswordController: UIViewController{
     
     override func viewDidLoad() {
     super.viewDidLoad()
+           let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+                  tap.cancelsTouchesInView = false
+                view.addGestureRecognizer(tap)
         
-    }
-    
+        //view verschieben bei tastatur
+              NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil);
+
+              NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil);
+              
+           }
+           
+        @objc func dismissKeyboard() {
+            //Causes the view (or one of its embedded text fields) to resign the first responder status.
+            view.endEditing(true)
+        }
+    //view verschieben wenn tastaur erscheint
+       @objc func keyboardWillShow(sender: NSNotification) {
+            self.view.frame.origin.y = -150 // Move view 150 points upward
+       }
+
+       @objc func keyboardWillHide(sender: NSNotification) {
+            self.view.frame.origin.y = 0 // Move view to original position
+       }
     
     @IBAction func button_change_password(_ sender: Any) {
         

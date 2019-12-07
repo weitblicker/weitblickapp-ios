@@ -26,14 +26,7 @@ class BikeViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBAction func startDataTracking(_ sender: Any) {
         
-//        if(!startCalculateDistance){
-//            startCalculateDistance = true;
-//            startTracking = true;
-//        }else{
-//            startCalculateDistance = false;
-//        }
-//
-        
+        performSegue(withIdentifier: "goToMapView", sender: self)
         
     }
 
@@ -93,6 +86,16 @@ class BikeViewController: UIViewController {
             break
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is MapViewController
+        {
+            let mapViewController = segue.destination as? MapViewController
+            mapViewController?.locationManager = self.locationManager
+
+
+        }
+    }
 }
 
 extension BikeViewController : CLLocationManagerDelegate{
@@ -139,4 +142,6 @@ extension BikeViewController : CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
     }
+    
+    
 }

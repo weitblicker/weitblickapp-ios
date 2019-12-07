@@ -17,8 +17,9 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
     var locationList : [Location] = []
     var locationListID : [Int] = []
     var project_object : Project?
-    var count2 = 0
-    var postCount2 = 3
+//    var count2 = 0
+//    var postCount2 = 3
+    var date = Date.init()
 
 
     @IBOutlet weak var tableView: UITableView!
@@ -30,22 +31,23 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {   // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
         let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as! ProjectTableViewCell
         let defaultstring = "https://new.weitblicker.org"
-        if(count < postCount){
-            let imgURL = NSURL(string : defaultstring + self.projectList[indexPath.row].getImageURL(index: count))
-            if(imgURL != nil){
-                let data = NSData(contentsOf: (imgURL as URL?)!)
-                cell.project_image.image = UIImage(data: data! as Data)
+        //if(count < postCount){
+        cell.project_image.image = UIImage(named : "Weitblick")
+        //let imgURL = NSURL(string : defaultstring + self.projectList[indexPath.row].getImageURL(index: count))
+//            if(imgURL != nil){
+//                let data = NSData(contentsOf: (imgURL as URL?)!)
+//                cell.project_image.image = UIImage(data: data! as Data)
+//
+//            }
 
-            }
+            //count += 1
 
-            count += 1
-
-        }
+        //}
         cell.project_title.text = projectList[indexPath.row].getName
 
-        let id = self.locationListID[indexPath.row]
-        let locationString = self.getLocationAddressWithID(id: id)
-        cell.project_location.text = locationString
+        //let id = self.locationListID[indexPath.row]
+        //let locationString = self.getLocationAddressWithID(id: id)
+        cell.project_location.text = "locationString"
         cell.project_button_detail.tag = indexPath.row
 
 //        guard case let cell.project_location.text = self.getLocationAddressWithID(id: self.locationList[indexPath.row].getID) else { return cell}
@@ -65,8 +67,16 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadLocations()
-        self.downloadData()
+        //self.loadLocations()
+        //self.downloadData()
+        DataService.loadProjects(date: self.date) { (list) in
+            self.projectList = list
+            print(list.count)
+            self.date = self.projectList.last?.getPublished ?? self.date
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
         self.tableView.delegate = self
         self.tableView.dataSource = self
           tableView.rowHeight = UITableView.automaticDimension
