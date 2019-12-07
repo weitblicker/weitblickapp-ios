@@ -74,16 +74,18 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // TODO If TEASER = NIL OR ""
         cell.news_description.text = newsList[indexPath.row].getTeaser.html2String
         cell.news_description.sizeToFit()
+        cell.news_title.text = newsList[indexPath.row].getTitle.html2String
+        cell.news_title.sizeToFit()
         cell.news_button_detail.tag = indexPath.row
 
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.news_object = newsList[indexPath.row]
         self.performSegue(withIdentifier: "goToNewsDetail", sender: self)
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastElement = self.newsList.count - 1
         if ((indexPath.row) == lastElement) {
@@ -99,8 +101,8 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
     }
-    
-    
+
+
 
 override func viewDidLoad() {
     super.viewDidLoad()
@@ -131,7 +133,7 @@ override func viewDidLoad() {
             newsDetailViewController?.news_object = self.news_object
         }
     }
-    
+
     public func downloadData(){
     var resultimages : [Image] = []
     let url = NSURL(string: "https://new.weitblicker.org/rest/news/?limit=3")
@@ -168,7 +170,7 @@ override func viewDidLoad() {
                         imageURL = imgURL as! String
                     }
 
-                    
+
                     guard let updated = newsDict.value(forKey: "updated") else { return }
                     let upDatedString = updated as! String
                     let newsUpdated = self.handleDate(date: upDatedString)
@@ -222,6 +224,6 @@ override func viewDidLoad() {
 
 let regex = try! NSRegularExpression(pattern: "!\\[(.*?)\\]\\((.*?)\\\"")
 let string = ""
- 
- 
+
+
 */

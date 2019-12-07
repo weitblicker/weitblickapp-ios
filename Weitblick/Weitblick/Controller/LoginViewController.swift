@@ -111,19 +111,20 @@ class LoginViewController: UIViewController {
 
             print("The Recieved Message is: " + received.description)
 
-            let userKey  = received["key"] as? String
-           /* let user = UserDefaults.standard
-            user.set(userKey, forKey: "key")*/
-            if (userKey == nil){
-               DispatchQueue.main.async {
-               self.showErrorMessage(message: received.description)
-               return
-                             }
-            }
+              guard let userKey = received["key"] as? Int else {
+                              DispatchQueue.main.async {
+                              self.showErrorMessage(message: received.description)
+
+                                            }
+                             return
+                           }
             print("TOKEN: ")
             print (userKey)
+            let user = UserDefaults.standard
+            user.set(userKey, forKey: "key")
+            user.synchronize()
             //Token abspeichern
-             let saveAccesssToken: Bool = KeychainWrapper.standard.set(userKey!, forKey: "Key")
+             let saveAccesssToken: Bool = KeychainWrapper.standard.set(userKey, forKey: "Key")
             // let saveUserId: Bool = KeychainWrapper.standard.set(userId!, forKey: "userId")
             print("Acces token true or false: \(saveAccesssToken)")
 

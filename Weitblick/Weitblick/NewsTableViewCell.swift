@@ -19,8 +19,11 @@ class NewsTableViewCell : UITableViewCell{
     
     @IBOutlet weak var news_description: UILabel!
     
+    @IBOutlet weak var news_title: UILabel!
     @IBOutlet weak var news_button_detail: UIButton!
     @IBOutlet weak var news_location: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

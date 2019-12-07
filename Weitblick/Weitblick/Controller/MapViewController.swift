@@ -102,7 +102,7 @@ class MapViewController: UIViewController {
             startTracking = true
             self.lastPostRequestDate = Date.init()
             self.stopPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
-            
+
         }
     }
 
@@ -110,7 +110,7 @@ class MapViewController: UIViewController {
         self.trackFinished = true;
         // PASS DATA TO SERVER
         // Alle 30 Sekunden POST Request
-        // 
+        //
         self.performSegue(withIdentifier: "goToTrackResult", sender: self)
     }
 
@@ -167,7 +167,7 @@ extension MapViewController : CLLocationManagerDelegate{
 
 
 /*
- 
+
  let url = NSURL(string: "https://new.weitblicker.org/rest/cycle/segment")
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();

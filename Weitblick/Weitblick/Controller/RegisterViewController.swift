@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class RegisterViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -115,8 +114,6 @@ class RegisterViewController: UIViewController {
                           "password2": self.password2.text!,
                           ] as [String: String]
 
-
-           // let jsonUser: Data
             do{
             let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
                 urlRequest.httpBody = jsonUser
@@ -149,19 +146,11 @@ class RegisterViewController: UIViewController {
 
                  print("The Recieved Message is: " + received.description)
 
-                if received.values.count != 0
-                                   {
-                                    DispatchQueue.main.async {
-                                        self.showErrorMessage(message: received.description)
-                                        return
-
-                                                      }
-
-                                   }
-
-
                  guard let userKey = received["key"] as? Int else {
-                   print("Could not get User as int from JSON")
+                    DispatchQueue.main.async {
+                    self.showErrorMessage(message: received.description)
+
+                                  }
                    return
                  }
                 let user = UserDefaults.standard
@@ -169,6 +158,7 @@ class RegisterViewController: UIViewController {
                 user.set(self.username.text, forKey: "name")
                 user.set(self.email.text, forKey: "email")
                 user.set(self.password.text, forKey: "password")
+                UserDefaults.standard.synchronize()
 
                  print("The Key is: \(userKey)")
                }catch{
@@ -177,7 +167,6 @@ class RegisterViewController: UIViewController {
                }
              }
              task.resume()
-
 
     }
 
@@ -194,14 +183,8 @@ class RegisterViewController: UIViewController {
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
         }
         alertView.addAction(OKAction)
-      /*  if let presenter = alertView.popoverPresentationController {
-            presenter.sourceView = self.view
-            presenter.sourceRect = self.view.bounds
-        }*/
         self.present(alertView, animated: true, completion:nil)
     }
-
-
 
     @IBAction func InfoButton(_ sender: UIButton) {
         let message:String = "Der Username wird öffentlich sichtbar sein"
