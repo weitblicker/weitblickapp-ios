@@ -146,13 +146,12 @@ class RegisterViewController: UIViewController {
 
                  print("The Recieved Message is: " + received.description)
 
-                 guard let userKey = received["key"] as? Int else {
+                guard let userKey = received["key"] as? Int else {
                     DispatchQueue.main.async {
-                    self.showErrorMessage(message: received.description)
-
-                                  }
-                   return
-                 }
+                        self.showErrorMessage(message: received.description)
+                    }
+                    return
+                }
                 let user = UserDefaults.standard
                 user.set(userKey, forKey: "key")
                 user.set(self.username.text, forKey: "name")

@@ -44,10 +44,10 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
 
         //}
         cell.project_title.text = projectList[indexPath.row].getName
+        cell.project_location.text = projectList[indexPath.row].getLocation.getAddress
 
         //let id = self.locationListID[indexPath.row]
         //let locationString = self.getLocationAddressWithID(id: id)
-        cell.project_location.text = "locationString"
         cell.project_button_detail.tag = indexPath.row
 
 //        guard case let cell.project_location.text = self.getLocationAddressWithID(id: self.locationList[indexPath.row].getID) else { return cell}
@@ -100,117 +100,117 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         return "Adress not found"
     }
 
-    public func loadLocations(){
-        let url = NSURL(string: "https://new.weitblicker.org/rest/locations/?format=json")
-        let str = "surfer:hangloose"
-        let test2 = Data(str.utf8).base64EncodedString();
-        var task2 = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
-        task2.httpMethod = "GET"
-        task2.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        task2.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+//    public func loadLocations(){
+//        let url = NSURL(string: "https://new.weitblicker.org/rest/locations/?format=json")
+//        let str = "surfer:hangloose"
+//        let test2 = Data(str.utf8).base64EncodedString();
+//        var task2 = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
+//        task2.httpMethod = "GET"
+//        task2.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        task2.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+//
+//        URLSession.shared.dataTask(with: task2, completionHandler: {(data,response,error) -> Void in
+//            let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+//            if let locationsArray = jsondata as? NSArray{
+//                for location in locationsArray{
+//                    if let locationDict = location as? NSDictionary{
+//                        guard let id = locationDict.value(forKey: "id")  else { return }
+//                        let IDString = id as! String
+//                        let locationID = Int.init(IDString)
+//                        guard let name = locationDict.value(forKey: "name")  else { return }
+//                        let locationName = name as! String
+//                        guard let description = locationDict.value(forKey: "description")  else { return }
+//                        guard let locationDescription = description as? String else { return }
+//                        guard let lat = locationDict.value(forKey: "lat")  else { return }
+//                        let locationLatString = lat as! String
+//                        let locationLatInt = Int.init(locationLatString)
+//                        let locationLatFloat = Float.init(locationLatInt!)
+//                        guard let lng = locationDict.value(forKey: "lng")  else { return }
+//                        let locationLngString = lng as! String
+//                        let locationLngInt = Int.init(locationLngString)
+//                        let locationLngFloat = Float.init(locationLngInt!)
+//                        guard let address = locationDict.value(forKey: "address") else { return }
+//                        let locationAddress = address as! String
+//                        let location = Location(id: locationID, lat: locationLatInt, lng: <#T##Float#>, address: <#T##String#>)
+//                        self.locationList.append(location)
+//
+//                    }
+//                }
+//                OperationQueue.main.addOperation {
+//                   self.tableView.reloadData()
+//                }
+//            }
+//        }).resume()
+//    }
 
-        URLSession.shared.dataTask(with: task2, completionHandler: {(data,response,error) -> Void in
-            let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-            if let locationsArray = jsondata as? NSArray{
-                for location in locationsArray{
-                    if let locationDict = location as? NSDictionary{
-                        guard let id = locationDict.value(forKey: "id")  else { return }
-                        let IDString = id as! String
-                        let locationID = Int.init(IDString)
-                        guard let name = locationDict.value(forKey: "name")  else { return }
-                        let locationName = name as! String
-                        guard let description = locationDict.value(forKey: "description")  else { return }
-                        guard let locationDescription = description as? String else { return }
-                        guard let lat = locationDict.value(forKey: "lat")  else { return }
-                        let locationLatString = lat as! String
-                        let locationLatInt = Int.init(locationLatString)
-                        let locationLatFloat = Float.init(locationLatInt!)
-                        guard let lng = locationDict.value(forKey: "lng")  else { return }
-                        let locationLngString = lng as! String
-                        let locationLngInt = Int.init(locationLngString)
-                        let locationLngFloat = Float.init(locationLngInt!)
-                        guard let address = locationDict.value(forKey: "address") else { return }
-                        let locationAddress = address as! String
-                        let location = Location(id: locationID!, name: locationName, description: locationDescription, lat: locationLatFloat, lng: locationLngFloat, address: locationAddress)
-                        self.locationList.append(location)
-
-                    }
-                }
-                OperationQueue.main.addOperation {
-                   self.tableView.reloadData()
-                }
-            }
-        }).resume()
-    }
-
-     public func downloadData(){
-        var resultPartnerID : [Int] = []
-        var resultHosts : [String] = []
-         var resultimages : [Image] = []
-         let url = NSURL(string: "https://new.weitblicker.org/rest/projects/?format=json&limit=3")
-         let str = "surfer:hangloose"
-         let test2 = Data(str.utf8).base64EncodedString();
-         var task = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
-         task.httpMethod = "GET"
-         task.addValue("application/json", forHTTPHeaderField: "Content-Type")
-         task.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-
-         URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
-             let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-             if let projectArray = jsondata as? NSArray{
-                 for project in projectArray{
-                     if let projectDict = project as? NSDictionary{
-                         guard let id = projectDict.value(forKey: "id")  else { return }
-                         let IDString = id as! String
-                         let projectID = Int.init(IDString)
-
-                         guard let title = projectDict.value(forKey: "name") else { return }
-                         let projectTitle = title as! String
-
-                         guard let description = projectDict.value(forKey: "description") else { return }
-                         let projectDescription = description as! String
-
-                        guard let location = projectDict.value(forKey: "location") else { return }
-                        let projectLocationID = location as! Int
-                        self.locationListID.append(projectLocationID)
-                        //guard let partner = projectDict.value(forKey: "partner") else { return }
-
-
-                        guard let published = projectDict.value(forKey: "published") else { return }
-                         let publishedString = published as! String
-                         let projectPublished = self.handleDate(date: publishedString)
-                        guard let hosts = projectDict.value(forKey: "hosts") else { return }
-                        resultHosts = hosts as! [String]
-                        guard let gallery = projectDict.value(forKey: "gallery") else { return }
-                         // Gallery
-                         if let imageDict = gallery as? NSDictionary{
-                             guard let images = imageDict.value(forKey : "images") else { return }
-                             // Images
-                             if let imageArray = images as? NSArray{
-                                 for imgUrls in imageArray{
-                                     if let imgDict = imgUrls as? NSDictionary{
-                                         guard let url = imgDict.value(forKey : "url") else { return }
-                                         let img = Image(imageURL: (url as! String))
-                                         resultimages.append(img)
-                                     }
-                                 }
-                             }
-                         }
-                         let resultGallery = Gallery(images: resultimages)
-                         resultimages = []
-                        let project = Project(id: projectID!, published: projectPublished, name: projectTitle, gallery: resultGallery, hosts: resultHosts, description: projectDescription, locationID: projectLocationID, partnerID: [])
-                        resultPartnerID = []
-                        self.projectList.append(project)
-                        }
-                 }
-                 // Do after Loading
-                 OperationQueue.main.addOperation {
-                    self.tableView.reloadData()
-                 }
-
-             }
-             }).resume()
-     }
+//     public func downloadData(){
+//        var resultPartnerID : [Int] = []
+//        var resultHosts : [String] = []
+//         var resultimages : [Image] = []
+//         let url = NSURL(string: "https://new.weitblicker.org/rest/projects/?format=json&limit=3")
+//         let str = "surfer:hangloose"
+//         let test2 = Data(str.utf8).base64EncodedString();
+//         var task = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
+//         task.httpMethod = "GET"
+//         task.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//         task.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+//
+//         URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
+//             let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+//             if let projectArray = jsondata as? NSArray{
+//                 for project in projectArray{
+//                     if let projectDict = project as? NSDictionary{
+//                         guard let id = projectDict.value(forKey: "id")  else { return }
+//                         let IDString = id as! String
+//                         let projectID = Int.init(IDString)
+//
+//                         guard let title = projectDict.value(forKey: "name") else { return }
+//                         let projectTitle = title as! String
+//
+//                         guard let description = projectDict.value(forKey: "description") else { return }
+//                         let projectDescription = description as! String
+//
+//                        guard let location = projectDict.value(forKey: "location") else { return }
+//                        let projectLocationID = location as! Int
+//                        self.locationListID.append(projectLocationID)
+//                        //guard let partner = projectDict.value(forKey: "partner") else { return }
+//
+//
+//                        guard let published = projectDict.value(forKey: "published") else { return }
+//                         let publishedString = published as! String
+//                         let projectPublished = self.handleDate(date: publishedString)
+//                        guard let hosts = projectDict.value(forKey: "hosts") else { return }
+//                        resultHosts = hosts as! [String]
+//                        guard let gallery = projectDict.value(forKey: "gallery") else { return }
+//                         // Gallery
+//                         if let imageDict = gallery as? NSDictionary{
+//                             guard let images = imageDict.value(forKey : "images") else { return }
+//                             // Images
+//                             if let imageArray = images as? NSArray{
+//                                 for imgUrls in imageArray{
+//                                     if let imgDict = imgUrls as? NSDictionary{
+//                                         guard let url = imgDict.value(forKey : "url") else { return }
+//                                         let img = Image(imageURL: (url as! String))
+//                                         resultimages.append(img)
+//                                     }
+//                                 }
+//                             }
+//                         }
+//                         let resultGallery = Gallery(images: resultimages)
+//                         resultimages = []
+//                        let project = Project(id: projectID!, published: projectPublished, name: projectTitle, gallery: resultGallery, hosts: resultHosts, description: projectDescription, locationID: projectLocationID, partnerID: [])
+//                        resultPartnerID = []
+//                        self.projectList.append(project)
+//                        }
+//                 }
+//                 // Do after Loading
+//                 OperationQueue.main.addOperation {
+//                    self.tableView.reloadData()
+//                 }
+//
+//             }
+//             }).resume()
+//     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
               if segue.destination is ProjectDetailViewController

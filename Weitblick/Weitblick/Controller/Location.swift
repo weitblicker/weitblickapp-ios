@@ -12,40 +12,35 @@ import Foundation
 class Location{
     
     private var id : Int
-    private var name : String
-    private var description : String
-    private var lat : Float
-    private var lng : Float
+    private var lat : Double
+    private var lng : Double
     private var address : String
     
-    init(id : Int, name : String, description : String, lat : Float, lng : Float, address : String ){
+    init(id : Int, lat : Double, lng : Double, address : String ){
         
         self.id = id
-        self.name = name
-        self.description = description
         self.lat = lat
         self.lng = lng
         self.address = address
         
     }
     
+    init(){
+        self.id = 0
+        self.lat = 0
+        self.lng = 0
+        self.address = ""
+    }
+    
     public var getID : Int{
         return self.id
     }
     
-    public var getName : String{
-        return self.name
-    }
-    
-    public var getDescription : String{
-        return self.description
-    }
-    
-    public var getLatitude : Float{
+    public var getLatitude : Double{
         return self.lat
     }
     
-    public var getLongitude : Float{
+    public var getLongitude : Double{
         return self.lng
     }
     

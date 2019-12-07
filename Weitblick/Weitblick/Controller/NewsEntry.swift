@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Image : Codable{
     let imageURL : String?
@@ -31,6 +32,7 @@ class NewsEntry{
     private var title : String
     private var text : String
     private var image : Image
+    private var uiimage : UIImage = UIImage(named: "Weitblick")!
     private var gallery : Gallery
     private var created : Date
     private var updated : Date
@@ -48,7 +50,33 @@ class NewsEntry{
         self.range = range
         self.image = image
         self.teaser = teaser
-
+        
+        if(self.image.imageURL == ""){
+            if(self.gallery.images!.count >= 1){
+                let imgURL = NSURL(string : Constants.url + (self.gallery.images?.first?.imageURL)! )
+                if(imgURL != nil){
+                    let data = NSData(contentsOf: (imgURL as URL?)!)
+                    let size = CGSize.init(width: 334, height: 176)
+                    let img = UIImage(data: data! as Data)?.crop(to: size)
+                    self.uiimage = img!
+                }
+            }else{
+                self.uiimage = UIImage(named: "Weitblick")!
+            }
+        }else{
+            let imgURL = NSURL(string : Constants.url + self.image.imageURL!)
+            if(imgURL != nil){
+                let data = NSData(contentsOf: (imgURL as URL?)!)
+                self.uiimage = UIImage(data: data! as Data)!
+            }else{
+                self.uiimage = UIImage(named: "Weitblick")!
+            }
+            
+        }
+    }
+    
+    public var getImage : UIImage{
+        return self.uiimage
     }
 
     public var getID : Int{

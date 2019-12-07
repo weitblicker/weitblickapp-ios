@@ -124,9 +124,9 @@ class ProjectDetailViewController: UIViewController {
     
     func loadMap(){
         let annotation = MKPointAnnotation()
-                     annotation.title = "Osnabrück"
-                     annotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(52.2799112),
-                                                                     longitude: CLLocationDegrees(8.0471788))
+        annotation.title = project_object?.getLocation.getAddress
+        annotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees((project_object?.getLocation.getLatitude)!),
+                                                       longitude: CLLocationDegrees((project_object?.getLocation.getLongitude)!))
                    self.map.addAnnotation(annotation)
         map.setCenter(annotation.coordinate, animated: true)
         let region = MKCoordinateRegion.init(center: annotation.coordinate, latitudinalMeters: 100000, longitudinalMeters: 100000)
@@ -160,7 +160,7 @@ class ProjectDetailViewController: UIViewController {
     func loadProjectDetail(){
         project_detail_description.text = project_object?.getDescription.html2String
         project_detail_title.text = project_object?.getName
-        project_detail_location.text = "Osnabrück"
+        project_detail_location.text = project_object?.getLocation.getAddress
         // project_detail_image.image = img
         let defaultstring = "https://new.weitblicker.org"
         var images: [UIImage] = []

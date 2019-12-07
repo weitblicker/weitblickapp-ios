@@ -27,12 +27,12 @@ class Project{
     private var galleryCount : Int
     private var hosts : [String]
     private var description : String
-    private var locationID : Int
+    private var location : Location
     private var partnerID : [Int]
   
 
 
-    init(id : Int,published : Date, name : String, gallery : Gallery, hosts : [String], description : String, locationID : Int, partnerID : [Int]){
+    init(id : Int,published : Date, name : String, gallery : Gallery, hosts : [String], description : String, location : Location, partnerID : [Int]){
         self.id = id
         self.published = published
         self.name = name
@@ -40,7 +40,7 @@ class Project{
         self.galleryCount = self.gallery.images!.count
         self.hosts = hosts
         self.description = description
-        self.locationID = locationID
+        self.location = location
         self.partnerID = partnerID
        
     }
@@ -76,9 +76,9 @@ class Project{
     public var getDescription : String {
         return self.description
     }
-
-    public var getLocationID : Int{
-        return self.locationID
+    
+    public var getLocation : Location{
+        return self.location
     }
 
     public var getPartnerID : [Int]{

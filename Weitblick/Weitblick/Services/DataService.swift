@@ -9,10 +9,13 @@
 import UIKit
 
 struct Constants{
+    static let url  = "https://new.weitblicker.org"
     static let restURL  = "https://new.weitblicker.org/rest"
     static let mediaURL = "https://new.weitblicker.org/media"
     static let regex = "!\\[(.*?)\\]\\((.*?)\\\""
+    static let regex2 = "" // \[?(!)\[(?<alt>[^\]\[]*\[?[^\]\[]*\]?[^\]\[]*)\]\((?<url>[^\s]+?)(?:\s+(["'])(?<title>.*?)\4)?\)
     static let regexReplace = "!\\[(.*?)\\]\\((.*?)\\)"
+    static let rect = CGRect.init(x: 200/2, y: 50/2, width: 400, height: 180)
     
 }
 
@@ -21,39 +24,41 @@ class DataService{
     static func loadNews(date : Date,completion: @escaping (_ newsList : [NewsEntry]) -> ()){
         var newsList : [NewsEntry] = []
         var resultimages : [Image] = []
-        // /rest/news?start=2019-10-01&end=2020-01-01&limit=30
-        //let url = NSURL(string: Constants.restURL + "?start=1970-01-01&end="+date.dateAndTimetoStringUS()+"&limit=3")
+        
         let timestamp = date.dateAndTimetoStringUS()
         let url = NSURL(string: "https://new.weitblicker.org/rest/news/?end="+timestamp+"&limit=3")
-        //print(Constants.restURL + "/news?end="+date.dateAndTimetoStringUS()+"&limit=3")
         let str = "surfer:hangloose"
-        let test2 = Data(str.utf8).base64EncodedString();
-        //print(test2)
+        let dataB64 = Data(str.utf8).base64EncodedString();
         var task = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
         task.httpMethod = "GET"
         task.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        task.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+        task.addValue("Basic " + dataB64, forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
         let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
         if let newsArray = jsondata as? NSArray{
             for news in newsArray{
                 if let newsDict = news as? NSDictionary{
+                    
                     guard let id = newsDict.value(forKey: "id")  else { return }
                     let IDString = id as! String
                     let newsID = Int.init(IDString)
+                    
                     guard let title = newsDict.value(forKey: "title") else { return }
                     let newsTitle = title as! String
-                    //print(newsTitle)
+                    
                     guard let text = newsDict.value(forKey: "text") else { return }
                     var newsText = text as! String
+                    
                     DataService.getImageURLS(string: newsText) { (list) in
                         for listItem in list {
                             let i = Image(imageURL: getURLfromGivenRegex(input: listItem))
                             resultimages.append(i)
                         }
                     }
+                    
                     newsText = extractRegex(input: newsText, regex: DataService.matches(for: Constants.regexReplace, in: newsText))
+                    
                     guard let created = newsDict.value(forKey: "added") else { return }
                     let createdString = created as! String
                     let newsCreated = self.handleDate(date: createdString)
@@ -139,12 +144,26 @@ class DataService{
                             
                         
                         projectDescription = extractRegex(input: projectDescription, regex: DataService.matches(for: Constants.regexReplace, in: projectDescription))
-                       guard let location = projectDict.value(forKey: "location") else { return }
-                       let projectLocationID = location as! Int
+                        guard let locationJSON = projectDict.value(forKey: "location") else { return }
+                        var location : Location = Location()
+                        if let locationDict = locationJSON as? NSDictionary{
+                            print(locationDict)
+                           guard let id = locationDict.value(forKey: "id")  else { return }
+                            let IDString = id as! String
+                            let locationID = Int.init(IDString)
+                            guard let lat = locationDict.value(forKey: "lat")  else { return }
+                            let latNumber = lat as! NSNumber
+                            let locationLat = Double.init(latNumber)
+                            guard let lng = locationDict.value(forKey: "lng")  else { return }
+                            let lngNumber = lng as! NSNumber
+                            let locationLng = Double.init(lngNumber)
+                            guard let address = locationDict.value(forKey: "address")  else { return }
+                            let locationAddress = address as! String
+                            location = Location(id: locationID!, lat: locationLat, lng: locationLng, address: locationAddress)
+                        }
                        //self.locationListID.append(projectLocationID)
                        //guard let partner = projectDict.value(forKey: "partner") else { return }
                        guard let published = projectDict.value(forKey: "published") else { return }
-                        let publishedString = published as! String
                         let projectPublished = Date()// self.handleDate(date: publishedString)
                        guard let hosts = projectDict.value(forKey: "hosts") else { return }
                        let resultHosts = hosts as! [String]
@@ -165,7 +184,7 @@ class DataService{
 //                        }
                         let resultGallery = Gallery(images: resultimages)
                         resultimages = []
-                        let project = Project(id: projectID!, published: projectPublished, name: projectTitle, gallery: resultGallery, hosts: resultHosts, description: projectDescription, locationID: projectLocationID, partnerID: [])
+                        let project = Project(id: projectID!, published: projectPublished, name: projectTitle, gallery: resultGallery, hosts: resultHosts, description: projectDescription, location: location , partnerID: [])
                        //resultPartnerID = []
                        projectList.append(project)
                     }
@@ -231,4 +250,8 @@ class DataService{
         completion(returnStrings)
     }
     
+    
 }
+
+
+

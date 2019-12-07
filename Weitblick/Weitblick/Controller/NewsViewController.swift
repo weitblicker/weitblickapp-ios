@@ -20,11 +20,11 @@ extension Date{
 
 extension Date{
     func dateAndTimetoStringUS(format: String = "yyyy-MM-dd") -> String {
-    let formatter = DateFormatter()
-            formatter.dateStyle = .short
-            formatter.dateFormat = format
-    return formatter.string(from: self)
-        }
+        let formatter = DateFormatter()
+                formatter.dateStyle = .short
+                formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
 }
 
 class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
@@ -56,16 +56,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
         let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! NewsTableViewCell
         // Zelle konfigurieren
-        let defaultstring = "https://new.weitblicker.org"
-        if(self.newsList[indexPath.row].getImageURL == ""){
-            cell.news_image.image = UIImage(named: "Weitblick")
-        }else{
-            let imgURL = NSURL(string : defaultstring + self.newsList[indexPath.row].getImageURL)
-            if(imgURL != nil){
-                let data = NSData(contentsOf: (imgURL as URL?)!)
-                cell.news_image.image = UIImage(data: data! as Data)
-            }
-        }
+        cell.news_image.image = newsList[indexPath.row].getImage
         // TODO If TEASER = NIL OR ""
         cell.news_date.text = newsList[indexPath.row].getCreationDate.dateAndTimetoString()
         // TODO If TEASER = NIL OR ""
@@ -74,7 +65,6 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.news_title.text = newsList[indexPath.row].getTitle.html2String
         cell.news_title.sizeToFit()
         cell.news_button_detail.tag = indexPath.row
-
         return cell
     }
 
@@ -87,7 +77,6 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let lastElement = self.newsList.count - 1
         if ((indexPath.row) == lastElement) {
             DataService.loadNews(date: self.date) { (list) in
-                //self.newsList += list
                 for newsEntry in list{
                     self.newsList.append(newsEntry)
                 }
@@ -103,12 +92,12 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
 override func viewDidLoad() {
     super.viewDidLoad()
-    //self.downloadData()
     DataService.loadNews(date: self.date) { (list) in
         self.newsList = list
         self.date = self.newsList.last!.getCreationDate
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            
         }
     }
     self.tableView.delegate = self
