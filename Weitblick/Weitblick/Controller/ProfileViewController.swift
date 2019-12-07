@@ -64,19 +64,24 @@ class ProfileViewController: UIViewController {
         
         let user = UserDefaults.standard
         let key = user.object(forKey: "key")
+        user.removeObject(forKey: "key")
+        print("PROFILE EMAIL")
+        print(user.object(forKey: "email"))
+        
+        user.synchronize()
+        
         print("KEY IN PROFILE")
         print(key)
-       // let key = "8c757db6fe8b56977a92f270282ef4f543c726bc"
+    
         
-        let url = NSURL(string: "https://new.weitblicker.org/rest/auth/registration/")
+        let url = NSURL(string: "https://new.weitblicker.org/rest/auth/logout/")
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();
-        var urlRequest = URLRequest(url : (url as URL?)!,cachePolicy:URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
+        var urlRequest = URLRequest(url:url! as URL as URL)
               urlRequest.httpMethod = "POST"
               urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
               urlRequest.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-             // urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-
+    
          let postString = ["key": key,
                            
             ] as! [String: String]
@@ -113,22 +118,14 @@ class ProfileViewController: UIViewController {
 
                  print("The Recieved Message is: " + received.description)
                 
-                 guard let userKey = received["key"] as? Int else {
-                    DispatchQueue.main.async {
-                    self.showErrorMessage(message: received.description)
-                        
-                                  }
-                   return
-                 }
-                
+  
                }catch{
                  print("error parsing response from POST on /user")
                  return
                }
              }
              task.resume()
-        
-        
+    
     }
     
     func  showErrorMessage(message:String) {

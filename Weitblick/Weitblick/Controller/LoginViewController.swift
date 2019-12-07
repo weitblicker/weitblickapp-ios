@@ -71,17 +71,21 @@ class LoginViewController: UIViewController {
         let url = NSURL(string: "https://new.weitblicker.org/rest/auth/login/")
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();
-        var request = URLRequest(url : (url as URL?)!,cachePolicy:URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
+       // var request = URLRequest(url : (url as URL?)!,cachePolicy:URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
+        var request = URLRequest(url:url! as URL as URL)
         request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+       request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-        // urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+      //  request.addValue("application/json", forHTTPHeaderField: "Accept")
+      
+       let user = UserDefaults.standard
         let postString = ["username": "","email": self.email.text!, "password": self.password.text!] as [String: String]
 
 
         do{
         let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
-           request.httpBody = jsonUser
+            
+            request.httpBody = jsonUser
             print("User: ")
             print(jsonUser.html2String)
           }catch {
@@ -90,6 +94,7 @@ class LoginViewController: UIViewController {
           }
           let session = URLSession.shared
           let task = session.dataTask(with: request){
+        
            (data, response, error) in
            guard error == nil else{
              print("error calling POST in Login")
@@ -110,33 +115,81 @@ class LoginViewController: UIViewController {
              }
 
             print("The Recieved Message is: " + received.description)
-
-              guard let userKey = received["key"] as? Int else {
+            
+             guard let userKey = received["key"] as? String else {
+                             user.set(false, forKey: "isLogged")
+                           //  UserDefaults.standard.synchronize()
                               DispatchQueue.main.async {
                               self.showErrorMessage(message: received.description)
-
+                               user.set(false, forKey: "isLogged")
+                                UserDefaults.standard.synchronize()
+                 
                                             }
                              return
                            }
+
+            
             print("TOKEN: ")
             print (userKey)
-            let user = UserDefaults.standard
+            
             user.set(userKey, forKey: "key")
+            user.set(true, forKey: "isLogged")
             user.synchronize()
             //Token abspeichern
-             let saveAccesssToken: Bool = KeychainWrapper.standard.set(userKey, forKey: "Key")
+            let saveAccesssToken: Bool = KeychainWrapper.standard.set(userKey, forKey: "Key")
             // let saveUserId: Bool = KeychainWrapper.standard.set(userId!, forKey: "userId")
             print("Acces token true or false: \(saveAccesssToken)")
+            print("Username")
+            print(user.object(forKey: "username") as Any)
+            print("The Key is: \(userKey)")
+  
 
            }catch{
              print("error parsing response from POST on /user")
              return
            }
          }
+        
+        let login = UserDefaults.standard.bool(forKey: "isLogged")
+                   
+                if(login == true){
+                   //Auf news View umleiten
+                   let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                   let bikeViewController = storyBoard.instantiateViewController(withIdentifier: "BikeViewController") as! BikeViewController
+                 // self.present(newsViewController, animated: true, completion: nil)
+                  //  tabBarController!.present(newsViewController, animated: true)
+                //    DispatchQueue.main.async {
+                    /*    if let navigator = self.navigationController {
+                                navigator.pushViewController(newsViewController, animated: true)
+                           // }
+                                 }
+                    }*/
+                    self.reloadInputViews()
+                    DispatchQueue.main.async {
+             //       self.performSegue(withIdentifier: "goToMap", sender: self)
+                      
+                    }
+        }
+        
          task.resume()
+        
 
     }
-    func  showErrorMessage(message:String) {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+              if segue.destination is NewsViewController
+              {
+                  let newsViewController = segue.destination as? NewsViewController
+                 //self.reloadInputViews()
+                 
+
+
+              }
+          }
+    
+        
+        
+      func showErrorMessage(message:String) {
         let alertView = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
         }
