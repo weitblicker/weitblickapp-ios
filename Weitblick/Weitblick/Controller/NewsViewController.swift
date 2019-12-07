@@ -57,17 +57,14 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! NewsTableViewCell
         // Zelle konfigurieren
         let defaultstring = "https://new.weitblicker.org"
-        if(count < postCount){
-            if(self.newsList[indexPath.row].getImageURL == ""){
-                cell.news_image.image = UIImage(named: "Weitblick")
-            }else{
-                let imgURL = NSURL(string : defaultstring + self.newsList[indexPath.row].getImageURL)
-                if(imgURL != nil){
-                    let data = NSData(contentsOf: (imgURL as URL?)!)
-                    cell.news_image.image = UIImage(data: data! as Data)
-                }
+        if(self.newsList[indexPath.row].getImageURL == ""){
+            cell.news_image.image = UIImage(named: "Weitblick")
+        }else{
+            let imgURL = NSURL(string : defaultstring + self.newsList[indexPath.row].getImageURL)
+            if(imgURL != nil){
+                let data = NSData(contentsOf: (imgURL as URL?)!)
+                cell.news_image.image = UIImage(data: data! as Data)
             }
-            count += 1
         }
         // TODO If TEASER = NIL OR ""
         cell.news_date.text = newsList[indexPath.row].getCreationDate.dateAndTimetoString()
