@@ -20,6 +20,8 @@ class MapViewController: UIViewController {
     var distance = CLLocationDistance();
     var locationManager = CLLocationManager()
     let regionInMeters : Double = 100;
+    var lastPostRequestDate: Date = Date()
+    var lastDistance : Double = 0;
 
     @IBOutlet weak var distanceLbl: UILabel!
     @IBOutlet weak var speedLbl: UILabel!
@@ -31,7 +33,6 @@ class MapViewController: UIViewController {
         self.navigationItem.hidesBackButton = true
         self.stopPlayButton.setImage(UIImage(named: "play"), for: UIControl.State.normal)
         super.viewDidLoad()
-        self.startTracking = true;
         checkLocationServices()
     }
 
@@ -99,7 +100,9 @@ class MapViewController: UIViewController {
             self.stopPlayButton.setImage(UIImage(named: "play"), for: UIControl.State.normal)
         }else{
             startTracking = true
+            self.lastPostRequestDate = Date.init()
             self.stopPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
+            
         }
     }
 

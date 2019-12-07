@@ -127,13 +127,17 @@ class DataService{
                         let projectTitle = title as! String
                         guard let description = projectDict.value(forKey: "description") else { return }
                         var projectDescription = description as! String
-                        DataService.getImageURLS(string: projectDescription) { (list) in
+                        print(projectDescription)
+                        DataService.getImageURLSFromProjects(string: projectDescription, completion: { (list) in
                             for listItem in list {
-                                print(getURLfromGivenRegex(input: listItem))
-                                let i = Image(imageURL: listItem)
+                                //print(getURLfromGivenRegexProjects(input: listItem))
+                                let i = Image(imageURL: getURLfromGivenRegexProjects(input: listItem))
                                 resultimages.append(i)
                             }
-                        }
+                        })
+                            
+                            
+                        
                         projectDescription = extractRegex(input: projectDescription, regex: DataService.matches(for: Constants.regexReplace, in: projectDescription))
                        guard let location = projectDict.value(forKey: "location") else { return }
                        let projectLocationID = location as! Int
@@ -187,6 +191,12 @@ class DataService{
         return input2.first!.description
     }
     
+    static func getURLfromGivenRegexProjects(input : String) -> String{
+        let input1 = input.split(separator: "(")
+        let input2 = input1[1].split(separator: ")")
+        return input2.first!.description
+    }
+    
     static func extractRegex(input: String, regex : [String]) -> String{
         var string = input
         for regexItem in regex{
@@ -212,6 +222,12 @@ class DataService{
     static func getImageURLS(string : String ,completion: @escaping (_ urlList : [String]) -> ()){
         var returnStrings :  [String] = []
         returnStrings = DataService.matches(for: Constants.regex, in: string)
+        completion(returnStrings)
+    }
+    
+    static func getImageURLSFromProjects(string : String ,completion: @escaping (_ urlList : [String]) -> ()){
+        var returnStrings :  [String] = []
+        returnStrings = DataService.matches(for: Constants.regexReplace, in: string)
         completion(returnStrings)
     }
     

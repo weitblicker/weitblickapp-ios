@@ -168,7 +168,7 @@ override func viewDidLoad() {
                         imageURL = imgURL as! String
                     }
 
-                    print("====================== IN DOWNLOAD DATA")
+                    
                     guard let updated = newsDict.value(forKey: "updated") else { return }
                     let upDatedString = updated as! String
                     let newsUpdated = self.handleDate(date: upDatedString)
