@@ -394,7 +394,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="946"/>
                                 <subviews>
                                     <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="gaC-1F-m7c">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="831"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="485.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUk-65-A9X">
                                                 <rect key="frame" x="192.5" y="22" width="29" height="21"/>
@@ -416,12 +416,6 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Center" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hEz-CO-cnG">
                                                 <rect key="frame" x="181" y="245" width="52" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bottom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAW-t1-55A">
-                                                <rect key="frame" x="179" y="682.5" width="56" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -451,6 +445,12 @@
                                                 <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bottom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAW-t1-55A">
+                                                <rect key="frame" x="179" y="394.5" width="56" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -462,7 +462,7 @@
                                             <constraint firstItem="hEz-CO-cnG" firstAttribute="centerX" secondItem="gaC-1F-m7c" secondAttribute="centerX" id="9oA-dd-EFF"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Vo3-al-aZO" secondAttribute="trailing" constant="20" symbolic="YES" id="Bhi-JT-Cjl"/>
                                             <constraint firstItem="Vo3-al-aZO" firstAttribute="leading" secondItem="gaC-1F-m7c" secondAttribute="leading" constant="20" id="F23-aa-6qO"/>
-                                            <constraint firstAttribute="bottom" secondItem="NAW-t1-55A" secondAttribute="bottom" constant="127.5" id="HtR-dD-uGE"/>
+                                            <constraint firstAttribute="bottom" secondItem="NAW-t1-55A" secondAttribute="bottom" constant="70" id="HtR-dD-uGE"/>
                                             <constraint firstItem="Vo3-al-aZO" firstAttribute="leading" secondItem="gaC-1F-m7c" secondAttribute="leading" constant="20" id="IYK-FG-SFQ"/>
                                             <constraint firstItem="ol9-z7-7Gy" firstAttribute="leading" secondItem="gaC-1F-m7c" secondAttribute="leading" constant="20" id="Lxe-zT-nbn"/>
                                             <constraint firstAttribute="trailing" secondItem="lvr-Un-HwS" secondAttribute="trailing" constant="25" id="Poq-BC-V3T"/>
@@ -479,7 +479,7 @@
                                             <constraint firstItem="Vo3-al-aZO" firstAttribute="leading" secondItem="gaC-1F-m7c" secondAttribute="leading" constant="20" id="iW2-Tc-J7n"/>
                                             <constraint firstItem="UUk-65-A9X" firstAttribute="centerX" secondItem="gaC-1F-m7c" secondAttribute="centerX" id="pp8-nq-SO8"/>
                                             <constraint firstAttribute="trailing" secondItem="zzk-bo-qdc" secondAttribute="trailing" constant="25" id="tMC-mr-X5K"/>
-                                            <constraint firstItem="NAW-t1-55A" firstAttribute="top" secondItem="usa-Xp-GY7" secondAttribute="bottom" constant="308" id="uUd-ar-yhw"/>
+                                            <constraint firstItem="NAW-t1-55A" firstAttribute="top" secondItem="usa-Xp-GY7" secondAttribute="bottom" constant="20" id="uUd-ar-yhw"/>
                                         </constraints>
                                     </view>
                                 </subviews>
