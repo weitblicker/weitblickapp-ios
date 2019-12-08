@@ -521,7 +521,7 @@
         <!--Login View Controller-->
         <scene sceneID="Ate-6f-vw9">
             <objects>
-                <viewController id="K2U-Dr-AIy" customClass="LoginViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="K2U-Dr-AIy" customClass="LoginViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uqf-u6-AT5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -637,6 +637,7 @@
                     <connections>
                         <outlet property="email" destination="y4m-QC-HEG" id="Dxv-lT-kAd"/>
                         <outlet property="password" destination="sif-Mw-SCE" id="tdo-7h-7kQ"/>
+                        <segue destination="ZAK-1p-taM" kind="show" identifier="goToMap" id="fkd-PW-z6p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="txN-Qy-LzD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -812,7 +813,7 @@
         <!--Bike View Controller-->
         <scene sceneID="OZl-9E-BxN">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="ZAK-1p-taM" customClass="BikeViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BikeViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZAK-1p-taM" customClass="BikeViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tvC-Ya-RC1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -827,7 +828,7 @@
                                 </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59Y-iZ-v8d">
-                                <rect key="frame" x="157" y="684" width="100" height="100"/>
+                                <rect key="frame" x="157" y="733" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="hg8-ty-mBz"/>
                                     <constraint firstAttribute="width" constant="100" id="lFF-nZ-qjb"/>
@@ -1889,7 +1890,7 @@
         <!--News View Controller-->
         <scene sceneID="sk0-EI-Xuj">
             <objects>
-                <viewController id="KAc-pN-fSU" customClass="NewsViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KAc-pN-fSU" customClass="NewsViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mm8-ZW-FJD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="693"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2000,6 +2001,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tUw-GH-OMg"/>
                     </view>
+                    <navigationItem key="navigationItem" id="DFZ-rU-GBg"/>
                     <connections>
                         <outlet property="tableView" destination="8tY-9w-6YY" id="GRf-iI-NcW"/>
                         <segue destination="zDY-D6-cQA" kind="show" identifier="goToNewsDetail" id="EIF-0G-zRz"/>
@@ -2500,5 +2502,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xNn-lR-evC"/>
+        <segue reference="fkd-PW-z6p"/>
     </inferredMetricsTieBreakers>
 </document>
