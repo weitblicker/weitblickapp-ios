@@ -182,8 +182,6 @@ class LoginViewController: UIViewController {
                   let newsViewController = segue.destination as? NewsViewController
                  //self.reloadInputViews()
                  
-
-
               }
           }
     
@@ -206,8 +204,6 @@ class LoginViewController: UIViewController {
 
        }
 
-    @IBAction func newPassword(_ sender: UIButton) {
-    }
 
 
     @IBAction func registerButton(_ sender: UIButton) {

@@ -17,6 +17,9 @@
 		0F9375FD2376F92A00EB26FF /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9375FC2376F92A00EB26FF /* ProjectTableViewCell.swift */; };
 		0FA37B2923896D4000D8B800 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA37B2823896D4000D8B800 /* ContactViewController.swift */; };
 		0FC53FCA237D98A500E6326D /* BlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC53FC9237D98A500E6326D /* BlogViewController.swift */; };
+		0FD676F1239D01B300F88081 /* ForgottPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD676F0239D01B300F88081 /* ForgottPasswordViewController.swift */; };
+		0FD676F3239D03BE00F88081 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD676F2239D03BE00F88081 /* UserService.swift */; };
+		0FD676F5239D0FA000F88081 /* LogoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD676F4239D0FA000F88081 /* LogoutService.swift */; };
 		3D001CB02386D385000E7DDD /* PhotoSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D001CAF2386D385000E7DDD /* PhotoSliderView.xib */; };
 		3D0FD1C1237E83D900456548 /* BlogDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0FD1C0237E83D900456548 /* BlogDetailViewController.swift */; };
 		3D10C375238D2EFD00722B45 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D10C374238D2EFD00722B45 /* RouteViewController.swift */; };
@@ -69,6 +72,9 @@
 		0F9375FC2376F92A00EB26FF /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		0FA37B2823896D4000D8B800 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		0FC53FC9237D98A500E6326D /* BlogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogViewController.swift; sourceTree = "<group>"; };
+		0FD676F0239D01B300F88081 /* ForgottPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgottPasswordViewController.swift; sourceTree = "<group>"; };
+		0FD676F2239D03BE00F88081 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		0FD676F4239D0FA000F88081 /* LogoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutService.swift; sourceTree = "<group>"; };
 		201A7BAC4FA3B8278885E3B7 /* Pods-Weitblick.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weitblick.release.xcconfig"; path = "Target Support Files/Pods-Weitblick/Pods-Weitblick.release.xcconfig"; sourceTree = "<group>"; };
 		2D4FF62CF5135E2C9FB9ED1A /* Pods-Weitblick.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weitblick.debug.xcconfig"; path = "Target Support Files/Pods-Weitblick/Pods-Weitblick.debug.xcconfig"; sourceTree = "<group>"; };
 		3D001CAF2386D385000E7DDD /* PhotoSliderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoSliderView.xib; sourceTree = "<group>"; };
@@ -233,6 +239,7 @@
 				0FA37B2823896D4000D8B800 /* ContactViewController.swift */,
 				3D10C374238D2EFD00722B45 /* RouteViewController.swift */,
 				3D10C376238D306000722B45 /* StatisticsViewController.swift */,
+				0FD676F0239D01B300F88081 /* ForgottPasswordViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -267,6 +274,8 @@
 			children = (
 				A1A37AE22397C49E00F19904 /* DataService.swift */,
 				A1A37AE4239A730500F19904 /* CycleService.swift */,
+				0FD676F2239D03BE00F88081 /* UserService.swift */,
+				0FD676F4239D0FA000F88081 /* LogoutService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -388,6 +397,7 @@
 				3DA49A5E236B147E00AA3198 /* RegisterViewController.swift in Sources */,
 				3DA49A4A236B0C5200AA3198 /* ViewController.swift in Sources */,
 				A123D1BF236B1957004DB13E /* FAQViewController.swift in Sources */,
+				0FD676F1239D01B300F88081 /* ForgottPasswordViewController.swift in Sources */,
 				3DA49A62236B14C300AA3198 /* NewsEventViewController.swift in Sources */,
 				A123D1CD236B3D41004DB13E /* Event.swift in Sources */,
 				3DA49A72236B169E00AA3198 /* NewsDetailViewController.swift in Sources */,
@@ -398,8 +408,10 @@
 				0FC53FCA237D98A500E6326D /* BlogViewController.swift in Sources */,
 				3DF7FD962373328E00F250AF /* CommonData.swift in Sources */,
 				A1A37AE32397C49E00F19904 /* DataService.swift in Sources */,
+				0FD676F3239D03BE00F88081 /* UserService.swift in Sources */,
 				A123D1C5236B2302004DB13E /* NewsEntry.swift in Sources */,
 				3D10C377238D306000722B45 /* StatisticsViewController.swift in Sources */,
+				0FD676F5239D0FA000F88081 /* LogoutService.swift in Sources */,
 				A123D1C1236B1F0A004DB13E /* Project.swift in Sources */,
 				0F5284A6237DA72400553132 /* FAQTableViewCell.swift in Sources */,
 				0FA37B2923896D4000D8B800 /* ContactViewController.swift in Sources */,

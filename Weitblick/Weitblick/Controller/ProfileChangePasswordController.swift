@@ -11,6 +11,10 @@ import UIKit
 
 class ProfileChangePasswordController: UIViewController{
     
+    
+    @IBOutlet weak var password_old: UITextField!
+    @IBOutlet weak var password_new: UITextField!
+    @IBOutlet weak var password_new2: UITextField!
     override func viewDidLoad() {
     super.viewDidLoad()
            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
@@ -40,21 +44,36 @@ class ProfileChangePasswordController: UIViewController{
     @IBAction func button_change_password(_ sender: Any) {
         
         let message:String = "Ihr Passwort wurde erfolgreich geändert"
-          
-          // Get clicked button title label text.
         
-          
-          // If click button one then display Hello World.
-             let alertController:UIAlertController = UIAlertController(title: "Message", message: message, preferredStyle: UIAlertController.Style.alert)
+    
+        if (self.password_old.text!.isEmpty || self.password_new.text!.isEmpty || self.password_new2.text!.isEmpty){
+                  showErrorMessage(message: "Passwort-Feld darf nicht leer sein")
+                             return;
+
+              }
+        
+
              
-             // Create a UIAlertAction object, this object will add a button at alert dialog bottom, the button text is OK, when click it just close the alert dialog.
-             let alertAction:UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:nil)
-             
-             // Add alertAction object to alertController.
-             alertController.addAction(alertAction)
-             // Popup the alert dialog.
-             present(alertController, animated: true, completion: nil)
     }
+    
+    
+    
+    func showErrorMessage(message:String) {
+           let alertView = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
+           let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+           }
+           alertView.addAction(OKAction)
+           self.present(alertView, animated: true, completion:nil)
+       }
+
+       func showAlertMess(userMessage: String){
+
+              let alertView = UIAlertController(title: "Achtung!", message: userMessage, preferredStyle: UIAlertController.Style.alert)
+              alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+              self.present(alertView, animated: true, completion: nil)
+
+          }
 
     
 }
