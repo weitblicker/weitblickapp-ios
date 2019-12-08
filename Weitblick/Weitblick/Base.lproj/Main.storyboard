@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -518,6 +518,66 @@
             </objects>
             <point key="canvasLocation" x="4021.739130434783" y="-1619.1964285714284"/>
         </scene>
+        <!--Forgott Password View Controller-->
+        <scene sceneID="FkL-SM-p5p">
+            <objects>
+                <viewController id="2yB-Qv-mM0" customClass="ForgottPasswordViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RG5-wZ-QAK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brauchen Sie Hilfe mit Ihrem Passwort ? " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cal-eo-lKq">
+                                <rect key="frame" x="20" y="227" width="374" height="94"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geben Sie Ihre E-Mail Adresse an und wir helfen Ihnen ein neues Passwort festzulegen" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3G-EI-2pX">
+                                <rect key="frame" x="20" y="312" width="374" height="76"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-Mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="THL-H7-BPN">
+                                <rect key="frame" x="20" y="436" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cq5-Ed-vXz">
+                                <rect key="frame" x="30" y="525" width="355" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Weiter">
+                                    <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="forgottPassword:" destination="2yB-Qv-mM0" eventType="touchUpInside" id="Lv6-TR-elx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="cal-eo-lKq" firstAttribute="trailing" secondItem="RG5-wZ-QAK" secondAttribute="trailingMargin" id="91q-ha-xmc"/>
+                            <constraint firstItem="mzC-Cy-J1p" firstAttribute="bottom" secondItem="cal-eo-lKq" secondAttribute="bottom" constant="541" id="B1l-oO-X4b"/>
+                            <constraint firstItem="cal-eo-lKq" firstAttribute="leading" secondItem="k3G-EI-2pX" secondAttribute="leading" id="NFj-rI-7hg"/>
+                            <constraint firstItem="cal-eo-lKq" firstAttribute="leading" secondItem="RG5-wZ-QAK" secondAttribute="leadingMargin" id="Tnd-Lb-mNv"/>
+                            <constraint firstItem="cal-eo-lKq" firstAttribute="trailing" secondItem="k3G-EI-2pX" secondAttribute="trailing" id="aks-Nt-4BK"/>
+                            <constraint firstItem="mzC-Cy-J1p" firstAttribute="bottom" secondItem="k3G-EI-2pX" secondAttribute="bottom" constant="474" id="f4d-zh-wNw"/>
+                            <constraint firstItem="cal-eo-lKq" firstAttribute="top" secondItem="mzC-Cy-J1p" secondAttribute="top" constant="139" id="ruE-3Y-SjL"/>
+                            <constraint firstItem="k3G-EI-2pX" firstAttribute="top" secondItem="mzC-Cy-J1p" secondAttribute="top" constant="224" id="wnM-y9-GZ5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mzC-Cy-J1p"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BCW-8w-wCd"/>
+                    <connections>
+                        <outlet property="email" destination="THL-H7-BPN" id="MXQ-Pi-YdZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LlX-at-lpn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1991.3043478260872" y="-604.01785714285711"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="Ate-6f-vw9">
             <objects>
@@ -599,7 +659,7 @@
                                     <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="newPassword:" destination="K2U-Dr-AIy" eventType="touchUpInside" id="nCb-TF-ue0"/>
+                                    <segue destination="2yB-Qv-mM0" kind="show" id="sdu-V4-KEN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1774,6 +1834,11 @@
                         <viewLayoutGuide key="safeArea" id="MAL-XG-Fh5"/>
                     </view>
                     <navigationItem key="navigationItem" id="l64-Jl-9LZ"/>
+                    <connections>
+                        <outlet property="password_new" destination="Scd-NC-Fvc" id="AQc-2k-kSZ"/>
+                        <outlet property="password_new2" destination="1lr-kZ-i7N" id="DiU-Hp-PzP"/>
+                        <outlet property="password_old" destination="7Um-GV-I35" id="S84-TP-XDI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w9p-XO-hPU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

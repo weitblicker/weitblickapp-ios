@@ -10,7 +10,7 @@ import UIKit
 import SwiftKeychainWrapper
 
 class LoginViewController: UIViewController {
-    
+
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var email: UITextField!
 
@@ -58,7 +58,7 @@ class LoginViewController: UIViewController {
                 }
             }
     }
-        
+
       func showErrorMessage(message:String) {
         let alertView = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
@@ -76,8 +76,6 @@ class LoginViewController: UIViewController {
 
        }
 
-    @IBAction func newPassword(_ sender: UIButton) {
-    }
 
 
     @IBAction func registerButton(_ sender: UIButton) {
