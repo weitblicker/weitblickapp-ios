@@ -48,7 +48,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
 
         //let id = self.locationListID[indexPath.row]
         //let locationString = self.getLocationAddressWithID(id: id)
-        cell.project_button_detail.tag = indexPath.row
+       // cell.project_button_detail.tag = indexPath.row
 
 //        guard case let cell.project_location.text = self.getLocationAddressWithID(id: self.locationList[indexPath.row].getID) else { return cell}
 
