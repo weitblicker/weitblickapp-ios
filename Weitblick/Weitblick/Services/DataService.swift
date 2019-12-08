@@ -10,6 +10,7 @@ import UIKit
 
 struct Constants{
     static let url  = "https://new.weitblicker.org"
+    static let loginURL = "https://new.weitblicker.org/rest/auth/login/"
     static let restURL  = "https://new.weitblicker.org/rest"
     static let mediaURL = "https://new.weitblicker.org/media"
     static let regex = "!\\[(.*?)\\]\\((.*?)\\\""
