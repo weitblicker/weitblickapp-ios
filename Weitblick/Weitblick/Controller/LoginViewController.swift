@@ -45,14 +45,18 @@ class LoginViewController: UIViewController {
             showAlertMess(userMessage: "Passwort-Feld darf nicht leer sein")
             return;
         }
-        LoginService.loginWithData(email: self.email.text!, password: self.password.text!) { (response) in
-            if(UserDefaults.standard.bool(forKey: "isLogged")){
-                self.reloadInputViews()
-                self.dismiss(animated: true, completion: nil)
-            }else{
-                self.showErrorMessage(message: response)
+            LoginService.loginWithData(email: self.email.text!, password: self.password.text!) { (response) in
+                if(UserDefaults.standard.bool(forKey: "isLogged")){
+                    DispatchQueue.main.async {
+                        self.reloadInputViews()
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        self.showErrorMessage(message: response)
+                    }
+                }
             }
-        }
     }
         
       func showErrorMessage(message:String) {

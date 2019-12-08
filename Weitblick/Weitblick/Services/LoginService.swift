@@ -30,7 +30,7 @@ class LoginService{
             return
         }
         print("In LoginWithData vor Task")
-        URLSession.shared.dataTask(with: request){(data, response, error) in
+        let task = URLSession.shared.dataTask(with: request){(data, response, error) in
             print("In LoginWithData in Task")
             guard error == nil else{
                print("error calling POST in Login")
@@ -70,6 +70,7 @@ class LoginService{
                return
             }
         }
+        task.resume()
     }
 }
 
