@@ -46,9 +46,11 @@ class LoginViewController: UIViewController {
             return;
         }
             LoginService.loginWithData(email: self.email.text!, password: self.password.text!) { (response) in
+                print("In LoginWithData Handler")
                 if(UserDefaults.standard.bool(forKey: "isLogged")){
+                    
                     DispatchQueue.main.async {
-                        self.reloadInputViews()
+                        //self.reloadInputViews()
                         self.dismiss(animated: true, completion: nil)
                     }
                 }else{

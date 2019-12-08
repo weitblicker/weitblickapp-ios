@@ -25,6 +25,7 @@ class BikeViewController: UIViewController {
     @IBOutlet weak var distanceLbl: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     @IBAction func startDataTracking(_ sender: Any) {
+        print(UserDefaults.standard.bool(forKey: "isLogged"))
         if(!UserDefaults.standard.bool(forKey: "isLogged")){
             self.performSegue(withIdentifier: "showLogin", sender: self)
         }else{
