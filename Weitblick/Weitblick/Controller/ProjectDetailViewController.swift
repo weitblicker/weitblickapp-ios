@@ -108,14 +108,15 @@ class ProjectDetailViewController: UIViewController {
 
         // ausblenden
       //  PieChart.highlightPerTapEnabled = false
-       // PieChart.usePercentValuesEnabled = false
+        PieChart.usePercentValuesEnabled = false
 
         //Text auf Chart ausblenden
         PieChart.drawEntryLabelsEnabled = false
         //Zahlenangaben auf Chart ausblenden
-        pieChartDataSet.drawValuesEnabled = false
+        //pieChartDataSet.drawValuesEnabled = false
         //Legende ausblenden
-        PieChart.legend.enabled = false
+       // PieChart.legend.enabled = false
+       
         
        loadMap()
         
