@@ -27,7 +27,7 @@ class DataService{
         var resultimages : [Image] = []
         
         let timestamp = date.dateAndTimetoStringUS()
-        let url = NSURL(string: "https://new.weitblicker.org/rest/news/?end="+timestamp+"&limit=3")
+        let url = NSURL(string: "https://new.weitblicker.org/rest/news/?end="+timestamp+"&limit=5")
         let str = "surfer:hangloose"
         let dataB64 = Data(str.utf8).base64EncodedString();
         var task = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
@@ -207,7 +207,7 @@ class DataService{
     
     static func getURLfromGivenRegex(input : String) -> String{
         let input1 = input.split(separator: "(")
-        let input2 = input1[1].split(separator: " ")
+        let input2 = input1[input1.count-1].split(separator: " ")
         return input2.first!.description
     }
     
@@ -230,9 +230,11 @@ class DataService{
             let regex = try NSRegularExpression(pattern: regex)
             let results = regex.matches(in: text,
                                         range: NSRange(text.startIndex..., in: text))
-            return results.map {
+            let r = results.map {
                 String(text[Range($0.range, in: text)!])
             }
+            return r
+            
         } catch let error {
             print("invalid regex: \(error.localizedDescription)")
             return []
