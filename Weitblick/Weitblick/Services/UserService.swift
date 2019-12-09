@@ -80,10 +80,11 @@ class UserService{
          let test2 = Data(str.utf8).base64EncodedString();
          var request = URLRequest(url:url! as URL as URL)
          request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
          request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-        let user = UserDefaults.standard
-        let postString = ["password_old": password_old, "passsword_new": password_new, "password_new2": password_new2] as [String: String]
+        let key = UserDefaults.standard.string(forKey: "key")
+        
+        let postString = ["key": key,"old_password": password_old, "new_passsword1": password_new, "new_password2": password_new2] as! [String: String]
 
         do{
         let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
@@ -119,7 +120,7 @@ class UserService{
                  return
              }
              print("The Recieved Message is: " + received.description)
-             completion("successful")
+             completion(received.description)
 
 
            }catch{

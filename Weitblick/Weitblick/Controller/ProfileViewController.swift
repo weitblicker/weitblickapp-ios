@@ -8,28 +8,7 @@
 
 import UIKit
 
-extension UIPageViewController {
 
-    func goToNextPage(){
-
-        guard let currentViewController = self.viewControllers?.first else { return }
-
-        guard let nextViewController = dataSource?.pageViewController( self, viewControllerAfter: currentViewController ) else { return }
-
-        setViewControllers([nextViewController], direction: .forward, animated: false, completion: nil)
-
-    }
-    
-    func goToPreviousPage(){
-
-        guard let currentViewController = self.viewControllers?.first else { return }
-
-        guard let previousViewController = dataSource?.pageViewController( self, viewControllerBefore: currentViewController ) else { return }
-
-        setViewControllers([previousViewController], direction: .reverse, animated: false, completion: nil)
-
-    }
-}
 
 
 extension UIImageView {
@@ -62,6 +41,11 @@ class ProfileViewController:  UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         profile_image.image = UIImage(named: "profile_image")
+        if (UserDefaults.standard.bool(forKey: "isLogged") == true){
+            profile_email.text = UserDefaults.standard.string(forKey: "email")
+           profile_route.text = UserDefaults.standard.string(forKey: "route")
+           profile_donation.text = UserDefaults.standard.string(forKey: "donation")
+        }
         profile_image.layer.cornerRadius = profile_image.frame.size.width/2
         profile_image.clipsToBounds = true
         profile_image.layer.borderWidth = 2
