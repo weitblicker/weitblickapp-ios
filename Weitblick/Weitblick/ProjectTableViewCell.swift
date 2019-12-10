@@ -37,6 +37,11 @@ class ProjectTableViewCell: UITableViewCell{
                 contentView.backgroundColor = UIColor.white
             }
      }
+   
+    
+  
+   
+ 
     
     
 

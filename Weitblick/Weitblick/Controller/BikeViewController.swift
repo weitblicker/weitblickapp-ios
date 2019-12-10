@@ -20,10 +20,17 @@ class BikeViewController: UIViewController {
     var distance = CLLocationDistance();
     let locationManager = CLLocationManager()
     let regionInMeters : Double = 1000;
+    //var projectTitle : String = ""
+    //var projectId : Int = -1;
+    var project_object: Project?
 
     @IBOutlet weak var speedLbl: UILabel!
     @IBOutlet weak var distanceLbl: UILabel!
     @IBOutlet weak var mapView: MKMapView!
+    
+    
+    @IBOutlet weak var cycleProjectTitle: UIButton!
+    
     @IBAction func startDataTracking(_ sender: Any) {
         print(UserDefaults.standard.bool(forKey: "isLogged"))
         if(!UserDefaults.standard.bool(forKey: "isLogged")){
@@ -34,10 +41,20 @@ class BikeViewController: UIViewController {
         
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("Title")
+        print(self.project_object?.getName as Any)
+        self.cycleProjectTitle.setTitle(self.project_object?.getName, for: .normal)
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    
         checkLocationServices()
+        
     }
     
     

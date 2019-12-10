@@ -13,7 +13,7 @@ class RouteViewController: UIViewController,UITableViewDataSource, UITableViewDe
    
     @IBOutlet weak var tableView: UITableView!
     let routes = ["5.4 km","6.2 km", "1.7 km","23.8 km"];
-    let donatations = ["5,5 €", "6,5 €", "2€","24 €"]
+    let donatations = ["5,5 €", "6,5 €", "2,0€","24,0 €"]
     let times = ["45 min", "52 min", "17 min","46 min"]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
