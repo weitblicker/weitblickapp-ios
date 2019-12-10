@@ -90,10 +90,10 @@ class ProjectDetailViewController: UIViewController {
         let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: nil)
         var  colors: [UIColor] = []
               let colorOne = UIColor(rgb: 0xFF9900)
-              let colorTwo = UIColor(rgb: 0xD9E2ED)
-        let colorThree = UIColor.red
-               colors.append(colorOne)
-        colors.append(colorTwo)
+              let colorTwo = UIColor(rgb: 0x2C2C2C)
+        let colorThree = UIColor(rgb : 0x0972b3)
+               colors.append(colorTwo)
+        colors.append(colorOne)
          colors.append(colorThree)
         pieChartDataSet.colors = colors
 

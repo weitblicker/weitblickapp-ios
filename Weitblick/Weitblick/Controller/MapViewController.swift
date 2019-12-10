@@ -31,7 +31,7 @@ class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         self.navigationItem.hidesBackButton = true
-        self.stopPlayButton.setImage(UIImage(named: "play"), for: UIControl.State.normal)
+        self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop"), for: UIControl.State.normal)
         super.viewDidLoad()
         checkLocationServices()
     }
@@ -97,11 +97,11 @@ class MapViewController: UIViewController {
     @IBAction func clickPauseContinue(_ sender: Any) {
         if(startTracking){
             startTracking = false
-            self.stopPlayButton.setImage(UIImage(named: "play"), for: UIControl.State.normal)
+            self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop"), for: UIControl.State.normal)
         }else{
             startTracking = true
             self.lastPostRequestDate = Date.init()
-            self.stopPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
+            self.stopPlayButton.setImage(UIImage(named: "greenButtonPlay"), for: UIControl.State.normal)
 
         }
     }
