@@ -27,5 +27,12 @@ class EventTableViewCell: UITableViewCell{
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        
+        if selected {
+                       contentView.backgroundColor = UIColor.white
+                   } else {
+                       contentView.backgroundColor = UIColor.white
+                   }
+            }
     }
-}
+
