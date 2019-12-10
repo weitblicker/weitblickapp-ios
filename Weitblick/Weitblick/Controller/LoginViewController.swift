@@ -11,10 +11,8 @@ import SwiftKeychainWrapper
 
 class LoginViewController: UIViewController {
 
-    
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var email: UITextField!
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +51,7 @@ class LoginViewController: UIViewController {
                     
                     DispatchQueue.main.async {
                         //self.reloadInputViews()
-                        self.dismiss(animated: true, completion:nil)
+                        self.dismiss(animated: true, completion: nil)
                     }
                 }else{
                     DispatchQueue.main.async {

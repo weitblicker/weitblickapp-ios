@@ -9,7 +9,23 @@
 import Foundation
 import UIKit
 
+extension Date{
+    func dateAndTimetoString(format: String = "dd.MM.yyyy") -> String {
+    let formatter = DateFormatter()
+            formatter.dateStyle = .short
+            formatter.dateFormat = format
+    return formatter.string(from: self)
+        }
+}
 
+extension Date{
+    func dateAndTimetoStringUS(format: String = "yyyy-MM-dd") -> String {
+        let formatter = DateFormatter()
+                formatter.dateStyle = .short
+                formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
+}
 
 class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
@@ -31,6 +47,8 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsList.count
     }
+
+
 
      func tableView(_ tableView: UITableView,
                              cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,6 +87,8 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
     }
+
+
 
 override func viewDidLoad() {
     super.viewDidLoad()
