@@ -52,6 +52,24 @@ class ProfileChangePasswordController: UIViewController{
 
               }
         
+        if(self.password_new.text != self.password_new2.text){
+            showErrorMessage(message: "Passwort-Felder stimmen nicht überein")
+            return;
+        }
+        
+        UserService.changePassword(password_old: self.password_old.text!, password_new: self.password_new.text!, password_new2: self.password_new2.text!){ (response) in
+            
+            if (response != ""){
+                DispatchQueue.main.async {
+                     self.showAlertMess(userMessage: response)
+                }
+               
+        
+               
+            }
+            
+        }
+        
 
              
     }

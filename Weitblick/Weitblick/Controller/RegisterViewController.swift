@@ -9,7 +9,11 @@
 import UIKit
 
 class RegisterViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var checkbox: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,10 +51,41 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var password2: UITextField!
     @IBOutlet weak var errorText: UILabel!
+    
+    
+    var clicked = 0
+    
+    func setUpButton(){
+           checkbox.addTarget(self, action: Selector(("chechbox:")), for : UIControl.Event.touchUpInside)
 
+       }
+    
+    @IBAction func checkbox(_ sender: Any) {
+        
+        if(clicked == 0){
+        let image = UIImage(named:  "checkbox_full.png")
+            (sender as AnyObject).setImage(image, for: UIControl.State.normal)
+            clicked = 1
+            
+            return
+        } else if(clicked==1){
+            let image = UIImage(named: "checkbox_empty.png")
+            (sender as AnyObject).setImage(image, for: UIControl.State.normal)
+            clicked = 0
+        }
+        
+    }
+    
+      
+    
 
 
     @IBAction func registerButton(_ sender: UIButton) {
+        
+        if(clicked == 0 ){
+            showAlertMess(userMessage: "Bitte AGBs bestätigen");
+            return;
+        }
         if (self.username.text!.isEmpty){
                    showAlertMess(userMessage: "Username-Feld darf nicht leer sein")
                    return;
@@ -99,108 +134,25 @@ class RegisterViewController: UIViewController {
 
         //POST-Request zum Registrieren des Users
 
+        RegisterService.registerWithData(username: self.username.text!,email: self.email.text!, password1: self.password.text!, password2: self.password2.text!) { (response) in
+        
+          if(response != "" ){
+                DispatchQueue.main.async {
+                 self.showAlertMess(userMessage: response)
+                    let register = UserDefaults.standard.bool(forKey: "isRegisterd")
 
-        let url = NSURL(string: "https://new.weitblicker.org/rest/auth/registration/")
-        let str = "surfer:hangloose"
-        let test2 = Data(str.utf8).base64EncodedString();
-       // var urlRequest = URLRequest(url : (url as URL?)!,cachePolicy:URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
-            var urlRequest = URLRequest(url:url! as URL as URL)
-              urlRequest.httpMethod = "POST"
-              urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-              urlRequest.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-
-              //urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-
-         let postString = ["username": self.username.text!,
-                           "email": self.email.text!,
-                          "password1": self.password.text!,
-                          "password2": self.password2.text!,
-                          ] as [String: String]
-
-        let user = UserDefaults.standard
-        user.set(self.username.text, forKey: "username")
-        user.set(self.email.text, forKey: "email")
-        user.set(self.password.text, forKey: "password")
-
-            do{
-                let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options: .prettyPrinted)
-                urlRequest.httpBody = jsonUser
-                print("User: ")
-                print(jsonUser.html2String)
-              }catch {
-                print("Error: cannot create JSON from todo")
-                return
-              }
-              let session = URLSession.shared
-              let task = session.dataTask(with: urlRequest){
-               (data, response, error) in
-               guard error == nil else{
-                 print("error calling POST on /user/1")
-                 print(error!)
-                return
-               }
-               guard let responseData = data else {
-                 print("Error: did not receive data")
-                 return
-               }
-
-               // parse the result as JSON, since that's what the API provides
-               do{
-                 guard let received = try JSONSerialization.jsonObject(with: responseData,
-                   options: []) as? [String: Any] else {
-                     print("Could not get JSON from responseData as dictionary")
-                     return
+                                    if(register == true){
+                                       print("IN DER UMLEITUNG")
+                                    //Auf login View umleiten
+                                
+                                      DispatchQueue.main.async {
+                                          self.reloadInputViews()
+                                      self.dismiss(animated: true, completion: nil)
+                                    }
+                               }
                  }
-
-                 print("The Recieved Message is: " + received.description)
-
-               guard let userKey = received["key"] as? String else {
-                   user.set(false, forKey: "isRegisterd")
-
-                   DispatchQueue.main.async {
-                   self.showErrorMessage(message: received.description)
-                    user.set(false, forKey: "isRegisterd")
-
-
-                                 }
-                  return
-                }
-
-                      //Alle User Daten speichern
-                      user.set(userKey, forKey: "key")
-                      user.set(true, forKey: "isRegisterd")
-                     UserDefaults.standard.synchronize()
-
-               }catch{
-                 print("error parsing response from POST on /user")
-                 return
-               }
-             }
-
-
-      //  showAlertMess(userMessage: "Bitte bestätigen Sie vor dem Einloggen Ihre Email Adresse")
-        let register = UserDefaults.standard.bool(forKey: "isRegisterd")
-
-                  if(register == true){
-                     print("IN DER UMLEITUNG")
-                  //Auf login View umleiten
-                        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                         let loginViewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-                       // self.present(loginViewController, animated: true, completion: nil)
-
-                    DispatchQueue.main.async {
-                        self.reloadInputViews()
-                        if let navigator = self.navigationController {
-                 navigator.pushViewController(loginViewController, animated: true)
-             }
-                  }
-             }
-
-
-
-        task.resume()
-
-
+            }
+        }
 
 
     }
