@@ -35,6 +35,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         checkLocationServices()
     }
+    
 
     override func viewWillAppear(_ animated: Bool) {
         if(self.trackFinished){
