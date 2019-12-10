@@ -8,4 +8,4 @@
 
 import Foundation
 let stats = ["eigene", "Ziel", "bisher erreicht"]
-let goals = [25,1000-234, 234]
+let goals = [5,100, 34]
