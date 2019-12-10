@@ -20,22 +20,22 @@ class StatsViewController: UIViewController {
     
     @IBAction func swiftView(_ sender: UISegmentedControl) {
         if(sender.selectedSegmentIndex==0){
-            statisticsView.alpha=1
-            DestinationView.alpha=0
+            statisticsView.alpha=0
+            DestinationView.alpha=1
 
 
 
         } else{
-            statisticsView.alpha=0
-            DestinationView.alpha=1
+            statisticsView.alpha=1
+            DestinationView.alpha=0
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         //loginWithData()
-        statisticsView.alpha=1
-        DestinationView.alpha=0
+        statisticsView.alpha=0
+        DestinationView.alpha=1
     }
     
     /*
