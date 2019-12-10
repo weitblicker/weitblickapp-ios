@@ -7,5 +7,5 @@
 //
 
 import Foundation
-let stats = ["Gesamt", "Alle anderen"]
-let goals = [100, 34]
+let stats = ["eigene", "Ziel", "bisher erreicht"]
+let goals = [5,100, 34]
