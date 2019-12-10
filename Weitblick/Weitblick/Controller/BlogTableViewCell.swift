@@ -31,9 +31,16 @@ class BlogTableViewCell: UITableViewCell {
 
        override func setSelected(_ selected: Bool, animated: Bool) {
            super.setSelected(selected, animated: animated)
+        
+        if selected {
+                       contentView.backgroundColor = UIColor.white
+                   } else {
+                       contentView.backgroundColor = UIColor.white
+                   }
+            }
 
         
        }
     
     
-}
+
