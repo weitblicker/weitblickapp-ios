@@ -103,7 +103,7 @@ class MapViewController: UIViewController {
         }else{
             startTracking = true
             self.lastPostRequestDate = Date.init()
-            self.stopPlayButton.setImage(UIImage(named: "greenButtonPlay"), for: UIControl.State.normal)
+            self.stopPlayButton.setImage(UIImage(named: "orangeButtonPlay"), for: UIControl.State.normal)
 
         }
     }

@@ -1058,20 +1058,23 @@
                                     <action selector="EndTrackingClicked:" destination="jM0-XC-gLU" eventType="touchUpInside" id="FqA-Y2-jlH"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Strecke" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R76-Lb-x2q">
-                                <rect key="frame" x="87" y="97" width="211" height="34.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Strecke" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R76-Lb-x2q">
+                                <rect key="frame" x="87" y="97" width="127" height="30.5"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="25"/>
                                 <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Spende" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHH-oU-FKg">
-                                <rect key="frame" x="235.5" y="97" width="91.5" height="34.5"/>
+                                <rect key="frame" x="240" y="97" width="87" height="29.5"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="25"/>
                                 <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBf-40-Vp1">
-                                <rect key="frame" x="87" y="139.5" width="61" height="34.5"/>
+                                <rect key="frame" x="87" y="136" width="86" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="ejM-QD-pse"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1087,29 +1090,30 @@
                                     <action selector="clickPauseContinue:" destination="jM0-XC-gLU" eventType="touchUpInside" id="yc8-0u-xEx"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4,5€" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DB3-QT-6ap">
-                                <rect key="frame" x="197" y="140" width="130" height="34.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="4,5€" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DB3-QT-6ap">
+                                <rect key="frame" x="240" y="135" width="87" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="Db5-Uk-V2x"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="87" id="KF5-LZ-MiM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jv4-Pi-exn">
-                                <rect key="frame" x="20" y="234.5" width="374" height="426.5"/>
+                                <rect key="frame" x="20" y="225" width="374" height="436"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="R76-Lb-x2q" secondAttribute="trailing" constant="116" id="03l-at-sYH"/>
+                            <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="R76-Lb-x2q" secondAttribute="trailing" constant="200" id="03l-at-sYH"/>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="bottom" secondItem="djn-zQ-deb" secondAttribute="bottom" constant="36" id="1dB-am-VzA"/>
                             <constraint firstItem="Jv4-Pi-exn" firstAttribute="top" secondItem="DB3-QT-6ap" secondAttribute="bottom" constant="60" id="8A3-o1-1Oh"/>
                             <constraint firstItem="DHH-oU-FKg" firstAttribute="top" secondItem="zRI-y1-W90" secondAttribute="top" constant="53" id="9pT-uC-090"/>
+                            <constraint firstItem="DB3-QT-6ap" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XBf-40-Vp1" secondAttribute="trailing" constant="8" symbolic="YES" id="BBm-1y-E3r"/>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="bottom" secondItem="VRs-ev-0P4" secondAttribute="bottom" constant="36" id="CJ9-Mr-2og"/>
                             <constraint firstItem="Jv4-Pi-exn" firstAttribute="leading" secondItem="tnf-Td-zRP" secondAttribute="leadingMargin" id="LZS-sv-og8"/>
                             <constraint firstItem="djn-zQ-deb" firstAttribute="leading" relation="lessThanOrEqual" secondItem="VRs-ev-0P4" secondAttribute="trailing" constant="37" id="Mzi-fy-wj7"/>
-                            <constraint firstItem="DHH-oU-FKg" firstAttribute="top" secondItem="XBf-40-Vp1" secondAttribute="bottom" constant="-77" id="Ni5-XV-5tp"/>
+                            <constraint firstItem="DHH-oU-FKg" firstAttribute="top" secondItem="XBf-40-Vp1" secondAttribute="bottom" constant="-69" id="Ni5-XV-5tp"/>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="DB3-QT-6ap" secondAttribute="trailing" constant="87" id="OeZ-ra-ZaB"/>
                             <constraint firstItem="XBf-40-Vp1" firstAttribute="leading" secondItem="zRI-y1-W90" secondAttribute="leading" constant="87" id="SPw-xS-X2m"/>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="VRs-ev-0P4" secondAttribute="trailing" constant="155" id="TsV-qY-yKl"/>
@@ -1121,9 +1125,8 @@
                             <constraint firstItem="DHH-oU-FKg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zRI-y1-W90" secondAttribute="leading" symbolic="YES" id="jtS-C1-8Vc"/>
                             <constraint firstItem="djn-zQ-deb" firstAttribute="top" secondItem="Jv4-Pi-exn" secondAttribute="bottom" constant="65" id="mSd-sc-H0N"/>
                             <constraint firstItem="DB3-QT-6ap" firstAttribute="top" secondItem="DHH-oU-FKg" secondAttribute="bottom" constant="8.5" id="qmC-wL-ezk"/>
-                            <constraint firstItem="DB3-QT-6ap" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XBf-40-Vp1" secondAttribute="trailing" constant="4" id="qve-t3-jPO"/>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="djn-zQ-deb" secondAttribute="trailing" constant="20" id="rh4-9Q-c7T"/>
-                            <constraint firstItem="XBf-40-Vp1" firstAttribute="top" secondItem="R76-Lb-x2q" secondAttribute="bottom" constant="8" id="u5c-Sl-LH6"/>
+                            <constraint firstItem="XBf-40-Vp1" firstAttribute="top" secondItem="R76-Lb-x2q" secondAttribute="bottom" constant="8.5" id="u5c-Sl-LH6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zRI-y1-W90"/>
                     </view>
