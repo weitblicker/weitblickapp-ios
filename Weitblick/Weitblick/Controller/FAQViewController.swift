@@ -23,6 +23,7 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
         let question = questions[indexPath.row].question
         let answer = questions[indexPath.row].answer
         cell.faq_question.text = question
+        cell.faq_question.sizeToFit();
         cell.faq_answer.text = answer
         cell.faq_answer.sizeToFit()
         return cell
