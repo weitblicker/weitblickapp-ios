@@ -59,6 +59,8 @@
 		A123D1C7236B23B8004DB13E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A123D1C6236B23B8004DB13E /* Location.swift */; };
 		A123D1C9236B398F004DB13E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A123D1C8236B398F004DB13E /* TabBarController.swift */; };
 		A123D1CD236B3D41004DB13E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A123D1CC236B3D41004DB13E /* Event.swift */; };
+		A18DA1F623A0EDD4003783D6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18DA1F523A0EDD4003783D6 /* Extensions.swift */; };
+		A18DA1FC23A109F8003783D6 /* FAQService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18DA1FB23A109F8003783D6 /* FAQService.swift */; };
 		A1A37AE32397C49E00F19904 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A37AE22397C49E00F19904 /* DataService.swift */; };
 		A1A37AE9239CF98600F19904 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A37AE8239CF98600F19904 /* LoginService.swift */; };
 		A1E02C89237DDF5800A39EEC /* BlogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E02C88237DDF5800A39EEC /* BlogTableViewCell.swift */; };
@@ -131,6 +133,8 @@
 		A123D1C6236B23B8004DB13E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Location.swift; path = Weitblick/Controller/Location.swift; sourceTree = SOURCE_ROOT; };
 		A123D1C8236B398F004DB13E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A123D1CC236B3D41004DB13E /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Event.swift; path = Weitblick/Controller/Event.swift; sourceTree = SOURCE_ROOT; };
+		A18DA1F523A0EDD4003783D6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A18DA1FB23A109F8003783D6 /* FAQService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQService.swift; sourceTree = "<group>"; };
 		A1A37AE22397C49E00F19904 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		A1A37AE4239A730500F19904 /* CycleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleService.swift; sourceTree = "<group>"; };
 		A1A37AE8239CF98600F19904 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
@@ -195,6 +199,7 @@
 		3DA49A44236B0C5200AA3198 /* Weitblick */ = {
 			isa = PBXGroup;
 			children = (
+				A18DA1F423A0EDC5003783D6 /* Extensions */,
 				A1A37AE12397C46700F19904 /* Services */,
 				3D0FD1A7237D586A00456548 /* fonts */,
 				3DA49A5A236B139F00AA3198 /* Model */,
@@ -276,6 +281,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A18DA1F423A0EDC5003783D6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A18DA1F523A0EDD4003783D6 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A1A37AE12397C46700F19904 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +298,7 @@
 				0FD676F2239D03BE00F88081 /* UserService.swift */,
 				0FD676F4239D0FA000F88081 /* LogoutService.swift */,
 				0FD676F8239ECAE400F88081 /* RegisterService.swift */,
+				A18DA1FB23A109F8003783D6 /* FAQService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -411,6 +425,7 @@
 				3DA49A62236B14C300AA3198 /* NewsEventViewController.swift in Sources */,
 				A123D1CD236B3D41004DB13E /* Event.swift in Sources */,
 				3DA49A72236B169E00AA3198 /* NewsDetailViewController.swift in Sources */,
+				A18DA1FC23A109F8003783D6 /* FAQService.swift in Sources */,
 				A1A37AE9239CF98600F19904 /* LoginService.swift in Sources */,
 				0F595F302370708400602EB0 /* NewsViewController.swift in Sources */,
 				3DA49A68236B150D00AA3198 /* BikeViewController.swift in Sources */,
@@ -418,6 +433,7 @@
 				3DA49A6C236B154900AA3198 /* StatsViewController.swift in Sources */,
 				0FC53FCA237D98A500E6326D /* BlogViewController.swift in Sources */,
 				3DF7FD962373328E00F250AF /* CommonData.swift in Sources */,
+				A18DA1F623A0EDD4003783D6 /* Extensions.swift in Sources */,
 				A1A37AE32397C49E00F19904 /* DataService.swift in Sources */,
 				0FD676F3239D03BE00F88081 /* UserService.swift in Sources */,
 				A123D1C5236B2302004DB13E /* NewsEntry.swift in Sources */,
@@ -582,13 +598,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QZ2SL24595;
+				DEVELOPMENT_TEAM = N89CU69VYF;
 				INFOPLIST_FILE = Weitblick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.hsos.Software-Engineering.Weitblick.iosj";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.hsos.Software-Engineering.Weitblick.IOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -601,13 +617,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QZ2SL24595;
+				DEVELOPMENT_TEAM = N89CU69VYF;
 				INFOPLIST_FILE = Weitblick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.hsos.Software-Engineering.Weitblick.iosj";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.hsos.Software-Engineering.Weitblick.IOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

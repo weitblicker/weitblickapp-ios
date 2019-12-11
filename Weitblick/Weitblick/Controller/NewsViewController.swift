@@ -9,24 +9,6 @@
 import Foundation
 import UIKit
 
-extension Date{
-    func dateAndTimetoString(format: String = "dd.MM.yyyy") -> String {
-    let formatter = DateFormatter()
-            formatter.dateStyle = .short
-            formatter.dateFormat = format
-    return formatter.string(from: self)
-        }
-}
-
-extension Date{
-    func dateAndTimetoStringUS(format: String = "yyyy-MM-dd") -> String {
-        let formatter = DateFormatter()
-                formatter.dateStyle = .short
-                formatter.dateFormat = format
-        return formatter.string(from: self)
-    }
-}
-
 class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
 

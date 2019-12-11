@@ -66,7 +66,7 @@ class ProfileViewController:  UIViewController {
         LogoutService.logout() { (response) in
                    if(response == "successful" ){ 
                       DispatchQueue.main.async {
-                      //switch page
+                        self.dismiss(animated: true, completion: nil)
                         
                         
                        }

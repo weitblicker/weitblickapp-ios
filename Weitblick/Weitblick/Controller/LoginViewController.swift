@@ -13,7 +13,11 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var email: UITextField!
+    
+    var hasbeenLoggedIn : Bool = false;
 
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
@@ -48,10 +52,9 @@ class LoginViewController: UIViewController {
             LoginService.loginWithData(email: self.email.text!, password: self.password.text!) { (response) in
                 print("In LoginWithData Handler")
                 if(UserDefaults.standard.bool(forKey: "isLogged")){
-                    
-                    DispatchQueue.main.async {
-                        //self.reloadInputViews()
+                    DispatchQueue.main.async{
                         self.dismiss(animated: true, completion: nil)
+                        
                     }
                 }else{
                     DispatchQueue.main.async {

@@ -8,17 +8,7 @@
 
 import UIKit
 
-struct Constants{
-    static let url  = "https://new.weitblicker.org"
-    static let loginURL = "https://new.weitblicker.org/rest/auth/login/"
-    static let restURL  = "https://new.weitblicker.org/rest"
-    static let mediaURL = "https://new.weitblicker.org/media"
-    static let regex = "!\\[(.*?)\\]\\((.*?)\\\""
-    static let regex2 = "" // \[?(!)\[(?<alt>[^\]\[]*\[?[^\]\[]*\]?[^\]\[]*)\]\((?<url>[^\s]+?)(?:\s+(["'])(?<title>.*?)\4)?\)
-    static let regexReplace = "!\\[(.*?)\\]\\((.*?)\\)"
-    static let rect = CGRect.init(x: 200/2, y: 50/2, width: 400, height: 180)
-    
-}
+
 
 class DataService{
     

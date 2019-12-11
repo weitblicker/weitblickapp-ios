@@ -14,7 +14,7 @@ class MapViewController: UIViewController {
     var list : [CLLocation] = []
     var i = 0;
     var totalDistance : Double = 0;
-    var startTracking = false;
+    var startTracking = true;
     var startCalculateDistance = false;
     var trackFinished = false;
     var distance = CLLocationDistance();
@@ -34,6 +34,8 @@ class MapViewController: UIViewController {
         self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop"), for: UIControl.State.normal)
         super.viewDidLoad()
         checkLocationServices()
+        distanceLbl.text = "0.00 km"
+        donationLbl.text = "0.00 €"
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -132,22 +134,21 @@ extension MapViewController : CLLocationManagerDelegate{
         self.map.setRegion(region, animated: true)
 
         if(self.startTracking){
+            print("Tracking Location ..")
+            print("Location: " + location.description)
             self.list.append(location)
+            print(self.list.count)
             if(self.list.count >= 2){
+                print("Calculating Distance ..")
                 let start = self.list[self.list.count-2]
                 let end = self.list[self.list.count-1]
                 self.totalDistance += end.distance(from: start)
+                print("Distance calculated : " + end.distance(from: start).description)
                 //print(totalDistance.description + " m")
                 let distanceinKM = self.totalDistance/1000
                 //print((round(distanceinKM*100)/100).description + " km")
                 //self.distanceLbl.text = (round(distanceinKM*100)/100).description + " km"
                 self.distanceLbl.text = doubleToKm(double: totalDistance)
-
-                if(location.speed < 0){
-                    self.speedLbl.text = "0 km/h"
-                }else{
-                    self.speedLbl.text = (round(location.speed * 3.6*10)/10).description + " km/h"
-                }
                 self.donationLbl.text = (round((distanceinKM*0.1)*100)/100).description + " €"
             }
         }

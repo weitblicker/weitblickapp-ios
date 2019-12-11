@@ -32,11 +32,10 @@ class RouteViewController: UIViewController,UITableViewDataSource, UITableViewDe
         return cell
         
     }
-    
+
 
      override func viewDidLoad() {
            super.viewDidLoad()
-     
 /*        self.tableView.dataSource = self
         self.tableView.delegate = self*/
 

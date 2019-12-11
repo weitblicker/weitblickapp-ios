@@ -12,17 +12,16 @@ import Foundation
 class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
     
     
-    let questions = ["Was ist Weitblick", "Wann wurde Weitblick gegründet", "Wieviele Mitarbeiter hat die Organisation"]
-    let answers = ["Weitblick ist eine Spendenorganisation die sich vor allem für Bildung einsetzt", "Sie wurde im Jahr .. gegründet und feiert somit in .. Jahren schon 20 Jubiläum", "Bei Weitblick sind heutzutage genau .. Mitarbeiter angestellt"]
+    var questions : [FAQEntry] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return questions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let cell = tableView.dequeueReusableCell(withIdentifier:"faq_cell", for: indexPath)as! FAQTableViewCell
-        let question = questions[indexPath.row]
-        let answer = answers [indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier:"faq_cell", for: indexPath)as! FAQTableViewCell
+        let question = questions[indexPath.row].question
+        let answer = questions[indexPath.row].answer
         cell.faq_question.text = question
         cell.faq_answer.text = answer
         cell.faq_answer.sizeToFit()
@@ -38,6 +37,13 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.navigationController!.navigationBar.topItem!.title = "Zurück"
+        print("FAQService executing")
+        FAQService.loadFAQ { (list) in
+            for faq in list{
+                self.questions.append(faq)
+            }
+            self.tableView.reloadData()
+        }
 
         // Do any additional setup after loading the view.
     }
