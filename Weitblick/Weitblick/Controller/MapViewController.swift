@@ -119,11 +119,17 @@ class MapViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is ResultMapViewController
         {
-            let resultMapViewController = segue.destination as? ResultMapViewController
+           // let resultMapViewController = segue.destination as? ResultMapViewController
             // TODO DATA PASSING
+            
+            var DestViewController : ResultMapViewController = segue.destination as! ResultMapViewController
+            DestViewController.DistanceText = distanceLbl.text ?? "fehler"
+            DestViewController.DonationText = donationLbl.text ?? "fehler"
+            
         }
     }
 }
+
 
 extension MapViewController : CLLocationManagerDelegate{
 
