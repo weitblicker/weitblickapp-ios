@@ -175,7 +175,7 @@ class DataService{
 //                        }
                         let resultGallery = Gallery(images: resultimages)
                         resultimages = []
-                        let project = Project(id: projectID!, published: projectPublished, name: projectTitle, gallery: resultGallery, hosts: resultHosts, description: projectDescription, location: location , partnerID: [])
+                        let project = Project(id: projectID!, published: projectPublished, name: projectTitle, gallery: resultGallery, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleID:[] )
                        //resultPartnerID = []
                        projectList.append(project)
                     }

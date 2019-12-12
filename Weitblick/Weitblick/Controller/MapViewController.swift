@@ -48,18 +48,18 @@ class MapViewController: UIViewController {
         user.set(tours, forKey: "tours")
         user.synchronize()
     }
-    
+
     func setupSegmentations(){
         print("StartTimer")
         timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
         start = Date()
     }
-    
+
     @objc func fireTimer(){
         print("FIRETIMER")
         let distanceToSent = round(((totalDistance - currentDistance)/1000)*100)/100
         self.showErrorMessage(message: "DistanceToSend: " + distanceToSent.description)
-        
+
         currentDistance = totalDistance
         end = Date()
         SegmentService.sendSegment(start: start, end: end, distance: distanceToSent, projectID: 1, tourID: tours) { (response) in
@@ -67,10 +67,10 @@ class MapViewController: UIViewController {
             print(response)
             self.start = self.end
         }
-        
+
     }
-    
-    
+
+
 
     override func viewWillAppear(_ animated: Bool) {
         if(self.trackFinished){
@@ -161,11 +161,17 @@ class MapViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is ResultMapViewController
         {
-            let resultMapViewController = segue.destination as? ResultMapViewController
+           // let resultMapViewController = segue.destination as? ResultMapViewController
             // TODO DATA PASSING
+
+            var DestViewController : ResultMapViewController = segue.destination as! ResultMapViewController
+            DestViewController.DistanceText = distanceLbl.text ?? "fehler"
+            DestViewController.DonationText = donationLbl.text ?? "fehler"
+
         }
     }
 }
+
 
 extension MapViewController : CLLocationManagerDelegate{
 
@@ -184,7 +190,7 @@ extension MapViewController : CLLocationManagerDelegate{
                     hasbeenPaused = false;
                     speed = -1
                 }
-                
+
                 if(!(speed < 0.0)){
                     let start = self.list[self.list.count-2]
                     let end = self.list[self.list.count-1]
@@ -211,7 +217,7 @@ extension MapViewController : CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
     }
-    
+
     func showErrorMessage(message:String) {
         let alertView = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in

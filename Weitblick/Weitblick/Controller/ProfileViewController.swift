@@ -45,6 +45,7 @@ class ProfileViewController:  UIViewController {
             profile_email.text = UserDefaults.standard.string(forKey: "email")
            profile_route.text = UserDefaults.standard.string(forKey: "route")
            profile_donation.text = UserDefaults.standard.string(forKey: "donation")
+           // profile_password.text = UserDefaults.standard.string(forKey: "password")
         }
         profile_image.layer.cornerRadius = profile_image.frame.size.width/2
         profile_image.clipsToBounds = true
