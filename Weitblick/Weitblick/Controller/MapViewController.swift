@@ -150,10 +150,12 @@ class MapViewController: UIViewController {
     }
 
     @IBAction func EndTrackingClicked(_ sender: Any) {
-        self.trackFinished = true;
+        
+        
         self.timer.fire()
         self.timer.invalidate()
-
+        startTracking = false;
+        self.trackFinished = true;
         // PASSING DATA TO RESULTPAGE
         self.performSegue(withIdentifier: "goToTrackResult", sender: self)
     }
