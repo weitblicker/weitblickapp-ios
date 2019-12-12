@@ -99,11 +99,11 @@ class MapViewController: UIViewController {
     @IBAction func clickPauseContinue(_ sender: Any) {
         if(startTracking){
             startTracking = false
-            self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop"), for: UIControl.State.normal)
+            self.stopPlayButton.setImage(UIImage(named: "orangeButtonPlay"), for: UIControl.State.normal)
         }else{
             startTracking = true
             self.lastPostRequestDate = Date.init()
-            self.stopPlayButton.setImage(UIImage(named: "orangeButtonPlay"), for: UIControl.State.normal)
+            self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop"), for: UIControl.State.normal)
 
         }
     }
@@ -119,11 +119,17 @@ class MapViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is ResultMapViewController
         {
-            let resultMapViewController = segue.destination as? ResultMapViewController
+           // let resultMapViewController = segue.destination as? ResultMapViewController
             // TODO DATA PASSING
+            
+            var DestViewController : ResultMapViewController = segue.destination as! ResultMapViewController
+            DestViewController.DistanceText = distanceLbl.text ?? "fehler"
+            DestViewController.DonationText = donationLbl.text ?? "fehler"
+            
         }
     }
 }
+
 
 extension MapViewController : CLLocationManagerDelegate{
 

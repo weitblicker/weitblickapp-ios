@@ -8,7 +8,15 @@
 
 import UIKit
 
+
 class ResultMapViewController: UIViewController ,UITableViewDataSource, UITableViewDelegate  {
+    
+
+    var DistanceText = String()
+     var DonationText = String()
+    
+    @IBOutlet weak var totalDistance: UILabel!
+    @IBOutlet weak var totalDonation: UILabel!
 
     @IBOutlet weak var tableView: UITableView!
       let names = ["SponsorA", "SponsorB", "SponsorC","SponsorD"]
@@ -31,7 +39,8 @@ class ResultMapViewController: UIViewController ,UITableViewDataSource, UITableV
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
 
-        // Do any additional setup after loading the view.
+        totalDistance.text = DistanceText
+        totalDonation.text = DonationText
     }
     
     @IBAction func backButtonClicked(_ sender: Any) {
