@@ -51,14 +51,14 @@ class MapViewController: UIViewController {
 
     func setupSegmentations(){
         print("StartTimer")
-        timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
         start = Date()
     }
 
     @objc func fireTimer(){
         print("FIRETIMER")
         let distanceToSent = round(((totalDistance - currentDistance)/1000)*100)/100
-        self.showErrorMessage(message: "DistanceToSend: " + distanceToSent.description)
+        //self.showErrorMessage(message: "DistanceToSend: " + distanceToSent.description)
 
         currentDistance = totalDistance
         end = Date()
@@ -179,9 +179,9 @@ extension MapViewController : CLLocationManagerDelegate{
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else{ return }
-        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-        self.map.setRegion(region, animated: true)
+//        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+//        self.map.setRegion(region, animated: true)
 
         if(self.startTracking){
             self.list.append(location)

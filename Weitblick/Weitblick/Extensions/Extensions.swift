@@ -14,6 +14,7 @@ struct Constants{
     static let restURL  = "https://new.weitblicker.org/rest"
     static let mediaURL = "https://new.weitblicker.org/media"
     static let cycleURL = "https://new.weitblicker.org/rest/cycle/segment/"
+    static let RoutesURL = "https://new.weitblicker.org/rest/cycle/tours/"
     static let regex = "!\\[(.*?)\\]\\((.*?)\\\""
     static let regex2 = "" // \[?(!)\[(?<alt>[^\]\[]*\[?[^\]\[]*\]?[^\]\[]*)\]\((?<url>[^\s]+?)(?:\s+(["'])(?<title>.*?)\4)?\)
     static let regexReplace = "!\\[(.*?)\\]\\((.*?)\\)"
@@ -134,4 +135,10 @@ extension Date{
     }
 }
 
+func handleDate(date : String) -> Date{
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+    return dateFormatter.date(from:date)!
+}
 
