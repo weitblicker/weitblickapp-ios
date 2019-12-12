@@ -12,15 +12,13 @@ class RankingViewController: UIViewController ,UITableViewDataSource, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-      
 
     }
     
 
     @IBOutlet weak var tableView: UITableView!
-       
- 
+  
+    
     let names = ["FahrerA", "FahrerB", "FahrerC"]
         let distances = ["5.4 km","6.2 km", "1.7 km","23.8 km"];
         let numbers = ["1", "2", "3"]
@@ -43,6 +41,8 @@ class RankingViewController: UIViewController ,UITableViewDataSource, UITableVie
               cell.distance.text = distance
               cell.number.text = number
               cell.name.text = name
+             cell.pimage.image = UIImage(named: "profile_image")
+            
              
               return cell
               

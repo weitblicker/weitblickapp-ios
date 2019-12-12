@@ -10,10 +10,14 @@ import UIKit
 
 class RankingTableViewCell: UITableViewCell {
     
-      @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var name: UILabel!
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var number: UILabel!
     
+    
+    @IBOutlet weak var pimage: UIImageView!
+    
+   
     
     override func awakeFromNib() {
         super.awakeFromNib()
