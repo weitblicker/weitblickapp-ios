@@ -14,7 +14,7 @@ protocol DelegateToCycle{
 
 
 
-class ProjectViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ProjectViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate {
     var count = 0;
     var postCount = 3;
     var projectList : [Project] = []
@@ -140,10 +140,14 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @objc func goToCycle(sender:UIButton!){
         
-         print("In go to Cycle")
+//         print("In go to Cycle")
          project_object = self.projectList[sender.tag]
-         print(sender.tag)
-         self.performSegue(withIdentifier: "goBikeView", sender: self)
+        UserDefaults.standard.set(project_object?.getID, forKey: "projectID")
+        UserDefaults.standard.set(project_object?.getName, forKey: "projectName")
+//         print(sender.tag)
+//         self.performSegue(withIdentifier: "goBikeView", sender: self)
+  
+        self.tabBarController?.selectedIndex = 2
         
     }
    

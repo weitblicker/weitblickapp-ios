@@ -12,21 +12,30 @@ class RankingViewController: UIViewController ,UITableViewDataSource, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        loadData()
     }
     
-
+    func loadData(){
+        userList = []
+        RankingService.getRankings { (list) in
+            for user in list{
+                self.userList.append(user)
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     @IBOutlet weak var tableView: UITableView!
-  
-    
-    let names = ["FahrerA", "FahrerB", "FahrerC"]
-        let distances = ["5.4 km","6.2 km", "1.7 km","23.8 km"];
-        let numbers = ["1", "2", "3"]
+
+    var userList : [User] = []
           
        
        
        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-           return names.count
+        return userList.count
        }
     
      
@@ -35,13 +44,14 @@ class RankingViewController: UIViewController ,UITableViewDataSource, UITableVie
           
           func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
               let cell =  tableView.dequeueReusableCell(withIdentifier:"ranking_cell", for: indexPath)as! RankingTableViewCell
-              let distance = distances[indexPath.row]
-              let number = numbers[indexPath.row]
-              let name = names[indexPath.row]
-              cell.distance.text = distance
-              cell.number.text = number
-              cell.name.text = name
-             cell.pimage.image = UIImage(named: "profile_image")
+              
+            var distance = userList[userList.count - indexPath.row - 1].getKm
+            distance = round(distance * 100 ) / 100
+            cell.distance.text = distance.description + " km"
+            cell.number.text = (indexPath.row + 1).description
+            cell.name.text = userList[userList.count - indexPath.row - 1].getUsername
+       
+            cell.pimage.image = userList[userList.count - indexPath.row - 1].getImage
             
              
               return cell

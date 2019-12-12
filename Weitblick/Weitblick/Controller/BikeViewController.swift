@@ -22,7 +22,6 @@ class BikeViewController: UIViewController {
     let regionInMeters : Double = 1000;
     //var projectTitle : String = ""
     //var projectId : Int = -1;
-    var project_object: Project?
 
     @IBOutlet weak var speedLbl: UILabel!
     @IBOutlet weak var distanceLbl: UILabel!
@@ -39,16 +38,22 @@ class BikeViewController: UIViewController {
         if(!UserDefaults.standard.bool(forKey: "isLogged")){
             self.performSegue(withIdentifier: "showLogin", sender: self)
         }else{
-            self.performSegue(withIdentifier: "goToMapView", sender: self)
+            if(UserDefaults.standard.integer(forKey: "projectID") != 0){
+                self.performSegue(withIdentifier: "goToMapView", sender: self)
+            }else{
+                self.showAlertMess(userMessage: "Kein Projekt ausgewählt!")
+            }
         }
         
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("Title")
-        print(self.project_object?.getName)
-        self.cycleProjectTitle.setTitle(self.project_object?.getName, for: .normal)
+        if(UserDefaults.standard.string(forKey: "projectName") != nil){
+            self.cycleProjectTitle.setTitle(UserDefaults.standard.string(forKey: "projectName"), for: .normal)
+        }else{
+            self.cycleProjectTitle.setTitle("Kein Projekt ausgewählt", for: .normal)
+        }
        
     }
     
@@ -116,9 +121,18 @@ class BikeViewController: UIViewController {
         {
             let mapViewController = segue.destination as? MapViewController
             mapViewController?.locationManager = self.locationManager
-
+            mapViewController?.projectid = UserDefaults.standard.integer(forKey: "projectID")
 
         }
+    }
+    
+    func showAlertMess(userMessage: String){
+
+        let alertView = UIAlertController(title: "Achtung!", message: userMessage, preferredStyle: UIAlertController.Style.alert)
+        alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        self.present(alertView, animated: true, completion: nil)
+
     }
 }
 

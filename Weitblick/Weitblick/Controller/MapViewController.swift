@@ -28,6 +28,7 @@ class MapViewController: UIViewController {
     var start : Date = Date()
     var end : Date = Date()
     var tours = UserDefaults.standard.integer(forKey: "tours")
+    var projectid: Int = 0
 
     @IBOutlet weak var distanceLbl: UILabel!
     @IBOutlet weak var speedLbl: UILabel!
@@ -62,7 +63,7 @@ class MapViewController: UIViewController {
 
         currentDistance = totalDistance
         end = Date()
-        SegmentService.sendSegment(start: start, end: end, distance: distanceToSent, projectID: 1, tourID: tours) { (response) in
+        SegmentService.sendSegment(start: start, end: end, distance: distanceToSent, projectID: projectid, tourID: tours) { (response) in
             print("In SegmentService Completionhandler")
             print(response)
             self.start = self.end
