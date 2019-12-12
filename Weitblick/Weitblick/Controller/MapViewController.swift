@@ -99,11 +99,11 @@ class MapViewController: UIViewController {
     @IBAction func clickPauseContinue(_ sender: Any) {
         if(startTracking){
             startTracking = false
-            self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop"), for: UIControl.State.normal)
+            self.stopPlayButton.setImage(UIImage(named: "orangeButtonPlay"), for: UIControl.State.normal)
         }else{
             startTracking = true
             self.lastPostRequestDate = Date.init()
-            self.stopPlayButton.setImage(UIImage(named: "orangeButtonPlay"), for: UIControl.State.normal)
+            self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop"), for: UIControl.State.normal)
 
         }
     }
