@@ -63,6 +63,7 @@
 		A18DA1FC23A109F8003783D6 /* FAQService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18DA1FB23A109F8003783D6 /* FAQService.swift */; };
 		A18DA1FE23A24060003783D6 /* SegmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18DA1FD23A24060003783D6 /* SegmentService.swift */; };
 		A18DA20023A256C8003783D6 /* RouteEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18DA1FF23A256C8003783D6 /* RouteEntry.swift */; };
+		A18DA20223A25D6B003783D6 /* RouteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18DA20123A25D6B003783D6 /* RouteService.swift */; };
 		A1A37AE32397C49E00F19904 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A37AE22397C49E00F19904 /* DataService.swift */; };
 		A1A37AE9239CF98600F19904 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A37AE8239CF98600F19904 /* LoginService.swift */; };
 		A1E02C89237DDF5800A39EEC /* BlogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E02C88237DDF5800A39EEC /* BlogTableViewCell.swift */; };
@@ -139,6 +140,7 @@
 		A18DA1FB23A109F8003783D6 /* FAQService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQService.swift; sourceTree = "<group>"; };
 		A18DA1FD23A24060003783D6 /* SegmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentService.swift; sourceTree = "<group>"; };
 		A18DA1FF23A256C8003783D6 /* RouteEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteEntry.swift; sourceTree = "<group>"; };
+		A18DA20123A25D6B003783D6 /* RouteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteService.swift; sourceTree = "<group>"; };
 		A1A37AE22397C49E00F19904 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		A1A37AE4239A730500F19904 /* CycleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleService.swift; sourceTree = "<group>"; };
 		A1A37AE8239CF98600F19904 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				0FD676F8239ECAE400F88081 /* RegisterService.swift */,
 				A18DA1FB23A109F8003783D6 /* FAQService.swift */,
 				A18DA1FD23A24060003783D6 /* SegmentService.swift */,
+				A18DA20123A25D6B003783D6 /* RouteService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				3DA49A6E236B155F00AA3198 /* OtherViewController.swift in Sources */,
 				A18DA20023A256C8003783D6 /* RouteEntry.swift in Sources */,
 				A114CB7E23771A8F006EAE45 /* EventCollection.swift in Sources */,
+				A18DA20223A25D6B003783D6 /* RouteService.swift in Sources */,
 				A1E02C89237DDF5800A39EEC /* BlogTableViewCell.swift in Sources */,
 				3DA49A48236B0C5200AA3198 /* SceneDelegate.swift in Sources */,
 			);
@@ -606,13 +610,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QZ2SL24595;
+				DEVELOPMENT_TEAM = N89CU69VYF;
 				INFOPLIST_FILE = Weitblick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.hsos.Software-Engineering.Weitblick.iosj";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.hsos.Software-Engineering.Weitblick.IOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -625,13 +629,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QZ2SL24595;
+				DEVELOPMENT_TEAM = N89CU69VYF;
 				INFOPLIST_FILE = Weitblick/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "de.hsos.Software-Engineering.Weitblick.iosj";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.hsos.Software-Engineering.Weitblick.IOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
