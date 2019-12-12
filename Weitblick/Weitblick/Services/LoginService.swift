@@ -53,6 +53,7 @@ class LoginService{
                     DispatchQueue.main.async {
                         user.set(false, forKey: "isLogged")
                         UserDefaults.standard.synchronize()
+                       
                         completion(received.description)
                     }
                     return

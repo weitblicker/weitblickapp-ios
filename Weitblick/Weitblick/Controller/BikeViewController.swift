@@ -44,8 +44,9 @@ class BikeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         print("Title")
-        print(self.project_object?.getName as Any)
+        print(self.project_object?.getName)
         self.cycleProjectTitle.setTitle(self.project_object?.getName, for: .normal)
+       
     }
     
 
