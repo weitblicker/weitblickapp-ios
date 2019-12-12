@@ -53,10 +53,15 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.project_location.text = projectList[indexPath.row].getLocation.getAddress
         
        // cell.subscribeButton.addTarget(self, action: #selector(subscribeTapped(_:)), for: .touchUpInside)
-        
-        cell.project_button_bike.addTarget(self, action: #selector (goToCycle(_:)), for: .touchUpInside)
-        cell.project_button_bike.tag = indexPath.row
-
+        print("TEST =====\n\n")
+        print(project_object?.getCycleIDCount.description)
+        if(project_object?.getCycleIDCount == 0){
+            cell.project_button_bike.alpha = 0
+       
+        } else {
+             cell.project_button_bike.addTarget(self, action: #selector (goToCycle(_:)), for: .touchUpInside)
+                   cell.project_button_bike.tag = indexPath.row
+        }
         //let id = self.locationListID[indexPath.row]
         //let locationString = self.getLocationAddressWithID(id: id)
        // cell.project_button_detail.tag = indexPath.row
