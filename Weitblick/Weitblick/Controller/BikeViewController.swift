@@ -28,6 +28,9 @@ class BikeViewController: UIViewController {
     @IBOutlet weak var distanceLbl: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBAction func centerLocationButton(_ sender: UIButton) {
+        mapView.setCenter(mapView.userLocation.coordinate, animated: true)
+    }
     
     @IBOutlet weak var cycleProjectTitle: UIButton!
     
