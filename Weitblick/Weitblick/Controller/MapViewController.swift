@@ -51,14 +51,14 @@ class MapViewController: UIViewController {
 
     func setupSegmentations(){
         print("StartTimer")
-        timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
         start = Date()
     }
 
     @objc func fireTimer(){
         print("FIRETIMER")
         let distanceToSent = round(((totalDistance - currentDistance)/1000)*100)/100
-        self.showErrorMessage(message: "DistanceToSend: " + distanceToSent.description)
+        //self.showErrorMessage(message: "DistanceToSend: " + distanceToSent.description)
 
         currentDistance = totalDistance
         end = Date()

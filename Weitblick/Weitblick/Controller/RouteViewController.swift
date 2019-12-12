@@ -12,23 +12,23 @@ class RouteViewController: UIViewController,UITableViewDataSource, UITableViewDe
     
    
     @IBOutlet weak var tableView: UITableView!
-    let routes = ["5.4 km","6.2 km", "1.7 km","23.8 km"];
-    let donatations = ["5,5 €", "6,5 €", "2,0€","24,0 €"]
-    let times = ["45 min", "52 min", "17 min","46 min"]
+    var routeList : [RouteEntry] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return routes.count
+        return routeList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier:"route_cell", for: indexPath)as! RouteTableViewCell
-        let route = routes[indexPath.row]
-        let donation = donatations[indexPath.row]
-        let time = times[indexPath.row]
-        cell.route.text = route
-        cell.donation.text = donation
-        cell.time.text = time
-        cell.date.text = "24.12.19"
+        
+        var distance = routeList[indexPath.row].getDistance
+        distance = round(distance*100)/100
+        cell.route.text = distance.description + " km"
+        var donation = routeList[indexPath.row].getDonation
+        donation = round(donation*100)/100
+        cell.donation.text = donation.description + " €"
+        cell.time.text = routeList[indexPath.row].getDuration.description + " min"
+        cell.date.text = routeList[indexPath.row].getDate.dateAndTimetoString()
         return cell
         
     }
@@ -36,6 +36,15 @@ class RouteViewController: UIViewController,UITableViewDataSource, UITableViewDe
 
      override func viewDidLoad() {
            super.viewDidLoad()
+        
+        RouteService.getRoutes { (list) in
+            for entry in list{
+                self.routeList.append(entry)
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
 /*        self.tableView.dataSource = self
         self.tableView.delegate = self*/
 

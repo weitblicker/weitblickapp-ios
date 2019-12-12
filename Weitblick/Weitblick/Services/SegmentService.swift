@@ -11,16 +11,6 @@ import UIKit
 class SegmentService{
     
     static func sendSegment(start: Date, end: Date, distance: Double, projectID: Int, tourID: Int, completion: @escaping (_ response: String) -> ()){
-        /*
-         {
-             "start": "2019-10-01T07:08:04Z",
-             "end": "2019-10-01T07:08:14Z",
-             "distance": 0.1,
-             "project": 1,
-             "tour": 0,
-             "token":"foo"
-         }
-         */
         
         let url = NSURL(string: Constants.cycleURL)
         let str = "surfer:hangloose"
