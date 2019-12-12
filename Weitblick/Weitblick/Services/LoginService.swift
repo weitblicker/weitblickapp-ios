@@ -53,7 +53,11 @@ class LoginService{
                     DispatchQueue.main.async {
                         user.set(false, forKey: "isLogged")
                         UserDefaults.standard.synchronize()
-                       
+                      
+                        
+                      /*  let emailError = received["email"] as? String
+                        print("EMailError")
+                        print(emailError)*/
                         completion(received.description)
                     }
                     return
