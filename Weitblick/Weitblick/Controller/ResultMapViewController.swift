@@ -38,7 +38,7 @@ class ResultMapViewController: UIViewController ,UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
-
+        
         totalDistance.text = DistanceText
         totalDonation.text = DonationText
     }
