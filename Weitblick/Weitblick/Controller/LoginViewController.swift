@@ -58,6 +58,8 @@ class LoginViewController: UIViewController {
                     }
                 }else{
                     DispatchQueue.main.async {
+                       
+                        print(response)
                         self.showErrorMessage(message: response)
                     }
                 }

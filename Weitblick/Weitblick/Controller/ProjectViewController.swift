@@ -55,13 +55,13 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
        // cell.subscribeButton.addTarget(self, action: #selector(subscribeTapped(_:)), for: .touchUpInside)
         print("TEST =====\n\n")
         print(project_object?.getCycleIDCount.description)
-        if(project_object?.getCycleIDCount == 0){
-            cell.project_button_bike.alpha = 0
-       
-        } else {
-             cell.project_button_bike.addTarget(self, action: #selector (goToCycle(_:)), for: .touchUpInside)
-                   cell.project_button_bike.tag = indexPath.row
-        }
+        
+        cell.project_button_bike.tag = indexPath.row
+        //cell.project_button_bike.addTarget(self, action: #selector("ProjectViewController.goToCycle"), for: UIControl.Event.touchUpInside)
+        cell.project_button_bike.addTarget(self, action: #selector(ProjectViewController.goToCycle), for: .touchUpInside)
+        
+        
+        
         //let id = self.locationListID[indexPath.row]
         //let locationString = self.getLocationAddressWithID(id: id)
        // cell.project_button_detail.tag = indexPath.row
@@ -123,7 +123,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
               {
                   let projectDetailViewController = segue.destination as? ProjectDetailViewController
                   projectDetailViewController?.project_object = self.project_object
-                projectDetailViewController?.count = self.count
+                  projectDetailViewController?.count = self.count
 
               }
         
@@ -138,9 +138,11 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
     
    
     
-    @objc func goToCycle(_ sender: UIButton){
+    @objc func goToCycle(sender:UIButton!){
         
          print("In go to Cycle")
+         project_object = self.projectList[sender.tag]
+         print(sender.tag)
          self.performSegue(withIdentifier: "goBikeView", sender: self)
         
     }
