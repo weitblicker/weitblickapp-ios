@@ -48,11 +48,10 @@ class ProfileViewController:  UIViewController {
         }
         profile_image.layer.cornerRadius = profile_image.frame.size.width/2
         profile_image.clipsToBounds = true
-        profile_image.layer.borderWidth = 2
+        profile_image.layer.borderWidth = 0.2
         profile_image.layer.borderColor = UIColor.black.cgColor
 
     }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -13,6 +13,7 @@ struct Constants{
     static let loginURL = "https://new.weitblicker.org/rest/auth/login/"
     static let restURL  = "https://new.weitblicker.org/rest"
     static let mediaURL = "https://new.weitblicker.org/media"
+    static let cycleURL = "https://new.weitblicker.org/rest/cycle/segment/"
     static let regex = "!\\[(.*?)\\]\\((.*?)\\\""
     static let regex2 = "" // \[?(!)\[(?<alt>[^\]\[]*\[?[^\]\[]*\]?[^\]\[]*)\]\((?<url>[^\s]+?)(?:\s+(["'])(?<title>.*?)\4)?\)
     static let regexReplace = "!\\[(.*?)\\]\\((.*?)\\)"
@@ -108,6 +109,15 @@ extension UIImage{
 
 extension Date{
     func dateAndTimetoString(format: String = "dd.MM.yyyy") -> String {
+    let formatter = DateFormatter()
+            formatter.dateStyle = .short
+            formatter.dateFormat = format
+    return formatter.string(from: self)
+        }
+}
+
+extension Date{
+    func dateAndTimetoStringISO(format: String = "yyyy-MM-dd'T'HH:mm:ss'Z'") -> String {
     let formatter = DateFormatter()
             formatter.dateStyle = .short
             formatter.dateFormat = format

@@ -13,15 +13,21 @@ class MapViewController: UIViewController {
 
     var list : [CLLocation] = []
     var i = 0;
+    var currentDistance: Double = 0;
     var totalDistance : Double = 0;
-    var startTracking = true;
+    var startTracking = false;
     var startCalculateDistance = false;
     var trackFinished = false;
     var distance = CLLocationDistance();
     var locationManager = CLLocationManager()
-    let regionInMeters : Double = 100;
+    let regionInMeters : Double = 750;
     var lastPostRequestDate: Date = Date()
     var lastDistance : Double = 0;
+    var hasbeenPaused : Bool = false;
+    var timer : Timer = Timer.init()
+    var start : Date = Date()
+    var end : Date = Date()
+    var tours = UserDefaults.standard.integer(forKey: "tours")
 
     @IBOutlet weak var distanceLbl: UILabel!
     @IBOutlet weak var speedLbl: UILabel!
@@ -36,7 +42,35 @@ class MapViewController: UIViewController {
         checkLocationServices()
         distanceLbl.text = "0.00 km"
         donationLbl.text = "0.00 €"
+        let user = UserDefaults.standard
+        var tours = user.integer(forKey: "tours")
+        tours += 1
+        user.set(tours, forKey: "tours")
+        user.synchronize()
     }
+    
+    func setupSegmentations(){
+        print("StartTimer")
+        timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        start = Date()
+    }
+    
+    @objc func fireTimer(){
+        print("FIRETIMER")
+        let distanceToSent = round(((totalDistance - currentDistance)/1000)*100)/100
+        self.showErrorMessage(message: "DistanceToSend: " + distanceToSent.description)
+        
+        currentDistance = totalDistance
+        end = Date()
+        SegmentService.sendSegment(start: start, end: end, distance: distanceToSent, projectID: 1, tourID: tours) { (response) in
+            print("In SegmentService Completionhandler")
+            print(response)
+            self.start = self.end
+        }
+        
+    }
+    
+    
 
     override func viewWillAppear(_ animated: Bool) {
         if(self.trackFinished){
@@ -72,7 +106,9 @@ class MapViewController: UIViewController {
         case .authorizedWhenInUse:
             print("AUTHORIZED")
             self.map.showsUserLocation = true
+            startTracking = true
             centerViewOnUserLocation()
+            setupSegmentations()
             locationManager.startUpdatingLocation()
             break
         case .denied:
@@ -89,8 +125,10 @@ class MapViewController: UIViewController {
             break
         case .authorizedAlways:
             print("AUTHORIZED ALWAYS")
+            startTracking = true
             self.map.showsUserLocation = true
             centerViewOnUserLocation()
+            setupSegmentations()
             locationManager.startUpdatingLocation()
             break
         }
@@ -99,20 +137,24 @@ class MapViewController: UIViewController {
     @IBAction func clickPauseContinue(_ sender: Any) {
         if(startTracking){
             startTracking = false
-            self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop"), for: UIControl.State.normal)
+            self.timer.fire()
+            self.timer.invalidate()
+            self.stopPlayButton.setImage(UIImage(named: "greenButtonPlay"), for: UIControl.State.normal)
         }else{
             startTracking = true
-            self.lastPostRequestDate = Date.init()
-            self.stopPlayButton.setImage(UIImage(named: "greenButtonPlay"), for: UIControl.State.normal)
+            hasbeenPaused = true;
+            setupSegmentations()
+            self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop"), for: UIControl.State.normal)
 
         }
     }
 
     @IBAction func EndTrackingClicked(_ sender: Any) {
         self.trackFinished = true;
-        // PASS DATA TO SERVER
-        // Alle 30 Sekunden POST Request
-        //
+        self.timer.fire()
+        self.timer.invalidate()
+
+        // PASSING DATA TO RESULTPAGE
         self.performSegue(withIdentifier: "goToTrackResult", sender: self)
     }
 
@@ -134,22 +176,29 @@ extension MapViewController : CLLocationManagerDelegate{
         self.map.setRegion(region, animated: true)
 
         if(self.startTracking){
-            print("Tracking Location ..")
-            print("Location: " + location.description)
             self.list.append(location)
             print(self.list.count)
             if(self.list.count >= 2){
-                print("Calculating Distance ..")
-                let start = self.list[self.list.count-2]
-                let end = self.list[self.list.count-1]
-                self.totalDistance += end.distance(from: start)
-                print("Distance calculated : " + end.distance(from: start).description)
-                //print(totalDistance.description + " m")
-                let distanceinKM = self.totalDistance/1000
-                //print((round(distanceinKM*100)/100).description + " km")
-                //self.distanceLbl.text = (round(distanceinKM*100)/100).description + " km"
-                self.distanceLbl.text = doubleToKm(double: totalDistance)
-                self.donationLbl.text = (round((distanceinKM*0.1)*100)/100).description + " €"
+                var speed = location.speed
+                if(hasbeenPaused){
+                    hasbeenPaused = false;
+                    speed = -1
+                }
+                
+                if(!(speed < 0.0)){
+                    let start = self.list[self.list.count-2]
+                    let end = self.list[self.list.count-1]
+                    self.totalDistance += end.distance(from: start)
+                    print("Distance calculated : " + end.distance(from: start).description)
+                    //print(totalDistance.description + " m")
+                    let distanceinKM = self.totalDistance/1000
+                    print((round(distanceinKM*100)/100).description + " km")
+                    self.distanceLbl.text = (round(distanceinKM*100)/100).description + " km"
+                    self.distanceLbl.text = doubleToKm(double: totalDistance)
+                    print("Total Distance: " + distanceLbl.text!)
+                    self.donationLbl.text = (round((distanceinKM*0.1)*100)/100).description + " €"
+                }
+                print("speed is negative, no distance added")
             }
         }
     }
@@ -161,6 +210,14 @@ extension MapViewController : CLLocationManagerDelegate{
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
+    }
+    
+    func showErrorMessage(message:String) {
+        let alertView = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+        }
+        alertView.addAction(OKAction)
+        self.present(alertView, animated: true, completion:nil)
     }
 }
 

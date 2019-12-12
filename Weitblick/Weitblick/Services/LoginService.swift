@@ -62,6 +62,10 @@ class LoginService{
                user.set(userKey, forKey: "key")
                user.set(true, forKey: "isLogged")
                user.set(email, forKey: "email")
+               
+                if(user.integer(forKey: "tours") == 0){
+                    user.set(1, forKey: "tours")
+                }
                user.synchronize()
                //Token abspeichern
                let saveAccesssToken: Bool = KeychainWrapper.standard.set(userKey, forKey: "Key")
