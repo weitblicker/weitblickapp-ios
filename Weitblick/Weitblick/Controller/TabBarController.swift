@@ -11,17 +11,6 @@ import SwipeableTabBarController
 
 class TabBarController: SwipeableTabBarController,UINavigationControllerDelegate {
 
-    var eventCollection : EventCollection = EventCollection()
-    var newsCollection : NewsCollection = NewsCollection()
-    var blogCollection : BlogCollection = BlogCollection()
-    var projectCollection : ProjectCollection = ProjectCollection()
-    var eventsLoaded : Bool = false
-    var newsLoaded : Bool = false
-    var blogsLoaded : Bool = false
-    var projectsLoaded : Bool = false
-    var selector : String = ""
-    var token : String = ""
-
     override func viewDidLoad() {
         super.viewDidLoad()
         

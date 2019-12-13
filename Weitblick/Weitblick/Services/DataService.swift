@@ -94,6 +94,12 @@ class DataService{
         
     }
     
+    static func getProjectWithID (id: Int, completion: @escaping (_ project: Project) -> ()){
+        
+        
+        
+    }
+    
     
     
     static func loadProjects(date : Date,completion: @escaping (_ projectList : [Project]) -> ()){

@@ -132,6 +132,33 @@ class UserService{
          task.resume()
            
     }
-   
-
+    
+    static func getUserData(completion : @escaping (_ user: User) -> ()){
+        
+        let url = NSURL(string: "https://new.weitblicker.org/rest/auth/user/")
+        let str = "surfer:hangloose"
+        let test2 = Data(str.utf8).base64EncodedString();
+        var request = URLRequest(url:url! as URL as URL)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+        let user = UserDefaults.standard
+        //let postString = ["token": user.string(forKey: "key")] as! [String: String]
+        do{
+            //let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
+                //request.httpBody = jsonUser
+            let session = URLSession.shared
+            let task = session.dataTask(with: request){
+                (data, response, error) in
+                let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                print(response.debugDescription)
+                print(error.debugDescription)
+                print(jsondata.debugDescription)
+                let user = User(username: "Michel", image: "", km: 0.0, euro: 0.0)
+                completion(user)
+            }
+            
+            task.resume()
+        }
+    }
 }

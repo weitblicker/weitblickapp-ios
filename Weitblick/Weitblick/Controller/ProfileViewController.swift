@@ -40,6 +40,9 @@ class ProfileViewController:  UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserService.getUserData { (user) in
+            print("Nach user data")
+        }
         profile_image.image = UIImage(named: "profile_image")
         if (UserDefaults.standard.bool(forKey: "isLogged") == true){
             profile_email.text = UserDefaults.standard.string(forKey: "email")

@@ -16,6 +16,7 @@ struct Constants{
     static let cycleURL = "https://new.weitblicker.org/rest/cycle/segment/"
     static let RoutesURL = "https://new.weitblicker.org/rest/cycle/tours/"
     static let RankingURL = "https://new.weitblicker.org/rest/cycle/ranking/"
+    static let userURL = "https://new.weitblicker.org/rest/auth/user/"
     static let regex = "!\\[(.*?)\\]\\((.*?)\\\""
     static let regex2 = "" // \[?(!)\[(?<alt>[^\]\[]*\[?[^\]\[]*\]?[^\]\[]*)\]\((?<url>[^\s]+?)(?:\s+(["'])(?<title>.*?)\4)?\)
     static let regexReplace = "!\\[(.*?)\\]\\((.*?)\\)"

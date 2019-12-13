@@ -142,14 +142,8 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
    
     
     @objc func goToCycle(sender:UIButton!){
-        
-//         print("In go to Cycle")
-         project_object = self.projectList[sender.tag]
         UserDefaults.standard.set(project_object?.getID, forKey: "projectID")
         UserDefaults.standard.set(project_object?.getName, forKey: "projectName")
-//         print(sender.tag)
-//         self.performSegue(withIdentifier: "goBikeView", sender: self)
-  
         self.tabBarController?.selectedIndex = 2
         
     }
