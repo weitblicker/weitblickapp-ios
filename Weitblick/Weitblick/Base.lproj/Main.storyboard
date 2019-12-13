@@ -1014,10 +1014,19 @@
                                     <action selector="toLocationButton:" destination="jM0-XC-gLU" eventType="touchUpInside" id="Upd-XJ-Kj4"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9K-cK-2Et">
+                                <rect key="frame" x="34" y="580" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Ewd-dZ-Ds7"/>
+                                    <constraint firstAttribute="height" constant="50" id="guh-hb-MTa"/>
+                                </constraints>
+                                <state key="normal" image="projectDetailButton500"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="R76-Lb-x2q" secondAttribute="trailing" constant="200" id="03l-at-sYH"/>
+                            <constraint firstItem="c9K-cK-2Et" firstAttribute="top" secondItem="Jv4-Pi-exn" secondAttribute="bottom" constant="-141" id="3i0-KG-sRJ"/>
                             <constraint firstItem="DHH-oU-FKg" firstAttribute="top" secondItem="zRI-y1-W90" secondAttribute="top" constant="53" id="9pT-uC-090"/>
                             <constraint firstItem="DB3-QT-6ap" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XBf-40-Vp1" secondAttribute="trailing" constant="8" symbolic="YES" id="BBm-1y-E3r"/>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="bottom" secondItem="VRs-ev-0P4" secondAttribute="bottom" constant="36" id="CJ9-Mr-2og"/>
@@ -1031,6 +1040,7 @@
                             <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="VRs-ev-0P4" secondAttribute="trailing" constant="133" id="TsV-qY-yKl"/>
                             <constraint firstItem="R76-Lb-x2q" firstAttribute="top" secondItem="zRI-y1-W90" secondAttribute="top" constant="53" id="Ubg-v1-9SR"/>
                             <constraint firstItem="Jv4-Pi-exn" firstAttribute="top" secondItem="DB3-QT-6ap" secondAttribute="bottom" constant="60" id="aTm-bK-t56"/>
+                            <constraint firstItem="Jv4-Pi-exn" firstAttribute="leading" secondItem="c9K-cK-2Et" secondAttribute="trailing" constant="-84" id="fTh-ok-Nu2"/>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="DHH-oU-FKg" secondAttribute="trailing" constant="87" id="hah-H6-w9v"/>
                             <constraint firstItem="R76-Lb-x2q" firstAttribute="leading" secondItem="zRI-y1-W90" secondAttribute="leading" constant="87" id="hg5-lH-wTG"/>
                             <constraint firstItem="Jv4-Pi-exn" firstAttribute="trailing" secondItem="tnf-Td-zRP" secondAttribute="trailingMargin" constant="20" id="j64-xj-mR3"/>
@@ -2727,6 +2737,7 @@
         <image name="phone.circle" catalog="system" width="64" height="60"/>
         <image name="plus.circle.fill" catalog="system" width="64" height="60"/>
         <image name="profile_image" width="768" height="1024"/>
+        <image name="projectDetailButton500" width="500" height="500"/>
         <image name="projekt" width="30" height="30"/>
         <image name="questionmark.circle" catalog="system" width="64" height="60"/>
         <image name="redButtonEnd500" width="500" height="500"/>
