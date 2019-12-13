@@ -42,22 +42,37 @@ class LoginService{
                return
             }
             do{
-                guard let received = try JSONSerialization.jsonObject(with: responseData,options: []) as? [String: Any] else {
+                 guard let received = try JSONSerialization.jsonObject(with: responseData,
+                              options: []) as? [String: Any] else {
                     print("Could not get JSON from responseData as dictionary")
                     return
                 }
+                print("RECEIVED")
+                print(received)
             //print("The Recieved Message is: " + received.description)
+                
+               /* let names = userData.value(forKeyPath: "data.username")
+                if !names.isEmpty { print(names[0]) }*/
+                
                 guard let userKey = received["key"] as? String else {
                     user.set(false, forKey: "isLogged")
                     //  UserDefaults.standard.synchronize()
                     DispatchQueue.main.async {
                         user.set(false, forKey: "isLogged")
                         UserDefaults.standard.synchronize()
+                        //  LoginService.loginWithData(email: self.email.text!, password: self.password.text!) { (response) in
+                        self.checkResponse(description: received.description){ (error) in
+                            
+                             print(error)
+                             completion(error)
+                        }
+
                        
-                        completion(received.description)
                     }
                     return
                 }
+                
+                
                print("TOKEN: ")
                print (userKey)
                user.set(userKey, forKey: "key")
@@ -78,5 +93,25 @@ class LoginService{
         }
         task.resume()
     }
+    
+    
+ static func checkResponse(description: String, error: @escaping (_ responseString : String) -> ()){
+     
+      print("in check Response")
+      print(description)
+    
+    if (description.contains("Gib eine gültige E-Mail Adresse an.")){
+          error("Gib eine gültige E-Mail Adresse an.")
+          return
+      }
+    else if (description.contains("Zugangsdaten stimmen nicht.")){
+       error("Zugangsdaten stimmen nicht.")
+          return
+      }
+        
+  }
+    
+    
+    
 }
 
