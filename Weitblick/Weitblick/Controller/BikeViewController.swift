@@ -21,7 +21,7 @@ class BikeViewController: UIViewController {
     let locationManager = CLLocationManager()
     let regionInMeters : Double = 1000;
     //var projectTitle : String = ""
-    //var projectId : Int = -1;
+    var projectId : Int = -1;
 
     @IBOutlet weak var speedLbl: UILabel!
     @IBOutlet weak var distanceLbl: UILabel!

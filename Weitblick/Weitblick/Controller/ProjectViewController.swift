@@ -127,12 +127,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
 
               }
         
-              if segue.destination is BikeViewController
-                        {
-                            let bikeViewController = segue.destination as? BikeViewController
-                            bikeViewController!.project_object = self.project_object
-
-                        }
+            
           }
     
     
