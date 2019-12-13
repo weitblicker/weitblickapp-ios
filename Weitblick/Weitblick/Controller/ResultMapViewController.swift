@@ -13,7 +13,8 @@ class ResultMapViewController: UIViewController ,UITableViewDataSource, UITableV
     
 
     var DistanceText = String()
-     var DonationText = String()
+    var DonationText = String()
+    var project: Project?
     
     @IBOutlet weak var totalDistance: UILabel!
     @IBOutlet weak var totalDonation: UILabel!

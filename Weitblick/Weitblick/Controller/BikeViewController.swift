@@ -119,11 +119,13 @@ class BikeViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let tabbar = self.tabBarController as! TabBarController
         if segue.destination is MapViewController
         {
             let mapViewController = segue.destination as? MapViewController
             mapViewController?.locationManager = self.locationManager
             mapViewController?.projectid = UserDefaults.standard.integer(forKey: "projectID")
+            mapViewController?.project = tabbar.defaultProject
 
         }
     }

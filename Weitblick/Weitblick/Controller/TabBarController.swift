@@ -10,6 +10,8 @@ import UIKit
 import SwipeableTabBarController
 
 class TabBarController: SwipeableTabBarController,UINavigationControllerDelegate {
+    
+    var defaultProject : Project?
 
     override func viewDidLoad() {
         super.viewDidLoad()

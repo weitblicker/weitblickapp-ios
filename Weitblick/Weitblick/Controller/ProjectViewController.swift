@@ -147,6 +147,9 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         let projectID = self.projectList[sender.tag].getID
         let projectName = self.projectList[sender.tag].getName
         
+        let project = self.projectList[sender.tag]
+        let tabbar = self.tabBarController as! TabBarController
+        tabbar.defaultProject = project
         UserDefaults.standard.set(projectID, forKey: "projectID")
         UserDefaults.standard.set(projectName, forKey: "projectName")
         self.tabBarController?.selectedIndex = 2

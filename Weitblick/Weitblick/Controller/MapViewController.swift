@@ -29,6 +29,7 @@ class MapViewController: UIViewController {
     var end : Date = Date()
     var tours = UserDefaults.standard.integer(forKey: "tours")
     var projectid: Int = 0
+    var project : Project?
 
     @IBOutlet weak var distanceLbl: UILabel!
     @IBOutlet weak var speedLbl: UILabel!
@@ -39,6 +40,12 @@ class MapViewController: UIViewController {
     @IBAction func toLocationButton(_ sender: UIButton) {
          map.setCenter(map.userLocation.coordinate, animated: true)
     }
+    
+    @IBAction func showProjectInfo(_ sender: Any) {
+        self.performSegue(withIdentifier: "showProjectInfo", sender: self)
+    }
+    
+    
     override func viewDidLoad() {
         self.navigationItem.hidesBackButton = true
         self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop500"), for: UIControl.State.normal)
@@ -173,8 +180,18 @@ class MapViewController: UIViewController {
             var DestViewController : ResultMapViewController = segue.destination as! ResultMapViewController
             DestViewController.DistanceText = distanceLbl.text ?? "fehler"
             DestViewController.DonationText = donationLbl.text ?? "fehler"
+            DestViewController.project = self.project
 
         }
+        
+        if segue.destination is ProjectDetailViewController{
+            var DestViewController : ProjectDetailViewController = segue.destination as! ProjectDetailViewController
+            DestViewController.project_object = self.project
+            
+            
+            
+        }
+        
     }
 }
 
@@ -223,6 +240,9 @@ extension MapViewController : CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
     }
+    
+    
+    
 
     func showErrorMessage(message:String) {
         let alertView = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
@@ -231,6 +251,11 @@ extension MapViewController : CLLocationManagerDelegate{
         alertView.addAction(OKAction)
         self.present(alertView, animated: true, completion:nil)
     }
+    
+    
+    
+    
+    
 }
 
 
