@@ -8,19 +8,91 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
     
     @IBOutlet weak var checkbox: UIButton!
     
-    @IBAction func displayPopover(_ sender: UIButton) {
-//        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "PopoverViewController")
-//        vc.modalPresentationStyle = .popover
-//        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
-//        popover.barButtonItem = sender
-//        present(vc, animated: true, completion:nil)
+//    @IBAction func showPopoverButtonAction(_ sender: Any) {
+//    //get the button frame
+//    /* 1 */
+//    let button = sender as? UIButton
+//    let buttonFrame = button?.frame ?? CGRect.zero
+//
+//    /* 2 */
+//    //Configure the presentation controller
+//    let popoverContentController = self.storyboard?.instantiateViewController(withIdentifier: "PopOverViewController") as? PopOverViewController
+//    popoverContentController?.modalPresentationStyle = .popover
+//
+//    /* 3 */
+//    if let popoverPresentationController = popoverContentController?.popoverPresentationController {
+//    popoverPresentationController.permittedArrowDirections = .up
+//    popoverPresentationController.sourceView = self.view
+//    popoverPresentationController.sourceRect = buttonFrame
+//        popoverPresentationController.delegate = self as! UIPopoverPresentationControllerDelegate
+//    if let popoverController = popoverContentController {
+//    present(popoverController, animated: true, completion: nil)
+//    }
+//    }
+//    }
+//
+//    //UIPopoverPresentationControllerDelegate inherits from UIAdaptivePresentationControllerDelegate, we will use this method to define the presentation style for popover presentation controller
+//    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+//    return .none
+//    }
+//
+//    //UIPopoverPresentationControllerDelegate
+//    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+//
+//    }
+//
+//    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
+//    return true
+//    }
+//
+    
+    
+    //popover versuch 2
+//    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+//           return .none
+//       }
+//       
+//       override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//           
+//           // All popover segues should be popovers even on iPhone.
+//           if let popoverController = segue.destination.popoverPresentationController, let button = sender as? UIButton {
+//               popoverController.delegate = self
+//               popoverController.sourceRect = button.bounds
+//           }
+//           
+//           guard let identifier = segue.identifier, let segueIdentifer = SegueIdentifier(rawValue: PopOverViewController) else { return }
+//           if segueIdentifer == .showObjects, let objectsViewController = segue.destination as? PopOverViewController {
+//               
+//           }
+//       }
+    
+    
+    //ende 2
+    
+    //Popover 3
+    
+    @IBAction func go(){
+        print ("IN GO")
+        self.performSegue(withIdentifier: "go", sender: self)
     }
+
+   func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    let controller = segue.destination
+        if let nv = controller.popoverPresentationController{
+            nv.delegate = self
+        }
+        
+    }
+
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+    //ende 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
