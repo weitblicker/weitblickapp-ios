@@ -13,6 +13,14 @@ class RegisterViewController: UIViewController {
     
     @IBOutlet weak var checkbox: UIButton!
     
+    @IBAction func displayPopover(_ sender: UIButton) {
+//        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "PopoverViewController")
+//        vc.modalPresentationStyle = .popover
+//        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
+//        popover.barButtonItem = sender
+//        present(vc, animated: true, completion:nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
