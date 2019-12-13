@@ -23,11 +23,11 @@ class RouteViewController: UIViewController,UITableViewDataSource, UITableViewDe
         
         var distance = routeList[indexPath.row].getDistance
         distance = round(distance*100)/100
-        cell.route.text = distance.description + " km"
+        cell.route.text = distance.description
         var donation = routeList[indexPath.row].getDonation
         donation = round(donation*100)/100
-        cell.donation.text = donation.description + " €"
-        cell.time.text = routeList[indexPath.row].getDuration.description + " min"
+        cell.donation.text = donation.description
+        cell.time.text = routeList[indexPath.row].getDuration.description 
         cell.date.text = routeList[indexPath.row].getDate.dateAndTimetoString()
         return cell
         
