@@ -874,14 +874,14 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKm-qU-ea0">
-                                <rect key="frame" x="347" y="105" width="33" height="31"/>
+                                <rect key="frame" x="347" y="93" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="ZPb-U2-prP"/>
-                                    <constraint firstAttribute="width" constant="33" id="xEe-u8-YoO"/>
+                                    <constraint firstAttribute="height" constant="50" id="500-Dc-PgL"/>
+                                    <constraint firstAttribute="width" constant="50" id="MNL-an-i6v"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <size key="titleShadowOffset" width="50" height="50"/>
-                                <state key="normal" image="location.fill" catalog="system"/>
+                                <state key="normal" image="centerLocationOn500"/>
                                 <connections>
                                     <action selector="centerLocationButton:" destination="ZAK-1p-taM" eventType="touchUpInside" id="UAp-Hz-ewJ"/>
                                 </connections>
@@ -891,14 +891,13 @@
                         <constraints>
                             <constraint firstItem="gOX-4j-pS0" firstAttribute="bottom" secondItem="EKi-jp-S9g" secondAttribute="bottom" id="3Id-hk-XuE"/>
                             <constraint firstItem="Uvs-X6-eOW" firstAttribute="top" secondItem="gOX-4j-pS0" secondAttribute="top" constant="37" id="6bB-os-eBr"/>
-                            <constraint firstItem="pKm-qU-ea0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EKi-jp-S9g" secondAttribute="trailing" constant="-67" id="8W9-2O-pyD"/>
-                            <constraint firstItem="pKm-qU-ea0" firstAttribute="top" secondItem="gOX-4j-pS0" secondAttribute="top" constant="61" id="9KS-41-NHB"/>
                             <constraint firstItem="EKi-jp-S9g" firstAttribute="leading" secondItem="Uvs-X6-eOW" secondAttribute="trailing" constant="-320" id="DQb-FT-UUF"/>
+                            <constraint firstItem="EKi-jp-S9g" firstAttribute="top" secondItem="pKm-qU-ea0" secondAttribute="bottom" constant="-99" id="Db8-l7-rJQ"/>
                             <constraint firstItem="gOX-4j-pS0" firstAttribute="trailing" secondItem="Uvs-X6-eOW" secondAttribute="trailing" constant="94" id="FRR-kj-0Xa"/>
                             <constraint firstItem="EKi-jp-S9g" firstAttribute="centerX" secondItem="gOX-4j-pS0" secondAttribute="centerX" id="LMu-Pe-EpQ"/>
                             <constraint firstItem="gOX-4j-pS0" firstAttribute="bottom" secondItem="59Y-iZ-v8d" secondAttribute="bottom" constant="29" id="RuQ-Ni-NQU"/>
                             <constraint firstItem="EKi-jp-S9g" firstAttribute="trailing" secondItem="gOX-4j-pS0" secondAttribute="trailing" id="WqK-tn-1CD"/>
-                            <constraint firstItem="pKm-qU-ea0" firstAttribute="leading" relation="lessThanOrEqual" secondItem="gOX-4j-pS0" secondAttribute="leading" constant="347" id="b2z-jK-6Ea"/>
+                            <constraint firstItem="pKm-qU-ea0" firstAttribute="leading" secondItem="EKi-jp-S9g" secondAttribute="trailing" constant="-67" id="dmj-dq-Huv"/>
                             <constraint firstItem="EKi-jp-S9g" firstAttribute="leading" secondItem="gOX-4j-pS0" secondAttribute="leading" id="eiu-pv-Hki"/>
                             <constraint firstItem="59Y-iZ-v8d" firstAttribute="centerX" secondItem="gOX-4j-pS0" secondAttribute="centerX" id="kck-PR-4HM"/>
                             <constraint firstItem="Uvs-X6-eOW" firstAttribute="leading" secondItem="gOX-4j-pS0" secondAttribute="leading" constant="80" id="lxJ-w9-Gtd"/>
@@ -985,12 +984,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wxR-u4-4YA">
-                                <rect key="frame" x="334" y="264" width="45" height="42"/>
+                                <rect key="frame" x="334" y="261" width="45" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="Y6k-vI-fFp"/>
+                                    <constraint firstAttribute="height" constant="45" id="dHP-o3-iLk"/>
+                                    <constraint firstAttribute="width" constant="45" id="iEl-KN-0Uy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" image="location.fill" catalog="system"/>
+                                <state key="normal" image="centerLocationOn500"/>
                                 <connections>
                                     <action selector="toLocationButton:" destination="jM0-XC-gLU" eventType="touchUpInside" id="Upd-XJ-Kj4"/>
                                 </connections>
@@ -999,14 +999,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="R76-Lb-x2q" secondAttribute="trailing" constant="200" id="03l-at-sYH"/>
-                            <constraint firstItem="wxR-u4-4YA" firstAttribute="top" secondItem="zRI-y1-W90" secondAttribute="top" constant="220" id="6RX-wP-RQL"/>
                             <constraint firstItem="DHH-oU-FKg" firstAttribute="top" secondItem="zRI-y1-W90" secondAttribute="top" constant="53" id="9pT-uC-090"/>
                             <constraint firstItem="DB3-QT-6ap" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XBf-40-Vp1" secondAttribute="trailing" constant="8" symbolic="YES" id="BBm-1y-E3r"/>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="bottom" secondItem="VRs-ev-0P4" secondAttribute="bottom" constant="36" id="CJ9-Mr-2og"/>
+                            <constraint firstItem="wxR-u4-4YA" firstAttribute="leading" secondItem="Jv4-Pi-exn" secondAttribute="trailing" constant="-80" id="HKq-NH-DVY"/>
                             <constraint firstItem="Jv4-Pi-exn" firstAttribute="leading" secondItem="tnf-Td-zRP" secondAttribute="leadingMargin" constant="-20" id="LZS-sv-og8"/>
                             <constraint firstItem="DHH-oU-FKg" firstAttribute="top" secondItem="XBf-40-Vp1" secondAttribute="bottom" constant="-69" id="Ni5-XV-5tp"/>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="DB3-QT-6ap" secondAttribute="trailing" constant="87" id="OeZ-ra-ZaB"/>
-                            <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="wxR-u4-4YA" secondAttribute="trailing" constant="35" id="RDI-5j-8Ew"/>
+                            <constraint firstItem="Jv4-Pi-exn" firstAttribute="top" secondItem="wxR-u4-4YA" secondAttribute="bottom" constant="-81.5" id="PL0-jM-8CQ"/>
                             <constraint firstItem="XBf-40-Vp1" firstAttribute="leading" secondItem="zRI-y1-W90" secondAttribute="leading" constant="87" id="SPw-xS-X2m"/>
                             <constraint firstItem="djn-zQ-deb" firstAttribute="centerY" secondItem="VRs-ev-0P4" secondAttribute="centerY" id="TmN-i9-vGQ"/>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="VRs-ev-0P4" secondAttribute="trailing" constant="133" id="TsV-qY-yKl"/>
@@ -1019,7 +1019,6 @@
                             <constraint firstItem="DB3-QT-6ap" firstAttribute="top" secondItem="DHH-oU-FKg" secondAttribute="bottom" constant="8.5" id="qmC-wL-ezk"/>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="djn-zQ-deb" secondAttribute="trailing" constant="30" id="rh4-9Q-c7T"/>
                             <constraint firstItem="XBf-40-Vp1" firstAttribute="top" secondItem="R76-Lb-x2q" secondAttribute="bottom" constant="8.5" id="u5c-Sl-LH6"/>
-                            <constraint firstItem="djn-zQ-deb" firstAttribute="leading" secondItem="wxR-u4-4YA" secondAttribute="leading" id="uPs-Hu-FSC"/>
                             <constraint firstItem="Jv4-Pi-exn" firstAttribute="bottom" secondItem="zRI-y1-W90" secondAttribute="bottom" constant="30" id="xe0-Bf-VGO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zRI-y1-W90"/>
@@ -2694,13 +2693,13 @@
     <resources>
         <image name="Weitblick" width="512" height="187.5"/>
         <image name="bike" width="50" height="50"/>
+        <image name="centerLocationOn500" width="500" height="500"/>
         <image name="checkbox_empty" width="50" height="50"/>
         <image name="chevron.right" catalog="system" width="48" height="64"/>
         <image name="heart" catalog="system" width="64" height="54"/>
         <image name="info.circle" catalog="system" width="64" height="60"/>
         <image name="kalender" width="30" height="30"/>
         <image name="list.dash" catalog="system" width="32" height="32"/>
-        <image name="location.fill" catalog="system" width="64" height="56"/>
         <image name="more" width="30" height="6"/>
         <image name="orangeButtonPlay500" width="500" height="500"/>
         <image name="orangeButtonStop500" width="500" height="500"/>
