@@ -67,11 +67,16 @@ class RegisterService {
 
                  guard let userKey = received["key"] as? String else {
                      user.set(false, forKey: "isRegisterd")
-                    completion(received.description)
-                      return
-                                   }
+                    // completion(received.description)
+                    
+                              self.checkResponse(description: received.description){ (error) in
+                              print(error)
+                              completion(error)
+                                           }
+                    
+                   return   }
                   
-                    completion(received.description)
+                    // completion(received.description)
                         //Alle User Daten speichern
                        // user.set(userKey, forKey: "key")
                         user.set(true, forKey: "isRegisterd")
@@ -86,11 +91,38 @@ class RegisterService {
 
           task.resume()
 
-
-
-        
-        
+   
     }
+    
+    
+    static func checkResponse(description: String, error: @escaping (_ responseString : String) -> ()){
+        
+         print("in check Response")
+         print(description)
+       
+       if (description.contains("Dieses Passwort ist zu kurz. Es muss mindestens 8 Zeichen enthalten.")){
+             error("Dieses Passwort ist zu kurz. Es muss mindestens 8 Zeichen enthalten.")
+             return
+         }
+       else if (description.contains("Dieses Passwort ist zu üblich.")){
+          error("Dieses Passwort ist zu üblich.")
+             return
+         }
+        else if (description.contains("Dieses Passwort ist komplett numerisch.")){
+                 error("Dieses Passwort ist komplett numerisch.")
+                    return
+                }
+        else if (description.contains("User mit diesem username existiert bereits.")){
+                 error("User mit diesem username existiert bereits.")
+                    return
+                }
+       else if(description.contains("Gib eine gültige E-Mail Adresse an.")){
+                error("Gib eine gültige E-Mail Adresse an.")
+                    return
+        }
+        
+           
+     }
   
 
 }
