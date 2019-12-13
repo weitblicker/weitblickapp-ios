@@ -12,6 +12,7 @@ struct Constants{
     static let url  = "https://new.weitblicker.org"
     static let loginURL = "https://new.weitblicker.org/rest/auth/login/"
     static let restURL  = "https://new.weitblicker.org/rest"
+    static let projectURL  = "https://new.weitblicker.org/rest/projects/"
     static let mediaURL = "https://new.weitblicker.org/media"
     static let cycleURL = "https://new.weitblicker.org/rest/cycle/segment/"
     static let RoutesURL = "https://new.weitblicker.org/rest/cycle/tours/"

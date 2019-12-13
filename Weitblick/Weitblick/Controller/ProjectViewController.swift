@@ -142,8 +142,17 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
    
     
     @objc func goToCycle(sender:UIButton!){
+<<<<<<< Updated upstream
         UserDefaults.standard.set(project_object?.getID, forKey: "projectID")
         UserDefaults.standard.set(project_object?.getName, forKey: "projectName")
+=======
+        
+        
+        let projectID = self.projectList[sender.tag].getID
+        let projectName = self.projectList[sender.tag].getName
+        UserDefaults.standard.set(projectID, forKey: "projectID")
+        UserDefaults.standard.set(projectName, forKey: "projectName")
+>>>>>>> Stashed changes
         self.tabBarController?.selectedIndex = 2
         
     }
