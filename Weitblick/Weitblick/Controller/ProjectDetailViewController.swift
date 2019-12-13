@@ -52,6 +52,8 @@ class ProjectDetailViewController: UIViewController {
     @IBOutlet weak var project_detail_description: UILabel!
     
     
+    
+    
     @IBOutlet weak var map: MKMapView!
     var count = 0
     var postCount = 0

@@ -13,11 +13,14 @@ class ResultMapViewController: UIViewController ,UITableViewDataSource, UITableV
     
 
     var DistanceText = String()
-     var DonationText = String()
+    var DonationText = String()
+    var project: Project?
     
     @IBOutlet weak var totalDistance: UILabel!
     @IBOutlet weak var totalDonation: UILabel!
-
+    
+    @IBOutlet weak var projectTitle: UILabel!
+    
     @IBOutlet weak var tableView: UITableView!
       let names = ["SponsorA", "SponsorB", "SponsorC","SponsorD"]
       
@@ -41,6 +44,12 @@ class ResultMapViewController: UIViewController ,UITableViewDataSource, UITableV
         
         totalDistance.text = DistanceText
         totalDonation.text = DonationText
+        if(UserDefaults.standard.string(forKey: "projectName") != nil){
+        self.projectTitle.text = UserDefaults.standard.string(forKey: "projectName")
+        }else{
+           self.projectTitle.text = "Kein Projekt ausgewählt"
+        }
+    
     }
     
     @IBAction func backButtonClicked(_ sender: Any) {

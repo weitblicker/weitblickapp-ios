@@ -135,6 +135,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
 
               }
         
+        
             
           }
     
@@ -142,8 +143,18 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
    
     
     @objc func goToCycle(sender:UIButton!){
-        UserDefaults.standard.set(project_object?.getID, forKey: "projectID")
-        UserDefaults.standard.set(project_object?.getName, forKey: "projectName")
+        
+        
+        let projectID = self.projectList[sender.tag].getID
+        let projectName = self.projectList[sender.tag].getName
+        
+        let project = self.projectList[sender.tag]
+        let tabbar = self.tabBarController as! TabBarController
+        tabbar.defaultProject = project
+        print("IN GO TO CYCLE")
+        print(tabbar.defaultProject?.getName)
+        UserDefaults.standard.set(projectID, forKey: "projectID")
+        UserDefaults.standard.set(projectName, forKey: "projectName")
         self.tabBarController?.selectedIndex = 2
         
     }

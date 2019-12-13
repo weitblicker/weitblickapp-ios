@@ -8,11 +8,36 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
     
     @IBOutlet weak var checkbox: UIButton!
     
+
+   
+ 
+
+   
+    @IBOutlet var popover: UIScrollView!
+    
+    @IBAction func go(){
+        
+        self.view.addSubview(popover)
+        popover.center = self.view.center
+       
+    }
+    
+    
+    @IBAction func backToRegister(_ sender: Any) {
+        self.popover.removeFromSuperview()
+    }
+    
+
+
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
