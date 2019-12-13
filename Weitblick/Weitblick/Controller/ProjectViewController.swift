@@ -59,8 +59,16 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.project_button_bike.tag = indexPath.row
         //cell.project_button_bike.addTarget(self, action: #selector("ProjectViewController.goToCycle"), for: UIControl.Event.touchUpInside)
         cell.project_button_bike.addTarget(self, action: #selector(ProjectViewController.goToCycle), for: .touchUpInside)
-        
-        
+//
+//        print(project_object?.getCycleIDCount.description)
+//               if(project_object?.getCycleIDCount == 0){
+//                   cell.project_button_bike.alpha = 0
+//
+//               } else {
+//                     cell.project_button_bike.addTarget(self, action: #selector(ProjectViewController.goToCycle), for: .touchUpInside)
+//                          cell.project_button_bike.tag = indexPath.row
+//               }
+//
         
         //let id = self.locationListID[indexPath.row]
         //let locationString = self.getLocationAddressWithID(id: id)

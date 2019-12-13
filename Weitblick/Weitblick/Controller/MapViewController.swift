@@ -36,6 +36,9 @@ class MapViewController: UIViewController {
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var stopPlayButton: UIButton!
 
+    @IBAction func toLocationButton(_ sender: UIButton) {
+         map.setCenter(map.userLocation.coordinate, animated: true)
+    }
     override func viewDidLoad() {
         self.navigationItem.hidesBackButton = true
         self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop"), for: UIControl.State.normal)
