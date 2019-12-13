@@ -41,7 +41,7 @@ class MapViewController: UIViewController {
     }
     override func viewDidLoad() {
         self.navigationItem.hidesBackButton = true
-        self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop"), for: UIControl.State.normal)
+        self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop500"), for: UIControl.State.normal)
         super.viewDidLoad()
         checkLocationServices()
         distanceLbl.text = "0.00 km"
@@ -143,12 +143,12 @@ class MapViewController: UIViewController {
             startTracking = false
             self.timer.fire()
             self.timer.invalidate()
-            self.stopPlayButton.setImage(UIImage(named: "greenButtonPlay"), for: UIControl.State.normal)
+            self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop500"), for: UIControl.State.normal)
         }else{
             startTracking = true
             hasbeenPaused = true;
             setupSegmentations()
-            self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop"), for: UIControl.State.normal)
+            self.stopPlayButton.setImage(UIImage(named: "greenButtonPlay500"), for: UIControl.State.normal)
 
         }
     }
