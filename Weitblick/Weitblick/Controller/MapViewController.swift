@@ -143,12 +143,12 @@ class MapViewController: UIViewController {
             startTracking = false
             self.timer.fire()
             self.timer.invalidate()
-            self.stopPlayButton.setImage(UIImage(named: "greenButtonPlay"), for: UIControl.State.normal)
+            self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop"), for: UIControl.State.normal)
         }else{
             startTracking = true
             hasbeenPaused = true;
             setupSegmentations()
-            self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop"), for: UIControl.State.normal)
+            self.stopPlayButton.setImage(UIImage(named: "greenButtonPlay"), for: UIControl.State.normal)
 
         }
     }
