@@ -22,7 +22,6 @@ class BikeViewController: UIViewController {
     let regionInMeters : Double = 1000;
     //var projectTitle : String = ""
     var projectId : Int = -1;
-    var project : Project?
 
     @IBOutlet weak var speedLbl: UILabel!
     @IBOutlet weak var distanceLbl: UILabel!
@@ -40,10 +39,7 @@ class BikeViewController: UIViewController {
             self.performSegue(withIdentifier: "showLogin", sender: self)
         }else{
             if(UserDefaults.standard.integer(forKey: "projectID") != 0){
-                DataService.getProjectWithID(id: UserDefaults.standard.integer(forKey: "projectID")) { (project) in
-                    self.project = project
-                    self.performSegue(withIdentifier: "goToMapView", sender: self)
-                }
+                self.performSegue(withIdentifier: "goToMapView", sender: self)
             }else{
                 self.showAlertMess(userMessage: "Kein Projekt ausgewählt!")
             }
@@ -126,10 +122,7 @@ class BikeViewController: UIViewController {
             let mapViewController = segue.destination as? MapViewController
             mapViewController?.locationManager = self.locationManager
             mapViewController?.projectid = UserDefaults.standard.integer(forKey: "projectID")
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
         }
     }
     
