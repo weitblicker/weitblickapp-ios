@@ -135,6 +135,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
 
               }
         
+        
             
           }
     
@@ -150,6 +151,8 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         let project = self.projectList[sender.tag]
         let tabbar = self.tabBarController as! TabBarController
         tabbar.defaultProject = project
+        print("IN GO TO CYCLE")
+        print(tabbar.defaultProject?.getName)
         UserDefaults.standard.set(projectID, forKey: "projectID")
         UserDefaults.standard.set(projectName, forKey: "projectName")
         self.tabBarController?.selectedIndex = 2

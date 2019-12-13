@@ -76,18 +76,35 @@ class RegisterViewController: UIViewController, UIPopoverPresentationControllerD
     
     //Popover 3
     
+   
+    @IBOutlet var popover: UIScrollView!
+    
     @IBAction func go(){
         print ("IN GO")
-        self.performSegue(withIdentifier: "go", sender: self)
+        self.view.addSubview(popover)
+        popover.center = self.view.center
+       
     }
-
-   func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    let controller = segue.destination
+    
+    
+    @IBAction func backToRegister(_ sender: Any) {
+        self.popover.removeFromSuperview()
+    }
+    
+/*   func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if (segue.identifier == "go"){
+        let dest = segue.destination
+        if let pop = dest.popoverPresentationController{
+            pop.delegate = self
+        }
+    }
+  /*  let controller = segue.destination
         if let nv = controller.popoverPresentationController{
             nv.delegate = self
-        }
+        }*/
         
-    }
+    }*/
+    
 
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none

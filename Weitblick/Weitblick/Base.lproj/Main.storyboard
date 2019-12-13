@@ -729,7 +729,7 @@
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                                 <state key="normal" title="AGBs"/>
                                 <connections>
-                                    <action selector="popoverAction:" destination="Z2P-P4-p4J" eventType="touchUpInside" id="4Eo-nt-G3s"/>
+                                    <action selector="go" destination="Z2P-P4-p4J" eventType="touchUpInside" id="Z0O-rM-K5B"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -786,13 +786,66 @@
                         <outlet property="email" destination="gIs-m7-TWx" id="mUZ-gR-lmg"/>
                         <outlet property="password" destination="3qO-4e-sC1" id="K7Y-mH-uGC"/>
                         <outlet property="password2" destination="u4F-uX-OhA" id="iSd-lD-o6y"/>
+                        <outlet property="popover" destination="LHs-Lm-jDj" id="AYK-wG-cHa"/>
                         <outlet property="username" destination="30i-a8-gkm" id="bsb-Xy-te7"/>
-                        <segue destination="2V5-p7-4o3" kind="popoverPresentation" identifier="go" popoverAnchorView="Z9D-pS-MTE" id="nK7-vm-KCn">
-                            <popoverArrowDirection key="popoverArrowDirection" down="YES"/>
-                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0jQ-fV-PAa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="LHs-Lm-jDj">
+                    <rect key="frame" x="0.0" y="0.0" width="350" height="500"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BnI-cl-cRd">
+                            <rect key="frame" x="16" y="44" width="318" height="436"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AGB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USb-6C-yel">
+                                    <rect key="frame" x="32" y="52" width="250" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text Text TExt Text Text TExt Text Text TExt Text Text TExt Text Text TExt Text Text TExt Text Text TExt " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9v-sW-uAq">
+                                    <rect key="frame" x="32" y="101" width="250" height="192"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="192" id="hCj-FE-oJY"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="o9v-sW-uAq" firstAttribute="leading" secondItem="BnI-cl-cRd" secondAttribute="leading" constant="32" id="BhR-Kx-21q"/>
+                                <constraint firstItem="USb-6C-yel" firstAttribute="leading" secondItem="BnI-cl-cRd" secondAttribute="leading" constant="32" id="E9Z-Oj-Spc"/>
+                                <constraint firstItem="USb-6C-yel" firstAttribute="centerX" secondItem="BnI-cl-cRd" secondAttribute="centerX" constant="-2" id="QNU-Pm-1Ja"/>
+                                <constraint firstItem="o9v-sW-uAq" firstAttribute="top" secondItem="USb-6C-yel" secondAttribute="bottom" constant="28" id="Tva-L1-tw4"/>
+                                <constraint firstAttribute="trailing" secondItem="o9v-sW-uAq" secondAttribute="trailing" constant="36" id="V1A-Nr-chI"/>
+                                <constraint firstItem="USb-6C-yel" firstAttribute="top" secondItem="BnI-cl-cRd" secondAttribute="top" constant="52" id="ua3-f9-TT4"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6k9-da-ATh">
+                            <rect key="frame" x="136" y="359" width="78" height="30"/>
+                            <state key="normal" title="Verstanden"/>
+                            <connections>
+                                <action selector="backToRegister:" destination="Z2P-P4-p4J" eventType="touchUpInside" id="ANi-Db-HxO"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="6k9-da-ATh" secondAttribute="trailing" constant="136" id="0XF-XI-o3r"/>
+                        <constraint firstItem="6k9-da-ATh" firstAttribute="leading" secondItem="bjP-4M-ZuY" secondAttribute="leading" constant="136" id="DRG-WK-aJe"/>
+                        <constraint firstItem="6k9-da-ATh" firstAttribute="top" secondItem="bjP-4M-ZuY" secondAttribute="top" constant="315" id="F10-xj-hOL"/>
+                        <constraint firstAttribute="bottom" secondItem="6k9-da-ATh" secondAttribute="bottom" constant="111" id="FOw-pe-WJC"/>
+                        <constraint firstItem="BnI-cl-cRd" firstAttribute="centerX" secondItem="LHs-Lm-jDj" secondAttribute="centerX" id="Gj7-mC-jqN"/>
+                        <constraint firstItem="BnI-cl-cRd" firstAttribute="leading" secondItem="bjP-4M-ZuY" secondAttribute="leading" constant="16" id="J78-XS-pRc"/>
+                        <constraint firstItem="BnI-cl-cRd" firstAttribute="top" secondItem="bjP-4M-ZuY" secondAttribute="top" id="MDc-ug-U9H"/>
+                        <constraint firstItem="bjP-4M-ZuY" firstAttribute="bottom" secondItem="BnI-cl-cRd" secondAttribute="bottom" constant="20" id="Rxi-eR-oP5"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="bjP-4M-ZuY"/>
+                    <viewLayoutGuide key="contentLayoutGuide" id="M9w-qm-G62"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="WHO-ne-9vZ"/>
+                </scrollView>
             </objects>
             <point key="canvasLocation" x="-1040.5797101449275" y="430.91517857142856"/>
         </scene>
@@ -801,7 +854,7 @@
             <objects>
                 <viewController id="2V5-p7-4o3" customClass="PopOverViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oPl-xe-CXk">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="637"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="P01-yS-5v1"/>
@@ -810,7 +863,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Grb-Rl-pbq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-286.95652173913044" y="638.83928571428567"/>
+            <point key="canvasLocation" x="-294" y="640"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="h4h-wg-5W0">
@@ -1151,7 +1204,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Danke, dass Du das Projekt " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYh-X8-MGZ">
-                                <rect key="frame" x="73" y="179.5" width="259" height="73"/>
+                                <rect key="frame" x="73" y="175.5" width="259" height="81"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2297,13 +2350,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5t-Wi-upZ">
-                                                    <rect key="frame" x="20" y="36" width="34" height="22"/>
+                                                    <rect key="frame" x="20" y="36" width="34" height="19"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IRO-1a-ywp">
-                                                    <rect key="frame" x="140" y="33" width="96" height="22"/>
+                                                    <rect key="frame" x="140" y="33" width="96" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="96" id="6rb-Q5-pt8"/>
                                                     </constraints>
@@ -2324,7 +2377,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5,73km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXe-hZ-M1m">
-                                                    <rect key="frame" x="276" y="31" width="87" height="22"/>
+                                                    <rect key="frame" x="276" y="31" width="87" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="87" id="OCc-M8-TJd"/>
                                                     </constraints>
@@ -2403,7 +2456,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45 " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qv-7t-HUZ">
-                                                    <rect key="frame" x="124" y="19.5" width="51.5" height="22"/>
+                                                    <rect key="frame" x="124" y="21.5" width="51.5" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="51.5" id="FmN-sA-hTY"/>
                                                     </constraints>
@@ -2753,7 +2806,7 @@
         <image name="heart" catalog="system" width="64" height="54"/>
         <image name="info.circle" catalog="system" width="64" height="60"/>
         <image name="kalender" width="30" height="30"/>
-        <image name="list.dash" catalog="system" width="32" height="32"/>
+        <image name="list.dash" catalog="system" width="64" height="42"/>
         <image name="more" width="30" height="6"/>
         <image name="orangeButtonPlay500" width="500" height="500"/>
         <image name="orangeButtonStop500" width="500" height="500"/>

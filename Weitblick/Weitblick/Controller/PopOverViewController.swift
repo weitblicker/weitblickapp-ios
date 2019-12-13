@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PopOverViewController: UIViewController {
+class PopOverViewController: UIViewController, UIPopoverPresentationControllerDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,5 +20,12 @@ class PopOverViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     }
+    
+    
+      
+
+      func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+          return .none
+      }
 
 }
