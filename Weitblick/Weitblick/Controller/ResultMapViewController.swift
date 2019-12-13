@@ -33,6 +33,7 @@ class ResultMapViewController: UIViewController ,UITableViewDataSource, UITableV
           let cell =  tableView.dequeueReusableCell(withIdentifier:"sponsor_cell", for: indexPath)as! SponsorTableViewCell
           let name = names[indexPath.row]
           cell.name.text = name
+          cell.spon_image.image = UIImage(named: "weitblickLogoCircle")
           return cell
           
       }
