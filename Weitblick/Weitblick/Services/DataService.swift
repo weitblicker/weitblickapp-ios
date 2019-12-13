@@ -96,7 +96,97 @@ class DataService{
     
     static func getProjectWithID (id: Int, completion: @escaping (_ project: Project) -> ()){
         
-        
+        print("IN  PROJECT WITH ID")
+                var resultimages : [Image] = []
+                var projectReturn : Project?
+                let string = Constants.projectURL + id.description + "/"
+                let url = NSURL(string: string)
+                let str = "surfer:hangloose"
+                let test2 = Data(str.utf8).base64EncodedString();
+                var task = URLRequest(url:url! as URL)
+                task.httpMethod = "GET"
+                task.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                task.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+                            
+                print("Vor task")
+                let request = URLSession.shared.dataTask(with: task){(data, response, error) in
+                    print("in task")
+                    let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+
+                    print("vor array")
+                    if let projectArray = jsondata as? NSArray{
+                        print("nach array")
+                        for project in projectArray{
+                        if let projectDict = project as? NSDictionary{
+                            guard let id = projectDict.value(forKey: "id")  else { return }
+                            let IDString = id as! String
+                            let projectID = Int.init(IDString)
+                            guard let title = projectDict.value(forKey: "name") else { return }
+                            let projectTitle = title as! String
+                            guard let description = projectDict.value(forKey: "description") else { return }
+                            var projectDescription = description as! String
+                            print(projectDescription)
+                            DataService.getImageURLSFromProjects(string: projectDescription, completion: { (list) in
+                                for listItem in list {
+                                    //print(getURLfromGivenRegexProjects(input: listItem))
+                                    let i = Image(imageURL: getURLfromGivenRegexProjects(input: listItem))
+                                    resultimages.append(i)
+                                }
+                            })
+                                
+                                
+                            
+                            projectDescription = extractRegex(input: projectDescription, regex: DataService.matches(for: Constants.regexReplace, in: projectDescription))
+                            guard let locationJSON = projectDict.value(forKey: "location") else { return }
+                            var location : Location = Location()
+                            if let locationDict = locationJSON as? NSDictionary{
+                                print(locationDict)
+                               guard let id = locationDict.value(forKey: "id")  else { return }
+                                let IDString = id as! String
+                                let locationID = Int.init(IDString)
+                                guard let lat = locationDict.value(forKey: "lat")  else { return }
+                                let latNumber = lat as! NSNumber
+                                let locationLat = Double.init(latNumber)
+                                guard let lng = locationDict.value(forKey: "lng")  else { return }
+                                let lngNumber = lng as! NSNumber
+                                let locationLng = Double.init(lngNumber)
+                                guard let address = locationDict.value(forKey: "address")  else { return }
+                                let locationAddress = address as! String
+                                location = Location(id: locationID!, lat: locationLat, lng: locationLng, address: locationAddress)
+                            }
+                           //self.locationListID.append(projectLocationID)
+                           //guard let partner = projectDict.value(forKey: "partner") else { return }
+                           guard let published = projectDict.value(forKey: "published") else { return }
+                            let projectPublished = Date()// self.handleDate(date: publishedString)
+                           guard let hosts = projectDict.value(forKey: "hosts") else { return }
+                           let resultHosts = hosts as! [String]
+        //                       guard let gallery = projectDict.value(forKey: "gallery") else { return }
+        //                        // Gallery
+        //                        if let imageDict = gallery as? NSDictionary{
+        //                            guard let images = imageDict.value(forKey : "images") else { return }
+        //                            // Images
+        //                            if let imageArray = images as? NSArray{
+        //                                for imgUrls in imageArray{
+        //                                    if let imgDict = imgUrls as? NSDictionary{
+        //                                        guard let url = imgDict.value(forKey : "url") else { return }
+        //                                        let img = Image(imageURL: (url as! String))
+        //                                        resultimages.append(img)
+        //                                    }
+        //                                }
+        //                            }
+        //                        }
+                            let resultGallery = Gallery(images: resultimages)
+                            resultimages = []
+                            projectReturn = Project(id: projectID!, published: projectPublished, name: projectTitle, gallery: resultGallery, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleID:[] )
+                            print("In ProjectReturn \n\n\n\n\n\n ===")
+                        }
+                    }
+                        completion(projectReturn!)
+                    
+                    
+                }
+                }
+                request.resume()
         
     }
     
