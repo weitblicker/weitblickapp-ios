@@ -25,7 +25,7 @@ extension UIImageView {
     }
 }
 
-class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate {
+class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
 
     @IBOutlet weak var profile_image: UIImageView!
@@ -50,6 +50,9 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate {
             print("Nach user data")
         }
       //  profile_image.image = UIImage(named: "profile_image")
+        //imagePickerController(picker: self.imagePicker, didFinishPickingImage image)
+       // imagePicker.delegate = self
+        
         if (UserDefaults.standard.bool(forKey: "isLogged") == true){
             profile_email.text = UserDefaults.standard.string(forKey: "email")
            profile_route.text = UserDefaults.standard.string(forKey: "route")
@@ -91,31 +94,51 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate {
         
     }
     
-    @IBAction func btnClicked() {
+    @IBAction func btnClicked(sender: AnyObject) {
+        
+        
+        
+        
+        var myPickerController = UIImagePickerController()
+        myPickerController.delegate = self
+        myPickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        self.present(myPickerController, animated: true, completion: nil)
 
-            if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+          /*  if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
                 print("Button capture")
 
-                imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
+                imagePicker.delegate = self
                 imagePicker.sourceType = .savedPhotosAlbum
                 imagePicker.allowsEditing = false
 
                 present(imagePicker, animated: true, completion: nil)
-            }
+            }*/
         }
 
-        func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
-            self.dismiss(animated: true, completion: { () -> Void in
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+      didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
-            })
-            print("IN image PICKER")
-
-            self.profile_image.image = image
+       if let image = info[.originalImage] as? UIImage {
+          self.profile_image.image = image
+       }
+       else
+         if let image = info[.editedImage] as? UIImage {
+          self.profile_image.image = image
         }
+         self.dismiss(animated: true, completion: nil)
+    }
     
+
+    /*func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: AnyObject]) {
+
+        let image = info[.originalImage] as? UIImage
+        self.profile_image.image = image
+        self.dismiss(animated: true, completion: nil)
+    }*/
+ 
     
-    
-    
+
 
     func  showErrorMessage(message:String) {
            let alertView = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
