@@ -22,10 +22,13 @@ struct ProjectData : Codable{
 }
 
 
+
+
 class NewsEventViewController: UIViewController {
 
     var projectList : [Project] = []
-
+    
+    @IBOutlet weak var segment_control: UISegmentedControl!
 
     @IBOutlet weak var NewsView: UIView!
 
@@ -33,24 +36,30 @@ class NewsEventViewController: UIViewController {
 
 
     @IBAction func switchView(_ sender: UISegmentedControl) {
+        self.segment_control.backgroundColor = .clear
+               self.segment_control.tintColor = .clear
+        
         if(sender.selectedSegmentIndex==0){
             NewsView.alpha=1
             EventView.alpha=0
-
-
-
+ 
         } else{
             NewsView.alpha=0
             EventView.alpha=1
+            
+            
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         //loginWithData()
+        
         NewsView.alpha=1
         EventView.alpha=0
     }
+    
+    
 
 
   /*  private func loginWithData(){
