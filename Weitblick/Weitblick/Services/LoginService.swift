@@ -105,7 +105,7 @@ class LoginService{
           return
       }
     else if (description.contains("Zugangsdaten stimmen nicht.")){
-       error("Zugangsdaten stimmen nicht.")
+       error("Die angegebenen Zugangsdaten stimmen nicht.")
           return
       }
         

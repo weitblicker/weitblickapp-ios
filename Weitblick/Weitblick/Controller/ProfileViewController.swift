@@ -25,7 +25,7 @@ extension UIImageView {
     }
 }
 
-class ProfileViewController:  UIViewController {
+class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate {
 
 
     @IBOutlet weak var profile_image: UIImageView!
@@ -33,6 +33,12 @@ class ProfileViewController:  UIViewController {
     @IBOutlet weak var profile_password: UILabel!
     @IBOutlet weak var profile_donation: UILabel!
     @IBOutlet weak var profile_route: UILabel!
+    
+    @IBOutlet weak var chooseButton: UIButton!
+    
+    var imagePicker = UIImagePickerController()
+    
+    
     
     @IBAction func button_edit_password(_ sender: Any) {
 
@@ -43,7 +49,7 @@ class ProfileViewController:  UIViewController {
         UserService.getUserData { (user) in
             print("Nach user data")
         }
-        profile_image.image = UIImage(named: "profile_image")
+      //  profile_image.image = UIImage(named: "profile_image")
         if (UserDefaults.standard.bool(forKey: "isLogged") == true){
             profile_email.text = UserDefaults.standard.string(forKey: "email")
            profile_route.text = UserDefaults.standard.string(forKey: "route")
@@ -84,6 +90,32 @@ class ProfileViewController:  UIViewController {
         
         
     }
+    
+    @IBAction func btnClicked() {
+
+            if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+                print("Button capture")
+
+                imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
+                imagePicker.sourceType = .savedPhotosAlbum
+                imagePicker.allowsEditing = false
+
+                present(imagePicker, animated: true, completion: nil)
+            }
+        }
+
+        func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
+            self.dismiss(animated: true, completion: { () -> Void in
+
+            })
+            print("IN image PICKER")
+
+            self.profile_image.image = image
+        }
+    
+    
+    
+    
 
     func  showErrorMessage(message:String) {
            let alertView = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)

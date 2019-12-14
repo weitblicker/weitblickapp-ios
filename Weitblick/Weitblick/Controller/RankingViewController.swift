@@ -9,12 +9,14 @@
 import UIKit
 
 class RankingViewController: UIViewController ,UITableViewDataSource, UITableViewDelegate {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    
+    
+   override func viewDidLoad() {        super.viewDidLoad()
     }
     override func viewWillAppear(_ animated: Bool) {
         loadData()
+    
     }
     
     func loadData(){
@@ -31,7 +33,36 @@ class RankingViewController: UIViewController ,UITableViewDataSource, UITableVie
     @IBOutlet weak var tableView: UITableView!
 
     var userList : [User] = []
-          
+    
+    
+    @IBOutlet weak var filter_switch: UISegmentedControl!
+    
+    
+    @IBAction func indexChange(_ sender: Any) {
+        
+        switch self.filter_switch.selectedSegmentIndex
+           {
+        case 0:
+            //nach km anzeigen
+            print("KM FILTER ON")
+            
+            
+             break
+            
+           case 1:
+            //nach € anzeigen
+            print("€ FILTER ON")
+            
+            
+            break
+              
+           default:
+               break
+           }
+        
+        
+    }
+    
        
        
        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -39,8 +70,6 @@ class RankingViewController: UIViewController ,UITableViewDataSource, UITableVie
        }
     
      
-          
-         
           
           func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
               let cell =  tableView.dequeueReusableCell(withIdentifier:"ranking_cell", for: indexPath)as! RankingTableViewCell
