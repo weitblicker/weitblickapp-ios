@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import HCKalmanFilter
 
 class MapViewController: UIViewController {
 
@@ -30,6 +31,7 @@ class MapViewController: UIViewController {
     var tours = UserDefaults.standard.integer(forKey: "tours")
     var projectid: Int = 0
     var project : Project?
+    var hcKalmanFilter : HCKalmanAlgorithm?
 
     @IBOutlet weak var distanceLbl: UILabel!
     @IBOutlet weak var speedLbl: UILabel!
@@ -199,37 +201,51 @@ class MapViewController: UIViewController {
 extension MapViewController : CLLocationManagerDelegate{
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else{ return }
+        var myLocation: CLLocation = locations.first!
+        
+        if hcKalmanFilter == nil {
+           self.hcKalmanFilter = HCKalmanAlgorithm(initialLocation: myLocation)
+        }
+        else {
+            if let hcKalmanFilter = self.hcKalmanFilter {
+                let kalmanLocation = hcKalmanFilter.processState(currentLocation: myLocation)
+                if(self.startTracking){
+                    //self.showErrorMessage(message: kalmanLocation.description)
+                    print(kalmanLocation)
+                    print(kalmanLocation.horizontalAccuracy)
+                    self.list.append(kalmanLocation)
+                    print(self.list.count)
+                    if(self.list.count >= 2){
+                        var speed = kalmanLocation.speed
+                        if(hasbeenPaused){
+                            hasbeenPaused = false;
+                            speed = -1
+                        }
+
+                        if(!(speed < 0.0)){
+                            let start = self.list[self.list.count-2]
+                            let end = self.list[self.list.count-1]
+                            self.totalDistance += end.distance(from: start)
+                            print("Distance calculated : " + end.distance(from: start).description)
+                            //print(totalDistance.description + " m")
+                            let distanceinKM = self.totalDistance/1000
+                            print((round(distanceinKM*100)/100).description + " km")
+                            self.distanceLbl.text = (round(distanceinKM*100)/100).description + " km"
+                            self.distanceLbl.text = doubleToKm(double: totalDistance)
+                            print("Total Distance: " + distanceLbl.text!)
+                            self.donationLbl.text = (round((distanceinKM*0.1)*100)/100).description + " €"
+                        }
+                        print("speed is negative, no distance added")
+                    }
+                }
+            }
+        }
+        
 //        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
 //        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
 //        self.map.setRegion(region, animated: true)
 
-        if(self.startTracking){
-            self.list.append(location)
-            print(self.list.count)
-            if(self.list.count >= 2){
-                var speed = location.speed
-                if(hasbeenPaused){
-                    hasbeenPaused = false;
-                    speed = -1
-                }
-
-                if(!(speed < 0.0)){
-                    let start = self.list[self.list.count-2]
-                    let end = self.list[self.list.count-1]
-                    self.totalDistance += end.distance(from: start)
-                    print("Distance calculated : " + end.distance(from: start).description)
-                    //print(totalDistance.description + " m")
-                    let distanceinKM = self.totalDistance/1000
-                    print((round(distanceinKM*100)/100).description + " km")
-                    self.distanceLbl.text = (round(distanceinKM*100)/100).description + " km"
-                    self.distanceLbl.text = doubleToKm(double: totalDistance)
-                    print("Total Distance: " + distanceLbl.text!)
-                    self.donationLbl.text = (round((distanceinKM*0.1)*100)/100).description + " €"
-                }
-                print("speed is negative, no distance added")
-            }
-        }
+        
     }
 
     func doubleToKm(double : Double) -> String{
@@ -251,11 +267,6 @@ extension MapViewController : CLLocationManagerDelegate{
         alertView.addAction(OKAction)
         self.present(alertView, animated: true, completion:nil)
     }
-    
-    
-    
-    
-    
 }
 
 

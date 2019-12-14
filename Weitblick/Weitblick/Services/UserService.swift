@@ -138,15 +138,18 @@ class UserService{
         let url = NSURL(string: "https://new.weitblicker.org/rest/auth/user/")
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();
+        print(test2)
         var request = URLRequest(url:url! as URL as URL)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+        request.addValue(UserDefaults.standard.string(forKey: "key")!, forHTTPHeaderField: "key")
         let user = UserDefaults.standard
-        //let postString = ["token": user.string(forKey: "key")] as! [String: String]
+        print(user.string(forKey: "key"))
+        //let postString = ["key": user.string(forKey: "key"), "username": "", "first_name" : "", "last_name" : ""] as! [String: String]
         do{
             //let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
-                //request.httpBody = jsonUser
+            //request.httpBody = jsonUser
             let session = URLSession.shared
             let task = session.dataTask(with: request){
                 (data, response, error) in
