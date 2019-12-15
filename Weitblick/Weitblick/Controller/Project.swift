@@ -7,44 +7,37 @@
 //
 
 import Foundation
+import UIKit
 
-struct ProjectDecodable : Codable{
-    let id : String?
-    let published : String?
-    let name : String?
-    let gallery : [String]?
-    let hosts : [String]?
-    let description : String?
-    let location : Int?
-    let partner : [Int]?
-    let cycle : [Int]?
-}
 
 class Project{
     private var id : Int
     private var published : Date
     private var name : String
-    private var gallery : Gallery
-    private var galleryCount : Int
+    private var image : UIImage
+    private var gallery : [UIImage]
     private var hosts : [String]
     private var description : String
     private var location : Location
     private var partnerID : [Int]
     private var cycleID : [Int]
   
-
-
-    init(id : Int,published : Date, name : String, gallery : Gallery, hosts : [String], description : String, location : Location, partnerID : [Int], cycleID : [Int]){
+    init(id : Int,published : Date, name : String, image: UIImage, gallery : [UIImage], hosts : [String], description : String, location : Location, partnerID : [Int], cycleID : [Int]){
         self.id = id
         self.published = published
         self.name = name
-        self.gallery = gallery
-        self.galleryCount = self.gallery.images!.count
+        self.image = image
         self.hosts = hosts
         self.description = description
         self.location = location
         self.partnerID = partnerID
+
         self.cycleID = cycleID
+        
+        let size = CGSize.init(width: 334, height: 176)
+        self.image = self.image.crop(to: size)
+        
+        self.gallery = gallery
        
     }
 
@@ -58,19 +51,13 @@ class Project{
     public var getName : String{
         return self.name
     }
-
-    public var getGalleryCount : Int{
-        return self.galleryCount
-    }
-
-    public func getImageURL(index : Int) -> String{
-       return self.gallery.images![index].imageURL!
-    }
-
-    public var getGallery : Gallery{
+    public var getGallery : [UIImage]{
         return self.gallery
     }
    
+    public var getImage : UIImage{
+        return self.image
+    }
 
     public var getHosts : [String]{
         return self.hosts
@@ -87,16 +74,6 @@ class Project{
     public var getPartnerID : [Int]{
         return self.partnerID
     }
-    
-    public var getCycleID : [Int]{
-        return self.cycleID
-    }
-    
-    public var getCycleIDCount : Int{
-        
-        print("anzahl cycle" + self.cycleID.count.description)
-        return self.cycleID.count
-       }
 
     public var toString : String{
         return "ProjektID: " + self.id.description + "\n"
