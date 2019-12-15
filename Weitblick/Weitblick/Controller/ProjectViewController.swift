@@ -36,38 +36,16 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
 
     func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {   // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
         let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as! ProjectTableViewCell
-        let defaultstring = "https://new.weitblicker.org"
-        //if(count < postCount){
         cell.project_image.image = self.projectList[indexPath.row].getImage
-        //let imgURL = NSURL(string : defaultstring + self.projectList[indexPath.row].getImageURL(index: count))
-//            if(imgURL != nil){
-//                let data = NSData(contentsOf: (imgURL as URL?)!)
-//                cell.project_image.image = UIImage(data: data! as Data)
-//
-//            }
-
-            //count += 1
-
-        //}
         cell.project_title.text = projectList[indexPath.row].getName
         cell.project_location.text = projectList[indexPath.row].getLocation.getAddress
-        
-       // cell.subscribeButton.addTarget(self, action: #selector(subscribeTapped(_:)), for: .touchUpInside)
-        print("TEST =====\n\n")
-        print(project_object?.getCycleIDCount.description)
-        
         cell.project_button_bike.tag = indexPath.row
-        //cell.project_button_bike.addTarget(self, action: #selector("ProjectViewController.goToCycle"), for: UIControl.Event.touchUpInside)
-        cell.project_button_bike.addTarget(self, action: #selector(ProjectViewController.goToCycle), for: .touchUpInside)
-//
-//        print(project_object?.getCycleIDCount.description)
-//               if(project_object?.getCycleIDCount == 0){
-//                   cell.project_button_bike.alpha = 0
-//
-//               } else {
-//                     cell.project_button_bike.addTarget(self, action: #selector(ProjectViewController.goToCycle), for: .touchUpInside)
-//                          cell.project_button_bike.tag = indexPath.row
-//               }
+        if(project_object?.getCycleIDCount == 0){
+            cell.project_button_bike.alpha = 0
+        } else {
+            cell.project_button_bike.addTarget(self, action: #selector(ProjectViewController.goToCycle), for: .touchUpInside)
+            cell.project_button_bike.tag = indexPath.row
+        }
 //
         
         //let id = self.locationListID[indexPath.row]
@@ -83,8 +61,6 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
      self.project_object = projectList[indexPath.row]
-     print("Index: ")
-     print (indexPath.row)
      self.performSegue(withIdentifier: "goToProjectDetail", sender: self)
       
     }
@@ -92,12 +68,8 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.loadLocations()
-        //self.downloadData()
-        print(self.date)
         DataService.loadProjects(date: self.date) { (list) in
             self.projectList = list
-            print(list.count)
             self.date = self.projectList.last?.getPublished ?? self.date
             DispatchQueue.main.async {
                 self.tableView.reloadData()
