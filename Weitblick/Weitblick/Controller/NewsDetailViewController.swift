@@ -58,7 +58,7 @@ class NewsDetailViewController: UIViewController {
         news_detail_title.text = news_object?.getTitle
         news_detail_loaction.text = "Osnabrück"
         
-        photoSliderView.configure(with: self.news_object?.getGallery!)
+        photoSliderView.configure(with: (self.news_object?.getGallery)!)
         
         
     }

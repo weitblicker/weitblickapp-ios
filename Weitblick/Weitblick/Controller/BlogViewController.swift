@@ -61,86 +61,92 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
     }
 
     public func downloadData(){
-        var resultimages : [UIImage] = []
-        let url = NSURL(string: "https://new.weitblicker.org/rest/blog/?limit=3")
-        let str = "surfer:hangloose"
-        let test2 = Data(str.utf8).base64EncodedString();
-        var task = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
-        task.httpMethod = "GET"
-        task.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        task.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+            var resultimages : [UIImage] = []
+            let url = NSURL(string: "https://new.weitblicker.org/rest/blog/")
+            let str = "surfer:hangloose"
+            let test2 = Data(str.utf8).base64EncodedString();
+            var task = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
+            task.httpMethod = "GET"
+            task.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            task.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
 
-        URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
-            let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-            print("1")
-            if let newsArray = jsondata as? NSArray{
-                for news in newsArray{
-                    if let blogDict = news as? NSDictionary{
-                        print("2")
-                        guard let id = blogDict.value(forKey: "id")  else { return }
-                        let IDString = id as! String
-                        let blogID = Int.init(IDString)
-print("3")
-                        guard let title = blogDict.value(forKey: "title") else { return }
-                        let blogTitle = title as! String
-print("4")
-                        guard let text = blogDict.value(forKey: "text") else { return }
-                        let blogText = text as! String
-print("5")
-                        guard let created = blogDict.value(forKey: "published") else { return }
-                        let createdString = created as! String
-                        let blogCreated = self.handleDate(date: createdString)
-                        print("6")
-                        var blogURL = "default"
-                        if let imageURLJSON = blogDict.value(forKey : "image"){
+            URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
+                let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                if let newsArray = jsondata as? NSArray{
+                    for news in newsArray{
+                        if let blogDict = news as? NSDictionary{
+                            guard let id = blogDict.value(forKey: "id")  else { return }
+                            let IDString = id as! String
+                            let blogID = Int.init(IDString)
+                            
+                            guard let title = blogDict.value(forKey: "title") else { return }
+                            let blogTitle = title as! String
+                            
+                            guard let text = blogDict.value(forKey: "text") else { return }
+                            let blogText = text as! String
+                            
+                            guard let created = blogDict.value(forKey: "published") else { return }
+                            let createdString = created as! String
+                            let blogCreated = self.handleDate(date: createdString)
+                            
+                            guard let imageURLJSON = blogDict.value(forKey : "image") else { return }
+                            var imageURL = ""
                             if let mainImageDict = imageURLJSON as? NSDictionary{
                                 guard let imgURL = mainImageDict.value(forKey: "url") else { return }
-                                blogURL = imgURL as! String
+                                imageURL = imgURL as! String
                             }
-                        }
-                        print("7")
+                            var image : UIImage
+                            if(imageURL == ""){
+                                image = UIImage(named: "Weitblick")!
+                            }else{
+                                let imgURL = NSURL(string : Constants.url + imageURL)
+                                let data = NSData(contentsOf: (imgURL as URL?)!)
+                                image = UIImage(data: data! as Data)!
+                                
+                            }
+                            
 
-                        guard let updated = blogDict.value(forKey: "updated") else { return }
-                        let upDatedString = updated as! String
-                        let blogUpdated = self.handleDate(date: upDatedString)
-print("8")
-                        guard let range = blogDict.value(forKey: "range") else { return }
-                        let blogRange = range as! String
-print("9")
-                        guard let Dictteaser = blogDict.value(forKey: "teaser") else { return }
-                        let blogTeaser = Dictteaser as! String
-                        print("10")
-                        print("11")
-                        if let gallery = blogDict.value(forKey: "gallery"){
-                            if let imageDict = gallery as? NSDictionary{
-                                guard let images = imageDict.value(forKey : "images") else { return }
-                                // Images
-                                if let imageArray = images as? NSArray{
-                                    for imgUrls in imageArray{
-                                        if let imgDict = imgUrls as? NSDictionary{
-                                            guard let url = imgDict.value(forKey : "url") else { return }
-                                            let img = Image(imageURL: (url as! String))
-                                            resultimages.append(img)
-                                        }
-                                    }
-                                }
-                            }
+                            guard let updated = blogDict.value(forKey: "updated") else { return }
+                            let upDatedString = updated as! String
+                            let blogUpdated = self.handleDate(date: upDatedString)
+                            
+                            guard let range = blogDict.value(forKey: "range") else { return }
+                            let blogRange = range as! String
+                            
+                            guard let Dictteaser = blogDict.value(forKey: "teaser") else { return }
+                            let blogTeaser = Dictteaser as! String
+                            
+    //                        if let gallery = blogDict.value(forKey: "gallery"){
+    //                            if let imageDict = gallery as? NSDictionary{
+    //                                guard let images = imageDict.value(forKey : "images") else { return }
+    //                                // Images
+    //                                if let imageArray = images as? NSArray{
+    //                                    for imgUrls in imageArray{
+    //                                        if let imgDict = imgUrls as? NSDictionary{
+    //                                            guard let url = imgDict.value(forKey : "url") else { return }
+    //                                            let img = Image(imageURL: (url as! String))
+    //                                            resultimages.append(img)
+    //                                        }
+    //                                    }
+    //                                }
+    //                            }
+    //                        }
+    //                        // Gallery
+    //                        let resultGallery = Gallery(images: resultimages)
+                            //resultimages = []
+                            let blogEntry = BlogEntry(id: blogID!, title: blogTitle, text: blogText, created: blogCreated, updated: blogUpdated, image: image, teaser: blogTeaser, range: blogRange)
+                            self.blogList.append(blogEntry)
                         }
-                        // Gallery
-                        let resultGallery = Gallery(images: resultimages)
-                        resultimages = []
-                        let blogEntry = BlogEntry(id: blogID!, title: blogTitle, text: blogText, gallery: resultGallery, created: blogCreated, updated: blogUpdated, image: blogURL, teaser: blogTeaser, range: blogRange)
-                        self.blogList.append(blogEntry)
                     }
-                }
-                // Do after Loading
-                OperationQueue.main.addOperation {
-                    self.tableView.reloadData()
-                }
+                    // Do after Loading
+                    OperationQueue.main.addOperation {
+                        self.tableView.reloadData()
+                    }
 
-            }
-            }).resume()
-    }
+                }
+                }).resume()
+        }
+
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
            if segue.destination is BlogDetailViewController
