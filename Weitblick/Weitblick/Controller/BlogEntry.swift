@@ -7,42 +7,34 @@
 //
 
 import Foundation
-
-struct BlogDecodable : Codable{
-    let id : String?
-    let title : String?
-    let text : String?
-    let gallery : Gallery?
-    let added : String?
-    let updated : String?
-    let range : String?
-}
+import UIKit
 
 class BlogEntry{
     
     private var id : Int
     private var title : String
     private var text : String
-    private var imageURL : String
-    private var gallery : Gallery
+    private var image : UIImage
     private var created : Date
     private var updated : Date
     private var teaser : String
     private var range : String
 
-    init(id : Int, title : String, text : String, gallery : Gallery, created : Date, updated : Date, image : String, teaser : String, range: String){
+    init(id : Int, title : String, text : String,  created : Date, updated : Date, image : UIImage, teaser : String, range: String){
         
         self.id = id
         self.title = title
         self.text = text
-        self.gallery = gallery
         self.created = created
         self.updated = updated
-        self.imageURL = image
+        self.image = image
         self.teaser = teaser
         self.range = range
         
+        let size = CGSize.init(width: 334, height: 176)
+        self.image = self.image.crop(to: size)
     }
+        
     
     public var getID : Int{
         return self.id
@@ -56,17 +48,11 @@ class BlogEntry{
         return self.text
     }
     
-    public func getImageURL(index : Int) -> String{
-        if(index >= 0 && index < self.gallery.images!.count){
-            return self.gallery.images![index].imageURL!
-        }else{
-            return "NO_IMAGES_IN_GALLERY_ERROR"
-        }
+    public var getImage : UIImage{
+        return self.image
     }
     
-    public var getImageMainURL : String{
-        return self.imageURL
-    }
+
     
     public var getCreationDate : Date{
         return self.created
@@ -89,10 +75,5 @@ class BlogEntry{
         self.updated  = Date.init()
         // DB Synchronisation
     }
-    
-    public var getGallery : Gallery{
-           return self.gallery
-       }
-      
-    
+
 }
