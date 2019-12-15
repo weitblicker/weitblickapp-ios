@@ -102,7 +102,6 @@ class DataService{
         var resultimages : [UIImage] = []
         var projectReturn : Project?
         let string = Constants.projectURL + id.description + "/"
-        //print(string)
         let url = NSURL(string: string)
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();
@@ -192,7 +191,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
         //let url = NSURL(string: Constants.restURL + "?start=1970-01-01&end="+date.dateAndTimetoStringUS()+"&limit=3")
         let timestamp = date.dateAndTimetoStringUS()
         let url = NSURL(string: "https://new.weitblicker.org/rest/projects/")
-        //print(Constants.restURL + "/news?end="+date.dateAndTimetoStringUS()+"&limit=3")
+    
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();
         var task = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
@@ -232,7 +231,6 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                     guard let locationJSON = projectDict.value(forKey: "location") else { return }
                     var location : Location = Location()
                     if let locationDict = locationJSON as? NSDictionary{
-                        print(locationDict)
                        guard let id = locationDict.value(forKey: "id")  else { return }
                         let IDString = id as! String
                         let locationID = Int.init(IDString)

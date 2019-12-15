@@ -31,7 +31,7 @@ class SegmentService{
             return
         }
         let task = URLSession.shared.dataTask(with: request){(data, response, error) in
-            print(response?.description)
+           
         }
         task.resume()
         

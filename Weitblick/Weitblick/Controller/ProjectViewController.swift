@@ -40,12 +40,14 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.project_title.text = projectList[indexPath.row].getName
         cell.project_location.text = projectList[indexPath.row].getLocation.getAddress
         cell.project_button_bike.tag = indexPath.row
-        if(project_object?.getCycleIDCount == 0){
-            cell.project_button_bike.alpha = 0
-        } else {
-            cell.project_button_bike.addTarget(self, action: #selector(ProjectViewController.goToCycle), for: .touchUpInside)
-            cell.project_button_bike.tag = indexPath.row
-        }
+        cell.project_button_bike.addTarget(self, action: #selector(ProjectViewController.goToCycle), for: .touchUpInside)
+        cell.project_button_bike.tag = indexPath.row
+//        if(project_object?.getCycleIDCount == 0){
+//            cell.project_button_bike.alpha = 0
+//        } else {
+//            cell.project_button_bike.addTarget(self, action: #selector(ProjectViewController.goToCycle), for: .touchUpInside)
+//            cell.project_button_bike.tag = indexPath.row
+//        }
 //
         
         //let id = self.locationListID[indexPath.row]
@@ -90,7 +92,6 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
 
     public func getLocationAddressWithID( id :Int) -> String{
         for location in self.locationList{
-            print(id.description + " = = " + location.getID.description)
             if(location.getID == id){
                 return location.getAddress
             }

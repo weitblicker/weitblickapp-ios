@@ -51,7 +51,6 @@ class RouteService{
                         let distanceDouble = km as! Double
                         //let distanceDouble = Double.init(distanceString)
                         guard let tourJSON = routeDict.value(forKey: "tour") else { return }
-                        print(tourJSON)
                         let tour = tourJSON as! Int
                         let routeEntry = RouteEntry.init(tourID: tour, date: endDate, duration: Int(durationInt), distance: distanceDouble, donation: donationDouble)
                         list.append(routeEntry)
