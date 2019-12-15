@@ -63,20 +63,7 @@ class BlogDetailViewController: UIViewController {
         print("Test1")
        // blog_detail_image.image = self.image
       
-        let defaultstring = "https://new.weitblicker.org"
-        var images: [UIImage] = []
-        if(blog_object?.getGallery.images?.count != 0){
-            for image in (self.blog_object?.getGallery.images)!{
-                let imgURL = NSURL(string : defaultstring + image.imageURL!)
-                let data = NSData(contentsOf: (imgURL as URL?)!)
-                images.append(UIImage(data : data! as Data)!)
-            }
-            photoSliderView.configure(with: images)
-        }else{
-            //photoSliderView.alpha = 0.0
-            guard let image = UIImage(named : "Weitblick") else { return }
-            images.append(image)
-            photoSliderView.configure(with: images)
-        }
+        photoSliderView.configure(with: [])
+        
     }
 }

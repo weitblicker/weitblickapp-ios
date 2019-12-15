@@ -79,5 +79,9 @@ class Project{
         return "ProjektID: " + self.id.description + "\n"
             + self.name + "\n"
     }
+    
+    public var getCycleIDCount: Int{
+        return self.cycleID.count
+    }
 
 }

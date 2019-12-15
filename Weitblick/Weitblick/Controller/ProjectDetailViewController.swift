@@ -167,18 +167,7 @@ class ProjectDetailViewController: UIViewController {
         project_detail_title.text = project_object?.getName
         project_detail_location.text = project_object?.getLocation.getAddress
         // project_detail_image.image = img
-        let defaultstring = "https://new.weitblicker.org"
-        var images: [UIImage] = []
-        
-        for image in (self.project_object?.getGallery.images)!{
-            let imgURL = NSURL(string : defaultstring + image.imageURL!)
-            print("== "+image.imageURL!)
-            if(imgURL != nil){
-                let data = NSData(contentsOf: (imgURL as URL?)!)
-                images.append(UIImage(data : data! as Data)!)
-            }
-        }
-        photoSliderView.configure(with: images)
+        photoSliderView.configure(with: project_object?.getGallery)
         
     }
 
