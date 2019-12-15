@@ -10,6 +10,8 @@ import UIKit
 
 class RankingViewController: UIViewController ,UITableViewDataSource, UITableViewDelegate {
     
+    var filter = 0;
+    
     
     
    override func viewDidLoad() {        super.viewDidLoad()
@@ -46,18 +48,21 @@ class RankingViewController: UIViewController ,UITableViewDataSource, UITableVie
             //nach km anzeigen
             print("KM FILTER ON")
             //people = people.sorted(by: { $0.email > $1.email })
-            
+            self.filter = 0
+            print(filter)
           userList.sort {
             $0.getKm > $1.getKm
           }
-            
+            self.tableView.reloadData()
           
              break
             
            case 1:
             //nach € anzeigen
             print("€ FILTER ON")
-           
+            self.filter = 1
+             print(filter)
+            self.tableView.reloadData()
 
             break
               
@@ -88,7 +93,18 @@ class RankingViewController: UIViewController ,UITableViewDataSource, UITableVie
             
             var distance = userList[indexPath.row].getKm
            distance = round(distance * 100 ) / 100
+            var donation = userList[indexPath.row].getEuro
+            
+           donation = round(donation * 100)/100
+            
+      if(self.filter == 1){
+                print ("IN if = 1")
            cell.distance.text = distance.description + " km"
+            }else if(self.filter == 0){
+                 print ("IN if = 0")
+                cell.distance.text = donation.description + " €"
+            }
+            
            cell.number.text = (indexPath.row+1).description
            cell.name.text = userList[indexPath.row].getUsername
             cell.pimage.image = userList[indexPath.row].getImage
