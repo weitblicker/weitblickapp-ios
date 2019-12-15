@@ -167,7 +167,7 @@ class ProjectDetailViewController: UIViewController {
         project_detail_title.text = project_object?.getName
         project_detail_location.text = project_object?.getLocation.getAddress
         // project_detail_image.image = img
-        photoSliderView.configure(with: project_object?.getGallery)
+        photoSliderView.configure(with: project_object!.getGallery)
         
     }
 

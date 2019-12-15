@@ -27,23 +27,7 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier:"blog_cell", for: indexPath)as! BlogTableViewCell
 
-
-        let defaultstring = "https://new.weitblicker.org"
-
-        if(count < postCount){
-            if(self.blogList[indexPath.row].getImageMainURL == "default"){
-                cell.blog_image.image = UIImage(named: "Weitblick")
-            }else{
-                let imgURL = NSURL(string : defaultstring + self.blogList[indexPath.row].getImageMainURL)
-                if(imgURL != nil){
-                    let data = NSData(contentsOf: (imgURL as URL?)!)
-                    cell.blog_image.image = UIImage(data: data! as Data)
-                    image?.image = UIImage(data: data! as Data)
-                }
-            }
-            count += 1
-
-        }
+        cell.blog_image.image = self.blogList[indexPath.row].getImage
        // cell.blog_description.text = blogList[indexPath.row].getTeaser
        // cell.blog_description.sizeToFit()
         cell.blog_date.text = blogList[indexPath.row].getCreationDate.dateAndTimetoString()
@@ -77,7 +61,7 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
     }
 
     public func downloadData(){
-        var resultimages : [Image] = []
+        var resultimages : [UIImage] = []
         let url = NSURL(string: "https://new.weitblicker.org/rest/blog/?limit=3")
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();

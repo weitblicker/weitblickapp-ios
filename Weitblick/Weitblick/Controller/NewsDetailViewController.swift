@@ -57,17 +57,8 @@ class NewsDetailViewController: UIViewController {
         news_detail_date.text = news_object?.getCreationDate.dateAndTimetoString()
         news_detail_title.text = news_object?.getTitle
         news_detail_loaction.text = "Osnabrück"
-        let defaultstring = "https://new.weitblicker.org"
-        var images: [UIImage] = []
         
-        for image in (self.news_object?.getGallery.images)!{
-            let imgURL = NSURL(string : defaultstring + image.imageURL!)
-            if(imgURL != nil){
-                let data = NSData(contentsOf: (imgURL as URL?)!)
-                images.append(UIImage(data : data! as Data)!)
-            }
-        }
-        photoSliderView.configure(with: images)
+        photoSliderView.configure(with: self.news_object?.getGallery!)
         
         
     }
