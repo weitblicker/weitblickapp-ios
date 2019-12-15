@@ -38,7 +38,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as! ProjectTableViewCell
         let defaultstring = "https://new.weitblicker.org"
         //if(count < postCount){
-        cell.project_image.image = UIImage(named : "Weitblick")
+        cell.project_image.image = self.projectList[indexPath.row].getImage
         //let imgURL = NSURL(string : defaultstring + self.projectList[indexPath.row].getImageURL(index: count))
 //            if(imgURL != nil){
 //                let data = NSData(contentsOf: (imgURL as URL?)!)
