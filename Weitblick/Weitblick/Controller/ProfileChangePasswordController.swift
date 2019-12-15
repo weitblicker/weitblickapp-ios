@@ -43,7 +43,7 @@ class ProfileChangePasswordController: UIViewController{
     
     @IBAction func button_change_password(_ sender: Any) {
         
-        let message:String = "Ihr Passwort wurde erfolgreich geändert"
+        let message:String = "Dein Passwort wurde erfolgreich geändert"
         
     
         if (self.password_old.text!.isEmpty || self.password_new.text!.isEmpty || self.password_new2.text!.isEmpty){
@@ -63,14 +63,10 @@ class ProfileChangePasswordController: UIViewController{
                 DispatchQueue.main.async {
                      self.showAlertMess(userMessage: response)
                 }
-               
-        
-               
+         
             }
             
         }
-        
-
              
     }
     
@@ -88,9 +84,7 @@ class ProfileChangePasswordController: UIViewController{
 
               let alertView = UIAlertController(title: "Achtung!", message: userMessage, preferredStyle: UIAlertController.Style.alert)
               alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-
               self.present(alertView, animated: true, completion: nil)
-
           }
 
     

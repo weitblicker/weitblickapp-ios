@@ -206,12 +206,16 @@ class DataService{
             task.httpMethod = "GET"
             task.addValue("application/json", forHTTPHeaderField: "Content-Type")
             task.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-            
+               print("IN LOAD PROJECTS")
             URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
             let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                 print("IN LOAD PROJECTS1")
             if let projectArray = jsondata as? NSArray{
+                 print("IN LOAD PROJECTS2")
                 for project in projectArray{
+                     print("IN LOAD PROJECTS3")
                     if let projectDict = project as? NSDictionary{
+                         print("IN LOAD PROJECTS4")
                         guard let id = projectDict.value(forKey: "id")  else { return }
                         let IDString = id as! String
                         let projectID = Int.init(IDString)
@@ -228,7 +232,7 @@ class DataService{
                             }
                         })
                             
-                            
+                       print("IN LOAD PROJECTS5")
                         
                         projectDescription = extractRegex(input: projectDescription, regex: DataService.matches(for: Constants.regexReplace, in: projectDescription))
                         guard let locationJSON = projectDict.value(forKey: "location") else { return }
@@ -273,6 +277,8 @@ class DataService{
                         resultimages = []
                         let project = Project(id: projectID!, published: projectPublished, name: projectTitle, gallery: resultGallery, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleID:[] )
                        //resultPartnerID = []
+                        print("IN LOAD PROJECTS6")
+                        print(project.getName)
                        projectList.append(project)
                     }
                 }

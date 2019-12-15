@@ -43,7 +43,7 @@ class ForgottPasswordViewController: UIViewController {
                 
             }else{
                 DispatchQueue.main.async {
-                     self.showErrorMessage(message: "Es sind Probleme beim Ändern des Passwort aufgetreten. Bitte versuchen Sie es in Kürze nochmal!")
+                     self.showErrorMessage(message: "Es sind Probleme beim Ändern des Passwort aufgetreten. Bitte versuche es in Kürze nochmal!")
                 }
                
             }

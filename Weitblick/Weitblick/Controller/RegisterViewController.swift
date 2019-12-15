@@ -15,9 +15,6 @@ class RegisterViewController: UIViewController, UIPopoverPresentationControllerD
     
 
    
- 
-
-   
     @IBOutlet var popover: UIScrollView!
     
     @IBAction func go(){
@@ -101,14 +98,11 @@ class RegisterViewController: UIViewController, UIPopoverPresentationControllerD
         
     }
     
-      
-    
-
 
     @IBAction func registerButton(_ sender: UIButton) {
         
         if(clicked == 0 ){
-            showAlertMess(userMessage: "Bitte AGBs bestätigen");
+            showAlertMess(userMessage: "Bitte AGB bestätigen");
             return;
         }
         if (self.username.text!.isEmpty){
@@ -212,7 +206,6 @@ class RegisterViewController: UIViewController, UIPopoverPresentationControllerD
 
     @IBAction func textFieldShouldReturn(_ sender: UITextField) {
         self.view.endEditing(true)
-
 
     }
 
