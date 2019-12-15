@@ -7,27 +7,20 @@
 //
 
 import Foundation
+import UIKit
 
-struct EventDecodable : Codable{
-    let id : String?
-    let title : String?
-    let text : String?
-    let gallery : Gallery
-    let added : String?
-    let updated : String?
-    let range : String?
-}
+
 
 class Event{
     
     private var id : Int
     private var name : String
     private var description : String
-    private var gallery : Gallery
+    private var gallery : [UIImage]
     private var locationID : Int
     private var date : Date
     
-    init(id : Int, name : String, description : String, locationID : Int,gallery : Gallery, date : Date){
+    init(id : Int, name : String, description : String, locationID : Int,gallery : [UIImage], date : Date){
         
         self.id = id
         self.name = name
@@ -52,14 +45,6 @@ class Event{
     
     public var getLocationID : Int{
         return self.locationID
-    }
-    
-    public func getImageURL(index : Int) -> String{
-        if(index >= 0 && index < self.gallery.images!.count){
-            return self.gallery.images![index].imageURL!
-        }else{
-            return "NO_IMAGES_IN_GALLERY_ERROR"
-        }
     }
     
     public var getDate : Date{
