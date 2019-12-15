@@ -45,15 +45,20 @@ class RankingViewController: UIViewController ,UITableViewDataSource, UITableVie
         case 0:
             //nach km anzeigen
             print("KM FILTER ON")
+            //people = people.sorted(by: { $0.email > $1.email })
             
+          userList.sort {
+            $0.getKm > $1.getKm
+          }
             
+          
              break
             
            case 1:
             //nach € anzeigen
             print("€ FILTER ON")
-            
-            
+           
+
             break
               
            default:
@@ -73,18 +78,30 @@ class RankingViewController: UIViewController ,UITableViewDataSource, UITableVie
           
           func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
               let cell =  tableView.dequeueReusableCell(withIdentifier:"ranking_cell", for: indexPath)as! RankingTableViewCell
-              
-            var distance = userList[userList.count - indexPath.row - 1].getKm
+        
+       /*     var distance = userList[userList.count - indexPath.row - 1].getKm
             distance = round(distance * 100 ) / 100
             cell.distance.text = distance.description + " km"
             cell.number.text = (indexPath.row + 1).description
             cell.name.text = userList[userList.count - indexPath.row - 1].getUsername
-       
-            cell.pimage.image = userList[userList.count - indexPath.row - 1].getImage
+            cell.pimage.image = userList[userList.count - indexPath.row - 1].getImage*/
+            
+            var distance = userList[indexPath.row].getKm
+           distance = round(distance * 100 ) / 100
+           cell.distance.text = distance.description + " km"
+           cell.number.text = (indexPath.row+1).description
+           cell.name.text = userList[indexPath.row].getUsername
+            cell.pimage.image = userList[indexPath.row].getImage
             
              
               return cell
               
           }
+    
+    
+    
+
+    
+  
     
 }

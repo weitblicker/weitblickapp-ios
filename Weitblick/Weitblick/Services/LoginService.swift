@@ -98,20 +98,17 @@ class LoginService{
  static func checkResponse(description: String, error: @escaping (_ responseString : String) -> ()){
      
       print("in check Response")
-      print(description)
     
     if (description.contains("Gib eine gültige E-Mail Adresse an.")){
           error("Gib eine gültige E-Mail Adresse an.")
           return
       }
-    else if (description.contains("Zugangsdaten stimmen nicht.")){
+     else if (description.contains("Zugangsdaten stimmen nicht.")){
        error("Die angegebenen Zugangsdaten stimmen nicht.")
           return
       }
         
   }
-    
-    
-    
+  
 }
 

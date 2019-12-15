@@ -39,16 +39,15 @@ class UserService{
            guard error == nil else{
              print("error calling POST on /password/reset")
              print(error!)
-            completion("error calling POST on /password/reset")
+             completion("error calling POST on /password/reset")
             return
            }
            guard let responseData = data else {
              print("Error: did not receive data")
-            completion("Error: did not receive data")
+             completion("Error: did not receive data")
              return
            }
 
-           // parse the result as JSON, since that's what the API provides
            do{
              guard let received = try JSONSerialization.jsonObject(with: responseData,
                options: []) as? [String: Any] else {
@@ -112,7 +111,7 @@ class UserService{
            }
            guard let responseData = data else {
              print("Error: did not receive data")
-            completion("Error: did not receive data")
+             completion("Error: did not receive data")
              return
            }
 
@@ -125,8 +124,7 @@ class UserService{
                  return
              }
              print("The Recieved Message is: " + received.description)
-             completion(received.description)
-
+             completion(received["detail"] as! String)
 
            }catch{
              completion("error parsing response from POST on /password/change")

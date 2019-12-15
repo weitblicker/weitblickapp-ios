@@ -21,6 +21,10 @@ class RouteViewController: UIViewController,UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier:"route_cell", for: indexPath)as! RouteTableViewCell
         
+        routeList.sort {
+            $0.getDistance > $1.getDistance
+        }
+        
         var distance = routeList[indexPath.row].getDistance
         distance = round(distance*100)/100
         cell.route.text = distance.description

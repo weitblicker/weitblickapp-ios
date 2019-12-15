@@ -80,9 +80,7 @@ class LoginViewController: UIViewController {
            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
 
            self.present(alertView, animated: true, completion: nil)
-
        }
-
 
 
     @IBAction func registerButton(_ sender: UIButton) {

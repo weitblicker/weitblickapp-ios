@@ -94,6 +94,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         //self.loadLocations()
         //self.downloadData()
+        print(self.date)
         DataService.loadProjects(date: self.date) { (list) in
             self.projectList = list
             print(list.count)
@@ -135,8 +136,6 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
 
               }
         
-        
-            
           }
     
     

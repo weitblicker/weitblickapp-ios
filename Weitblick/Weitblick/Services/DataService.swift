@@ -9,11 +9,11 @@
 import UIKit
 
 class DataService{
-    
+
     static func loadNews(date : Date,completion: @escaping (_ newsList : [NewsEntry]) -> ()){
         var newsList : [NewsEntry] = []
         var resultimages : [UIImage] = []
-        
+
 
         let timestamp = date.dateAndTimetoStringISO()
         let url = NSURL(string: "https://new.weitblicker.org/rest/news/?end="+timestamp+"&limit=3")
@@ -23,28 +23,28 @@ class DataService{
         task.httpMethod = "GET"
         task.addValue("application/json", forHTTPHeaderField: "Content-Type")
         task.addValue("Basic " + dataB64, forHTTPHeaderField: "Authorization")
-        
+
         URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
         let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
         if let newsArray = jsondata as? NSArray{
             for news in newsArray{
                 if let newsDict = news as? NSDictionary{
-                    
+
                     guard let id = newsDict.value(forKey: "id")  else { return }
                     let IDString = id as! String
                     let newsID = Int.init(IDString)
-                    
+
                     guard let title = newsDict.value(forKey: "title") else { return }
                     let newsTitle = title as! String
-                    
+
                     guard let text = newsDict.value(forKey: "text") else { return }
                     var newsText = text as! String
                     newsText = extractRegex(input: newsText, regex: DataService.matches(for: Constants.regexReplace, in: newsText))
-                    
+
                     guard let created = newsDict.value(forKey: "added") else { return }
                     let createdString = created as! String
                     let newsCreated = self.handleDate(date: createdString)
-                    
+
                     guard let imageURLJSON = newsDict.value(forKey : "image") else { return }
                     var imageURL = ""
                     if let mainImageDict = imageURLJSON as? NSDictionary{
@@ -59,19 +59,19 @@ class DataService{
                         let imgURL = NSURL(string : Constants.url + imageURL)
                         let data = NSData(contentsOf: (imgURL as URL?)!)
                         image = UIImage(data: data! as Data)!
-                        
+
                     }
-                    
+
                     guard let updated = newsDict.value(forKey: "updated") else { return }
                     let upDatedString = updated as! String
                     let newsUpdated = self.handleDate(date: upDatedString)
-                    
+
                     guard let range = newsDict.value(forKey: "range") else { return }
                     let newsRange = range as! String
-                    
+
                     guard let Dictteaser = newsDict.value(forKey: "teaser") else { return }
                     let newsTeaser = Dictteaser as! String
-                    
+
                     guard let gallery = newsDict.value(forKey: "photos") else { return }
                     if let imageArray = gallery as? NSArray{
                         for img in imageArray{
@@ -85,7 +85,7 @@ class DataService{
                             }
                         }
                     }
-                    
+
                     let newsEntry = NewsEntry(id: newsID!, title: newsTitle, text: newsText, gallery: resultimages, created: newsCreated , updated: newsUpdated, range: newsRange, image: image, teaser: newsTeaser)
                     resultimages = []
                     newsList.append(newsEntry)
@@ -94,9 +94,9 @@ class DataService{
             completion(newsList)
         }
         }).resume()
-        
+
     }
-    
+
     static func getProjectWithID (id: Int, completion: @escaping (_ project: Project) -> ()){
 
         var resultimages : [UIImage] = []
@@ -118,7 +118,7 @@ class DataService{
                 let projectID = Int.init(IDString)
                 guard let title = projectDict.value(forKey: "name") else { return }
                 let projectTitle = title as! String
-                
+
                 guard let imageURLJSON = projectDict.value(forKey : "image") else { return }
                 var imageURL = ""
                 if let mainImageDict = imageURLJSON as? NSDictionary{
@@ -133,7 +133,7 @@ class DataService{
                     let imgURL = NSURL(string : Constants.url + imageURL)
                     let data = NSData(contentsOf: (imgURL as URL?)!)
                     image = UIImage(data: data! as Data)!
-                    
+
                 }
                 guard let description = projectDict.value(forKey: "description") else { return }
                 var projectDescription = description as! String
@@ -158,7 +158,7 @@ class DataService{
                 let projectPublished = Date()
                 guard let hosts = projectDict.value(forKey: "hosts") else { return }
                 let resultHosts = hosts as! [String]
-                
+
                 guard let gallery = projectDict.value(forKey: "photos") else { return }
                 if let imageArray = gallery as? NSArray{
                     for img in imageArray{
@@ -172,15 +172,15 @@ class DataService{
                         }
                     }
                 }
-                
-                
+
+
                 projectReturn =  Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleID:[] )
                 resultimages = []
                 completion(projectReturn!)
             }
         }
         request.resume()
-    
+
 }
 
 
@@ -199,7 +199,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
         task.httpMethod = "GET"
         task.addValue("application/json", forHTTPHeaderField: "Content-Type")
         task.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-        
+
         URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
         let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
         if let projectArray = jsondata as? NSArray{
@@ -224,7 +224,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                         let imgURL = NSURL(string : Constants.url + imageURL)
                         let data = NSData(contentsOf: (imgURL as URL?)!)
                         image = UIImage(data: data! as Data)!
-                        
+
                     }
                     guard let description = projectDict.value(forKey: "description") else { return }
                     var projectDescription = description as! String
@@ -266,7 +266,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                             }
                         }
                     }
-                    
+
                     let project = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleID:[] )
                     projectList.append(project)
                     resultimages = []
@@ -276,28 +276,28 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
         }
         }).resume()
     }
-    
-    
-    
+
+
+
     static func handleDate(date : String) -> Date{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.date(from:date)!
     }
-    
+
     static func getURLfromGivenRegex(input : String) -> String{
         let input1 = input.split(separator: "(")
         let input2 = input1[input1.count-1].split(separator: " ")
         return input2.first!.description
     }
-    
+
     static func getURLfromGivenRegexProjects(input : String) -> String{
         let input1 = input.split(separator: "(")
         let input2 = input1[1].split(separator: ")")
         return input2.first!.description
     }
-    
+
     static func extractRegex(input: String, regex : [String]) -> String{
         var string = input
         for regexItem in regex{
@@ -305,7 +305,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
         }
         return string
     }
-    
+
     static func matches(for regex: String, in text: String) -> [String] {
         do {
             let regex = try NSRegularExpression(pattern: regex)
@@ -315,27 +315,24 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                 String(text[Range($0.range, in: text)!])
             }
             return r
-            
+
         } catch let error {
             print("invalid regex: \(error.localizedDescription)")
             return []
         }
     }
-    
+
     static func getImageURLS(string : String ,completion: @escaping (_ urlList : [String]) -> ()){
         var returnStrings :  [String] = []
         returnStrings = DataService.matches(for: Constants.regex, in: string)
         completion(returnStrings)
     }
-    
+
     static func getImageURLSFromProjects(string : String ,completion: @escaping (_ urlList : [String]) -> ()){
         var returnStrings :  [String] = []
         returnStrings = DataService.matches(for: Constants.regexReplace, in: string)
         completion(returnStrings)
     }
-    
-    
+
+
 }
-
-
-

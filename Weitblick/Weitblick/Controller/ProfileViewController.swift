@@ -9,8 +9,6 @@
 import UIKit
 
 
-
-
 extension UIImageView {
 
     func makeRounded() {
@@ -38,8 +36,6 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
     
     var imagePicker = UIImagePickerController()
     
-    
-    
     @IBAction func button_edit_password(_ sender: Any) {
 
     }
@@ -49,15 +45,11 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
         UserService.getUserData { (user) in
             print("Nach user data")
         }
-      //  profile_image.image = UIImage(named: "profile_image")
-        //imagePickerController(picker: self.imagePicker, didFinishPickingImage image)
-       // imagePicker.delegate = self
         
         if (UserDefaults.standard.bool(forKey: "isLogged") == true){
             profile_email.text = UserDefaults.standard.string(forKey: "email")
            profile_route.text = UserDefaults.standard.string(forKey: "route")
            profile_donation.text = UserDefaults.standard.string(forKey: "donation")
-           // profile_password.text = UserDefaults.standard.string(forKey: "password")
         }
         profile_image.layer.cornerRadius = profile_image.frame.size.width/2
         profile_image.clipsToBounds = true
@@ -68,7 +60,7 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
     }
 
 
@@ -79,8 +71,6 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
                    if(response == "successful" ){ 
                       DispatchQueue.main.async {
                         self.dismiss(animated: true, completion: nil)
-                        
-                        
                        }
                        
                    }else{
@@ -90,29 +80,14 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
                       
                    }
                }
-        
-        
     }
     
     @IBAction func btnClicked(sender: AnyObject) {
-        
-        
-        
         
         var myPickerController = UIImagePickerController()
         myPickerController.delegate = self
         myPickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
         self.present(myPickerController, animated: true, completion: nil)
-
-          /*  if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
-                print("Button capture")
-
-                imagePicker.delegate = self
-                imagePicker.sourceType = .savedPhotosAlbum
-                imagePicker.allowsEditing = false
-
-                present(imagePicker, animated: true, completion: nil)
-            }*/
         }
 
     
@@ -128,15 +103,6 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
         }
          self.dismiss(animated: true, completion: nil)
     }
-    
-
-    /*func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: AnyObject]) {
-
-        let image = info[.originalImage] as? UIImage
-        self.profile_image.image = image
-        self.dismiss(animated: true, completion: nil)
-    }*/
- 
     
 
 

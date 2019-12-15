@@ -51,17 +51,16 @@ class BikeViewController: UIViewController {
             }
         }
         
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         
         if(UserDefaults.standard.string(forKey: "projectName") != nil){
             self.cycleProjectTitle.setTitle(UserDefaults.standard.string(forKey: "projectName"), for: .normal)
         }else{
             self.cycleProjectTitle.setTitle("Kein Projekt ausgewählt", for: .normal)
         }
+        
        
     }
     
