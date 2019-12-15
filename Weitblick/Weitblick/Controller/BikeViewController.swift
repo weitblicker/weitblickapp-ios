@@ -40,7 +40,12 @@ class BikeViewController: UIViewController {
             self.performSegue(withIdentifier: "showLogin", sender: self)
         }else{
             if(UserDefaults.standard.integer(forKey: "projectID") != 0){
-                self.performSegue(withIdentifier: "goToMapView", sender: self)
+                DataService.getProjectWithID(id: UserDefaults.standard.integer(forKey: "projectID")) { (project) in
+                    DispatchQueue.main.async {
+                        self.project = project
+                        self.performSegue(withIdentifier: "goToMapView", sender: self)
+                    }
+                }
             }else{
                 self.showAlertMess(userMessage: "Kein Projekt ausgewählt!")
             }
