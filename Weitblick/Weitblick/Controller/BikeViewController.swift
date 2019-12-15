@@ -131,7 +131,7 @@ class BikeViewController: UIViewController {
             let mapViewController = segue.destination as? MapViewController
             mapViewController?.locationManager = self.locationManager
             mapViewController?.projectid = UserDefaults.standard.integer(forKey: "projectID")
-            mapViewController?.project = tabbar.defaultProject
+            mapViewController?.project = self.project
             
 
         }
