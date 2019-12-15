@@ -228,6 +228,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                     guard let description = projectDict.value(forKey: "description") else { return }
                     var projectDescription = description as! String
                     projectDescription = extractRegex(input: projectDescription, regex: DataService.matches(for: Constants.regexReplace, in: projectDescription))
+                    
                     guard let locationJSON = projectDict.value(forKey: "location") else { return }
                     var location : Location = Location()
                     if let locationDict = locationJSON as? NSDictionary{
