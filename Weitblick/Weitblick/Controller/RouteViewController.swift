@@ -22,7 +22,7 @@ class RouteViewController: UIViewController,UITableViewDataSource, UITableViewDe
         let cell =  tableView.dequeueReusableCell(withIdentifier:"route_cell", for: indexPath)as! RouteTableViewCell
         
         routeList.sort {
-            $0.getDistance > $1.getDistance
+        $0.getDate.dateAndTimetoString() > $1.getDate.dateAndTimetoString()
         }
         
         var distance = routeList[indexPath.row].getDistance

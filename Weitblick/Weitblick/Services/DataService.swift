@@ -247,6 +247,10 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                     }
                    //self.locationListID.append(projectLocationID)
                    //guard let partner = projectDict.value(forKey: "partner") else { return }
+                    guard let cycleArray = projectDict.value(forKey: "cycle")else {return}
+                     let cycle = cycleArray as? NSDictionary
+                    let cycleCount = (cycleArray as AnyObject).value(forKey: "project")
+                    
                    guard let published = projectDict.value(forKey: "published") else { return }
                     let projectPublished = Date()// self.handleDate(date: publishedString)
                    guard let hosts = projectDict.value(forKey: "hosts") else { return }
@@ -266,7 +270,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                         }
                     }
 
-                    let project = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleID:[] )
+                    let project = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleID:cycleCount as! [Int])
                     projectList.append(project)
                     resultimages = []
                 }
