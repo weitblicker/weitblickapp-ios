@@ -68,8 +68,11 @@ class ProjectDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if(self.project_object?.getCycleIDCount == 1){
 
         customizeChart(dataPoints: stats, values: goals.map{ Double($0) })
+        }
         loadProjectDetail()
 
       //  setUpButton()
