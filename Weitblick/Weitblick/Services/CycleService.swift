@@ -39,7 +39,6 @@ class CycleService{
         ] as [String: String]
         let jsonSegment = try? JSONSerialization.data(withJSONObject: poststring, options:[])
         task.httpBody = jsonSegment
-        // TODO REQUEST AND EVALUATION 
 
     }
 }
