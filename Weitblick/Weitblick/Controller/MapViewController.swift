@@ -222,7 +222,7 @@ extension MapViewController : CLLocationManagerDelegate{
                             speed = -1
                         }
 
-                        if(!(speed < 0.0)){
+                        if(true/*!(speed < 0.0)*/){
                             let start = self.list[self.list.count-2]
                             let end = self.list[self.list.count-1]
                             self.totalDistance += end.distance(from: start)

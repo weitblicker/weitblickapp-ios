@@ -10,7 +10,7 @@ import UIKit
 
 class RankingViewController: UIViewController ,UITableViewDataSource, UITableViewDelegate {
     
-    var filter = 0;
+    var filter = 1;
     
     
     
@@ -44,26 +44,29 @@ class RankingViewController: UIViewController ,UITableViewDataSource, UITableVie
         
         switch self.filter_switch.selectedSegmentIndex
            {
-        case 0:
-            //nach km anzeigen
-            print("KM FILTER ON")
-            //people = people.sorted(by: { $0.email > $1.email })
-            self.filter = 0
-            print(filter)
-          userList.sort {
-            $0.getKm > $1.getKm
-          }
+        case 1:
+             //nach € anzeigen
+                      print("€ FILTER ON")
+                      self.filter = 0
+                       print(filter)
+                      self.tableView.reloadData()
+         
             self.tableView.reloadData()
           
              break
             
-           case 1:
-            //nach € anzeigen
-            print("€ FILTER ON")
-            self.filter = 1
-             print(filter)
-            self.tableView.reloadData()
-
+           case 0:
+          
+            
+            //nach km anzeigen
+                      print("KM FILTER ON")
+                      //people = people.sorted(by: { $0.email > $1.email })
+                      self.filter = 1
+                      print(filter)
+                      userList.sort {
+                        $0.getKm > $1.getKm
+                      }
+                      self.tableView.reloadData()
             break
               
            default:
@@ -100,9 +103,11 @@ class RankingViewController: UIViewController ,UITableViewDataSource, UITableVie
       if(self.filter == 1){
                 print ("IN if = 1")
            cell.distance.text = distance.description + " km"
+       
             }else if(self.filter == 0){
                  print ("IN if = 0")
                 cell.distance.text = donation.description + " €"
+         
             }
             
            cell.number.text = (indexPath.row+1).description
