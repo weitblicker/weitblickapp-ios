@@ -51,6 +51,7 @@ class ProjectDetailViewController: UIViewController {
     
     @IBOutlet weak var project_detail_description: UILabel!
     
+    @IBOutlet weak var uebersicht: UILabel!
     
     
     
@@ -72,6 +73,9 @@ class ProjectDetailViewController: UIViewController {
         if(self.project_object?.getCycleIDCount == 1){
 
         customizeChart(dataPoints: stats, values: goals.map{ Double($0) })
+        } else{
+            PieChart.alpha = 0
+            uebersicht.alpha = 0
         }
         loadProjectDetail()
 
