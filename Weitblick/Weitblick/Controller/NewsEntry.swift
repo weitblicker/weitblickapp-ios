@@ -32,7 +32,7 @@ class NewsEntry{
         self.image = image
         self.teaser = teaser
         
-        let size = CGSize.init(width: 334, height: 176)
+        let size = CGSize.init(width: 668, height: 352)
         self.image = self.image.crop(to: size)
         
 
