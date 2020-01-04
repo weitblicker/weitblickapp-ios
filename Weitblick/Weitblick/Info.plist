@@ -20,6 +20,28 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Zur Berechnung der Strecken benötigen wir den Zugriff auf die GPS-Daten. Diese werden nicht in der Datenbank abgespeichert.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Zur Berechnung der Strecken benötigen wir den Zugriff auf die GPS-Daten. Diese werden nicht in der Datenbank abgespeichert.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>BreeSerif-Regular.otf</string>
+		<string>OpenSans-Bold.ttf</string>
+		<string>OpenSans-SemiboldItalic.ttf</string>
+		<string>OpenSans-Semibold.ttf</string>
+		<string>OpenSans-Regular.ttf</string>
+		<string>OpenSans-ExtraBold.ttf</string>
+		<string>OpenSans-ExtraBoldItalic.ttf</string>
+		<string>OpenSans-LightItalic.ttf</string>
+		<string>OpenSans-BoldItalic.ttf</string>
+		<string>OpenSans-Light.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -50,8 +72,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

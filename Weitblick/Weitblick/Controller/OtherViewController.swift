@@ -9,10 +9,17 @@
 import UIKit
 
 class OtherViewController: UIViewController {
+    
+    
+    
 
+    @IBOutlet weak var blog_icon: UIImageView!
+    
+    @IBOutlet weak var faq_icon: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
         // Do any additional setup after loading the view.
     }
     
