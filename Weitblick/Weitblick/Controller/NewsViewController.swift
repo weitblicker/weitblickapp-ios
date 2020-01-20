@@ -39,7 +39,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
         let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! NewsTableViewCell
         // Zelle konfigurieren
-        cell.formlabel.transform=CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
+       
 
         cell.news_image.image = newsList[indexPath.row].getImage
        // cell.formlabel.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
