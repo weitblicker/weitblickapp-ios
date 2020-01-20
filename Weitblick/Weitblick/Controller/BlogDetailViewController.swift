@@ -12,6 +12,8 @@ import MarkdownKit
 class BlogDetailViewController: UIViewController {
     
     
+    @IBOutlet weak var triangle: UILabel!
+    
     @IBOutlet weak var blog_detail_image: UIImageView!
     
     @IBOutlet weak var blog_detail_title: UILabel!
@@ -28,6 +30,7 @@ class BlogDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         triangle.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
         loadDetailBlog()
         self.navigationController!.navigationBar.topItem!.title = "Zurück"
         

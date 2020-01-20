@@ -12,6 +12,7 @@ import  UIKit
 class NewsTableViewCell : UITableViewCell{
     
     
+    @IBOutlet weak var formlabel: UILabel!
     
     @IBOutlet weak var news_image: UIImageView!
     

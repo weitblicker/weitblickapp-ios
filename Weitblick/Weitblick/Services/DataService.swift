@@ -156,7 +156,8 @@ print("3")
                     let locationAddress = address as! String
                     location = Location(id: locationID!, lat: locationLat, lng: locationLng, address: locationAddress)
                 }
-                guard let published = projectDict.value(forKey: "published") else { return }
+              //  guard let published = projectDict.value(forKey: "published") else { return }
+                
                 let projectPublished = Date()
                 guard let hosts = projectDict.value(forKey: "hosts") else { return }
                 let resultHosts = hosts as! [String]
@@ -290,6 +291,8 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.date(from:date)!
+       
+        
     }
 
     static func getURLfromGivenRegex(input : String) -> String{
