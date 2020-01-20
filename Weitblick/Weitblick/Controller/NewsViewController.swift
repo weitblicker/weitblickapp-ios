@@ -39,6 +39,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! NewsTableViewCell
         // Zelle konfigurieren
         cell.news_image.image = newsList[indexPath.row].getImage
+       // cell.formlabel.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
         // TODO If TEASER = NIL OR ""
         cell.news_date.text =  newsList[indexPath.row].getCreationDate.dateAndTimetoString()
         // TODO If TEASER = NIL OR ""
