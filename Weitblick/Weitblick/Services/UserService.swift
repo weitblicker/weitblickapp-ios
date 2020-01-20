@@ -13,7 +13,7 @@ class UserService{
     static func resetPassword( email: String, completion: @escaping (_ response : String) -> ()){
 
           // Reset Password Request
-          let url = NSURL(string: "https://new.weitblicker.org/rest/auth/password/reset/")
+          let url = NSURL(string: "https://weitblicker.org/rest/auth/password/reset/")
           let str = "surfer:hangloose"
           let test2 = Data(str.utf8).base64EncodedString();
           var request = URLRequest(url:url! as URL as URL)
@@ -74,7 +74,7 @@ class UserService{
     static func changePassword (password_old: String, password_new: String, password_new2: String, completion: @escaping (_ response : String) -> ()){
         
         // Change actual Password Request
-         let url = NSURL(string: "https://new.weitblicker.org/rest/auth/password/change/")
+         let url = NSURL(string: "https://weitblicker.org/rest/auth/password/change/")
          let str = "surfer:hangloose"
          let test2 = Data(str.utf8).base64EncodedString();
          var request = URLRequest(url:url! as URL as URL)
@@ -138,7 +138,7 @@ class UserService{
     
     static func getUserData(completion : @escaping (_ user: User) -> ()){
         
-        let url = NSURL(string: "https://new.weitblicker.org/rest/auth/user/")
+        let url = NSURL(string: "https://weitblicker.org/rest/auth/user/")
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();
         print(test2)

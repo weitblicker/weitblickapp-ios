@@ -15,9 +15,9 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -26,6 +26,8 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Zur Berechnung der Strecken benötigen wir den Zugriff auf die GPS-Daten. Diese werden nicht in der Datenbank abgespeichert.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Zur Berechnung der Strecken benötigen wir den Zugriff auf die GPS-Daten. Diese werden nicht in der Datenbank abgespeichert.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Zur Berechnung der Strecken benötigen wir den Zugriff auf die GPS-Daten. Diese werden nicht in der Datenbank abgespeichert.</string>

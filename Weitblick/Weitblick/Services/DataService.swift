@@ -16,7 +16,7 @@ class DataService{
 
 
         let timestamp = date.dateAndTimetoStringISO()
-        let url = NSURL(string: "https://new.weitblicker.org/rest/news/?end="+timestamp+"&limit=3")
+        let url = NSURL(string: "https://weitblicker.org/rest/news/?end="+timestamp+"&limit=3")
         let str = "surfer:hangloose"
         let dataB64 = Data(str.utf8).base64EncodedString();
         var task = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
@@ -190,7 +190,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
         // /rest/news?start=2019-10-01&end=2020-01-01&limit=30
         //let url = NSURL(string: Constants.restURL + "?start=1970-01-01&end="+date.dateAndTimetoStringUS()+"&limit=3")
         let timestamp = date.dateAndTimetoStringUS()
-        let url = NSURL(string: "https://new.weitblicker.org/rest/projects/")
+        let url = NSURL(string: "https://weitblicker.org/rest/projects/")
     
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();

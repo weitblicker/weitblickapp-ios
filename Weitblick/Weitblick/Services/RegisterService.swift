@@ -13,7 +13,7 @@ class RegisterService {
     static func registerWithData(username: String, email : String, password1: String, password2: String, completion: @escaping (_ responseString : String) -> ()){
         
 
-          let url = NSURL(string: "https://new.weitblicker.org/rest/auth/registration/")
+          let url = NSURL(string: "https://weitblicker.org/rest/auth/registration/")
           let str = "surfer:hangloose"
           let test2 = Data(str.utf8).base64EncodedString();
          // var urlRequest = URLRequest(url : (url as URL?)!,cachePolicy:URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)

@@ -20,7 +20,7 @@ class LogoutService {
     user.synchronize()
 
 
-    let url = NSURL(string: "https://new.weitblicker.org/rest/auth/logout/")
+    let url = NSURL(string: "https://weitblicker.org/rest/auth/logout/")
     let str = "surfer:hangloose"
     let test2 = Data(str.utf8).base64EncodedString();
     var urlRequest = URLRequest(url:url! as URL as URL)

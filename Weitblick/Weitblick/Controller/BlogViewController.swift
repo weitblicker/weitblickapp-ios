@@ -62,7 +62,7 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
 
     public func downloadData(){
             var resultimages : [UIImage] = []
-            let url = NSURL(string: "https://new.weitblicker.org/rest/blog/")
+            let url = NSURL(string: "https://weitblicker.org/rest/blog/")
             let str = "surfer:hangloose"
             let test2 = Data(str.utf8).base64EncodedString();
             var task = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
