@@ -13,7 +13,7 @@ import UIKit
 class EventTableViewCell: UITableViewCell{
     
     
-    @IBOutlet weak var event_button_detail: UIButton!
+    @IBOutlet weak var event_host: UILabel!
     @IBOutlet weak var event_description: UILabel!
     @IBOutlet weak var event_location: UILabel!
     @IBOutlet weak var event_date: UILabel!
