@@ -28,23 +28,25 @@ class DataService{
         let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
         if let newsArray = jsondata as? NSArray{
             for news in newsArray{
+                //print(news)
                 if let newsDict = news as? NSDictionary{
 
                     guard let id = newsDict.value(forKey: "id")  else { return }
                     let IDString = id as! String
                     let newsID = Int.init(IDString)
-
+                print("ID: " + newsID!.description + "\n")
                     guard let title = newsDict.value(forKey: "title") else { return }
                     let newsTitle = title as! String
-
+                print("NewsTitle: " + newsTitle + "\n")
                     guard let text = newsDict.value(forKey: "text") else { return }
                     var newsText = text as! String
                     newsText = extractRegex(input: newsText, regex: DataService.matches(for: Constants.regexReplace, in: newsText))
-
-                    guard let created = newsDict.value(forKey: "added") else { return }
+                print("Text: " + newsText + "\n")
+                    guard let created = newsDict.value(forKey: "published") else { return } //from added to published
                     let createdString = created as! String
-                    let newsCreated = self.handleDate(date: createdString)
-
+                    print(createdString)
+                    let newsCreated = Date()//self.handleDate(date: createdString)
+                print("CreationDate: " + newsCreated.description + "\n")
                     guard let imageURLJSON = newsDict.value(forKey : "image") else { return }
                     var imageURL = ""
                     if let mainImageDict = imageURLJSON as? NSDictionary{
@@ -61,14 +63,15 @@ class DataService{
                         image = UIImage(data: data! as Data)!
 
                     }
-
+print("1")
                     guard let updated = newsDict.value(forKey: "updated") else { return }
                     let upDatedString = updated as! String
-                    let newsUpdated = self.handleDate(date: upDatedString)
-
+                    //print(upDatedString)
+                    let newsUpdated = Date()//self.handleDate(date: upDatedString)
+print("2")
                     guard let range = newsDict.value(forKey: "range") else { return }
                     let newsRange = range as! String
-
+print("3")
                     guard let Dictteaser = newsDict.value(forKey: "teaser") else { return }
                     let newsTeaser = Dictteaser as! String
 

@@ -16,6 +16,10 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var tableView: UITableView!
 
     var eventList : [Event] = []
+    var partnerList: [String] = ["Osnabrück","Münster", "Köln", "Berlin"]
+    var locationList: [String] = ["Grüner Jäger", "Domplatz", "Kölner Dom", "Brandenburger Tor"]
+    var dateList: [String] = ["20.02.2020", "01.01.2020", "05.03.2020","16.09.2020"]
+    var titleList: [String] = ["Stammtisch im Jäger", "Flunkyballturnier", "Stadtrallye", "Sommerfest"]
 
      func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -31,10 +35,13 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
 
         // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
         let cell = tableView.dequeueReusableCell(withIdentifier:"event_cell", for: indexPath)as! EventTableViewCell
-        let tabbar = tabBarController.self as! TabBarController
+        cell.event_date.text = dateList[indexPath.row]
+        cell.event_host.text = partnerList[indexPath.row]
+        cell.event_location.text = locationList[indexPath.row]
+        cell.event_description.text = titleList[indexPath.row]
         cell.event_image.image = UIImage(named: "Weitblick")
-        cell.event_button_detail.tag = indexPath.row
         return cell
+
     }
 
 
