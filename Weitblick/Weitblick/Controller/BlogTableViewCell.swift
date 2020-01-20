@@ -22,12 +22,6 @@ class BlogTableViewCell: UITableViewCell {
     
     @IBOutlet weak var blog_button_detail: UIView!
     
-    @IBOutlet weak var blog_city: UILabel!
-    
-    @IBOutlet weak var blog_country: UILabel!
-    
-    
-    @IBOutlet weak var triangle: UILabel!
     
     
     override func awakeFromNib() {
