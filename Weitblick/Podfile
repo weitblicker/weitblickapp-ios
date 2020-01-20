@@ -3,13 +3,13 @@
 
 target 'Weitblick' do
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+  #use_frameworks!
 
   # Pods for Weitblick
-  pod 'SwipeableTabBarController'
-  pod 'OAuthSwift'
-  pod 'Charts'
-  pod 'SwiftKeychainWrapper'
-  pod 'HCKalmanFilter'
+pod 'SwipeableTabBarController'
+pod 'OAuthSwift'
+pod 'Charts'
+pod 'SwiftKeychainWrapper', '~> 3.4'
+pod 'HCKalmanFilter'
 
 end

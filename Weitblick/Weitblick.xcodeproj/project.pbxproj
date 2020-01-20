@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,7 +17,6 @@
 		0F9375FD2376F92A00EB26FF /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9375FC2376F92A00EB26FF /* ProjectTableViewCell.swift */; };
 		0FA37B2923896D4000D8B800 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA37B2823896D4000D8B800 /* ContactViewController.swift */; };
 		0FC53FCA237D98A500E6326D /* BlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC53FC9237D98A500E6326D /* BlogViewController.swift */; };
-		0FCB7A04A6F34E6684B2945E /* Pods_Weitblick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 589FE81B2F330B2A1810611B /* Pods_Weitblick.framework */; };
 		0FD676F1239D01B300F88081 /* ForgottPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD676F0239D01B300F88081 /* ForgottPasswordViewController.swift */; };
 		0FD676F3239D03BE00F88081 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD676F2239D03BE00F88081 /* UserService.swift */; };
 		0FD676F5239D0FA000F88081 /* LogoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD676F4239D0FA000F88081 /* LogoutService.swift */; };
@@ -48,9 +47,9 @@
 		3DA49A6E236B155F00AA3198 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA49A6D236B155F00AA3198 /* OtherViewController.swift */; };
 		3DA49A70236B168F00AA3198 /* ProjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA49A6F236B168F00AA3198 /* ProjectDetailViewController.swift */; };
 		3DA49A72236B169E00AA3198 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA49A71236B169E00AA3198 /* NewsDetailViewController.swift */; };
-		3DA913E323D5B4A2000952E7 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA913E223D5B4A2000952E7 /* LaunchViewController.swift */; };
 		3DDF2CF2239FB2A3001EEEF2 /* ProjectBlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDF2CF1239FB2A3001EEEF2 /* ProjectBlogViewController.swift */; };
 		3DF7FD962373328E00F250AF /* CommonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF7FD952373328E00F250AF /* CommonData.swift */; };
+		4E5B7697446E1FAC550D78A8 /* libPods-Weitblick.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8464085A66F63BEDCC2DEF /* libPods-Weitblick.a */; };
 		A114CB7823771772006EAE45 /* ProjectCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114CB7723771772006EAE45 /* ProjectCollection.swift */; };
 		A114CB7A237719B9006EAE45 /* BlogCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114CB79237719B9006EAE45 /* BlogCollection.swift */; };
 		A114CB7C23771A53006EAE45 /* NewsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114CB7B23771A53006EAE45 /* NewsCollection.swift */; };
@@ -122,10 +121,9 @@
 		3DA49A6D236B155F00AA3198 /* OtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
 		3DA49A6F236B168F00AA3198 /* ProjectDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailViewController.swift; sourceTree = "<group>"; };
 		3DA49A71236B169E00AA3198 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
-		3DA913E223D5B4A2000952E7 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		3DDF2CF1239FB2A3001EEEF2 /* ProjectBlogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectBlogViewController.swift; sourceTree = "<group>"; };
 		3DF7FD952373328E00F250AF /* CommonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonData.swift; sourceTree = "<group>"; };
-		589FE81B2F330B2A1810611B /* Pods_Weitblick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weitblick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D8464085A66F63BEDCC2DEF /* libPods-Weitblick.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Weitblick.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A114CB7723771772006EAE45 /* ProjectCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollection.swift; sourceTree = "<group>"; };
 		A114CB79237719B9006EAE45 /* BlogCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogCollection.swift; sourceTree = "<group>"; };
 		A114CB7B23771A53006EAE45 /* NewsCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollection.swift; sourceTree = "<group>"; };
@@ -166,7 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FCB7A04A6F34E6684B2945E /* Pods_Weitblick.framework in Frameworks */,
+				4E5B7697446E1FAC550D78A8 /* libPods-Weitblick.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,7 +174,7 @@
 		388A19C884B16F0DE84DD346 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				589FE81B2F330B2A1810611B /* Pods_Weitblick.framework */,
+				4D8464085A66F63BEDCC2DEF /* libPods-Weitblick.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -277,7 +275,6 @@
 				3D371E2223A25DB800453BF4 /* RankingViewController.swift */,
 				3D371E2423A3B5B800453BF4 /* PopOverViewController.swift */,
 				3D371E2623A3D44600453BF4 /* AGBViewController.swift */,
-				3DA913E223D5B4A2000952E7 /* LaunchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -345,7 +342,6 @@
 				3DA49A3E236B0C5200AA3198 /* Sources */,
 				3DA49A3F236B0C5200AA3198 /* Frameworks */,
 				3DA49A40236B0C5200AA3198 /* Resources */,
-				A27214134DA71F10CF6E813E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -404,23 +400,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A27214134DA71F10CF6E813E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Weitblick/Pods-Weitblick-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Weitblick/Pods-Weitblick-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Weitblick/Pods-Weitblick-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		FFFDCB5241E282CFAB91D926 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -471,7 +450,6 @@
 				3D10C379238FE14B00722B45 /* SponsorTableViewCell.swift in Sources */,
 				3DA49A66236B14F300AA3198 /* ProjectViewController.swift in Sources */,
 				3DA49A5E236B147E00AA3198 /* RegisterViewController.swift in Sources */,
-				3DA913E323D5B4A2000952E7 /* LaunchViewController.swift in Sources */,
 				3DA49A4A236B0C5200AA3198 /* ViewController.swift in Sources */,
 				A123D1BF236B1957004DB13E /* FAQViewController.swift in Sources */,
 				0FD676F1239D01B300F88081 /* ForgottPasswordViewController.swift in Sources */,
