@@ -16,24 +16,37 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
     var postCount = 3
     var blog_object : BlogEntry?
     var image: UIImageView?
+    
 
+    
     @IBOutlet weak var tableView: UITableView!
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return blogList.count
+       // return blogList.count
+        return 3
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier:"blog_cell", for: indexPath)as! BlogTableViewCell
 
-        cell.blog_image.image = self.blogList[indexPath.row].getImage
+       // cell.blog_image.image = self.blogList[indexPath.row].getImage
        // cell.blog_description.text = blogList[indexPath.row].getTeaser
        // cell.blog_description.sizeToFit()
-        cell.blog_date.text = blogList[indexPath.row].getCreationDate.dateAndTimetoString()
-        cell.blog_title.text = blogList[indexPath.row].getTitle
+        //cell.blog_date.text = blogList[indexPath.row].getCreationDate.dateAndTimetoString()
+        //cell.blog_title.text = blogList[indexPath.row].getTitle
+        cell.triangle.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
+        cell.blog_image.image = UIImage(named: "Weitblick")
+        cell.blog_description.text = "Das hier ist eine Blog beschreibung tralallalala"
+        cell.blog_description.sizeToFit()
+        cell.blog_date.text = "12.12.12"
+        cell.blog_city.text = "Osnabrück"
+        cell.blog_country.text = "Indien"
+        cell.blog_title.text = "Neuer Blog der Weitblicker Gruppe in Indien"
         cell.blog_title.sizeToFit()
-       // cell.blog_button_detail.tag = indexPath.row
+        //cell.blog_button_detail.tag = indexPath.row
+        
+        print(cell.blog_title.text as Any)
         return cell
 
 
@@ -47,7 +60,8 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.downloadData()
+      //  self.downloadData()
+       
         self.tableView.delegate = self
         self.tableView.dataSource = self
 

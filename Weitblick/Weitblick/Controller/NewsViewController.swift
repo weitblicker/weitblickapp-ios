@@ -40,7 +40,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Zelle konfigurieren
         cell.news_image.image = newsList[indexPath.row].getImage
         // TODO If TEASER = NIL OR ""
-        cell.news_date.text = newsList[indexPath.row].getCreationDate.dateAndTimetoString()
+        cell.news_date.text =  newsList[indexPath.row].getCreationDate.dateAndTimetoString()
         // TODO If TEASER = NIL OR ""
         cell.news_description.text = newsList[indexPath.row].getTeaser.html2String
         cell.news_description.sizeToFit()
@@ -76,7 +76,7 @@ override func viewDidLoad() {
     super.viewDidLoad()
     DataService.loadNews(date: self.date) { (list) in
         self.newsList = list
-        self.date = self.newsList.last!.getCreationDate
+    //    self.date = self.newsList.last!.getCreationDate
         DispatchQueue.main.async {
             self.tableView.reloadData()
             
