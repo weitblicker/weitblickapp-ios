@@ -11,7 +11,8 @@ import UIKit
 
 class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
-
+    
+    
     var imagesLoaded : Bool = false
     var postCount : Int = 5
     var count : Int = 0
@@ -19,7 +20,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var news_title = ""
     var news_description = ""
     var news_location = ""
-    var news_date = ""
+    var news_date = "datum"
     var news_object : NewsEntry?
     var date = Date.init()
     @IBOutlet weak var tableView: UITableView!
@@ -38,9 +39,11 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
         let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! NewsTableViewCell
         // Zelle konfigurieren
+        cell.formlabel.transform=CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
+        
         cell.news_image.image = newsList[indexPath.row].getImage
         // TODO If TEASER = NIL OR ""
-        cell.news_date.text = newsList[indexPath.row].getCreationDate.dateAndTimetoString()
+      //  cell.news_date.text = newsList[indexPath.row].getCreationDate.dateAndTimetoString()
         // TODO If TEASER = NIL OR ""
         cell.news_description.text = newsList[indexPath.row].getTeaser.html2String
         cell.news_description.sizeToFit()
@@ -49,6 +52,8 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.news_button_detail.tag = indexPath.row
         return cell
     }
+    
+    
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.news_object = newsList[indexPath.row]
@@ -76,11 +81,12 @@ override func viewDidLoad() {
     super.viewDidLoad()
     DataService.loadNews(date: self.date) { (list) in
         self.newsList = list
-        self.date = self.newsList.last!.getCreationDate
+//        self.date = self.newsList.last!.getCreationDate
         DispatchQueue.main.async {
             self.tableView.reloadData()
             
         }
+      
     }
     self.tableView.delegate = self
     self.tableView.dataSource = self
