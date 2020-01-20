@@ -57,6 +57,7 @@ class BlogDetailViewController: UIViewController {
     
     func loadDetailBlog(){
         
+    
       blog_detail_title.text = blog_object?.getTitle
       blog_detail_description.text = blog_object?.getText.html2String
       blog_detail_description.sizeToFit()

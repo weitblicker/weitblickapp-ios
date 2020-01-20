@@ -37,7 +37,7 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
         cell.blog_title.text = blogList[indexPath.row].getTitle
         cell.blog_description.text = blogList[indexPath.row].getText
         cell.triangle.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
-      /*  cell.blog_image.image = UIImage(named: "Weitblick")
+       /* cell.blog_image.image = UIImage(named: "Weitblick")
         cell.blog_description.text = "Das hier ist eine Blog beschreibung tralallalala"
         cell.blog_description.sizeToFit()
         cell.blog_date.text = "12.12.12"
@@ -47,7 +47,7 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
         cell.blog_title.sizeToFit()
         //cell.blog_button_detail.tag = indexPath.row
         
-        print(cell.blog_title.text as Any)
+       
         return cell
 
 

@@ -20,7 +20,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var news_title = ""
     var news_description = ""
     var news_location = ""
-    var news_date = "datum"
+    var news_date = ""
     var news_object : NewsEntry?
     var date = Date.init()
     @IBOutlet weak var tableView: UITableView!
@@ -42,6 +42,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.formlabel.transform=CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
 
         cell.news_image.image = newsList[indexPath.row].getImage
+       // cell.formlabel.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
         // TODO If TEASER = NIL OR ""
       //  cell.news_date.text =  newsList[indexPath.row].getCreationDate.dateAndTimetoString()
         // TODO If TEASER = NIL OR ""
