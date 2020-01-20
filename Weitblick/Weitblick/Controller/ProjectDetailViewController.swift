@@ -9,6 +9,7 @@
 import UIKit
 import Charts
 import MapKit
+import MarkdownKit
 
 
 
@@ -170,7 +171,8 @@ class ProjectDetailViewController: UIViewController {
     }
 
     func loadProjectDetail(){
-        project_detail_description.text = project_object?.getDescription.html2String
+        let markdownParser = MarkdownParser()
+        project_detail_description.attributedText = markdownParser.parse(project_object!.getDescription)
         project_detail_title.text = project_object?.getName
         project_detail_location.text = project_object?.getLocation.getAddress
         // project_detail_image.image = img
