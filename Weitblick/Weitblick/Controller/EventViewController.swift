@@ -26,7 +26,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
 
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 4
 
     }
 
@@ -40,6 +40,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.event_location.text = locationList[indexPath.row]
         cell.event_description.text = titleList[indexPath.row]
         cell.event_image.image = UIImage(named: "Weitblick")
+        let size = CGSize.init(width: 300  , height: 300)
+        cell.event_image.image = cell.event_image.image?.crop(to: size)
         return cell
 
     }
