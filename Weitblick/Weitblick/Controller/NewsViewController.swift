@@ -43,7 +43,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         cell.news_image.image = newsList[indexPath.row].getImage
         // TODO If TEASER = NIL OR ""
-        cell.news_date.text =  newsList[indexPath.row].getCreationDate.dateAndTimetoString()
+      //  cell.news_date.text =  newsList[indexPath.row].getCreationDate.dateAndTimetoString()
         // TODO If TEASER = NIL OR ""
         cell.news_description.text = newsList[indexPath.row].getTeaser.html2String
         cell.news_description.sizeToFit()
