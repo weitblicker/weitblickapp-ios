@@ -76,10 +76,10 @@ override func viewDidLoad() {
     super.viewDidLoad()
     DataService.loadNews(date: self.date) { (list) in
         self.newsList = list
-    //    self.date = self.newsList.last!.getCreationDate
+        //self.date = self.newsList.last!.getCreationDate
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            
+
         }
     }
     self.tableView.delegate = self
@@ -102,7 +102,7 @@ override func viewDidLoad() {
         }
     }
 
-    
+
 
 
 }
