@@ -16,7 +16,7 @@ class DataService{
 
 
         let timestamp = date.dateAndTimetoStringISO()
-        let url = NSURL(string: "https://weitblicker.org/rest/news/?end="+timestamp+"&limit=3")
+        let url = NSURL(string: "https://weitblicker.org/rest/news/?end="+timestamp+"&limit=5")
         let str = "surfer:hangloose"
         let dataB64 = Data(str.utf8).base64EncodedString();
         var task = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
@@ -40,7 +40,7 @@ class DataService{
                 print("NewsTitle: " + newsTitle + "\n")
                     guard let text = newsDict.value(forKey: "text") else { return }
                     var newsText = text as! String
-                    newsText = extractRegex(input: newsText, regex: DataService.matches(for: Constants.regexReplace, in: newsText))
+                    //newsText = extractRegex(input: newsText, regex: DataService.matches(for: Constants.regexReplace, in: newsText))
                 print("Text: " + newsText + "\n")
                     guard let created = newsDict.value(forKey: "published") else { return } //from added to published
                     let createdString = created as! String
