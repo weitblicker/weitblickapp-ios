@@ -22,7 +22,9 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
     var locationListID : [Int] = []
     var project_object : Project?
     var delegate = ProjectTableViewCell?.self
-//    var count2 = 0
+    
+    @IBOutlet weak var triangle: UILabel!
+    //    var count2 = 0
 //    var postCount2 = 3
     var date = Date.init()
 
@@ -36,6 +38,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
 
     func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {   // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
         let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as! ProjectTableViewCell
+       
         cell.project_image.image = self.projectList[indexPath.row].getImage
         cell.project_title.text = projectList[indexPath.row].getName
         cell.project_location.text = projectList[indexPath.row].getLocation.getAddress
@@ -86,6 +89,8 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+         triangle.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
         DataService.loadProjects(date: self.date) { (list) in
             self.projectList = list
             self.date = self.projectList.last?.getPublished ?? self.date

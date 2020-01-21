@@ -18,6 +18,9 @@ class ProjectTableViewCell: UITableViewCell{
     
     @IBOutlet weak var project_title: UILabel!
     
+    @IBOutlet weak var project_city: UILabel!
+    
+    @IBOutlet weak var triangle: UILabel!
     
     @IBOutlet weak var project_button_bike: UIButton!
     
