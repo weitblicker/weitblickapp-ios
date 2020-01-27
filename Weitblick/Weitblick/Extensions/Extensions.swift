@@ -11,6 +11,7 @@ import UIKit
 struct Constants{
     static let url  = "https://weitblicker.org"
     static let loginURL = "https://weitblicker.org/rest/auth/login/"
+    static let eventUrl = "https://weitblicker.org/rest/events/"
     static let restURL  = "https://weitblicker.org/rest"
     static let mediaURL = "https://weitblicker.org/media"
     static let projectURL = "https://weitblicker.org/rest/projects/"

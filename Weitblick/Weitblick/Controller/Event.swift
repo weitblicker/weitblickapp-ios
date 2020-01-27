@@ -14,20 +14,26 @@ import UIKit
 class Event{
     
     private var id : Int
-    private var name : String
+    private var title : String
     private var description : String
+    private var image : UIImage
+    private var host : String
     private var gallery : [UIImage]
-    private var locationID : Int
-    private var date : Date
+    private var location : Location
+    private var dateStart : Date
+    private var dateEnd : Date
     
-    init(id : Int, name : String, description : String, locationID : Int,gallery : [UIImage], date : Date){
+    init(id : Int, title : String, description : String,image : UIImage, host : String, location : Location,gallery : [UIImage], dateStart : Date, dateEnd : Date){
         
         self.id = id
-        self.name = name
+        self.title = title
         self.description = description
-        self.locationID = locationID
+        self.image = image
+        self.host = host
+        self.location = location
         self.gallery = gallery
-        self.date = date
+        self.dateStart = dateStart
+        self.dateEnd = dateEnd
         
     }
     
@@ -35,24 +41,27 @@ class Event{
         return self.id
     }
     
-    public var getName : String{
-        return self.name
+    public var getTitle : String{
+        return self.title
     }
     
     public var getDescription : String{
         return self.description
     }
     
-    public var getLocationID : Int{
-        return self.locationID
+    public var getLocation : Location{
+        return self.location
     }
     
-    public var getDate : Date{
-        return self.date
+    public var getStartDate : Date{
+        return self.dateStart
     }
     
-    public func setDescription(description : String){
-        self.description = description
-        //DB Synchronisation
+    public var getHost : String{
+        return self.host
+    }
+    
+    public var getImage : UIImage{
+        return self.image
     }
 }

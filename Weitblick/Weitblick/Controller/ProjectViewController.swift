@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 protocol DelegateToCycle{
     func didTapProject (title: String)
@@ -29,6 +30,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
     var date = Date.init()
 
 
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
     var clicked = 0
 
@@ -96,6 +98,12 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
             self.date = self.projectList.last?.getPublished ?? self.date
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                for project in self.projectList{
+                    let CLLCoordType = CLLocationCoordinate2D(latitude: project.getLocation.getLatitude,longitude: project.getLocation.getLongitude)
+                    let anno = MKPointAnnotation()
+                    anno.coordinate = CLLCoordType
+                    self.mapView.addAnnotation(anno)
+                }
             }
         }
         self.tableView.delegate = self

@@ -34,19 +34,19 @@ class DataService{
                     guard let id = newsDict.value(forKey: "id")  else { return }
                     let IDString = id as! String
                     let newsID = Int.init(IDString)
-                print("ID: " + newsID!.description + "\n")
+                    
                     guard let title = newsDict.value(forKey: "title") else { return }
                     let newsTitle = title as! String
-                print("NewsTitle: " + newsTitle + "\n")
+                    
                     guard let text = newsDict.value(forKey: "text") else { return }
                     var newsText = text as! String
                     newsText = extractRegex(input: newsText, regex: DataService.matches(for: Constants.regexReplace, in: newsText))
-                print("Text: " + newsText + "\n")
+                    
                     guard let created = newsDict.value(forKey: "published") else { return } //from added to published
                     let createdString = created as! String
                     print(createdString)
-                    let newsCreated = Date()//self.handleDate(date: createdString)
-                print("CreationDate: " + newsCreated.description + "\n")
+                    let newsCreated = self.handleDateWithTimeZone(date: createdString)
+                    
                     guard let imageURLJSON = newsDict.value(forKey : "image") else { return }
                     var imageURL = ""
                     if let mainImageDict = imageURLJSON as? NSDictionary{
@@ -63,15 +63,15 @@ class DataService{
                         image = UIImage(data: data! as Data)!
 
                     }
-print("1")
-                    guard let updated = newsDict.value(forKey: "updated") else { return }
-                    let upDatedString = updated as! String
-                    //print(upDatedString)
-                    let newsUpdated = Date()//self.handleDate(date: upDatedString)
-print("2")
+                    
+                    guard let published = newsDict.value(forKey: "published") else { return }
+                    let publishedString = published as! String
+                    print(publishedString)
+                    let newsUpdated = self.handleDateWithTimeZone(date: publishedString)
+                    
                     guard let range = newsDict.value(forKey: "range") else { return }
                     let newsRange = range as! String
-print("3")
+                    
                     guard let Dictteaser = newsDict.value(forKey: "teaser") else { return }
                     let newsTeaser = Dictteaser as! String
 
@@ -288,7 +288,18 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
 
     static func handleDate(date : String) -> Date{
         let dateFormatter = DateFormatter()
+        //2020-01-23T11:20:07Z+0000
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        return dateFormatter.date(from:date)!
+       
+        
+    }
+    
+    static func handleDateWithTimeZone(date : String) -> Date{
+        let dateFormatter = DateFormatter()
+        //2020-01-23T11:20:07Z+0000
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ+0000"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.date(from:date)!
        
