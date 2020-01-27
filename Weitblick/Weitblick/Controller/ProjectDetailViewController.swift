@@ -74,7 +74,7 @@ class ProjectDetailViewController: UIViewController {
         customizeChart(dataPoints: stats, values: goals.map{ Double($0) })
         } else{
             PieChart.alpha = 0
-            uebersicht.alpha = 0
+            
         }
         loadProjectDetail()
 

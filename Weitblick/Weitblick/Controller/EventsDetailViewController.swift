@@ -14,7 +14,7 @@ class EventsDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        photoSliderView.configure(with: (self.events_object?.getGallery)!)
+       // photoSliderView.configure(with: (self.events_object?.getGallery)!)
     }
     
 
