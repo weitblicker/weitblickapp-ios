@@ -24,6 +24,7 @@ class NewsTableViewCell : UITableViewCell{
     @IBOutlet weak var news_button_detail: UIButton!
     @IBOutlet weak var news_location: UILabel!
     
+    @IBOutlet weak var triangle: UILabel!
     
     
     override func awakeFromNib() {

@@ -51,6 +51,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.news_title.text = newsList[indexPath.row].getTitle.html2String
         cell.news_title.sizeToFit()
         cell.news_button_detail.tag = indexPath.row
+         cell.triangle.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
         return cell
     }
 

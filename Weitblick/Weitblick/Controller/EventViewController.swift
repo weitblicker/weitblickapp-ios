@@ -20,7 +20,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     var locationList: [String] = ["Grüner Jäger", "Domplatz", "Kölner Dom", "Brandenburger Tor"]
     var dateList: [String] = ["20.02.2020", "01.01.2020", "05.03.2020","16.09.2020"]
     var titleList: [String] = ["Stammtisch im Jäger", "Flunkyballturnier", "Stadtrallye", "Sommerfest"]
-
+  var event_object : Event?
      func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -54,6 +54,13 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
 //    }
 
 
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//       self.event_object = eventList[indexPath.row]
+//       self.performSegue(withIdentifier: "goToEventDetail", sender: self)
+//        
+//      }
+
+    
 override func viewDidLoad() {
     super.viewDidLoad()
     self.tableView.delegate = self
