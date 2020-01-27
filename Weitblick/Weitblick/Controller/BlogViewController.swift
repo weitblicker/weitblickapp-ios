@@ -16,7 +16,7 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
     var postCount = 3
     var blog_object : BlogEntry?
     var image: UIImageView?
-    
+    var date : Date = Date()
 
     
     @IBOutlet weak var tableView: UITableView!
@@ -61,7 +61,12 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.downloadData()
+        BlogService.loadBlogs(date: self.date) { (list) in
+            self.blogList = list
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
        
         self.tableView.delegate = self
         self.tableView.dataSource = self
