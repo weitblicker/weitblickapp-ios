@@ -149,9 +149,9 @@ class MapViewController: UIViewController {
 
     @IBAction func clickPauseContinue(_ sender: Any) {
         if(startTracking){
-            startTracking = false
             self.timer.fire()
             self.timer.invalidate()
+            startTracking = false
             self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop500"), for: UIControl.State.normal)
         }else{
             startTracking = true
@@ -197,46 +197,65 @@ class MapViewController: UIViewController {
     }
 }
 
+/*
+ 
+ StartTracking True
+ hasbeenPaused false
+ 
+ -> didUpdate() -> 1 Location
+                -> 2 Location -> Distance calculated
+                -> 3 Location -> Distance calculated
+                -> ..         -> Distance calculated
+ -> clickPauseContinue()
+                -> FireTimer -> Distance calculated
+                -> StartTracking false
+ ..
+ -> clickPauseContinue()
+                -> StartTracking true
+                -> hasBeenPaused true
+ -> didUpdate() -> 1 Location
+                -> hasbeenPaused false
+                -> 2 Location -> Distance calculated
+                -> ..         -> Distance calculated
+ 
+ */
+
 
 extension MapViewController : CLLocationManagerDelegate{
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        var myLocation: CLLocation = locations.first!
         
-        if hcKalmanFilter == nil {
-           self.hcKalmanFilter = HCKalmanAlgorithm(initialLocation: myLocation)
-        }
-        else {
-            if let hcKalmanFilter = self.hcKalmanFilter {
-                let kalmanLocation = hcKalmanFilter.processState(currentLocation: myLocation)
-                if(self.startTracking){
-                    //self.showErrorMessage(message: kalmanLocation.description)
-                    print(kalmanLocation)
-                    print(kalmanLocation.horizontalAccuracy)
+        if(startTracking){
+            
+            // Most recent Location from CLLocationManager
+            let lastLocation: CLLocation = locations.first!
+            
+            // Singleton KalmanFilter
+            if hcKalmanFilter == nil {
+               self.hcKalmanFilter = HCKalmanAlgorithm(initialLocation: lastLocation)
+            }
+            else {
+                if let hcKalmanFilter = self.hcKalmanFilter {
+                
+                    //kalmanLocation : Location filtered by KalmanFilter
+                    let kalmanLocation = hcKalmanFilter.processState(currentLocation: lastLocation)
+                    // add Location to List
                     self.list.append(kalmanLocation)
-                    print(self.list.count)
-                    if(self.list.count >= 2){
-                        var speed = kalmanLocation.speed
-                        if(hasbeenPaused){
-                            hasbeenPaused = false;
-                            speed = -1
-                        }
-
-                        if(true/*!(speed < 0.0)*/){
-                            let start = self.list[self.list.count-2]
-                            let end = self.list[self.list.count-1]
-                            self.totalDistance += end.distance(from: start)
-                            print("Distance calculated : " + end.distance(from: start).description)
-                            //print(totalDistance.description + " m")
-                            let distanceinKM = self.totalDistance/1000
-                            print((round(distanceinKM*100)/100).description + " km")
-                            self.distanceLbl.text = (round(distanceinKM*100)/100).description + " km"
-                            self.distanceLbl.text = doubleToKm(double: totalDistance)
-                            print("Total Distance: " + distanceLbl.text!)
-                            self.donationLbl.text = (round((distanceinKM*0.1)*100)/100).description + " €"
-                        }
-                        print("speed is negative, no distance added")
-                    }
+                }
+                // If hasbeenPaused : do not calculate distance causing false results
+                if(!hasbeenPaused && self.list.count >= 2){
+                    
+                    let start = self.list[self.list.count-2]
+                    let end = self.list[self.list.count-1]
+                    
+                    self.totalDistance += end.distance(from: start)
+                    let distanceinKM = self.totalDistance/1000
+                    self.distanceLbl.text = (round(distanceinKM*100)/100).description + " km"
+                    self.distanceLbl.text = doubleToKm(double: totalDistance)
+                    self.donationLbl.text = (round((distanceinKM*0.1)*100)/100).description + " €"
+                    
+                }else{
+                    hasbeenPaused = false
                 }
             }
         }
