@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import MarkdownKit
 
 class NewsDetailViewController: UIViewController {
     
@@ -52,7 +53,10 @@ class NewsDetailViewController: UIViewController {
     
     
     func loadNewsDetail(){
-        news_detail_description.text = news_object?.getText.html2String
+        
+        let markdownParser = MarkdownParser()
+        
+        news_detail_description.attributedText = markdownParser.parse(news_object!.getText)
         news_detail_description.sizeToFit()
         news_detail_date.text = news_object?.getCreationDate.dateAndTimetoString()
         news_detail_title.text = news_object?.getTitle

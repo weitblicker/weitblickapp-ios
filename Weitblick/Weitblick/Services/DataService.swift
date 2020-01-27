@@ -16,7 +16,7 @@ class DataService{
 
 
         let timestamp = date.dateAndTimetoStringISO()
-        let url = NSURL(string: "https://weitblicker.org/rest/news/?end="+timestamp+"&limit=3")
+        let url = NSURL(string: "https://weitblicker.org/rest/news/?end="+timestamp+"&limit=5")
         let str = "surfer:hangloose"
         let dataB64 = Data(str.utf8).base64EncodedString();
         var task = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)

@@ -40,7 +40,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.event_date.text = eventList[indexPath.row].getStartDate.dateAndTimetoString()
         cell.event_host.text = eventList[indexPath.row].getHost
         cell.event_location.text = eventList[indexPath.row].getLocation.getAddress
-        cell.event_description.text = eventList[indexPath.row].getDescription
+        cell.event_description.text = eventList[indexPath.row].getTitle
         cell.event_image.image = eventList[indexPath.row].getImage
         let size = CGSize.init(width: 300  , height: 300)
         cell.event_image.image = cell.event_image.image?.crop(to: size)

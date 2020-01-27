@@ -84,7 +84,6 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
             task.httpMethod = "GET"
             task.addValue("application/json", forHTTPHeaderField: "Content-Type")
             task.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-
             URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
                 let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
                 if let newsArray = jsondata as? NSArray{

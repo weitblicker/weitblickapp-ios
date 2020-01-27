@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MarkdownKit
 
 class BlogDetailViewController: UIViewController {
     
@@ -56,18 +57,15 @@ class BlogDetailViewController: UIViewController {
       
     
     func loadDetailBlog(){
-        
-    
-      blog_detail_title.text = blog_object?.getTitle
-      blog_detail_description.text = blog_object?.getText.html2String
-      blog_detail_description.sizeToFit()
-        
-      
+
+        let markdownParser = MarkdownParser()
+        blog_detail_description.attributedText = markdownParser.parse(blog_object!.getText)
+        blog_detail_title.text = blog_object?.getTitle
+        blog_detail_description.sizeToFit()
         blog_detail_date.text = blog_object?.getCreationDate.dateAndTimetoString()
-        print("Test1")
-       // blog_detail_image.image = self.image
-      
+        // blog_detail_image.image = self.image
+
         photoSliderView.configure(with: [])
-        
+
     }
 }
