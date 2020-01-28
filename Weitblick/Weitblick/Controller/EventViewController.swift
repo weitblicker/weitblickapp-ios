@@ -56,11 +56,11 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
 //    }
 
 
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//       self.event_object = eventList[indexPath.row]
-//       self.performSegue(withIdentifier: "goToEventDetail", sender: self)
-//        
-//      }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       self.event_object = eventList[indexPath.row]
+       self.performSegue(withIdentifier: "goToEventDetail", sender: self)
+        
+      }
 
     
     override func viewDidLoad() {
@@ -78,5 +78,13 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.tableView.estimatedRowHeight = 600
         
     }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+          if segue.destination is EventDetailViewController{
+              let eventDetailViewController = segue.destination as? EventDetailViewController
+              eventDetailViewController?.event_object = self.event_object
+          }
+      }
 }
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -3179,12 +3179,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agy-lZ-w6v">
-                                                    <rect key="frame" x="319" y="11" width="46" height="30"/>
+                                                    <rect key="frame" x="319" y="11" width="46" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
-                                                    <connections>
-                                                        <segue destination="pWf-oB-3GP" kind="show" id="ITA-AQ-rYx"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -3205,6 +3202,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="event_button" destination="agy-lZ-w6v" id="6Dz-7T-t5D"/>
                                             <outlet property="event_date" destination="0zZ-0v-GVJ" id="W27-hK-8l6"/>
                                             <outlet property="event_description" destination="dzC-0R-uhF" id="Gkf-mD-bOu"/>
                                             <outlet property="event_host" destination="xX7-4d-Snf" id="KnW-9E-pEd"/>
@@ -3225,16 +3223,17 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="nsk-UF-ymb" id="gCq-zC-fjr"/>
+                        <segue destination="pWf-oB-3GP" kind="showDetail" identifier="goToEventDetail" id="NMV-O6-kFq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sBq-hz-bWM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2903.1999999999998" y="-947.22638680659679"/>
+            <point key="canvasLocation" x="2902.898550724638" y="-947.87946428571422"/>
         </scene>
-        <!--Events Detail View Controller-->
+        <!--Event Detail View Controller-->
         <scene sceneID="utF-qC-8Y2">
             <objects>
-                <viewController id="pWf-oB-3GP" customClass="EventsDetailViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pWf-oB-3GP" customClass="EventDetailViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c9U-U8-e5c">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="946"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3257,9 +3256,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bIl-aP-Uvd" userLabel="PhotoSliderView" customClass="PhotoSliderView" customModule="Weitblick" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="8" width="414" height="179"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bIl-aP-Uvd" userLabel="PhotoSliderView" customClass="PhotoSliderView" customModule="Weitblick" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="8" width="414" height="262"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Center" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mdw-m0-I32">
@@ -3268,15 +3266,86 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weitblickLogoCircle" translatesAutoresizingMaskIntoConstraints="NO" id="a8d-tF-7gU">
+                                                <rect key="frame" x="30" y="278" width="37" height="37"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stadtname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7L-K4-eVx">
+                                                <rect key="frame" x="75" y="286" width="84" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="ZU4-Ey-9xm"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titel des Events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VUx-4e-ntR">
+                                                <rect key="frame" x="25" y="337" width="367" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="34" id="1dZ-S2-kaf"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Elu-Iu-xG7">
+                                                <rect key="frame" x="30" y="386" width="66" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description des Events" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RV6-e0-HOC">
+                                                <rect key="frame" x="30" y="419" width="362" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12.12.2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojc-uo-TVu">
+                                                <rect key="frame" x="304" y="286" width="88" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="88" id="d8q-Tn-lHz"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7bT-F9-JFs">
+                                                <rect key="frame" x="25" y="493" width="367" height="206"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="206" id="SLC-0b-Qt9"/>
+                                                </constraints>
+                                            </mapView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
+                                            <constraint firstItem="7bT-F9-JFs" firstAttribute="leading" secondItem="VUx-4e-ntR" secondAttribute="leading" id="1iO-NU-iU5"/>
+                                            <constraint firstItem="j7L-K4-eVx" firstAttribute="leading" secondItem="xjF-LB-2SL" secondAttribute="leading" constant="75" id="62Q-eP-EkO"/>
+                                            <constraint firstItem="VUx-4e-ntR" firstAttribute="trailing" secondItem="RV6-e0-HOC" secondAttribute="trailing" id="74D-Bf-73r"/>
+                                            <constraint firstItem="Elu-Iu-xG7" firstAttribute="leading" secondItem="RV6-e0-HOC" secondAttribute="leading" id="7be-vm-MJK"/>
                                             <constraint firstItem="Mdw-m0-I32" firstAttribute="centerX" secondItem="xjF-LB-2SL" secondAttribute="centerX" id="FDM-Be-aM8"/>
+                                            <constraint firstAttribute="bottom" secondItem="bIl-aP-Uvd" secondAttribute="bottom" constant="649" id="HsM-1m-IS8"/>
+                                            <constraint firstItem="j7L-K4-eVx" firstAttribute="top" secondItem="bIl-aP-Uvd" secondAttribute="bottom" constant="16" id="J68-cc-7cG"/>
+                                            <constraint firstItem="7bT-F9-JFs" firstAttribute="top" secondItem="RV6-e0-HOC" secondAttribute="bottom" constant="53.5" id="Jtl-Bu-Xt5"/>
+                                            <constraint firstItem="RV6-e0-HOC" firstAttribute="top" secondItem="Elu-Iu-xG7" secondAttribute="bottom" constant="12" id="MIQ-gX-Y8t"/>
+                                            <constraint firstItem="j7L-K4-eVx" firstAttribute="centerY" secondItem="a8d-tF-7gU" secondAttribute="centerY" id="OBI-Wy-eIo"/>
+                                            <constraint firstItem="ojc-uo-TVu" firstAttribute="trailing" secondItem="VUx-4e-ntR" secondAttribute="trailing" id="P2N-8t-a1x"/>
                                             <constraint firstItem="trA-Ga-opj" firstAttribute="top" secondItem="Mdw-m0-I32" secondAttribute="bottom" constant="418" id="STW-Cj-Jbn"/>
+                                            <constraint firstItem="VUx-4e-ntR" firstAttribute="top" secondItem="j7L-K4-eVx" secondAttribute="bottom" constant="30" id="TjA-H7-HEW"/>
+                                            <constraint firstItem="7bT-F9-JFs" firstAttribute="trailing" secondItem="RV6-e0-HOC" secondAttribute="trailing" id="Uy8-rg-Nu3"/>
                                             <constraint firstItem="WRq-pC-djI" firstAttribute="centerX" secondItem="xjF-LB-2SL" secondAttribute="centerX" id="Vyc-Hl-SQ0"/>
+                                            <constraint firstItem="ojc-uo-TVu" firstAttribute="baseline" secondItem="j7L-K4-eVx" secondAttribute="baseline" id="ZVT-eC-FRd"/>
+                                            <constraint firstItem="bIl-aP-Uvd" firstAttribute="centerX" secondItem="WRq-pC-djI" secondAttribute="centerX" id="aBT-pa-nOI"/>
                                             <constraint firstItem="Mdw-m0-I32" firstAttribute="top" secondItem="WRq-pC-djI" secondAttribute="bottom" constant="395" id="cY0-2F-1hH"/>
+                                            <constraint firstItem="a8d-tF-7gU" firstAttribute="top" secondItem="bIl-aP-Uvd" secondAttribute="bottom" constant="8" symbolic="YES" id="d1h-r5-WfL"/>
+                                            <constraint firstItem="j7L-K4-eVx" firstAttribute="leading" secondItem="a8d-tF-7gU" secondAttribute="trailing" constant="8" symbolic="YES" id="k47-So-KDH"/>
+                                            <constraint firstItem="Elu-Iu-xG7" firstAttribute="leading" secondItem="a8d-tF-7gU" secondAttribute="leading" id="lhj-Kn-76f"/>
+                                            <constraint firstItem="bIl-aP-Uvd" firstAttribute="leading" secondItem="xjF-LB-2SL" secondAttribute="leading" id="mNv-FJ-kF9"/>
+                                            <constraint firstAttribute="trailing" secondItem="VUx-4e-ntR" secondAttribute="trailing" constant="22" id="ozX-QN-Z1z"/>
+                                            <constraint firstItem="Elu-Iu-xG7" firstAttribute="top" secondItem="VUx-4e-ntR" secondAttribute="bottom" constant="15" id="qB7-AG-BKB"/>
                                             <constraint firstItem="WRq-pC-djI" firstAttribute="top" secondItem="xjF-LB-2SL" secondAttribute="top" constant="31" id="srY-uJ-BUd"/>
+                                            <constraint firstItem="VUx-4e-ntR" firstAttribute="leading" secondItem="xjF-LB-2SL" secondAttribute="leading" constant="25" id="uAb-rG-tfn"/>
                                             <constraint firstItem="trA-Ga-opj" firstAttribute="centerX" secondItem="xjF-LB-2SL" secondAttribute="centerX" id="uyz-1Z-7jb"/>
+                                            <constraint firstItem="bIl-aP-Uvd" firstAttribute="top" secondItem="xjF-LB-2SL" secondAttribute="topMargin" id="vL3-2K-MkC"/>
+                                            <constraint firstItem="Elu-Iu-xG7" firstAttribute="leading" secondItem="xjF-LB-2SL" secondAttribute="leading" constant="30" id="yyK-xi-npd"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -3305,7 +3374,13 @@
                     <navigationItem key="navigationItem" id="4IB-sK-rIU"/>
                     <size key="freeformSize" width="414" height="1000"/>
                     <connections>
-                        <outlet property="photoSliderView" destination="bIl-aP-Uvd" id="yNW-XM-BC3"/>
+                        <outlet property="event_detail_city" destination="j7L-K4-eVx" id="CU6-Gk-kgg"/>
+                        <outlet property="event_detail_date" destination="ojc-uo-TVu" id="seK-ju-jRC"/>
+                        <outlet property="event_detail_description" destination="RV6-e0-HOC" id="acF-aj-KZ3"/>
+                        <outlet property="event_detail_location" destination="Elu-Iu-xG7" id="I8c-jf-gWk"/>
+                        <outlet property="event_detail_title" destination="VUx-4e-ntR" id="m13-Cc-655"/>
+                        <outlet property="mapView" destination="7bT-F9-JFs" id="K7k-QW-VWb"/>
+                        <outlet property="slider" destination="bIl-aP-Uvd" id="6s9-Mi-uNb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WWG-QG-C5e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -55,13 +55,11 @@ class NewsDetailViewController: UIViewController {
     func loadNewsDetail(){
         
         let markdownParser = MarkdownParser()
-        
         news_detail_description.attributedText = markdownParser.parse(news_object!.getText)
         news_detail_description.sizeToFit()
         news_detail_date.text = news_object?.getCreationDate.dateAndTimetoString()
         news_detail_title.text = news_object?.getTitle
         news_detail_loaction.text = "Osnabrück"
-        
         photoSliderView.configure(with: (self.news_object?.getGallery)!)
         
         
