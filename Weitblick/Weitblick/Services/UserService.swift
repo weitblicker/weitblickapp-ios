@@ -17,9 +17,9 @@ class UserService{
           let str = "surfer:hangloose"
           let test2 = Data(str.utf8).base64EncodedString();
           var request = URLRequest(url:url! as URL as URL)
-          request.httpMethod = "POST"
+          request.httpMethod = "GET"
           request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-          request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+        request.addValue("Token " + UserDefaults.standard.string(forKey: "key")! , forHTTPHeaderField: "Authorization")
          let user = UserDefaults.standard
          let postString = ["email": email] as [String: String]
         
@@ -145,8 +145,8 @@ class UserService{
         var request = URLRequest(url:url! as URL as URL)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Basic " + test2 + " Token " + UserDefaults.standard.string(forKey: "key")!, forHTTPHeaderField: "Authorization")
-        print("Basic " + test2 + " Token " + UserDefaults.standard.string(forKey: "key")!)
+        request.addValue(" Token " + UserDefaults.standard.string(forKey: "key")!, forHTTPHeaderField: "Authorization")
+        //print("Basic " + test2 + " Token " + UserDefaults.standard.string(forKey: "key")!)
         //request.addValue("Token " + UserDefaults.standard.string(forKey: "key")!, forHTTPHeaderField: "Authorization")
         let user = UserDefaults.standard
 
