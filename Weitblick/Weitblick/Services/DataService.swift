@@ -256,7 +256,25 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                     let cycleCount = (cycleArray as AnyObject).value(forKey: "project")
                     
                    guard let published = projectDict.value(forKey: "published") else { return }
-                    let projectPublished = Date()// self.handleDate(date: publishedString)
+                    let projectPublished = self.handleDateWithTimeZone(date: published as! String)
+                    
+                    var newsIDArray : [Int] = []
+                    guard let news = projectDict.value(forKey : "news") else { return }
+                    if let newsArray = news as? NSArray{
+                        for newsID in newsArray{
+                            newsIDArray.append(newsID as! Int)
+                        }
+                    }
+                    var blogIDArray : [Int] = []
+                    guard let blogs = projectDict.value(forKey: "blog") else { return }
+                    if let blogArray = blogs as? NSArray{
+                        for blogID in blogArray{
+                            blogIDArray.append(blogID as! Int)
+                        }
+                    }
+                    
+                    
+                    
                    guard let hosts = projectDict.value(forKey: "hosts") else { return }
                    let resultHosts = hosts as! [String]
 
@@ -274,7 +292,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                         }
                     }
 
-                    let project = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleID:cycleCount as! [Int])
+                    let project = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleID:cycleCount as! [Int], news: newsIDArray, blog: blogIDArray)
                     projectList.append(project)
                     resultimages = []
                 }
