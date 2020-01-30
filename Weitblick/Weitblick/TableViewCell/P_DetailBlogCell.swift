@@ -14,6 +14,9 @@ import UIKit
 class P_DetailBlogCell: UITableViewCell {
     
     
+    @IBOutlet weak var blog_tableView: UITableView!
+    
+    
     override func awakeFromNib() {
            super.awakeFromNib()
            // Initialization code

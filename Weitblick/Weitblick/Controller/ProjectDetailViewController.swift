@@ -38,10 +38,16 @@ extension UIColor {
 
 
 
-class ProjectDetailViewController: UIViewController {
+class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
+    
+   
+    
 
-
-
+    
+    @IBOutlet weak var project_tableView: UITableView!
+    
     @IBOutlet weak var project_detail_image: UIImageView!
     
     @IBOutlet weak var project_detail_title: UILabel!
@@ -69,6 +75,8 @@ class ProjectDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.project_tableView.reloadData()
+        
         if(self.project_object?.getCycleIDCount == 1){
 
         customizeChart(dataPoints: stats, values: goals.map{ Double($0) })
@@ -79,6 +87,10 @@ class ProjectDetailViewController: UIViewController {
         loadProjectDetail()
 
       //  setUpButton()
+        
+       self.project_tableView.delegate = self
+       self.project_tableView.dataSource = self
+    
 
     }
     
@@ -178,16 +190,106 @@ class ProjectDetailViewController: UIViewController {
         photoSliderView.configure(with: project_object!.getGallery)
         
     }
-
     
-    /*
-    // MARK: - Navigation
+    
+    
+       var projectList : [Project] = []
+       var locationList : [Location] = []
+       var locationListID : [Int] = []
+      
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+       // if(tableView == self.project_tableView)
+            return 1
+        
+        
+       }
+       
+       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
+        print("IN TABLEVIEW")
+       
+        //partner
+        if (self.project_object!.getPartnerID.count > 0 ){
+        print("IN PARTNER")
+             let cell =  tableView.dequeueReusableCell(withIdentifier:"partner_cell", for: indexPath)as! P_DetailPartnerCell
+            if(tableView == cell.partner_tableView){
+                let pahead_cell = tableView.dequeueReusableCell(withIdentifier:"pahead_cell", for: indexPath)as! PaHeadCell
+                pahead_cell.imageView!.image = UIImage(named: "partner.png")
+                return pahead_cell
+            }
+            return cell
+            
+       
+        }
+            //spenden
+        else if ( self.project_object!.getCycleIDCount > 0) {
+            print("IN Spenden")
+            let cell = tableView.dequeueReusableCell(withIdentifier:"spenden_cell", for: indexPath)as! P_DetailSpendenCell
+            
+            return cell
+        }
+            //fahrrad
+        else if( self.project_object!.getCycleIDCount > 0){
+            print("IN FAHRRAD")
+            let cell = tableView.dequeueReusableCell(withIdentifier:"fahrrad_cell", for: indexPath)as! P_DetailFahrradCell
+            
+            return cell
+        
+        }
+            
+        //sponsor
+        
+        
+        //meilensteine
+        
+            
+        //blog
+        else if (self.project_object!.getBlogs.count >  0){
+            print("IN BLOG")
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier:"blog_cell", for: indexPath)as! P_DetailBlogCell
+            if(tableView == cell.blog_tableView){
+                if (indexPath.row == 0){
+                let blhead_cell = tableView.dequeueReusableCell(withIdentifier:"blhead_cell", for: indexPath)as! BlHeadCell
+                blhead_cell.imageView!.image = UIImage (named: "blog.png")
+                return blhead_cell
+                }
+                else if (indexPath.row == 1){
+                    let bllist_cell = tableView.dequeueReusableCell(withIdentifier:"bllist_cell", for: indexPath)as! BlListCell
+                    return bllist_cell
+                }
+                
+            }
+            
+            return cell
+            
+            
+        }
+        
+        //news
+        else if (self.project_object!.getNews.count > 0){
+            print("IN NEWS")
+            let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! P_DetailNewsCell
+            
+            if (tableView == cell.news_tableView){
+                let nehead_cell = tableView.dequeueReusableCell(withIdentifier:"nehead_cell", for: indexPath)as! NeHeadCell
+                nehead_cell.imageView!.image = UIImage (named: "aktuelles.b.png")
+                return nehead_cell
+            }
+            return cell
+            
+        }
+        
+        //event
+       
+       
+    let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! P_DetailNewsCell
+        return cell
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
+ 
 
 }

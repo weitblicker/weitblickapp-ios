@@ -12,6 +12,9 @@ import UIKit
 class P_DetailPartnerCell: UITableViewCell {
     
     
+    @IBOutlet weak var partner_tableView: UITableView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

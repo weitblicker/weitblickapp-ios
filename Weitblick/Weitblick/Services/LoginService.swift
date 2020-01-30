@@ -20,6 +20,8 @@ class LoginService{
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+        
+    
         let user = UserDefaults.standard
         let postString = ["username": "","email": email, "password": password] as [String: String]
         do{

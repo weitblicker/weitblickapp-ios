@@ -12,6 +12,9 @@ import  UIKit
 
 class P_DetailSponsorCell: UITableViewCell {
     
+    
+    @IBOutlet weak var sponsor_tableView: UITableView!
+    
     override func awakeFromNib() {
             super.awakeFromNib()
             // Initialization code

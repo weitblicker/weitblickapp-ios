@@ -12,6 +12,9 @@ import UIKit
 class P_DetailEventCell: UITableViewCell {
     
     
+    @IBOutlet weak var event_tableView: UITableView!
+    
+    
     override func awakeFromNib() {
            super.awakeFromNib()
            // Initialization code

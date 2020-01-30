@@ -119,7 +119,7 @@
                                                 <rect key="frame" x="-5" y="586" width="419" height="2084.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="187" id="6wi-So-690" userLabel="partner_cell" customClass="P_DetailPartnerCell" customModule="Weitblick" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="partner_cell" rowHeight="187" id="6wi-So-690" userLabel="partner_cell" customClass="P_DetailPartnerCell" customModule="Weitblick" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="419" height="187"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6wi-So-690" id="RxG-wK-QRt">
@@ -131,7 +131,7 @@
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                     <prototypes>
-                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="66" id="ZCf-ff-qgd" userLabel="pahead_cell" customClass="PaHeadCell" customModule="Weitblick" customModuleProvider="target">
+                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="pahead_cell" rowHeight="66" id="ZCf-ff-qgd" userLabel="pahead_cell" customClass="PaHeadCell" customModule="Weitblick" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="28" width="411" height="66"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZCf-ff-qgd" id="xLM-iI-YQW">
@@ -159,7 +159,7 @@
                                                                                 <outlet property="pahead_image" destination="RfY-O2-lk7" id="X8h-1l-Upz"/>
                                                                             </connections>
                                                                         </tableViewCell>
-                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="124" id="ycB-td-hqh" userLabel="palist_cell" customClass="PaListCell" customModule="Weitblick" customModuleProvider="target">
+                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="palist_cell" rowHeight="124" id="ycB-td-hqh" userLabel="palist_cell" customClass="PaListCell" customModule="Weitblick" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="94" width="411" height="124"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ycB-td-hqh" id="SA8-hi-F7e">
@@ -201,8 +201,11 @@
                                                                 </tableView>
                                                             </subviews>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="partner_tableView" destination="wK3-ep-Sah" id="iFO-QS-Jen"/>
+                                                        </connections>
                                                     </tableViewCell>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="215" id="iIp-qD-Px1" userLabel="spenden_cell" customClass="P_DetailSpendenCell" customModule="Weitblick" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="spenden_cell" rowHeight="215" id="iIp-qD-Px1" userLabel="spenden_cell" customClass="P_DetailSpendenCell" customModule="Weitblick" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="215" width="419" height="215"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iIp-qD-Px1" id="alj-qb-fsF">
@@ -279,7 +282,7 @@
                                                             <outlet property="spendenzielName" destination="fjy-Sk-SNa" id="Yje-87-ltd"/>
                                                         </connections>
                                                     </tableViewCell>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="283" id="ria-55-jLz" userLabel="fahrrad_cell" customClass="P_DetailFahrradCell" customModule="Weitblick" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="fahrrad_cell" rowHeight="283" id="ria-55-jLz" userLabel="fahrrad_cell" customClass="P_DetailFahrradCell" customModule="Weitblick" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="430" width="419" height="283"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ria-55-jLz" id="wC9-23-koY">
@@ -389,7 +392,7 @@
                                                             <outlet property="spendenziel" destination="M1U-2x-qZg" id="i0I-Bj-z8Z"/>
                                                         </connections>
                                                     </tableViewCell>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="276" id="8L2-kM-TTk" userLabel="sponsor_cell" customClass="P_DetailSponsorCell" customModule="Weitblick" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sponsor_cell" rowHeight="276" id="8L2-kM-TTk" userLabel="sponsor_cell" customClass="P_DetailSponsorCell" customModule="Weitblick" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="713" width="419" height="276"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8L2-kM-TTk" id="SBQ-KP-HQD">
@@ -401,7 +404,7 @@
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                     <prototypes>
-                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="79" id="4sJ-g3-04m" userLabel="sphead_cell" customClass="SpHeadCell" customModule="Weitblick" customModuleProvider="target">
+                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sphead_cell" rowHeight="79" id="4sJ-g3-04m" userLabel="sphead_cell" customClass="SpHeadCell" customModule="Weitblick" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="28" width="411" height="79"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4sJ-g3-04m" id="NaY-wU-rss">
@@ -429,7 +432,7 @@
                                                                                 <outlet property="sphead_image" destination="8TA-rm-q64" id="3gk-9A-rcK"/>
                                                                             </connections>
                                                                         </tableViewCell>
-                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="173" id="iUM-QF-zzs" userLabel="splist_cell" customClass="SpListCell" customModule="Weitblick" customModuleProvider="target">
+                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="splist_cell" rowHeight="173" id="iUM-QF-zzs" userLabel="splist_cell" customClass="SpListCell" customModule="Weitblick" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="107" width="411" height="173"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iUM-QF-zzs" id="ktJ-hq-Qyv">
@@ -472,8 +475,11 @@
                                                                 </tableView>
                                                             </subviews>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="sponsor_tableView" destination="5uK-La-ZLh" id="BZf-IZ-W8N"/>
+                                                        </connections>
                                                     </tableViewCell>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="250" id="3Sl-Es-OeF" userLabel="meilenstein_cell" customClass="P_DetailMeilensteinCell" customModule="Weitblick" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="meilenstein_cell" rowHeight="250" id="3Sl-Es-OeF" userLabel="meilenstein_cell" customClass="P_DetailMeilensteinCell" customModule="Weitblick" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="989" width="419" height="250"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Sl-Es-OeF" id="RpE-rE-Lun">
@@ -485,7 +491,7 @@
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                     <prototypes>
-                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="82" id="eVm-VK-Hhg" userLabel="mehead_cell" customClass="MeHeadCell" customModule="Weitblick" customModuleProvider="target">
+                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mehead_cell" rowHeight="82" id="eVm-VK-Hhg" userLabel="mehead_cell" customClass="MeHeadCell" customModule="Weitblick" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="28" width="412" height="82"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eVm-VK-Hhg" id="ZbJ-YX-E0t">
@@ -513,7 +519,7 @@
                                                                                 <outlet property="mehead_image" destination="d5N-jn-VwA" id="jU8-1d-Nxo"/>
                                                                             </connections>
                                                                         </tableViewCell>
-                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="159" id="X4U-NV-j6A" userLabel="melist_cell" customClass="MeListCell" customModule="Weitblick" customModuleProvider="target">
+                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="melist_cell" rowHeight="159" id="X4U-NV-j6A" userLabel="melist_cell" customClass="MeListCell" customModule="Weitblick" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="110" width="412" height="159"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X4U-NV-j6A" id="L2x-Ly-vOW">
@@ -566,8 +572,11 @@
                                                                 </tableView>
                                                             </subviews>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="meilenstein_tableView" destination="qxP-ti-ScG" id="kaT-xM-RtB"/>
+                                                        </connections>
                                                     </tableViewCell>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="315" id="OrB-ZV-Sa0" userLabel="blog_cell" customClass="P_DetailBlogCell" customModule="Weitblick" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="blog_cell" rowHeight="315" id="OrB-ZV-Sa0" userLabel="blog_cell" customClass="P_DetailBlogCell" customModule="Weitblick" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="1239" width="419" height="315"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OrB-ZV-Sa0" id="Gqn-ZY-OmD">
@@ -579,7 +588,7 @@
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                     <prototypes>
-                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="qGw-fY-IBA" userLabel="blhead_cell" customClass="BlHeadCell" customModule="Weitblick" customModuleProvider="target">
+                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="blhead_cell" rowHeight="80" id="qGw-fY-IBA" userLabel="blhead_cell" customClass="BlHeadCell" customModule="Weitblick" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="28" width="419" height="80"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qGw-fY-IBA" id="oKw-I9-Iuh">
@@ -607,7 +616,7 @@
                                                                                 <outlet property="blhead_image" destination="Hwm-Y1-7gD" id="ndc-9y-dZ9"/>
                                                                             </connections>
                                                                         </tableViewCell>
-                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="235" id="DFG-pz-NCc" userLabel="bllist_cell" customClass="BlListCell" customModule="Weitblick" customModuleProvider="target">
+                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bllist_cell" rowHeight="235" id="DFG-pz-NCc" userLabel="bllist_cell" customClass="BlListCell" customModule="Weitblick" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="108" width="419" height="235"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DFG-pz-NCc" id="HZp-oD-qt4">
@@ -689,8 +698,11 @@
                                                                 </tableView>
                                                             </subviews>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="blog_tableView" destination="4W2-Pf-1Ga" id="7Mw-ue-TAu"/>
+                                                        </connections>
                                                     </tableViewCell>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="309" id="CGj-fg-29z" userLabel="news_cell" customClass="P_DetailNewsCell" customModule="Weitblick" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="news_cell" rowHeight="309" id="CGj-fg-29z" userLabel="news_cell" customClass="P_DetailNewsCell" customModule="Weitblick" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="1554" width="419" height="309"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CGj-fg-29z" id="XA0-8F-2eu">
@@ -702,7 +714,7 @@
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                     <prototypes>
-                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="88" id="kYq-s0-CEB" userLabel="nehead_cell" customClass="NeHeadCell" customModule="Weitblick" customModuleProvider="target">
+                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="nehead_cell" rowHeight="88" id="kYq-s0-CEB" userLabel="nehead_cell" customClass="NeHeadCell" customModule="Weitblick" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="28" width="419" height="88"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kYq-s0-CEB" id="d6A-GZ-j2d">
@@ -730,7 +742,7 @@
                                                                                 <outlet property="nehead_image" destination="YjD-yH-yol" id="cxo-Os-caP"/>
                                                                             </connections>
                                                                         </tableViewCell>
-                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="232" id="jWa-Ib-KiO" userLabel="nelist_cell" customClass="NeListCell" customModule="Weitblick" customModuleProvider="target">
+                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="nelist_cell" rowHeight="232" id="jWa-Ib-KiO" userLabel="nelist_cell" customClass="NeListCell" customModule="Weitblick" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="116" width="419" height="232"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jWa-Ib-KiO" id="Er1-wa-4n0">
@@ -803,8 +815,11 @@
                                                                 </tableView>
                                                             </subviews>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="news_tableView" destination="I0C-XB-0eg" id="EdI-aE-rZJ"/>
+                                                        </connections>
                                                     </tableViewCell>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="234" id="B0n-og-8rR" userLabel="event_cell" customClass="P_DetailEventCell" customModule="Weitblick" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="event_cell" rowHeight="234" id="B0n-og-8rR" userLabel="event_cell" customClass="P_DetailEventCell" customModule="Weitblick" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="1863" width="419" height="234"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="B0n-og-8rR" id="eSV-6t-aPQ">
@@ -816,7 +831,7 @@
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                     <prototypes>
-                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="71" id="rUC-Y4-KHj" customClass="EvHeadCell" customModule="Weitblick" customModuleProvider="target">
+                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="evhead_cel" rowHeight="71" id="rUC-Y4-KHj" customClass="EvHeadCell" customModule="Weitblick" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="28" width="419" height="71"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rUC-Y4-KHj" id="CDF-sM-iJU">
@@ -908,6 +923,9 @@
                                                                 </tableView>
                                                             </subviews>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="event_tableView" destination="hPa-Qa-CAM" id="mlk-Na-XBx"/>
+                                                        </connections>
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>
@@ -1066,6 +1084,7 @@
                         <outlet property="project_detail_description" destination="JB4-4D-DAM" id="QSg-ih-5Jv"/>
                         <outlet property="project_detail_location" destination="RuQ-Um-Ois" id="CL4-61-y0C"/>
                         <outlet property="project_detail_title" destination="VG9-jK-2nx" id="2yd-xA-dX2"/>
+                        <outlet property="project_tableView" destination="eJw-tR-Dkx" id="Jtg-7w-eIG"/>
                         <outlet property="uebersicht" destination="0SM-c2-l3p" id="dh4-hI-ZCg"/>
                     </connections>
                 </viewController>

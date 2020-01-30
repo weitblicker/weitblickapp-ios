@@ -11,7 +11,10 @@ import UIKit
 
 
 class P_DetailNewsCell: UITableViewCell {
-
+    
+    
+    @IBOutlet weak var news_tableView: UITableView!
+    
     
     override func awakeFromNib() {
            super.awakeFromNib()

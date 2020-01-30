@@ -79,13 +79,17 @@ class UserService{
          let test2 = Data(str.utf8).base64EncodedString();
          var request = URLRequest(url:url! as URL as URL)
         
+        var key : String = ""
+        key = UserDefaults.standard.string(forKey: "key")!
+
+        
          request.httpMethod = "POST"
          request.addValue("application/json", forHTTPHeaderField: "Content-Type")
          request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-        var key : String = ""
-        key = UserDefaults.standard.string(forKey: "key")!
+        // request.addValue("Token  " + key, forHTTPHeaderField: "Authorization")
         
-        let postString = ["key": key,"old_password": password_old, "new_password1": password_new, "new_password2": password_new2] as [String: String]
+        let postString = ["new_password1": password_new, "new_password2": password_new2] as [String: String]
+     /*   let postString = ["key": key,"old_password": password_old, "new_password1": password_new, "new_password2": password_new2] as [String: String]*/
         
         
         print("POST STRING")

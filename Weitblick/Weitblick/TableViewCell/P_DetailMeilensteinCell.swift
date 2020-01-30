@@ -13,6 +13,8 @@ import UIKit
 
 class P_DetailMeilensteinCell: UITableViewCell {
     
+    
+    @IBOutlet weak var meilenstein_tableView: UITableView!
     override func awakeFromNib() {
            super.awakeFromNib()
            // Initialization code
