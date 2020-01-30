@@ -22,7 +22,10 @@ class Project{
     private var partnerID : [Int]
     private var cycleID : [Int]
   
-    init(id : Int,published : Date, name : String, image: UIImage, gallery : [UIImage], hosts : [String], description : String, location : Location, partnerID : [Int], cycleID : [Int]){
+    private var news : [Int]
+    private var blog : [Int]
+    
+    init(id : Int,published : Date, name : String, image: UIImage, gallery : [UIImage], hosts : [String], description : String, location : Location, partnerID : [Int], cycleID : [Int], news : [Int], blog : [Int]){
         self.id = id
         self.published = published
         self.name = name
@@ -31,6 +34,8 @@ class Project{
         self.description = description
         self.location = location
         self.partnerID = partnerID
+        self.news = news
+        self.blog = blog
 
         self.cycleID = cycleID
         
@@ -39,6 +44,14 @@ class Project{
         
         self.gallery = gallery
        
+    }
+    
+    public var getNews : [Int] {
+        return self.news
+    }
+    
+    public var getBlogs : [Int]{
+        return self.blog
     }
 
     public var getID : Int {
