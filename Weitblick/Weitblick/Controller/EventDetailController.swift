@@ -28,16 +28,15 @@ class EventDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadEventDetail()
-        
-        
         DispatchQueue.main.async {
            
           
             let CLLCoordType = CLLocationCoordinate2D(latitude: self.event_object!.getLocation.getLatitude,longitude: self.event_object!.getLocation.getLongitude)
-                let anno = MKPointAnnotation()
-                anno.coordinate = CLLCoordType
-                self.mapView.addAnnotation(anno)
-            
+            let anno = MKPointAnnotation()
+            anno.coordinate = CLLCoordType
+            self.mapView.addAnnotation(anno)
+            let region = MKCoordinateRegion.init(center: CLLCoordType, latitudinalMeters: 2000, longitudinalMeters: 2000)
+            self.mapView.setRegion(region, animated: true)
         }
 
     }
