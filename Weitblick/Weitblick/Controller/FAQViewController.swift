@@ -14,8 +14,17 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
     
     var questions : [FAQEntry] = []
     
+    let sections = ["Mitmachen und Spenden", "Struktur und Organisation", "Sonstiges"]
+    
+    let items = [["S1", "S2", "S3"], ["A1", "A2","A3"],["B1", "B2"]]
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.sections.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return questions.count
+       return questions.count
+      //  return items[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
