@@ -160,7 +160,7 @@ class DataService{
                 
                 let projectPublished = Date()
                 guard let hosts = projectDict.value(forKey: "hosts") else { return }
-                let resultHosts = hosts as! [String]
+                let resultHosts : [Host] = []//hosts as! [String]
 
                 guard let gallery = projectDict.value(forKey: "photos") else { return }
                 if let imageArray = gallery as? NSArray{
@@ -274,9 +274,18 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                     }
                     
                     
+                    var resultHosts : [Host] = []
+                    guard let hosts = projectDict.value(forKey: "hosts") else { return }
+                    if let hostArray = hosts as? NSArray{
+                        for host in hostArray{
+                            if let hostDict = host as? NSDictionary{
+                                //init(id : Int, name : String, partners : [Int], bankAccount : BankAccount){
+                                guard let hostID = hostDict.value(forKey: "id") else { return }
+                                let hostIDString = hostID as! String
+                            }
+                        }
+                    }
                     
-                   guard let hosts = projectDict.value(forKey: "hosts") else { return }
-                   let resultHosts = hosts as! [String]
 
                     guard let gallery = projectDict.value(forKey: "photos") else { return }
                     if let imageArray = gallery as? NSArray{

@@ -16,7 +16,7 @@ class Project{
     private var name : String
     private var image : UIImage
     private var gallery : [UIImage]
-    private var hosts : [String]
+    private var hosts : [Host]
     private var description : String
     private var location : Location
     private var partnerID : [Int]
@@ -25,7 +25,7 @@ class Project{
     private var news : [Int]
     private var blog : [Int]
     
-    init(id : Int,published : Date, name : String, image: UIImage, gallery : [UIImage], hosts : [String], description : String, location : Location, partnerID : [Int], cycleID : [Int], news : [Int], blog : [Int]){
+    init(id : Int,published : Date, name : String, image: UIImage, gallery : [UIImage], hosts : [Host], description : String, location : Location, partnerID : [Int], cycleID : [Int], news : [Int], blog : [Int]){
         self.id = id
         self.published = published
         self.name = name
@@ -72,7 +72,7 @@ class Project{
         return self.image
     }
 
-    public var getHosts : [String]{
+    public var getHosts : [Host]{
         return self.hosts
     }
 
