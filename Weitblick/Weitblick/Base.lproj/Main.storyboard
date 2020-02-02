@@ -2477,10 +2477,10 @@
             </objects>
             <point key="canvasLocation" x="1947.826086956522" y="2489.7321428571427"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="L0C-vW-HYf">
             <objects>
-                <viewController id="z2A-0Q-kBK" sceneMemberID="viewController">
+                <viewController id="z2A-0Q-kBK" customClass="FAQDetailViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FP1-7X-qhF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2502,6 +2502,9 @@
                         <viewLayoutGuide key="safeArea" id="igL-sB-RDy"/>
                     </view>
                     <navigationItem key="navigationItem" id="aEG-Af-zg4"/>
+                    <connections>
+                        <outlet property="Answer" destination="pOy-tI-B1s" id="xoh-pe-cOO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hgd-N0-b1S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
