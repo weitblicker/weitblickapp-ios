@@ -20,6 +20,12 @@ class BankAccount{
         self.bic = bic
     }
     
+    init(){
+        self.holder = ""
+        self.iban = ""
+        self.bic = ""
+    }
+    
     public var getHolder : String{
         return self.holder
     }

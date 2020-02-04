@@ -187,6 +187,8 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         project_detail_title.text = project_object?.getName
         project_detail_location.text = project_object?.getLocation.getAddress
         // project_detail_image.image = img
+        print("GALLERY COUNT")
+        print(project_object?.getGallery.count)
         photoSliderView.configure(with: project_object!.getGallery)
         
     }

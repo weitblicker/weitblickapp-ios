@@ -15,12 +15,13 @@ protocol DelegateToCycle{
 
 
 
-class ProjectViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate {
+class ProjectViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate, MKMapViewDelegate {
     var count = 0;
     var postCount = 3;
     var projectList : [Project] = []
     var locationList : [Location] = []
     var locationListID : [Int] = []
+    var annotationList : [MKAnnotationView] = []
     var project_object : Project?
     var delegate = ProjectTableViewCell?.self
     
@@ -33,60 +34,59 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
     var clicked = 0
+    
+    
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return projectList.count
+    }
 
-   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return projectList.count    }
-
-    func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {   // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
+    func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {   // Mit dequeueReusableCell werden Zellen gemäß        der im Storyboard definierten Prototypen erzeugt
         let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as! ProjectTableViewCell
-       
         cell.project_image.image = self.projectList[indexPath.row].getImage
         cell.project_title.text = projectList[indexPath.row].getName
         cell.project_location.text = projectList[indexPath.row].getLocation.getAddress
         cell.project_button_bike.tag = indexPath.row
-    //    cell.project_button_bike.addTarget(self, action: #selector(ProjectViewController.goToCycle), for: .touchUpInside)
-      //  cell.project_button_bike.tag = indexPath.row
-        
-        print("DESCRIPTION")
-        print(self.projectList[indexPath.row].getName)
-        print(self.projectList[indexPath.row].getCycleIDCount)
-        
         if(self.projectList[indexPath.row].getCycleIDCount == 0){
-             cell.project_button_bike.alpha = 0
-         } else {
+            cell.project_button_bike.alpha = 0
+        }else{
             cell.project_button_bike.alpha = 1
-               cell.project_button_bike.addTarget(self, action: #selector(ProjectViewController.goToCycle), for: .touchUpInside)
-                   cell.project_button_bike.tag = indexPath.row
+            cell.project_button_bike.addTarget(self, action: #selector(ProjectViewController.goToCycle), for: .touchUpInside)
+            cell.project_button_bike.tag = indexPath.row
         }
-        
-        
-        
-        
-//        if(project_object?.getCycleIDCount == 0){
-//            cell.project_button_bike.alpha = 0
-//        } else {
-//            cell.project_button_bike.addTarget(self, action: #selector(ProjectViewController.goToCycle), for: .touchUpInside)
-//            cell.project_button_bike.tag = indexPath.row
-//        }
-//
-        
-        //let id = self.locationListID[indexPath.row]
-        //let locationString = self.getLocationAddressWithID(id: id)
-       // cell.project_button_detail.tag = indexPath.row
-
-//        guard case let cell.project_location.text = self.getLocationAddressWithID(id: self.locationList[indexPath.row].getID) else { return cell}
-
-
-
-      return cell
+        return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     self.project_object = projectList[indexPath.row]
-     self.performSegue(withIdentifier: "goToProjectDetail", sender: self)
-      
+        self.project_object = projectList[indexPath.row]
+        self.performSegue(withIdentifier: "goToProjectDetail", sender: self)
     }
+    
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        var i = 0
+        for annoView in self.annotationList{
+            if(annotationIsEqualTo(annotation: view.annotation!, toCompare: annoView.annotation!)){
+                self.tableView.selectRow(at: IndexPath.init(row: i, section: 0), animated: true, scrollPosition: UITableView.ScrollPosition.top )
+            }else{
+                i += 1
+            }
+        }
+    }
+    
+    func annotationIsEqualTo(annotation : MKAnnotation, toCompare : MKAnnotation) -> Bool{
+        if(annotation.coordinate.latitude == toCompare.coordinate.latitude){
+            if(annotation.coordinate.longitude == toCompare.coordinate.longitude){
+                return true
+            }
+        }
+        return false
+    }
+    
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        print("anno selected!")
+//        return MKAnnotationView(annotation: annotation, reuseIdentifier: "annoDefault")
+//    }
 
 
     override func viewDidLoad() {
@@ -102,10 +102,16 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
                     let CLLCoordType = CLLocationCoordinate2D(latitude: project.getLocation.getLatitude,longitude: project.getLocation.getLongitude)
                     let anno = MKPointAnnotation()
                     anno.coordinate = CLLCoordType
-                    self.mapView.addAnnotation(anno)
+                    //print("Inbefore addAnnotation")
+                    //self.mapView.addAnnotation(anno)
+                    let annoView = MKAnnotationView(annotation: anno, reuseIdentifier: project.getName)
+                    self.annotationList.append(annoView)
+                    self.mapView.addAnnotation(annoView.annotation!)
+                    
                 }
             }
         }
+        self.mapView.delegate = self
         self.tableView.delegate = self
         self.tableView.dataSource = self
           tableView.rowHeight = UITableView.automaticDimension
@@ -152,6 +158,8 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         self.tabBarController?.selectedIndex = 2
         
     }
+    
+    
    
     
 

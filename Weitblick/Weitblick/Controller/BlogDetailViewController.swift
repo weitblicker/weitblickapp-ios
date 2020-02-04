@@ -68,7 +68,7 @@ class BlogDetailViewController: UIViewController {
         blog_detail_country.text = "Indien"
         // blog_detail_image.image = self.image
 
-        photoSliderView.configure(with: [])
+        photoSliderView.configure(with: blog_object!.getGallery)
 
     }
 }

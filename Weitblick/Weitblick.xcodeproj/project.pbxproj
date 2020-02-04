@@ -79,6 +79,7 @@
 		A123D1C7236B23B8004DB13E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A123D1C6236B23B8004DB13E /* Location.swift */; };
 		A123D1C9236B398F004DB13E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A123D1C8236B398F004DB13E /* TabBarController.swift */; };
 		A123D1CD236B3D41004DB13E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A123D1CC236B3D41004DB13E /* Event.swift */; };
+		A173633923E971DE0017F5AB /* MarkDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = A173633823E971DE0017F5AB /* MarkDown.swift */; };
 		A18DA1F623A0EDD4003783D6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18DA1F523A0EDD4003783D6 /* Extensions.swift */; };
 		A18DA1FC23A109F8003783D6 /* FAQService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18DA1FB23A109F8003783D6 /* FAQService.swift */; };
 		A18DA1FE23A24060003783D6 /* SegmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18DA1FD23A24060003783D6 /* SegmentService.swift */; };
@@ -186,6 +187,7 @@
 		A142905023D5B6A300878D45 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-BoldItalic.ttf"; path = "fonts/OpenSans-BoldItalic.ttf"; sourceTree = SOURCE_ROOT; };
 		A142905123D5B6A400878D45 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-LightItalic.ttf"; path = "fonts/OpenSans-LightItalic.ttf"; sourceTree = SOURCE_ROOT; };
 		A142905223D5B6A400878D45 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "fonts/OpenSans-Regular.ttf"; sourceTree = SOURCE_ROOT; };
+		A173633823E971DE0017F5AB /* MarkDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkDown.swift; sourceTree = "<group>"; };
 		A18DA1F523A0EDD4003783D6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A18DA1FB23A109F8003783D6 /* FAQService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQService.swift; sourceTree = "<group>"; };
 		A18DA1FD23A24060003783D6 /* SegmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentService.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 		3DA49A44236B0C5200AA3198 /* Weitblick */ = {
 			isa = PBXGroup;
 			children = (
+				A173633723E971C00017F5AB /* MarkDown */,
 				0F8A25B923E196DB00BD8A6A /* TableViewCell */,
 				A18DA1F423A0EDC5003783D6 /* Extensions */,
 				A1A37AE12397C46700F19904 /* Services */,
@@ -379,6 +382,14 @@
 				201A7BAC4FA3B8278885E3B7 /* Pods-Weitblick.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		A173633723E971C00017F5AB /* MarkDown */ = {
+			isa = PBXGroup;
+			children = (
+				A173633823E971DE0017F5AB /* MarkDown.swift */,
+			);
+			path = MarkDown;
 			sourceTree = "<group>";
 		};
 		A18DA1F423A0EDC5003783D6 /* Extensions */ = {
@@ -542,6 +553,7 @@
 				A19BAAFC23A2862100E5758B /* User.swift in Sources */,
 				0F8A25BD23E1994100BD8A6A /* PaListCell.swift in Sources */,
 				0F8A25CD23E19F8800BD8A6A /* NeHeadCell.swift in Sources */,
+				A173633923E971DE0017F5AB /* MarkDown.swift in Sources */,
 				3DA49A72236B169E00AA3198 /* NewsDetailViewController.swift in Sources */,
 				A18DA1FC23A109F8003783D6 /* FAQService.swift in Sources */,
 				A1A37AE9239CF98600F19904 /* LoginService.swift in Sources */,

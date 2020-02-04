@@ -123,11 +123,18 @@ extension Date{
 
 extension Date{
     func dateAndTimetoStringISO(format: String = "yyyy-MM-dd'T'HH:mm:ss") -> String {
-    let formatter = DateFormatter()
-            formatter.dateStyle = .short
-            formatter.dateFormat = format
-    return formatter.string(from: self)
-        }
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
+    func dateAndTimetoStringISOWithTimeZone(format: String = "yyyy-MM-dd'T'HH:mm:ss'Z'Z") -> String {
+       let formatter = DateFormatter()
+       formatter.dateStyle = .short
+       formatter.dateFormat = format
+       return formatter.string(from: self)
+           }
+    
 }
 
 extension Date{
@@ -145,4 +152,5 @@ func handleDate(date : String) -> Date{
     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
     return dateFormatter.date(from:date)!
 }
+
 

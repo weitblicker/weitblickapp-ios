@@ -13,10 +13,11 @@ class DataService{
     static func loadNews(date : Date,completion: @escaping (_ newsList : [NewsEntry]) -> ()){
         var newsList : [NewsEntry] = []
         var resultimages : [UIImage] = []
-
-
         let timestamp = date.dateAndTimetoStringISO()
-        let url = NSURL(string: "https://weitblicker.org/rest/news/?end="+timestamp+"&limit=5")
+        print(timestamp)
+        let url = NSURL(string: "https://weitblicker.org/rest/news/?end="+timestamp+"&limit=3")
+        print("newsURL:")
+        print(url)
         let str = "surfer:hangloose"
         let dataB64 = Data(str.utf8).base64EncodedString();
         var task = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
@@ -46,6 +47,8 @@ class DataService{
                     let createdString = created as! String
                     print(createdString)
                     let newsCreated = self.handleDateWithTimeZone(date: createdString)
+                    print(newsCreated)
+                    
                     
                     guard let imageURLJSON = newsDict.value(forKey : "image") else { return }
                     var imageURL = ""
@@ -68,7 +71,8 @@ class DataService{
                     let publishedString = published as! String
                     print(publishedString)
                     let newsUpdated = self.handleDateWithTimeZone(date: publishedString)
-                    
+                    print(newsUpdated)
+                    print("\n")
                     guard let range = newsDict.value(forKey: "range") else { return }
                     let newsRange = range as! String
                     
@@ -282,6 +286,32 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                                 //init(id : Int, name : String, partners : [Int], bankAccount : BankAccount){
                                 guard let hostID = hostDict.value(forKey: "id") else { return }
                                 let hostIDString = hostID as! String
+                                guard let hostName = hostDict.value(forKey : "name") else { return }
+                                let hostNameString = hostName as! String
+                                guard let hostPartners = hostDict.value(forKey : "partners") else { return }
+                                var hostPartnerList : [Int] = []
+                                if let hostPartnerArray = hostPartners as? NSArray{
+                                    for hostPartner in hostPartnerArray{
+                                        hostPartnerList.append(hostPartner as! Int)
+                                    }
+                                }
+                                var hostbankAcc : BankAccount = BankAccount()
+//                                "account_holder": "Weitblick Münster e.V.",
+//                                "iban": "DE64400800400604958800",
+//                                "bic": "DRESDEFF400"
+                                guard let hostbank = hostDict.value(forKey : "bank_account") else { return }
+                                if let hostbankDict = hostbank as? NSDictionary{
+                                    guard let holder = hostbankDict.value(forKey: "account_holder") else { return }
+                                    let holderString = holder as! String
+                                    guard let iban = hostbankDict.value(forKey: "iban") else { return }
+                                    let ibanString = iban as! String
+                                    guard let bic = hostbankDict.value(forKey: "bic") else { return }
+                                    let bicString = bic as! String
+                                    hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
+                                }
+                                
+                                let hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc)
+                                resultHosts.append(hostObject)
                             }
                         }
                     }

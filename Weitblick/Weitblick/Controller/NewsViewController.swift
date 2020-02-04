@@ -69,7 +69,10 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 for newsEntry in list{
                     self.newsList.append(newsEntry)
                 }
+                print(self.date)
+                print("Date Change to:")
                 self.date = self.newsList.last!.getCreationDate
+                print(self.date)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -84,6 +87,7 @@ override func viewDidLoad() {
     DataService.loadNews(date: self.date) { (list) in
         self.newsList = list
         self.date = self.newsList.last!.getCreationDate
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
 
