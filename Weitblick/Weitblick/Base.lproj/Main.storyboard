@@ -2486,18 +2486,56 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Antwort" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOy-tI-B1s">
-                                <rect key="frame" x="20" y="66" width="380" height="796"/>
+                                <rect key="frame" x="56" y="123" width="344" height="739"/>
+                                <color key="backgroundColor" red="0.92156862750000001" green="0.50196078430000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="FAQ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZ9-YP-4ga">
+                                <rect key="frame" x="102" y="55" width="65" height="21"/>
+                                <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Überschrift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3se-4Y-FfD">
+                                <rect key="frame" x="20" y="84" width="344" height="21"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mUm-g2-ekR">
+                                <rect key="frame" x="20" y="123" width="28" height="26"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LqJ-pF-iBu">
+                                <rect key="frame" x="56" y="55" width="21" height="21"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="21" id="38h-w7-RK9"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="3se-4Y-FfD" firstAttribute="leading" secondItem="FP1-7X-qhF" secondAttribute="leadingMargin" id="8Ob-ZI-ucm"/>
+                            <constraint firstItem="mUm-g2-ekR" firstAttribute="top" secondItem="3se-4Y-FfD" secondAttribute="bottom" constant="17.5" id="AmS-fK-x38"/>
+                            <constraint firstItem="LqJ-pF-iBu" firstAttribute="top" secondItem="igL-sB-RDy" secondAttribute="top" constant="10.5" id="Cqy-rL-SUm"/>
+                            <constraint firstItem="3se-4Y-FfD" firstAttribute="leading" secondItem="mUm-g2-ekR" secondAttribute="leading" id="Mih-8B-Ikv"/>
+                            <constraint firstItem="LqJ-pF-iBu" firstAttribute="leading" secondItem="pOy-tI-B1s" secondAttribute="leading" id="VgV-eJ-5II"/>
                             <constraint firstItem="igL-sB-RDy" firstAttribute="bottom" secondItem="pOy-tI-B1s" secondAttribute="bottom" id="YWn-k2-m9d"/>
-                            <constraint firstItem="pOy-tI-B1s" firstAttribute="leading" secondItem="igL-sB-RDy" secondAttribute="leading" constant="20" id="aV3-HB-9Wz"/>
+                            <constraint firstItem="pOy-tI-B1s" firstAttribute="leading" secondItem="igL-sB-RDy" secondAttribute="leading" constant="56" id="aV3-HB-9Wz"/>
+                            <constraint firstItem="igL-sB-RDy" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FZ9-YP-4ga" secondAttribute="trailing" symbolic="YES" id="eo1-rO-pKW"/>
+                            <constraint firstItem="LqJ-pF-iBu" firstAttribute="firstBaseline" secondItem="FZ9-YP-4ga" secondAttribute="firstBaseline" id="gP4-8m-XzO"/>
+                            <constraint firstItem="3se-4Y-FfD" firstAttribute="top" secondItem="FP1-7X-qhF" secondAttribute="top" constant="84" id="gYd-e6-kfT"/>
+                            <constraint firstItem="FZ9-YP-4ga" firstAttribute="leading" secondItem="LqJ-pF-iBu" secondAttribute="trailing" constant="25" id="mfm-Kn-grp"/>
                             <constraint firstItem="igL-sB-RDy" firstAttribute="trailing" secondItem="pOy-tI-B1s" secondAttribute="trailing" constant="14" id="n17-7R-2xO"/>
-                            <constraint firstItem="pOy-tI-B1s" firstAttribute="top" secondItem="igL-sB-RDy" secondAttribute="top" constant="22" id="rDs-Lm-cII"/>
+                            <constraint firstItem="pOy-tI-B1s" firstAttribute="top" secondItem="igL-sB-RDy" secondAttribute="top" constant="79" id="rDs-Lm-cII"/>
+                            <constraint firstItem="3se-4Y-FfD" firstAttribute="top" secondItem="LqJ-pF-iBu" secondAttribute="bottom" constant="7.5" id="udl-l0-dac"/>
+                            <constraint firstItem="igL-sB-RDy" firstAttribute="trailing" secondItem="3se-4Y-FfD" secondAttribute="trailing" constant="50" id="ycg-8f-tkH"/>
+                            <constraint firstItem="LqJ-pF-iBu" firstAttribute="centerY" secondItem="FZ9-YP-4ga" secondAttribute="centerY" id="zd9-lo-csM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="igL-sB-RDy"/>
                     </view>
@@ -4326,6 +4364,7 @@
         <image name="centerLocationOn500" width="500" height="500"/>
         <image name="checkbox_empty" width="500" height="500"/>
         <image name="chevron.right" catalog="system" width="48" height="64"/>
+        <image name="circle.fill" catalog="system" width="64" height="60"/>
         <image name="info.circle" catalog="system" width="64" height="60"/>
         <image name="kalender" width="30" height="30"/>
         <image name="list.dash" catalog="system" width="64" height="42"/>
