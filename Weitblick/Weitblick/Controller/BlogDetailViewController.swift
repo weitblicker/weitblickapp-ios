@@ -16,6 +16,8 @@ class BlogDetailViewController: UIViewController {
     
     @IBOutlet weak var blog_detail_image: UIImageView!
     
+    @IBOutlet weak var blog_detail_country: UILabel!
+    
     @IBOutlet weak var blog_detail_title: UILabel!
     
     @IBOutlet weak var blog_detail_date: UILabel!
@@ -63,6 +65,7 @@ class BlogDetailViewController: UIViewController {
         blog_detail_title.text = blog_object?.getTitle
         blog_detail_description.sizeToFit()
         blog_detail_date.text = blog_object?.getCreationDate.dateAndTimetoString()
+        blog_detail_country.text = "Indien"
         // blog_detail_image.image = self.image
 
         photoSliderView.configure(with: [])

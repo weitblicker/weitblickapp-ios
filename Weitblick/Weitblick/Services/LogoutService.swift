@@ -14,7 +14,8 @@ class LogoutService {
  static func logout(completion: @escaping (_ response : String) -> ()){
     
     let user = UserDefaults.standard
-    let key = user.object(forKey: "key")
+    var key : String = ""
+    key = UserDefaults.standard.string(forKey: "key")!
     user.set(false, forKey: "isLogged")
     user.removeObject(forKey: "key")
     user.synchronize()
@@ -26,7 +27,8 @@ class LogoutService {
     var urlRequest = URLRequest(url:url! as URL as URL)
           urlRequest.httpMethod = "POST"
           urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-          urlRequest.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+        //  urlRequest.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+    urlRequest.addValue("Token  " + key, forHTTPHeaderField: "Authorization")
 
      let postString = ["key": key,
         ] as! [String: String]
