@@ -196,12 +196,13 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
        var projectList : [Project] = []
        var locationList : [Location] = []
        var locationListID : [Int] = []
+        var counter = 0
       
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
        // if(tableView == self.project_tableView)
-            return 1
+            return 11
         
         
        }
@@ -212,60 +213,128 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         print("IN TABLEVIEW")
        
         //partner
-        if (self.project_object!.getPartnerID.count > 0 ){
+       // if (self.project_object!.getPartnerID.count > 0 ){
+        if(counter == 0){
         print("IN PARTNER")
              let cell =  tableView.dequeueReusableCell(withIdentifier:"partner_cell", for: indexPath)as! P_DetailPartnerCell
             
+            if(indexPath.row == 0){
+                print ("IN PARTNER IF 1")
             let pahead_cell = cell.partner_tableView.dequeueReusableCell(withIdentifier:"pahead_cell", for: indexPath)as! PaHeadCell
                 pahead_cell.imageView!.image = UIImage(named: "partner.png")
                 return pahead_cell
+            }else if (indexPath.row == 1){
+                print ("IN PARTNER IF 2")
+                let palist_cell = cell.partner_tableView.dequeueReusableCell(withIdentifier:"palist_cell", for: indexPath)as! PaListCell
+                palist_cell.palist_name.text = "Volkswagen"
+                palist_cell.palist_description.text = "Der große Sponsor VW spendet 50000€ fur dieses Projekt"
+                palist_cell.palist_image.image = UIImage(named: "Weitblick")
+                counter = 1
+                return palist_cell
+                
+            }
+           
             
             return cell
             
        
         }
             //spenden
-        else if ( self.project_object!.getCycleIDCount > 0) {
+      //  else if ( self.project_object!.getCycleIDCount > 0) {
+        else if (counter == 1){
             print("IN Spenden")
             let cell = tableView.dequeueReusableCell(withIdentifier:"spenden_cell", for: indexPath)as! P_DetailSpendenCell
+            cell.spendenkonto.text = "DE!132132243543546457"
+            cell.spendenstand.text = "5005"
+            cell.spendenziel.text = "6000"
+            cell.spendenzielName.text = "Weltfrieden"
+            counter = 2
             
             return cell
         }
             //fahrrad
-        else if( self.project_object!.getCycleIDCount > 0){
+       // else if( self.project_object!.getCycleIDCount > 0){
+        else if (counter == 2){
             print("IN FAHRRAD")
             let cell = tableView.dequeueReusableCell(withIdentifier:"fahrrad_cell", for: indexPath)as! P_DetailFahrradCell
+            cell.gefahren.text = "500km"
+            cell.radfahrer_anzahl.text = "34"
+            counter = 3
             
             return cell
         
         }
             
         //sponsor
+        else if (counter == 3){
+            print ("IN SPONSOR")
+            let cell = tableView.dequeueReusableCell(withIdentifier:"sponsor_cell", for: indexPath)as! P_DetailSponsorCell
+            if(indexPath.row == 4){
+                print("IN SPONSOR IF 1")
+            let sphead_cell = cell.sponsor_tableView.dequeueReusableCell(withIdentifier:"sphead_cell", for: indexPath)as! SpHeadCell
+            sphead_cell.sphead_image!.image = UIImage (named: "Weitblick")
+            return sphead_cell
+            }else if (indexPath.row == 5){
+                print("IN SPONSOR IF 2")
+             let splist_cell = cell.sponsor_tableView.dequeueReusableCell(withIdentifier:"splist_cell", for: indexPath)as! SpListCell
+                splist_cell.splist_sponsor.text = "MERCEDES BENZ"
+                splist_cell.splist_image!.image = UIImage(named: "partner.png")
+                splist_cell.splist_description.text = "skfbshbflhsdblfhvdslfhvsdlfbhasjdnksjdbköjsbfkbsdfk"
+                counter = 4
+                return splist_cell
+                
+            }
+            return cell
+        }
         
         
         //meilensteine
+        else if (counter == 4){
+            print ("IN MEILENSTEIN")
+            let cell = tableView.dequeueReusableCell(withIdentifier:"meilenstein_cell", for: indexPath)as! P_DetailMeilensteinCell
+            if (indexPath.row == 6){
+                print ("IN MEILENSTEIN IF 1")
+                let mehed_cell = cell.meilenstein_tableView.dequeueReusableCell(withIdentifier:"mehead_cell", for: indexPath)as! MeHeadCell
+                mehed_cell.mehead_image!.image = UIImage(named: "Weitblick")
+                return mehed_cell
+            }
+                else if(indexPath.row == 7){
+                    print ("IN MEILENSTEIN IF 2")
+                    let melist_cell = cell.meilenstein_tableView.dequeueReusableCell(withIdentifier:"melist_cell", for: indexPath)as! MeListCell
+                melist_cell.melist_date.text = "13.13.2013"
+                melist_cell.melist_headline.text = "Meienstein Titel"
+                melist_cell.melist_description.text = "shdbvhsdbvhsdbvyjhbv,jhbv,jhbds,hvbdfkhbvfkbvf"
+                melist_cell.melist_image!.image = UIImage (named: "Weitblick")
+                counter = 5
+                return melist_cell
+                    
+                }
+            
+            return cell
+        }
         
             
         //blog
-        else if (self.project_object!.getBlogs.count >  0){
+       // else if (self.project_object!.getBlogs.count >  0){
+        else if (counter == 5){
             print("IN BLOG")
             
-    
             let cell = tableView.dequeueReusableCell(withIdentifier:"blog_cell", for: indexPath)as! P_DetailBlogCell
-                if (indexPath.row == 0){
-                    print ("IN IF 1")
+                if (indexPath.row == 8){
+                    print ("IN BLOG IF 1")
                     let blhead_cell = cell.blog_tableView.dequeueReusableCell(withIdentifier:"blhead_cell", for: indexPath)as! BlHeadCell
                 blhead_cell.imageView!.image = UIImage (named: "blog.png")
                 return blhead_cell
                  }
-                else if (indexPath.row == 1){
-                    print ("IN IF 2")
-                    let bllist_cell = tableView.dequeueReusableCell(withIdentifier:"bllist_cell", for: indexPath)as! BlListCell
-                    var news = self.project_object?.getNews[indexPath.row]
-                    
-                   
-                    
-                    
+                 if (indexPath.row == 9){
+                    print ("IN BLOG IF 2")
+                    let bllist_cell = cell.blog_tableView.dequeueReusableCell(withIdentifier:"bllist_cell", for: indexPath)as! BlListCell
+                    bllist_cell.bllist_author.text = "Autor des Blogs"
+                    bllist_cell.bllist_title.text = "Title des Blogs"
+                    bllist_cell.bllist_date.text = "12.12.2019"
+                    bllist_cell.bllist_description.text = "Beipsieltext für einen Blogeintrag für der sehr serh lange sein soll und über Zeilen gehen muss"
+                    bllist_cell.bllist_image.image = UIImage(named: "Weitblick")
+                    counter = 6
                     return bllist_cell
                 }
                 
@@ -277,18 +346,19 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         }
         
         //news
-        else if (self.project_object!.getNews.count > 0){
+       // else if (self.project_object!.getNews.count > 0){
+        else if (counter == 6){
             print("IN NEWS")
             let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! P_DetailNewsCell
             
-            if(indexPath.row == 0){
+            if(indexPath.row == 10){
                 print("IN IF 1")
             let nehead_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"nehead_cell", for: indexPath)as! NeHeadCell
                 nehead_cell.imageView!.image = UIImage (named: "aktuelles.b.png")
                 return nehead_cell
-            }else if (indexPath.row == 2){
-                let nelist_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"nehead_cell", for: indexPath)as! NeListCell
-                
+            }else if (indexPath.row == 11){
+                let nelist_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"nelist_cell", for: indexPath)as! NeListCell
+                counter = 7
             }
             return cell
             
