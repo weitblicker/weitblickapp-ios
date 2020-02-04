@@ -13,10 +13,11 @@ class DataService{
     static func loadNews(date : Date,completion: @escaping (_ newsList : [NewsEntry]) -> ()){
         var newsList : [NewsEntry] = []
         var resultimages : [UIImage] = []
-
-
         let timestamp = date.dateAndTimetoStringISO()
-        let url = NSURL(string: "https://weitblicker.org/rest/news/?end="+timestamp+"&limit=5")
+        print(timestamp)
+        let url = NSURL(string: "https://weitblicker.org/rest/news/?end="+timestamp+"&limit=3")
+        print("newsURL:")
+        print(url)
         let str = "surfer:hangloose"
         let dataB64 = Data(str.utf8).base64EncodedString();
         var task = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
@@ -46,6 +47,8 @@ class DataService{
                     let createdString = created as! String
                     print(createdString)
                     let newsCreated = self.handleDateWithTimeZone(date: createdString)
+                    print(newsCreated)
+                    
                     
                     guard let imageURLJSON = newsDict.value(forKey : "image") else { return }
                     var imageURL = ""
@@ -68,7 +71,8 @@ class DataService{
                     let publishedString = published as! String
                     print(publishedString)
                     let newsUpdated = self.handleDateWithTimeZone(date: publishedString)
-                    
+                    print(newsUpdated)
+                    print("\n")
                     guard let range = newsDict.value(forKey: "range") else { return }
                     let newsRange = range as! String
                     
