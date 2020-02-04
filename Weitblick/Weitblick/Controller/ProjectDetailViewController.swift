@@ -217,11 +217,11 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         if (self.project_object!.getPartnerID.count > 0 ){
         print("IN PARTNER")
              let cell =  tableView.dequeueReusableCell(withIdentifier:"partner_cell", for: indexPath)as! P_DetailPartnerCell
-            if(tableView == cell.partner_tableView){
-                let pahead_cell = tableView.dequeueReusableCell(withIdentifier:"pahead_cell", for: indexPath)as! PaHeadCell
+            
+            let pahead_cell = cell.partner_tableView.dequeueReusableCell(withIdentifier:"pahead_cell", for: indexPath)as! PaHeadCell
                 pahead_cell.imageView!.image = UIImage(named: "partner.png")
                 return pahead_cell
-            }
+            
             return cell
             
        
@@ -252,19 +252,26 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         else if (self.project_object!.getBlogs.count >  0){
             print("IN BLOG")
             
+    
             let cell = tableView.dequeueReusableCell(withIdentifier:"blog_cell", for: indexPath)as! P_DetailBlogCell
-            if(tableView == cell.blog_tableView){
                 if (indexPath.row == 0){
-                let blhead_cell = tableView.dequeueReusableCell(withIdentifier:"blhead_cell", for: indexPath)as! BlHeadCell
+                    print ("IN IF 1")
+                    let blhead_cell = cell.blog_tableView.dequeueReusableCell(withIdentifier:"blhead_cell", for: indexPath)as! BlHeadCell
                 blhead_cell.imageView!.image = UIImage (named: "blog.png")
                 return blhead_cell
-                }
+                 }
                 else if (indexPath.row == 1){
+                    print ("IN IF 2")
                     let bllist_cell = tableView.dequeueReusableCell(withIdentifier:"bllist_cell", for: indexPath)as! BlListCell
+                    var news = self.project_object?.getNews[indexPath.row]
+                    
+                   
+                    
+                    
                     return bllist_cell
                 }
                 
-            }
+            
             
             return cell
             
@@ -276,10 +283,14 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
             print("IN NEWS")
             let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! P_DetailNewsCell
             
-            if (tableView == cell.news_tableView){
-                let nehead_cell = tableView.dequeueReusableCell(withIdentifier:"nehead_cell", for: indexPath)as! NeHeadCell
+            if(indexPath.row == 0){
+                print("IN IF 1")
+            let nehead_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"nehead_cell", for: indexPath)as! NeHeadCell
                 nehead_cell.imageView!.image = UIImage (named: "aktuelles.b.png")
                 return nehead_cell
+            }else if (indexPath.row == 2){
+                let nelist_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"nehead_cell", for: indexPath)as! NeListCell
+                
             }
             return cell
             

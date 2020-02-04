@@ -85,8 +85,8 @@ class UserService{
         
          request.httpMethod = "POST"
          request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-         request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-        // request.addValue("Token  " + key, forHTTPHeaderField: "Authorization")
+        // request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+         request.addValue("Token  " + key, forHTTPHeaderField: "Authorization")
         
         let postString = ["new_password1": password_new, "new_password2": password_new2] as [String: String]
      /*   let postString = ["key": key,"old_password": password_old, "new_password1": password_new, "new_password2": password_new2] as [String: String]*/
@@ -129,7 +129,9 @@ class UserService{
                  return
              }
              print("The Recieved Message is: " + received.description)
+      
              completion(received["detail"] as! String)
+          
 
            }catch{
              completion("error parsing response from POST on /password/change")

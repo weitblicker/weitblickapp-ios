@@ -13,6 +13,8 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
     
     
     var questions : [FAQEntry] = []
+    var faq_object: FAQEntry?
+   
     
     let sections = ["Mitmachen und Spenden", "Struktur und Organisation", "Sonstiges"]
     
@@ -21,11 +23,21 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.sections.count
     }
+     func tableView(_ tableView: UITableView, titleForHeaderInSection
+                                section: Int) -> String? {
+       return sections[section]
+       
+        
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return questions.count
-      //  return items[section].count
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+           self.faq_object = questions[indexPath.row]
+           self.performSegue(withIdentifier: "goFAQDetail", sender: self)
+       }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:"faq_cell", for: indexPath)as! FAQTableViewCell
@@ -37,7 +49,6 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
         cell.faq_answer.sizeToFit()
         return cell
          
-        
     }
     
 
@@ -57,6 +68,16 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
 
         // Do any additional setup after loading the view.
     }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+                 if segue.destination is FAQDetailViewController
+                 {
+                     let faqDetailViewController = segue.destination as? FAQDetailViewController
+                     faqDetailViewController?.faq_object = self.faq_object
+                 }
+           
+             }
     
 
 
