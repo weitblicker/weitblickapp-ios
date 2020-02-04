@@ -849,7 +849,7 @@
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                     <prototypes>
-                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="evhead_cel" rowHeight="71" id="rUC-Y4-KHj" customClass="EvHeadCell" customModule="Weitblick" customModuleProvider="target">
+                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="evhead_cell" rowHeight="71" id="rUC-Y4-KHj" customClass="EvHeadCell" customModule="Weitblick" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="28" width="419" height="71"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rUC-Y4-KHj" id="CDF-sM-iJU">
@@ -877,7 +877,7 @@
                                                                                 <outlet property="evhead_image" destination="g6y-zw-O1g" id="T34-Jn-tKb"/>
                                                                             </connections>
                                                                         </tableViewCell>
-                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="154" id="KUw-1v-ovO" customClass="EvListCell" customModule="Weitblick" customModuleProvider="target">
+                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="evlist_cell" rowHeight="154" id="KUw-1v-ovO" customClass="EvListCell" customModule="Weitblick" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="99" width="419" height="154"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KUw-1v-ovO" id="nRS-j7-v6m">
@@ -2932,7 +2932,6 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frage zu Weitblick" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ohl-9s-DFd">
-
                                                     <rect key="frame" x="45" y="27" width="309" height="83"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="83" id="8kb-z7-E72"/>
@@ -2953,7 +2952,6 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-
                                                 <constraint firstItem="Ohl-9s-DFd" firstAttribute="leading" secondItem="FOt-xh-1te" secondAttribute="leading" constant="45" id="3PT-rh-BOd"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Bcs-q4-Oct" secondAttribute="bottom" constant="-78" id="BMr-ds-93M"/>
                                                 <constraint firstItem="Ohl-9s-DFd" firstAttribute="top" secondItem="FOt-xh-1te" secondAttribute="topMargin" constant="16" id="Dc9-gH-zkq"/>
