@@ -65,7 +65,7 @@ class BlogDetailViewController: UIViewController {
         blog_detail_date.text = blog_object?.getCreationDate.dateAndTimetoString()
         // blog_detail_image.image = self.image
 
-        photoSliderView.configure(with: [])
+        photoSliderView.configure(with: blog_object!.getGallery)
 
     }
 }

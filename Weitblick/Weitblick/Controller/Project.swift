@@ -39,7 +39,7 @@ class Project{
 
         self.cycleID = cycleID
         
-        let size = CGSize.init(width: 668, height: 352)
+        let size = CGSize.init(width: 400 , height: 400)
         self.image = self.image.crop(to: size)
         
         self.gallery = gallery

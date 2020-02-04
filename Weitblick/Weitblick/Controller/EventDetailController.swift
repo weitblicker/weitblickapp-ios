@@ -56,7 +56,7 @@ class EventDetailViewController: UIViewController {
     
     func loadEventDetail(){
          
-         let markdownParser = MarkdownParser()
+         let markdownParser = MarkdownParser(customElements: [MarkDownLink])
         event_detail_description.attributedText = markdownParser.parse(event_object!.getDescription)
         event_detail_description.sizeToFit()
         event_detail_title.text = event_object?.getTitle

@@ -19,8 +19,9 @@ class BlogEntry{
     private var updated : Date
     private var teaser : String
     private var range : String
+    private var gallery : [UIImage]
 
-    init(id : Int, title : String, text : String,  created : Date, updated : Date, image : UIImage, teaser : String, range: String){
+    init(id : Int, title : String, text : String,  created : Date, updated : Date, image : UIImage, teaser : String, range: String, gallery : [UIImage]){
         
         self.id = id
         self.title = title
@@ -31,8 +32,10 @@ class BlogEntry{
         self.teaser = teaser
         self.range = range
         
-        let size = CGSize.init(width: 334, height: 176)
+        let size = CGSize.init(width: 414, height: 235)
         self.image = self.image.crop(to: size)
+        self.gallery = gallery
+        
     }
         
     
@@ -68,6 +71,10 @@ class BlogEntry{
     
     public var getRange : String{
         return self.range
+    }
+    
+    public var getGallery : [UIImage]{
+        return self.gallery
     }
     
     public func setText (text : String){

@@ -37,13 +37,6 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
         cell.blog_title.text = blogList[indexPath.row].getTitle
         cell.blog_description.text = blogList[indexPath.row].getText
         cell.triangle.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
-       /* cell.blog_image.image = UIImage(named: "Weitblick")
-        cell.blog_description.text = "Das hier ist eine Blog beschreibung tralallalala"
-        cell.blog_description.sizeToFit()
-        cell.blog_date.text = "12.12.12"
-        cell.blog_city.text = "Osnabrück"
-        cell.blog_country.text = "Indien"
-        cell.blog_title.text = "Neuer Blog der Weitblicker Gruppe in Indien"*/
         cell.blog_title.sizeToFit()
         //cell.blog_button_detail.tag = indexPath.row
         
@@ -135,25 +128,21 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
                             guard let Dictteaser = blogDict.value(forKey: "teaser") else { return }
                             let blogTeaser = Dictteaser as! String
                             
-    //                        if let gallery = blogDict.value(forKey: "gallery"){
-    //                            if let imageDict = gallery as? NSDictionary{
-    //                                guard let images = imageDict.value(forKey : "images") else { return }
-    //                                // Images
-    //                                if let imageArray = images as? NSArray{
-    //                                    for imgUrls in imageArray{
-    //                                        if let imgDict = imgUrls as? NSDictionary{
-    //                                            guard let url = imgDict.value(forKey : "url") else { return }
-    //                                            let img = Image(imageURL: (url as! String))
-    //                                            resultimages.append(img)
-    //                                        }
-    //                                    }
-    //                                }
-    //                            }
-    //                        }
-    //                        // Gallery
-    //                        let resultGallery = Gallery(images: resultimages)
-                            //resultimages = []
-                            let blogEntry = BlogEntry(id: blogID!, title: blogTitle, text: blogText, created: blogCreated, updated: blogUpdated, image: image, teaser: blogTeaser, range: blogRange)
+                            guard let gallery = blogDict.value(forKey: "photos") else { return }
+                            if let imageArray = gallery as? NSArray{
+                                for img in imageArray{
+                                    if let imgDict = img as? NSDictionary{
+                                        guard let url = imgDict.value(forKey : "url") else { return }
+                                        let urlString = url as! String
+                                        let imgURL = NSURL(string : Constants.url + urlString)
+                                        let data = NSData(contentsOf: (imgURL as URL?)!)
+                                        let image = UIImage(data: data! as Data)!
+                                        resultimages.append(image)
+                                    }
+                                }
+                            }
+                            let blogEntry = BlogEntry(id: blogID!, title: blogTitle, text: blogText, created: blogCreated, updated: blogCreated, image: image, teaser: blogTeaser, range: blogRange,gallery: resultimages)
+                            resultimages = []
                             self.blogList.append(blogEntry)
                         }
                     }
