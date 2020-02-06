@@ -165,11 +165,17 @@ class UserService{
             let task = session.dataTask(with: request){
                 (data, response, error) in
                 let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-                print(response.debugDescription)
-                print(error.debugDescription)
-                print(jsondata.debugDescription)
-                let user = User(username: "Michel", image: "", km: 0.0, euro: 0.0)
-                completion(user)
+                if let userDict = jsondata as? NSDictionary{
+                    guard let username = userDict.value(forKey: "username") else { return }
+                    let usernameString = username as! String
+                    
+                    guard let imgUrl = userDict.value(forKey: "image") else { return }
+                    let imageString = imgUrl as! String
+                    
+                    let user = User(username: usernameString, image: imageString, km: 0.0, euro: 0.0)
+                    completion(user)
+                }
+                
             }
             
             task.resume()

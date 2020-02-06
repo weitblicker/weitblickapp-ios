@@ -43,7 +43,10 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         UserService.getUserData { (user) in
-            print("Nach user data")
+            
+            DispatchQueue.main.async {
+                self.profile_image.image = user.getImage
+            }
         }
         
         if (UserDefaults.standard.bool(forKey: "isLogged") == true){

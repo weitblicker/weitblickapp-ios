@@ -36,21 +36,23 @@ class DataService{
                     guard let id = newsDict.value(forKey: "id")  else { return }
                     let IDString = id as! String
                     let newsID = Int.init(IDString)
-                    
+
                     guard let title = newsDict.value(forKey: "title") else { return }
                     let newsTitle = title as! String
-                    
+
                     guard let text = newsDict.value(forKey: "text") else { return }
                     var newsText = text as! String
                     newsText = extractRegex(input: newsText, regex: DataService.matches(for: Constants.regexReplace, in: newsText))
-                    
+
                     guard let created = newsDict.value(forKey: "published") else { return } //from added to published
                     let createdString = created as! String
                     print(createdString)
-                    let newsCreated = self.handleDateWithTimeZone(date: createdString)
-                    print(newsCreated)
-                    
-                    
+                    let substrings = createdString.split(separator: "Z")
+                    print(substrings.first!.description + "Z\n")
+                    let newsCreated = self.handleDateWithOutTimeZone(date: substrings.first!.description)
+//                    print(newsCreated.description + "\n")
+
+
                     guard let imageURLJSON = newsDict.value(forKey : "image") else { return }
                     var imageURL = ""
                     if let mainImageDict = imageURLJSON as? NSDictionary{
@@ -67,16 +69,13 @@ class DataService{
                         image = UIImage(data: data! as Data)!
 
                     }
-                    
+
                     guard let published = newsDict.value(forKey: "published") else { return }
                     let publishedString = published as! String
-                    print(publishedString)
                     let newsUpdated = self.handleDateWithTimeZone(date: publishedString)
-                    print(newsUpdated)
-                    print("\n")
                     guard let range = newsDict.value(forKey: "range") else { return }
                     let newsRange = range as! String
-                    
+
                     guard let Dictteaser = newsDict.value(forKey: "teaser") else { return }
                     let newsTeaser = Dictteaser as! String
 
@@ -94,7 +93,7 @@ class DataService{
                         }
                     }
 
-                    let newsEntry = NewsEntry(id: newsID!, title: newsTitle, text: newsText, gallery: resultimages, created: newsCreated , updated: newsUpdated, range: newsRange, image: image, teaser: newsTeaser)
+                    let newsEntry = NewsEntry(id: newsID!, title: newsTitle, text: newsText, gallery: resultimages, created: newsCreated , updated: newsCreated, range: newsRange, image: image, teaser: newsTeaser)
                     resultimages = []
                     newsList.append(newsEntry)
                 }
@@ -144,7 +143,7 @@ class DataService{
                 guard let description = projectDict.value(forKey: "description") else { return }
                 var projectDescription = description as! String
                 projectDescription = extractRegex(input: projectDescription, regex: DataService.matches(for: Constants.regexReplace, in: projectDescription))
-                
+
                 guard let locationJSON = projectDict.value(forKey: "location") else { return }
                 var location : Location = Location()
                 if let locationDict = locationJSON as? NSDictionary{
@@ -163,20 +162,20 @@ class DataService{
                 }
                //self.locationListID.append(projectLocationID)
                //guard let partner = projectDict.value(forKey: "partner") else { return }
-                
+
                 var cycleObject : CycleEntry?
-                
+
                 guard let cycleArray = projectDict.value(forKey: "cycle")else { return }
                 if let cycleDict = cycleArray as? NSDictionary{
-                    
+
                     guard let euroSum = cycleDict.value(forKey: "euro_sum") else { return }
                     let euroSumNumber = euroSum as! NSNumber
                     let euroSumFloat = Float.init(truncating: euroSumNumber)
-                    
+
                     guard let euro_goal = cycleDict.value(forKey: "euro_goal") else { return }
                     let euroGoalNumber = euro_goal as! NSNumber
                     let euroGoalFloat = Float.init(truncating: euroGoalNumber)
-                    
+
                     var donationList : [Donation] = []
                     guard let donations = cycleDict.value(forKey: "donations") else { return }
                     if let donationArray = donations as? NSArray{
@@ -184,18 +183,19 @@ class DataService{
                         for donation in donationArray{
                             if let donationDict = donation as? NSDictionary{
                                 guard let id = donationDict.value(forKey: "id") else { return }
+
                                 let idString = id as! String
                                 let idInt = Int.init(idString)
-                                
+
                                 var sponsorObject = Sponsor()
                                 guard let sponsor = donationDict.value(forKey: "partner") else { return }
                                 if let sponsorDict = sponsor as? NSDictionary{
                                     guard let name = sponsorDict.value(forKey: "name") else { return }
                                     let nameString = name as! String
-                                    
+
                                     guard let description = sponsorDict.value(forKey: "description") else { return }
                                     let descriptionString = description as! String
-                                    
+
                                     guard let logo = sponsorDict.value(forKey: "logo") else { return }
                                     let logoUrl = logo as! String
                                     var logoImg : UIImage
@@ -207,51 +207,51 @@ class DataService{
                                         let data = NSData(contentsOf: (imgURL as URL?)!)
                                         logoImg = UIImage(data: data! as Data)!
                                     }
-                                    
+
                                     guard let link = sponsorDict.value(forKey: "link") else { return }
                                     let linkString = link as! String
-                                    
+
                                     sponsorObject = Sponsor(name: nameString, description: descriptionString, logo: logoImg, link: linkString)
                                 }
-                                
+
                                 guard let donationName = donationDict.value(forKey: "name") else { return }
                                 let donationNameString = donationName as! String
-                                
+
                                 guard let donationDescription = donationDict.value(forKey: "description") else { return }
                                 let donationDescriptionString = donationDescription as! String
-                                
+
                                 guard let donationGoalAmount = donationDict.value(forKey: "goal_amount") else { return }
                                 let donationGoalAmountNumber = donationGoalAmount as! NSNumber
                                 let donationGoalAmountFloat = Float.init(truncating: donationGoalAmountNumber)
-                                
+
                                 guard let donationRateEuroKM = donationDict.value(forKey : "rate_euro_km") else { return }
                                 let donationRateEuroKMNumber = donationRateEuroKM as! NSNumber
                                 let donationRateEuroKMFloat = Float.init(truncating: donationRateEuroKMNumber)
-                                
+
                                 donationObject = Donation(id: idInt!, sponsor: sponsorObject, name: donationNameString, description: donationDescriptionString, goal_amount: donationGoalAmountFloat, rate_euro_km: donationRateEuroKMFloat)
                                 donationList.append(donationObject)
-                                
+
                             }
                         }
                     }
                     guard let progress = cycleDict.value(forKey: "progress") else { return }
                     let progressNSNumber = progress as! NSNumber
                     let progressFloat = Float.init(truncating: progressNSNumber)
-                    
+
                     guard let kmSum = cycleDict.value(forKey: "km_sum") else { return }
                     let kmSumNSNumber = kmSum as! NSNumber
                     let kmSumFloat = Float.init(truncating: kmSumNSNumber)
-                    
+
                     guard let cyclists = cycleDict.value(forKey: "cyclists") else { return }
                     let cyclistsNSNumber = cyclists as! NSNumber
                     let cyclistsInt = Int.init(truncating: cyclistsNSNumber)
-                    
+
                     cycleObject = CycleEntry(eurosum: euroSumFloat, euro_goal: euroGoalFloat, donations: donationList, progress: progressFloat, km_sum: kmSumFloat, cyclists: cyclistsInt)
                 }
-                
+
                guard let published = projectDict.value(forKey: "published") else { return }
                 let projectPublished = self.handleDateWithTimeZone(date: published as! String)
-                
+
                 var newsIDArray : [Int] = []
                 guard let news = projectDict.value(forKey : "news") else { return }
                 if let newsArray = news as? NSArray{
@@ -266,8 +266,8 @@ class DataService{
                         blogIDArray.append(blogID as! Int)
                     }
                 }
-                
-                
+
+
                 var resultHosts : [Host] = []
                 guard let hosts = projectDict.value(forKey: "hosts") else { return }
                 if let hostArray = hosts as? NSArray{
@@ -299,13 +299,13 @@ class DataService{
                                 let bicString = bic as! String
                                 hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
                             }
-                            
+
                             let hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc)
                             resultHosts.append(hostObject)
                         }
                     }
                 }
-                
+
 
                 guard let gallery = projectDict.value(forKey: "photos") else { return }
                 if let imageArray = gallery as? NSArray{
@@ -337,7 +337,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
         //let url = NSURL(string: Constants.restURL + "?start=1970-01-01&end="+date.dateAndTimetoStringUS()+"&limit=3")
         let timestamp = date.dateAndTimetoStringUS()
         let url = NSURL(string: "https://weitblicker.org/rest/projects/")
-    
+
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();
         var task = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
@@ -374,7 +374,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                     guard let description = projectDict.value(forKey: "description") else { return }
                     var projectDescription = description as! String
                     projectDescription = extractRegex(input: projectDescription, regex: DataService.matches(for: Constants.regexReplace, in: projectDescription))
-                    
+
                     guard let locationJSON = projectDict.value(forKey: "location") else { return }
                     var location : Location = Location()
                     if let locationDict = locationJSON as? NSDictionary{
@@ -393,20 +393,20 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                     }
                    //self.locationListID.append(projectLocationID)
                    //guard let partner = projectDict.value(forKey: "partner") else { return }
-                    
+
                     var cycleObject : CycleEntry?
-                    
+
                     guard let cycleArray = projectDict.value(forKey: "cycle")else { return }
                     if let cycleDict = cycleArray as? NSDictionary{
-                        
+
                         guard let euroSum = cycleDict.value(forKey: "euro_sum") else { return }
                         let euroSumNumber = euroSum as! NSNumber
                         let euroSumFloat = Float.init(truncating: euroSumNumber)
-                        
+
                         guard let euro_goal = cycleDict.value(forKey: "euro_goal") else { return }
                         let euroGoalNumber = euro_goal as! NSNumber
                         let euroGoalFloat = Float.init(exactly: euroGoalNumber)
-                        
+
                         var donationList : [Donation] = []
                         guard let donations = cycleDict.value(forKey: "donations") else { return }
                         if let donationArray = donations as? NSArray{
@@ -416,16 +416,16 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                                     guard let id = donationDict.value(forKey: "id") else { return }
                                     let idNumber = id as! String
                                     let idInt = Int.init(idNumber)
-                                    
+
                                     var sponsorObject = Sponsor()
                                     guard let sponsor = donationDict.value(forKey: "partner") else { return }
                                     if let sponsorDict = sponsor as? NSDictionary{
                                         guard let name = sponsorDict.value(forKey: "name") else { return }
                                         let nameString = name as! String
-                                        
+
                                         guard let description = sponsorDict.value(forKey: "description") else { return }
                                         let descriptionString = description as! String
-                                        
+
                                         guard let logo = sponsorDict.value(forKey: "logo") else { return }
                                         let logoUrl = logo as! String
                                         var logoImg : UIImage
@@ -437,53 +437,53 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                                             let data = NSData(contentsOf: (imgURL as URL?)!)
                                             logoImg = UIImage(data: data! as Data)!
                                         }
-                                        
+
                                         guard let link = sponsorDict.value(forKey: "link") else { return }
                                         let linkString = link as! String
-                                        
+
                                         sponsorObject = Sponsor(name: nameString, description: descriptionString, logo: logoImg, link: linkString)
                                     }
-                                    
+
                                     guard let donationName = donationDict.value(forKey: "name") else { return }
                                     let donationNameString = donationName as! String
-                                    
+
                                     guard let donationDescription = donationDict.value(forKey: "description") else { return }
                                     let donationDescriptionString = donationDescription as! String
-                                    
+
                                     guard let donationGoalAmount = donationDict.value(forKey: "goal_amount") else { return }
                                     let donationGoalAmountNumber = donationGoalAmount as! NSNumber
                                     let donationGoalAmountFloat = Float.init(exactly: donationGoalAmountNumber)
-                                    
+
                                     guard let donationRateEuroKM = donationDict.value(forKey : "rate_euro_km") else { return }
                                     let donationRateEuroKMNumber = donationRateEuroKM as! NSNumber
                                     let donationRateEuroKMFloat = Float.init(truncating: donationRateEuroKMNumber)
                                     print(donationRateEuroKMFloat)
-                                    
+
                                     donationObject = Donation(id: idInt!, sponsor: sponsorObject, name: donationNameString, description: donationDescriptionString, goal_amount: donationGoalAmountFloat!, rate_euro_km: donationRateEuroKMFloat)
                                     donationList.append(donationObject)
-                                    
+
                                 }
                             }
                         }
                         guard let progress = cycleDict.value(forKey: "progress") else { return }
                         let progressNSNumber = progress as! NSNumber
                         let progressFloat = Float.init(truncating: progressNSNumber)
-                        
+
                         guard let kmSum = cycleDict.value(forKey: "km_sum") else { return }
                         //let kmSumNSNumber = kmSum as! NSNumber
                         //let kmSumFloat = Float.init(exactly: kmSumNSNumber)
                         let kmSumFloat : Float = 0.0
-                        
+
                         guard let cyclists = cycleDict.value(forKey: "cyclists") else { return }
                         let cyclistsNSNumber = cyclists as! NSNumber
                         let cyclistsInt = Int.init(exactly: cyclistsNSNumber)
-                        
+
                         cycleObject = CycleEntry(eurosum: euroSumFloat, euro_goal: euroGoalFloat!, donations: donationList, progress: progressFloat, km_sum: kmSumFloat, cyclists: cyclistsInt!)
                     }
-                    
+
                    guard let published = projectDict.value(forKey: "published") else { return }
                     let projectPublished = self.handleDateWithTimeZone(date: published as! String)
-                    
+
                     var newsIDArray : [Int] = []
                     guard let news = projectDict.value(forKey : "news") else { return }
                     if let newsArray = news as? NSArray{
@@ -498,8 +498,8 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                             blogIDArray.append(blogID as! Int)
                         }
                     }
-                    
-                    
+
+
                     var resultHosts : [Host] = []
                     guard let hosts = projectDict.value(forKey: "hosts") else { return }
                     if let hostArray = hosts as? NSArray{
@@ -531,13 +531,13 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                                     let bicString = bic as! String
                                     hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
                                 }
-                                
+
                                 let hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc)
                                 resultHosts.append(hostObject)
                             }
                         }
                     }
-                    
+
 
                     guard let gallery = projectDict.value(forKey: "photos") else { return }
                     if let imageArray = gallery as? NSArray{
@@ -571,18 +571,26 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.date(from:date)!
-       
-        
     }
-    
+
+    static func handleDateWithOutTimeZone(date : String) -> Date{
+        let dateFormatter = DateFormatter()
+        //2020-01-23T11:20:07Z+0000
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        return dateFormatter.date(from:date)!
+    }
+
+
+
     static func handleDateWithTimeZone(date : String) -> Date{
         let dateFormatter = DateFormatter()
         //2020-01-23T11:20:07Z+0000
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ+0000"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.date(from:date)!
-       
-        
+
+
     }
 
     static func getURLfromGivenRegex(input : String) -> String{
