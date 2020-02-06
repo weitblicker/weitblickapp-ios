@@ -20,8 +20,9 @@ class BlogEntry{
     private var teaser : String
     private var range : String
     private var gallery : [UIImage]
+    private var projectInt : Int
 
-    init(id : Int, title : String, text : String,  created : Date, updated : Date, image : UIImage, teaser : String, range: String, gallery : [UIImage]){
+    init(id : Int, title : String, text : String,  created : Date, updated : Date, image : UIImage, teaser : String, range: String, gallery : [UIImage], projectInt : Int){
         
         self.id = id
         self.title = title
@@ -31,13 +32,17 @@ class BlogEntry{
         self.image = image
         self.teaser = teaser
         self.range = range
-        
+        self.projectInt = projectInt
         let size = CGSize.init(width: 414, height: 235)
         self.image = self.image.crop(to: size)
         self.gallery = gallery
         
     }
         
+    
+    public var getprojectInt : Int{
+        return self.projectInt
+    }
     
     public var getID : Int{
         return self.id

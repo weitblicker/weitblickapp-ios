@@ -14,14 +14,15 @@ class NewsEntry{
     private var title : String
     private var text : String
     private var image : UIImage
-    private var gallery : [UIImage]
+    private var gallery : [UIImage] = []
     private var created : Date
     private var updated : Date
     private var range : String
     private var teaser : String
     private var host : Host
+    private var projectInt : Int
 
-    init(id : Int, title : String, text : String, gallery : [UIImage], created : Date, updated : Date, range : String, image : UIImage, teaser: String, host : Host){
+    init(id : Int, title : String, text : String, gallery : [UIImage], created : Date, updated : Date, range : String, image : UIImage, teaser: String, host : Host, projectInt : Int){
 
         self.id = id
         self.title = title
@@ -32,14 +33,25 @@ class NewsEntry{
         self.range = range
         self.image = image
         self.teaser = teaser
+        self.projectInt = projectInt
         
         let size = CGSize.init(width: 668, height: 284)
         self.image = self.image.crop(to: size)
         
-
-        self.gallery = gallery
+        
+        
+        let screenRect = UIScreen.main
+        let screenWidth = screenRect.bounds.width
+        let photosize = CGSize.init(width: screenWidth, height: 220)
+        var image : UIImage?
+        for img in gallery{
+            image = img.crop(to: photosize)
+            self.gallery.append(image!)
+        }
     }
-    
+    public var getProjectInt : Int{
+        return self.projectInt
+    }
     
     public var getHost : Host{
         return self.host

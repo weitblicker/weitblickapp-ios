@@ -88,6 +88,14 @@ class DataService{
                             }
                         }
                     }
+                    var projectInt = 0
+                    guard let project = newsDict.value(forKey: "project") else { return }
+                    if let projectString = project as? String{
+                        projectInt = Int.init(projectString)!
+                    }
+                    
+                    
+                    
                     var hostObject = Host()
                     guard let host = newsDict.value(forKey: "host") else { return }
                     if let hostDict = host as? NSDictionary{
@@ -121,7 +129,7 @@ class DataService{
                         
                     }
 
-                    let newsEntry = NewsEntry(id: newsID!, title: newsTitle, text: newsText, gallery: resultimages, created: newsCreated , updated: newsCreated, range: newsRange, image: image, teaser: newsTeaser, host: hostObject)
+                    let newsEntry = NewsEntry(id: newsID!, title: newsTitle, text: newsText, gallery: resultimages, created: newsCreated , updated: newsCreated, range: newsRange, image: image, teaser: newsTeaser, host: hostObject, projectInt : projectInt)
                     resultimages = []
                     newsList.append(newsEntry)
                 }
