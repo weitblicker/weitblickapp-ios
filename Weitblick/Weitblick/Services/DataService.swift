@@ -349,8 +349,8 @@ class DataService{
                     }
                 }
 
-                let project = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleObject: cycleObject!, news: newsIDArray, blog: blogIDArray)
-                completion(project)
+                projectReturn = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleObject: cycleObject!, news: newsIDArray, blog: blogIDArray)
+                completion(projectReturn!)
             }
         }
         request.resume()
