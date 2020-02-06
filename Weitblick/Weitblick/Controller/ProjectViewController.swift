@@ -47,7 +47,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.project_title.text = projectList[indexPath.row].getName
         cell.project_location.text = projectList[indexPath.row].getLocation.getAddress
         cell.project_button_bike.tag = indexPath.row
-        if(self.projectList[indexPath.row].getCycleIDCount == 0){
+        if(self.projectList[indexPath.row].getCycleObject.getDonations.isEmpty){
             cell.project_button_bike.alpha = 0
         }else{
             cell.project_button_bike.alpha = 1

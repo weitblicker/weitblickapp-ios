@@ -77,7 +77,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         
         self.project_tableView.reloadData()
         
-        if(self.project_object?.getCycleIDCount == 1){
+        if(!(self.project_object?.getCycleObject.getDonations.isEmpty)!){
 
         customizeChart(dataPoints: stats, values: goals.map{ Double($0) })
         } else{

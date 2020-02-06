@@ -128,7 +128,7 @@ extension Date{
         formatter.dateFormat = format
         return formatter.string(from: self)
     }
-    func dateAndTimetoStringISOWithTimeZone(format: String = "yyyy-MM-dd'T'HH:mm:ss'Z'Z") -> String {
+    func dateAndTimetoStringISOWithTimeZone(format: String = "yyyy-MM-dd'T'HH:mm:ss'Z'") -> String {
        let formatter = DateFormatter()
        formatter.dateStyle = .short
        formatter.dateFormat = format
