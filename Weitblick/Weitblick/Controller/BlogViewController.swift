@@ -119,6 +119,12 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
                                 
                             }
                             
+                            var projectInt = 0
+                            guard let project = blogDict.value(forKey: "project") else { return }
+                            if let projectString = project as? String{
+                                projectInt = Int.init(projectString)!
+                            }
+                            
 
                             guard let updated = blogDict.value(forKey: "updated") else { return }
                             let upDatedString = updated as! String
@@ -143,7 +149,7 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
                                     }
                                 }
                             }
-                            let blogEntry = BlogEntry(id: blogID!, title: blogTitle, text: blogText, created: blogCreated, updated: blogCreated, image: image, teaser: blogTeaser, range: blogRange,gallery: resultimages)
+                            let blogEntry = BlogEntry(id: blogID!, title: blogTitle, text: blogText, created: blogCreated, updated: blogCreated, image: image, teaser: blogTeaser, range: blogRange,gallery: resultimages, projectInt: projectInt)
                             resultimages = []
                             self.blogList.append(blogEntry)
                         }

@@ -33,6 +33,12 @@ class BlogService{
                         let IDString = id as! String
                         let blogID = Int.init(IDString)
                         
+                        var projectInt = 0
+                        guard let project = blogDict.value(forKey: "project") else { return }
+                        if let projectString = project as? String{
+                            projectInt = Int.init(projectString)!
+                        }
+                        
                         guard let title = blogDict.value(forKey: "title") else { return }
                         let blogTitle = title as! String
                         
@@ -81,7 +87,7 @@ print("blog4")
                                 }
                             }
                         }
-                        let blogEntry = BlogEntry(id: blogID!, title: blogTitle, text: blogText, created: blogCreated, updated: blogCreated, image: image, teaser: blogTeaser, range: blogRange,gallery: resultimages)
+                        let blogEntry = BlogEntry(id: blogID!, title: blogTitle, text: blogText, created: blogCreated, updated: blogCreated, image: image, teaser: blogTeaser, range: blogRange,gallery: resultimages, projectInt: projectInt)
                         resultimages = []
                         blogList.append(blogEntry)
                     }
