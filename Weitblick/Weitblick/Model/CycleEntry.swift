@@ -27,6 +27,15 @@ class CycleEntry{
         
     }
     
+    init(){
+        self.eurosum = 0
+        self.euro_goal = 0
+        self.donations = []
+        self.progress = 0
+        self.km_sum = 0
+        self.cyclists = 0
+    }
+    
     public var getEuroSum : Float{
         return self.eurosum
     }
