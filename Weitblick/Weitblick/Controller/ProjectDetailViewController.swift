@@ -204,7 +204,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
        // if(tableView == self.project_tableView)
-            return 11
+            return 13
         
         
        }
@@ -354,12 +354,18 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
             let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! P_DetailNewsCell
             
             if(indexPath.row == 10){
-                print("IN IF 1")
+                print("IN NEWS IF 1")
             let nehead_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"nehead_cell", for: indexPath)as! NeHeadCell
                 nehead_cell.imageView!.image = UIImage (named: "aktuelles.b.png")
                 return nehead_cell
             }else if (indexPath.row == 11){
+                 print("IN NEWS IF 2")
                 let nelist_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"nelist_cell", for: indexPath)as! NeListCell
+                nelist_cell.nelist_author.text = "Name Author"
+                nelist_cell.nelist_description.text = "sdhbvshdvbhdbvhjbdvhbd"
+                nelist_cell.nelist_title.text = "News Title"
+                nelist_cell.nelist_location.text = "Osnabrück"
+                nelist_cell.nelist_image!.image = UIImage(named: "Weitblick")
                 counter = 7
             }
             return cell
@@ -367,6 +373,27 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         }
         
         //event
+        else if(counter == 7){
+            print("IN EVENt")
+            let cell = tableView.dequeueReusableCell(withIdentifier:"event_cell", for: indexPath)as! P_DetailEventCell
+            if(indexPath.row == 12){
+              print("IN EVENT IF 1")
+                let evhead_cell = cell.event_tableView.dequeueReusableCell(withIdentifier:"evhead_cell", for: indexPath)as! EvHeadCell
+                evhead_cell.imageView!.image = UIImage (named: "aktuelles.b.png")
+                return evhead_cell
+                
+            }
+            else if(indexPath.row == 13){
+                print("IN EVENT IF 2")
+                let evlist_cell = cell.event_tableView.dequeueReusableCell(withIdentifier:"evlist_cell", for: indexPath)as! EvListCell
+                evlist_cell.evlist_date.text = "12.12.2018"
+                evlist_cell.evlist_location.text = "Osnabrück"
+                evlist_cell.evlist_title.text = "News title"
+                evlist_cell.evlist_time.text = "18 UHr"
+                evlist_cell.evlist_description.text = "sajhvfhsdvcfhsdbch"
+                return evlist_cell
+            }
+        }
        
        
     let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! P_DetailNewsCell
