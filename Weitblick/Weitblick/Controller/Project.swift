@@ -20,12 +20,12 @@ class Project{
     private var description : String
     private var location : Location
     private var partnerID : [Int]
-    private var cycleID : [Int]
+    private var cycleObject : CycleEntry
   
     private var news : [Int]
     private var blog : [Int]
     
-    init(id : Int,published : Date, name : String, image: UIImage, gallery : [UIImage], hosts : [Host], description : String, location : Location, partnerID : [Int], cycleID : [Int], news : [Int], blog : [Int]){
+    init(id : Int,published : Date, name : String, image: UIImage, gallery : [UIImage], hosts : [Host], description : String, location : Location, partnerID : [Int], cycleObject : CycleEntry, news : [Int], blog : [Int]){
         self.id = id
         self.published = published
         self.name = name
@@ -37,7 +37,7 @@ class Project{
         self.news = news
         self.blog = blog
 
-        self.cycleID = cycleID
+        self.cycleObject = cycleObject
         
         let size = CGSize.init(width: 400 , height: 400)
         self.image = self.image.crop(to: size)
@@ -93,8 +93,8 @@ class Project{
             + self.name + "\n"
     }
     
-    public var getCycleIDCount: Int{
-        return self.cycleID.count
+    public var getCycleObject: CycleEntry{
+        return self.cycleObject
     }
 
 }
