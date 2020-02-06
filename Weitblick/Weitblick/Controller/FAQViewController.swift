@@ -31,7 +31,7 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-          return data[section].count
+          3
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
