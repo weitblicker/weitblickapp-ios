@@ -13,10 +13,13 @@ class FAQDetailViewController: UIViewController {
     var faq_object: FAQEntry?
 
  
+    @IBOutlet weak var question: UILabel!
     @IBOutlet weak var answer: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.answer.text = faq_object?.answer
+        self.question.text = faq_object?.question
+        self.question.sizeToFit()
         self.answer.sizeToFit()
       
     }

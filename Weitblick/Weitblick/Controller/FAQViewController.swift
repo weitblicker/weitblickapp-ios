@@ -18,12 +18,12 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
     
     let sections = ["Mitmachen und Spenden", "Struktur und Organisation", "Sonstiges"]
     
-    let items = [["S1", "S2", "S3"], ["A1", "A2","A3"],["B1", "B2"]]
+    let data = [["0,0", "0,1", "0,2","0,1","2,2"], ["1,0", "1,1", "1,2", "1,1"]]
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.sections.count
     }
-     func tableView(_ tableView: UITableView, titleForHeaderInSection
+    func tableView(_ tableView: UITableView, titleForHeaderInSection
                                 section: Int) -> String? {
        return sections[section]
        
@@ -31,7 +31,7 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return questions.count
+          return data[section].count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
