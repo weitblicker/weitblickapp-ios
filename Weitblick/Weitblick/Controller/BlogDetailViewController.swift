@@ -12,25 +12,10 @@ import MarkdownKit
 class BlogDetailViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate{
     
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
-    }
+   
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell =  tableView.dequeueReusableCell(withIdentifier:"blogproject_cell", for: indexPath)as! BlogDetailProjectCell
-        
-        cell.project_image!.image = UIImage (named: "Weitblick")
-        cell.project_title.text = "Project Title"
-        cell.project_partner.text = "Partner"
-        cell.project_location.text = "Deutschland"
-        
-        
-        /*  if(self.projectList[indexPath.row].getCycleObject.getDonations.isEmpty){
-            cell.project_ride_button.alpha = 0
-        }else{
-            cell.project_button_bike.alpha = 1*/
-        return cell
-    }
+    
+    
     
     
     
@@ -45,6 +30,7 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
     @IBOutlet weak var blog_detail_date: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
+   
     
     
     @IBOutlet weak var blog_detail_description: UILabel!
@@ -53,6 +39,8 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
      
     var blog_object : BlogEntry?
     var image : UIImage?
+    var id = -1
+    var project : Project?
     
     override func viewDidLoad() {
         
@@ -66,6 +54,39 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
         self.tableView.dataSource = self
         
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell =  tableView.dequeueReusableCell(withIdentifier:"blogproject_cell", for: indexPath)as! BlogDetailProjectCell
+        
+        
+        
+        cell.project_image!.image = UIImage (named: "Weitblick")
+        cell.project_title.text = "Project Title"
+        cell.project_partner.text = "Partner"
+        cell.project_location.text = "Deutschland"
+        
+        
+        
+        /*  if(self.projectList[indexPath.row].getCycleObject.getDonations.isEmpty){
+            cell.project_ride_button.alpha = 0
+        }else{
+            cell.project_button_bike.alpha = 1*/
+        return cell
+    }
+    
+    public func loadProject(){
+        DataService.getProjectWithID(id: self.id) { (project) in
+               DispatchQueue.main.async {
+                   self.project = project
+                   self.performSegue(withIdentifier: "goToMapView", sender: self)
+               }
+           }
+           
+       }
     
     
     override func viewWillAppear(_ animated: Bool) {

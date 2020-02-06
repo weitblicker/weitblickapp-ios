@@ -591,6 +591,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
         }).resume()
     }
 
+    
 
 
     static func handleDate(date : String) -> Date{

@@ -11,26 +11,7 @@ import MapKit
 import MarkdownKit
 
 class NewsDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell =  tableView.dequeueReusableCell(withIdentifier:"newsproject_cell", for: indexPath)as! NewsDetailProjectCell
-        
-        cell.project_image!.image = UIImage (named: "Weitblick")
-        cell.project_title.text = "Project Title"
-        cell.project_partner.text = "Partner"
-        cell.project_location.text = "Deutschland"
-        
-    
-        
-      /*  if(self.projectList[indexPath.row].getCycleObject.getDonations.isEmpty){
-                   cell.project_ride_button.alpha = 0
-               }else{
-                   cell.project_button_bike.alpha = 1*/
-        return cell
-    }
+  
     
     
 //NEWS Variablen
@@ -43,6 +24,8 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var news_detail_image: UIImageView!
     
     @IBOutlet weak var tableView: UITableView!
+    var id = -1
+    var project : Project?
     
    
     //EVENT Variablen
@@ -59,6 +42,29 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
         
         // Do any additional setup after loading the view.
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+          1
+      }
+      
+      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+          let cell =  tableView.dequeueReusableCell(withIdentifier:"newsproject_cell", for: indexPath)as! NewsDetailProjectCell
+          
+          cell.project_image!.image = UIImage (named: "Weitblick")
+          cell.project_title.text = "Project Title"
+          cell.project_partner.text = "Partner"
+          cell.project_location.text = "Deutschland"
+        
+        
+          
+      
+          
+        /*  if(self.projectList[indexPath.row].getCycleObject.getDonations.isEmpty){
+                     cell.project_ride_button.alpha = 0
+                 }else{
+                     cell.project_button_bike.alpha = 1*/
+          return cell
+      }
     override func viewWillAppear(_ animated: Bool) {
         let nav = self.navigationController?.navigationBar
 

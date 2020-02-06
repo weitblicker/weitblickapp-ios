@@ -72,6 +72,8 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.date(from:date) ?? Date.init()
     }
+    
+   
 
     public func downloadData(){
             var resultimages : [UIImage] = []
