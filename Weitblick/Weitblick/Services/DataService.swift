@@ -47,8 +47,10 @@ class DataService{
                     guard let created = newsDict.value(forKey: "published") else { return } //from added to published
                     let createdString = created as! String
                     print(createdString)
-                    let newsCreated = self.handleDateWithTimeZone(date: createdString)
-                    print(newsCreated)
+                    let substrings = createdString.split(separator: "Z")
+                    print(substrings.first!.description + "Z\n")
+                    let newsCreated = self.handleDateWithOutTimeZone(date: substrings.first!.description)
+//                    print(newsCreated.description + "\n")
                     
                     
                     guard let imageURLJSON = newsDict.value(forKey : "image") else { return }
@@ -70,10 +72,7 @@ class DataService{
                     
                     guard let published = newsDict.value(forKey: "published") else { return }
                     let publishedString = published as! String
-                    print(publishedString)
                     let newsUpdated = self.handleDateWithTimeZone(date: publishedString)
-                    print(newsUpdated)
-                    print("\n")
                     guard let range = newsDict.value(forKey: "range") else { return }
                     let newsRange = range as! String
                     
@@ -94,7 +93,7 @@ class DataService{
                         }
                     }
 
-                    let newsEntry = NewsEntry(id: newsID!, title: newsTitle, text: newsText, gallery: resultimages, created: newsCreated , updated: newsUpdated, range: newsRange, image: image, teaser: newsTeaser)
+                    let newsEntry = NewsEntry(id: newsID!, title: newsTitle, text: newsText, gallery: resultimages, created: newsCreated , updated: newsCreated, range: newsRange, image: image, teaser: newsTeaser)
                     resultimages = []
                     newsList.append(newsEntry)
                 }
@@ -571,9 +570,17 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.date(from:date)!
-       
-        
     }
+    
+    static func handleDateWithOutTimeZone(date : String) -> Date{
+        let dateFormatter = DateFormatter()
+        //2020-01-23T11:20:07Z+0000
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        return dateFormatter.date(from:date)!
+    }
+    
+    
     
     static func handleDateWithTimeZone(date : String) -> Date{
         let dateFormatter = DateFormatter()
