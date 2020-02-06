@@ -23,6 +23,7 @@ class BikeViewController: UIViewController {
     //var projectTitle : String = ""
     var projectId : Int = -1;
     var project: Project?
+    var isTapped = 0;
 
     @IBOutlet weak var speedLbl: UILabel!
     @IBOutlet weak var distanceLbl: UILabel!
@@ -57,8 +58,10 @@ class BikeViewController: UIViewController {
         
         if(UserDefaults.standard.string(forKey: "projectName") != nil){
             self.cycleProjectTitle.setTitle(UserDefaults.standard.string(forKey: "projectName"), for: .normal)
+            self.isTapped = 1
         }else{
             self.cycleProjectTitle.setTitle("Kein Projekt ausgewählt", for: .normal)
+            self.isTapped = 0
         }
         
        
@@ -69,6 +72,16 @@ class BikeViewController: UIViewController {
         super.viewDidLoad()
         checkLocationServices()
         
+    }
+    
+    
+    @IBAction func cycleTitleTApped(_ sender: Any) {
+        if (self.isTapped == 0){
+            print("IN DER IF")
+             self.performSegue(withIdentifier: "goToProjectCycleView", sender: self)
+            
+        }
+       
     }
     
     

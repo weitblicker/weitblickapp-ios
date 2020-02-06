@@ -9,7 +9,29 @@
 import UIKit
 import MarkdownKit
 
-class BlogDetailViewController: UIViewController {
+class BlogDetailViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate{
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell =  tableView.dequeueReusableCell(withIdentifier:"blogproject_cell", for: indexPath)as! BlogDetailProjectCell
+        
+        cell.project_image!.image = UIImage (named: "Weitblick")
+        cell.project_title.text = "Project Title"
+        cell.project_partner.text = "Partner"
+        cell.project_location.text = "Deutschland"
+        
+        
+        /*  if(self.projectList[indexPath.row].getCycleObject.getDonations.isEmpty){
+            cell.project_ride_button.alpha = 0
+        }else{
+            cell.project_button_bike.alpha = 1*/
+        return cell
+    }
+    
     
     
     @IBOutlet weak var triangle: UILabel!
@@ -21,7 +43,9 @@ class BlogDetailViewController: UIViewController {
     @IBOutlet weak var blog_detail_title: UILabel!
     
     @IBOutlet weak var blog_detail_date: UILabel!
-      
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     
     @IBOutlet weak var blog_detail_description: UILabel!
     
@@ -31,12 +55,15 @@ class BlogDetailViewController: UIViewController {
     var image : UIImage?
     
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
          triangle.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
         loadDetailBlog()
         self.navigationController!.navigationBar.topItem!.title = "Zurück"
         
-    
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         
     }
     
