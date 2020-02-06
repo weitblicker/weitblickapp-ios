@@ -171,11 +171,11 @@ class DataService{
                     
                     guard let euroSum = cycleDict.value(forKey: "euro_sum") else { return }
                     let euroSumNumber = euroSum as! NSNumber
-                    let euroSumFloat = Float.init(exactly: euroSumNumber)
+                    let euroSumFloat = Float.init(truncating: euroSumNumber)
                     
                     guard let euro_goal = cycleDict.value(forKey: "euro_goal") else { return }
                     let euroGoalNumber = euro_goal as! NSNumber
-                    let euroGoalFloat = Float.init(exactly: euroGoalNumber)
+                    let euroGoalFloat = Float.init(truncating: euroGoalNumber)
                     
                     var donationList : [Donation] = []
                     guard let donations = cycleDict.value(forKey: "donations") else { return }
@@ -184,8 +184,8 @@ class DataService{
                         for donation in donationArray{
                             if let donationDict = donation as? NSDictionary{
                                 guard let id = donationDict.value(forKey: "id") else { return }
-                                let idNumber = id as! NSNumber
-                                let idInt = Int.init(exactly: idNumber)
+                                let idString = id as! String
+                                let idInt = Int.init(idString)
                                 
                                 var sponsorObject = Sponsor()
                                 guard let sponsor = donationDict.value(forKey: "partner") else { return }
@@ -222,13 +222,13 @@ class DataService{
                                 
                                 guard let donationGoalAmount = donationDict.value(forKey: "goal_amount") else { return }
                                 let donationGoalAmountNumber = donationGoalAmount as! NSNumber
-                                let donationGoalAmountFloat = Float.init(exactly: donationGoalAmountNumber)
+                                let donationGoalAmountFloat = Float.init(truncating: donationGoalAmountNumber)
                                 
                                 guard let donationRateEuroKM = donationDict.value(forKey : "rate_euro_km") else { return }
                                 let donationRateEuroKMNumber = donationRateEuroKM as! NSNumber
-                                let donationRateEuroKMFloat = Float.init(exactly: donationRateEuroKMNumber)
+                                let donationRateEuroKMFloat = Float.init(truncating: donationRateEuroKMNumber)
                                 
-                                donationObject = Donation(id: idInt!, sponsor: sponsorObject, name: donationNameString, description: donationDescriptionString, goal_amount: donationGoalAmountFloat!, rate_euro_km: donationRateEuroKMFloat!)
+                                donationObject = Donation(id: idInt!, sponsor: sponsorObject, name: donationNameString, description: donationDescriptionString, goal_amount: donationGoalAmountFloat, rate_euro_km: donationRateEuroKMFloat)
                                 donationList.append(donationObject)
                                 
                             }
@@ -236,17 +236,17 @@ class DataService{
                     }
                     guard let progress = cycleDict.value(forKey: "progress") else { return }
                     let progressNSNumber = progress as! NSNumber
-                    let progressFloat = Float.init(exactly: progressNSNumber)
+                    let progressFloat = Float.init(truncating: progressNSNumber)
                     
                     guard let kmSum = cycleDict.value(forKey: "km_sum") else { return }
                     let kmSumNSNumber = kmSum as! NSNumber
-                    let kmSumFloat = Float.init(exactly: kmSumNSNumber)
+                    let kmSumFloat = Float.init(truncating: kmSumNSNumber)
                     
                     guard let cyclists = cycleDict.value(forKey: "cyclists") else { return }
                     let cyclistsNSNumber = cyclists as! NSNumber
-                    let cyclistsInt = Int.init(exactly: cyclistsNSNumber)
+                    let cyclistsInt = Int.init(truncating: cyclistsNSNumber)
                     
-                    cycleObject = CycleEntry(eurosum: euroSumFloat!, euro_goal: euroGoalFloat!, donations: donationList, progress: progressFloat!, km_sum: kmSumFloat!, cyclists: cyclistsInt!)
+                    cycleObject = CycleEntry(eurosum: euroSumFloat, euro_goal: euroGoalFloat, donations: donationList, progress: progressFloat, km_sum: kmSumFloat, cyclists: cyclistsInt)
                 }
                 
                guard let published = projectDict.value(forKey: "published") else { return }
