@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+import Charts
+
 class P_DetailFahrradCell: UITableViewCell {
     
     @IBOutlet weak var spendenstand: UILabel!
@@ -19,6 +21,8 @@ class P_DetailFahrradCell: UITableViewCell {
     @IBOutlet weak var gefahren: UILabel!
     
     @IBOutlet weak var fahrrad_button: UIButton!
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
