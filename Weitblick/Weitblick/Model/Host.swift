@@ -22,6 +22,13 @@ class Host{
         self.bankAccount = bankAccount
     }
     
+    init(){
+        self.id = ""
+        self.name = ""
+        self.partners = []
+        self.bankAccount = BankAccount()
+    }
+    
     public var getID : String{
         return self.id
     }

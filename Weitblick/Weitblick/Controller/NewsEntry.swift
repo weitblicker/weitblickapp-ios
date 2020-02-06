@@ -19,13 +19,14 @@ class NewsEntry{
     private var updated : Date
     private var range : String
     private var teaser : String
+    private var host : Host
 
-    init(id : Int, title : String, text : String, gallery : [UIImage], created : Date, updated : Date, range : String, image : UIImage, teaser: String){
+    init(id : Int, title : String, text : String, gallery : [UIImage], created : Date, updated : Date, range : String, image : UIImage, teaser: String, host : Host){
 
         self.id = id
         self.title = title
         self.text = text
-        
+        self.host = host
         self.created = created
         self.updated = updated
         self.range = range
@@ -37,6 +38,11 @@ class NewsEntry{
         
 
         self.gallery = gallery
+    }
+    
+    
+    public var getHost : Host{
+        return self.host
     }
     
     public var getImage : UIImage{

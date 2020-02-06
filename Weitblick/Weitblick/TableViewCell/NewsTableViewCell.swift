@@ -23,6 +23,7 @@ class NewsTableViewCell : UITableViewCell{
     @IBOutlet weak var news_title: UILabel!
     @IBOutlet weak var news_button_detail: UIButton!
     @IBOutlet weak var news_location: UILabel!
+    @IBOutlet weak var news_hostLbl: UILabel!
     
     @IBOutlet weak var triangle: UILabel!
     

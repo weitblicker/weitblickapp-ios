@@ -44,8 +44,10 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.news_image.image = newsList[indexPath.row].getImage
        // cell.formlabel.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
         // TODO If TEASER = NIL OR ""
-      //  cell.news_date.text =  newsList[indexPath.row].getCreationDate.dateAndTimetoString()
+        cell.news_date.text =  newsList[indexPath.row].getCreationDate.dateAndTimetoString()
+        //cell.news_location.text = newsList[indexPath.row].getHost.getName
         // TODO If TEASER = NIL OR ""
+        cell.news_hostLbl.text = newsList[indexPath.row].getHost.getID
         cell.news_description.text = newsList[indexPath.row].getTeaser.html2String
         cell.news_description.sizeToFit()
         cell.news_title.text = newsList[indexPath.row].getTitle.html2String
