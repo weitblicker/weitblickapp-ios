@@ -394,7 +394,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                    //self.locationListID.append(projectLocationID)
                    //guard let partner = projectDict.value(forKey: "partner") else { return }
 
-                    var cycleObject : CycleEntry?
+                    var cycleObject : CycleEntry = CycleEntry()
 
                     guard let cycleArray = projectDict.value(forKey: "cycle")else { return }
                     if let cycleDict = cycleArray as? NSDictionary{
@@ -553,7 +553,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                         }
                     }
 
-                    let project = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleObject: cycleObject!, news: newsIDArray, blog: blogIDArray)
+                    let project = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleObject: cycleObject, news: newsIDArray, blog: blogIDArray)
                     projectList.append(project)
                     resultimages = []
                 }
