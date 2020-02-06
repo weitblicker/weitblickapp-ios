@@ -60,9 +60,9 @@ class EventDetailViewController: UIViewController {
         event_detail_description.attributedText = markdownParser.parse(event_object!.getDescription)
         event_detail_description.sizeToFit()
         event_detail_title.text = event_object?.getTitle
-        event_detail_location.text = "Afrika"
         event_detail_city.text = event_object!.getHost
         event_detail_date.text = event_object?.getStartDate.dateAndTimetoString()
+        event_detail_location.text = event_object?.getLocation.getAddress
         slider.configure(with: [(self.event_object?.getImage)!])
          
          
