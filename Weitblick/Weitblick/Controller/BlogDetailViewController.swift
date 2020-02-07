@@ -47,11 +47,21 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
         
         super.viewDidLoad()
          triangle.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
-        loadDetailBlog()
+    
+           loadDetailBlog()
+        
+        
         self.navigationController!.navigationBar.topItem!.title = "Zurück"
         
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        if(blog_object!.getprojectInt != 0){
+            self.tableView.delegate = self
+            self.tableView.dataSource = self
+            self.tableView.reloadData()
+        }else{
+            self.tableView.alpha = 0
+        }
+        
+       
         
         
     }
@@ -64,20 +74,16 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
         let cell =  tableView.dequeueReusableCell(withIdentifier:"blogproject_cell", for: indexPath)as! BlogDetailProjectCell
         
         print("IN TABLEVIEW")
-        cell.project_image!.image = UIImage (named: "Weitblick")
-        cell.project_title.text = "Project Title"
+        //cell.project_image!.image = UIImage (named: "Weitblick")
+        cell.project_image!.image = self.project?.getImage
+        cell.project_title.text = self.project?.getName
         cell.project_partner.text = "Partner"
-        cell.project_location.text = "Deutschland"
-        
-        
-        
-        
-        /*  if(self.projectList[indexPath.row].getCycleObject.getDonations.isEmpty){
-            cell.project_ride_button.alpha = 0
-        }else{
-            cell.project_button_bike.alpha = 1*/
+        cell.project_location.text = self.project?.getLocation.getAddress
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+           self.performSegue(withIdentifier: "goToProjectDetail", sender: self)
+       }
     
     public func loadProject(){
         print("IN LOADPROJECTS1")
@@ -85,15 +91,30 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
         print("PROJECT ID")
         print(blog_object!.getprojectInt)
         DataService.getProjectWithID(id: self.id) { (project) in
-               
-                   self.project = project
+                self.project = project
                 print("IN LOADPROJECTS2")
-                print (self.project?.getName)
-                 //  self.performSegue(withIdentifier: "goToMapView", sender: self)
+                print (self.project?.getName as Any)
+            DispatchQueue.main.async {
+                self.tableView.delegate = self
+                self.tableView.dataSource = self
+                self.tableView.reloadData()
+                
+            }
                
            }
            
        }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+              if segue.destination is ProjectDetailViewController
+              {
+                  let projectDetailViewController = segue.destination as? ProjectDetailViewController
+                  projectDetailViewController?.project_object = self.project
+                  
+
+              }
+        
+          }
+
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -108,7 +129,10 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
           imageView.image = image
           
           navigationItem.titleView = imageView
-         loadProject()
+        if(blog_object!.getprojectInt != 0){
+              loadProject()
+        }
+       
         
 
       }

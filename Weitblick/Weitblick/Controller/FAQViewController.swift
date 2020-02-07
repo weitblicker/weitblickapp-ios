@@ -23,7 +23,7 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
     var arr = [[FAQEntry]]()
    
     
-    let sections = ["Mitmachen & Spenden", "Struktur & Organisation","Sonstiges"]
+    let sections = ["Mitmachen & Spenden", "Struktur & Organisation","Wie benutze ich die App"]
     
   
     
@@ -78,7 +78,7 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
                 self.questions1.append(faq)
             }else if (faq.title == "Struktur & Organisation"){
             self.questions2.append(faq)
-                }else if (faq.title == "Sonstiges"){
+                }else if (faq.title == "Wie benutze ich die App"){
                     self.questions3.append(faq)
                 }
           
