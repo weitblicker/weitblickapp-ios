@@ -23,6 +23,8 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
      @IBOutlet var photoSliderView: PhotoSliderView!
     @IBOutlet weak var news_detail_image: UIImageView!
     
+    @IBOutlet weak var project_label: UILabel!
+    
     @IBOutlet weak var tableView: UITableView!
     var id = -1
     var project : Project?
@@ -45,6 +47,7 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
                       self.tableView.reloadData()
          }else{
                       self.tableView.alpha = 0
+            self.project_label.text = ""
        }
         
       
@@ -71,6 +74,8 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
                      cell.project_button_bike.alpha = 1*/
         cell.project_title.text = self.project?.getName
         cell.project_location.text = self.project?.getLocation.getAddress
+        cell.project_partner.text = "Partner"
+        cell.project_image.image = self.project?.getImage
           return cell
       }
     

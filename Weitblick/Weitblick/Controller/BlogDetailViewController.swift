@@ -30,8 +30,12 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
     @IBOutlet weak var blog_detail_date: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
-   
     
+    @IBOutlet weak var project_label: UILabel!
+    
+    
+    @IBOutlet weak var blog_detail_author_img: UIImageView!
+    @IBOutlet weak var blog_detail_author_name: UILabel!
     
     @IBOutlet weak var blog_detail_description: UILabel!
     
@@ -41,6 +45,7 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
     var image : UIImage?
     var id = -1
     var project : Project?
+    
     
     override func viewDidLoad() {
         
@@ -54,11 +59,13 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
         self.navigationController!.navigationBar.topItem!.title = "Zurück"
         
         if(blog_object!.getprojectInt != 0){
+            
             self.tableView.delegate = self
             self.tableView.dataSource = self
             self.tableView.reloadData()
         }else{
             self.tableView.alpha = 0
+            self.project_label.text = ""
         }
         
        
@@ -146,6 +153,8 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
         blog_detail_description.sizeToFit()
         blog_detail_date.text = blog_object?.getCreationDate.dateAndTimetoString()
         blog_detail_country.text = "Indien"
+        blog_detail_author_name.text = blog_object?.g
+        
         // blog_detail_image.image = self.image
 
         photoSliderView.configure(with: blog_object!.getGallery)

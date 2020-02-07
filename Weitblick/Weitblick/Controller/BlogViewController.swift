@@ -38,6 +38,7 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
         cell.blog_description.text = blogList[indexPath.row].getText
         cell.triangle.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
         cell.blog_title.sizeToFit()
+       
         //cell.blog_button_detail.tag = indexPath.row
         
        
