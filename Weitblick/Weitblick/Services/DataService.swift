@@ -90,8 +90,9 @@ class DataService{
                     }
                     var projectInt = 0
                     guard let project = newsDict.value(forKey: "project") else { return }
-                    if let projectString = project as? String{
-                        projectInt = Int.init(projectString)!
+                    if let projectString = project as? NSNumber{
+                        projectInt = Int.init(truncating: projectString)
+                        print(projectInt.description + "\n")
                     }
                     
                     
@@ -111,6 +112,24 @@ class DataService{
                                 hostPartnerList.append(hostPartner as! Int)
                             }
                         }
+                        
+                        guard let locationJSON = hostDict.value(forKey: "location") else { return }
+                        var location : Location = Location()
+                        if let locationDict = locationJSON as? NSDictionary{
+                            guard let id = locationDict.value(forKey: "id")  else { return }
+                            let IDString = id as! String
+                            let locationID = Int.init(IDString)
+                            guard let lat = locationDict.value(forKey: "lat")  else { return }
+                            let latNumber = lat as! NSNumber
+                            let locationLat = Double.init(truncating: latNumber)
+                            guard let lng = locationDict.value(forKey: "lng")  else { return }
+                            let lngNumber = lng as! NSNumber
+                            let locationLng = Double.init(truncating: lngNumber)
+                            guard let address = locationDict.value(forKey: "address")  else { return }
+                            let locationAddress = address as! String
+                            location = Location(id: locationID!, lat: locationLat, lng: locationLng, address: locationAddress)
+                        }
+                        
                         var hostbankAcc : BankAccount = BankAccount()
     //                                "account_holder": "Weitblick Münster e.V.",
     //                                "iban": "DE64400800400604958800",
@@ -125,7 +144,7 @@ class DataService{
                             let bicString = bic as! String
                             hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
                         }
-                        hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc)
+                        hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location)
                         
                     }
 
@@ -321,10 +340,28 @@ class DataService{
                                     hostPartnerList.append(hostPartner as! Int)
                                 }
                             }
+                            
+                            guard let locationJSON = hostDict.value(forKey: "location") else { return }
+                            var location : Location = Location()
+                            if let locationDict = locationJSON as? NSDictionary{
+                                guard let id = locationDict.value(forKey: "id")  else { return }
+                                let IDString = id as! String
+                                let locationID = Int.init(IDString)
+                                guard let lat = locationDict.value(forKey: "lat")  else { return }
+                                let latNumber = lat as! NSNumber
+                                let locationLat = Double.init(truncating: latNumber)
+                                guard let lng = locationDict.value(forKey: "lng")  else { return }
+                                let lngNumber = lng as! NSNumber
+                                let locationLng = Double.init(truncating: lngNumber)
+                                guard let address = locationDict.value(forKey: "address")  else { return }
+                                let locationAddress = address as! String
+                                location = Location(id: locationID!, lat: locationLat, lng: locationLng, address: locationAddress)
+                            }
+                            
                             var hostbankAcc : BankAccount = BankAccount()
-//                                "account_holder": "Weitblick Münster e.V.",
-//                                "iban": "DE64400800400604958800",
-//                                "bic": "DRESDEFF400"
+        //                                "account_holder": "Weitblick Münster e.V.",
+        //                                "iban": "DE64400800400604958800",
+        //                                "bic": "DRESDEFF400"
                             guard let hostbank = hostDict.value(forKey : "bank_account") else { return }
                             if let hostbankDict = hostbank as? NSDictionary{
                                 guard let holder = hostbankDict.value(forKey: "account_holder") else { return }
@@ -335,8 +372,7 @@ class DataService{
                                 let bicString = bic as! String
                                 hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
                             }
-
-                            let hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc)
+                            let hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location)
                             resultHosts.append(hostObject)
                         }
                     }
@@ -553,10 +589,28 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                                         hostPartnerList.append(hostPartner as! Int)
                                     }
                                 }
+                                
+                                guard let locationJSON = hostDict.value(forKey: "location") else { return }
+                                var location : Location = Location()
+                                if let locationDict = locationJSON as? NSDictionary{
+                                    guard let id = locationDict.value(forKey: "id")  else { return }
+                                    let IDString = id as! String
+                                    let locationID = Int.init(IDString)
+                                    guard let lat = locationDict.value(forKey: "lat")  else { return }
+                                    let latNumber = lat as! NSNumber
+                                    let locationLat = Double.init(truncating: latNumber)
+                                    guard let lng = locationDict.value(forKey: "lng")  else { return }
+                                    let lngNumber = lng as! NSNumber
+                                    let locationLng = Double.init(truncating: lngNumber)
+                                    guard let address = locationDict.value(forKey: "address")  else { return }
+                                    let locationAddress = address as! String
+                                    location = Location(id: locationID!, lat: locationLat, lng: locationLng, address: locationAddress)
+                                }
+                                
                                 var hostbankAcc : BankAccount = BankAccount()
-//                                "account_holder": "Weitblick Münster e.V.",
-//                                "iban": "DE64400800400604958800",
-//                                "bic": "DRESDEFF400"
+            //                                "account_holder": "Weitblick Münster e.V.",
+            //                                "iban": "DE64400800400604958800",
+            //                                "bic": "DRESDEFF400"
                                 guard let hostbank = hostDict.value(forKey : "bank_account") else { return }
                                 if let hostbankDict = hostbank as? NSDictionary{
                                     guard let holder = hostbankDict.value(forKey: "account_holder") else { return }
@@ -567,8 +621,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                                     let bicString = bic as! String
                                     hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
                                 }
-
-                                let hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc)
+                                let hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location)
                                 resultHosts.append(hostObject)
                             }
                         }

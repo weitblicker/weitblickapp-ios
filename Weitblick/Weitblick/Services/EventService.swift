@@ -37,12 +37,54 @@ class EventService{
                         guard let title = eventDict.value(forKey: "title") else { return }
                         let eventTitle = title as! String
                         
-                        var hostString = ""
+                        var hostObject = Host()
                         guard let host = eventDict.value(forKey: "host") else { return }
                         if let hostDict = host as? NSDictionary{
+                            //init(id : Int, name : String, partners : [Int], bankAccount : BankAccount){
+                            guard let hostID = hostDict.value(forKey: "id") else { return }
+                            let hostIDString = hostID as! String
+                            guard let hostName = hostDict.value(forKey : "name") else { return }
+                            let hostNameString = hostName as! String
+                            guard let hostPartners = hostDict.value(forKey : "partners") else { return }
+                            var hostPartnerList : [Int] = []
+                            if let hostPartnerArray = hostPartners as? NSArray{
+                                for hostPartner in hostPartnerArray{
+                                    hostPartnerList.append(hostPartner as! Int)
+                                }
+                            }
                             
-                        guard let h = hostDict.value(forKey: "city") else { return }
-                        hostString = h as! String
+                            guard let locationJSON = hostDict.value(forKey: "location") else { return }
+                            var location : Location = Location()
+                            if let locationDict = locationJSON as? NSDictionary{
+                                guard let id = locationDict.value(forKey: "id")  else { return }
+                                let IDString = id as! String
+                                let locationID = Int.init(IDString)
+                                guard let lat = locationDict.value(forKey: "lat")  else { return }
+                                let latNumber = lat as! NSNumber
+                                let locationLat = Double.init(truncating: latNumber)
+                                guard let lng = locationDict.value(forKey: "lng")  else { return }
+                                let lngNumber = lng as! NSNumber
+                                let locationLng = Double.init(truncating: lngNumber)
+                                guard let address = locationDict.value(forKey: "address")  else { return }
+                                let locationAddress = address as! String
+                                location = Location(id: locationID!, lat: locationLat, lng: locationLng, address: locationAddress)
+                            }
+                            
+                            var hostbankAcc : BankAccount = BankAccount()
+        //                                "account_holder": "Weitblick Münster e.V.",
+        //                                "iban": "DE64400800400604958800",
+        //                                "bic": "DRESDEFF400"
+                            guard let hostbank = hostDict.value(forKey : "bank_account") else { return }
+                            if let hostbankDict = hostbank as? NSDictionary{
+                                guard let holder = hostbankDict.value(forKey: "account_holder") else { return }
+                                let holderString = holder as! String
+                                guard let iban = hostbankDict.value(forKey: "iban") else { return }
+                                let ibanString = iban as! String
+                                guard let bic = hostbankDict.value(forKey: "bic") else { return }
+                                let bicString = bic as! String
+                                hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
+                            }
+                            hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location)
                             
                         }
                         
@@ -105,7 +147,7 @@ class EventService{
                         guard let description = eventDict.value(forKey: "description") else { return }
                         let eventDescription = description as! String
                         
-                        let event = Event(id: eventID!, title: eventTitle, description: eventDescription, image: image, host: hostString, location: location, gallery: resultimages, dateStart: start, dateEnd: end)
+                        let event = Event(id: eventID!, title: eventTitle, description: eventDescription, image: image, host: hostObject, location: location, gallery: resultimages, dateStart: start, dateEnd: end)
                         eventList.append(event)
                         resultimages = [] 
                     }

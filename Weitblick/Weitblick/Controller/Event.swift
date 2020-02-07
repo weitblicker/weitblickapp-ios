@@ -17,13 +17,13 @@ class Event{
     private var title : String
     private var description : String
     private var image : UIImage
-    private var host : String
+    private var host : Host
     private var gallery : [UIImage]
     private var location : Location
     private var dateStart : Date
     private var dateEnd : Date
     
-    init(id : Int, title : String, description : String,image : UIImage, host : String, location : Location,gallery : [UIImage], dateStart : Date, dateEnd : Date){
+    init(id : Int, title : String, description : String,image : UIImage, host : Host, location : Location,gallery : [UIImage], dateStart : Date, dateEnd : Date){
         
         self.id = id
         self.title = title
@@ -57,7 +57,7 @@ class Event{
         return self.dateStart
     }
     
-    public var getHost : String{
+    public var getHost : Host{
         return self.host
     }
     

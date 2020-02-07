@@ -4080,6 +4080,13 @@
                                             <constraint firstAttribute="trailing" secondItem="RV6-e0-HOC" secondAttribute="trailing" constant="8" id="xWD-fO-4UN"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0E-aA-G23">
+                                        <rect key="frame" x="28" y="358" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="xjF-LB-2SL" secondAttribute="bottom" constant="949" id="E6f-Xi-GkZ"/>
@@ -4104,6 +4111,7 @@
                     <navigationItem key="navigationItem" id="4IB-sK-rIU"/>
                     <size key="freeformSize" width="414" height="800"/>
                     <connections>
+                        <outlet property="event_detail_Location_Title" destination="k0E-aA-G23" id="bpj-Yi-RNB"/>
                         <outlet property="event_detail_city" destination="j7L-K4-eVx" id="CU6-Gk-kgg"/>
                         <outlet property="event_detail_date" destination="ojc-uo-TVu" id="seK-ju-jRC"/>
                         <outlet property="event_detail_description" destination="RV6-e0-HOC" id="acF-aj-KZ3"/>
