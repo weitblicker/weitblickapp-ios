@@ -24,7 +24,7 @@ class DataService{
         task.addValue("Basic " + dataB64, forHTTPHeaderField: "Authorization")
 
         URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
-        let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+            if let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments){
         if let newsArray = jsondata as? NSArray{
             for news in newsArray{
                 if let newsDict = news as? NSDictionary{
@@ -154,7 +154,7 @@ class DataService{
                 }
             }
             completion(newsList)
-        }
+                }}
         }).resume()
 
     }
@@ -648,7 +648,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                 }
             }
             completion(projectList)
-        }
+            }
         }).resume()
     }
 

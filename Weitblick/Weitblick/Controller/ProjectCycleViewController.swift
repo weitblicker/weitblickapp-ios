@@ -15,7 +15,7 @@ class ProjectCycleViewController: UIViewController, UITableViewDataSource, UITab
     var projectList : [Project] = []
     var date = Date.init()
     var projectListCycle : [Project] = []
-    
+    var viewController : BikeViewController?
 
     var counter = 0
     
@@ -96,17 +96,21 @@ class ProjectCycleViewController: UIViewController, UITableViewDataSource, UITab
     
     @objc func goToCycle(sender:UIButton!){
            
-           print("IN GOTOCYCLE")
-           let projectID = self.projectListCycle[sender.tag].getID
-           let projectName = self.projectListCycle[sender.tag].getName
-
-           UserDefaults.standard.set(projectID, forKey: "projectID")
-           UserDefaults.standard.set(projectName, forKey: "projectName")
-           print("ProjectName")
-           print(projectName)
-           self.tabBarController?.selectedIndex = 2
-           
-       }
+        print("IN GOTOCYCLE")
+        let projectID = self.projectListCycle[sender.tag].getID
+        let projectName = self.projectListCycle[sender.tag].getName
+        //let nameAlt = "Test"
+        UserDefaults.standard.set(projectID, forKey: "projectID")
+        UserDefaults.standard.set(projectName, forKey: "projectName")
+        self.viewController?.updateTitle(completion: { (answer) in
+            if(answer){
+                DispatchQueue.main.async {
+                     self.dismiss(animated: true, completion: nil)
+                }
+            }
+        })
+    }
+}
     
     
     
@@ -243,8 +247,3 @@ class ProjectCycleViewController: UIViewController, UITableViewDataSource, UITab
         
 
 
-    
-
-    
-    
-}

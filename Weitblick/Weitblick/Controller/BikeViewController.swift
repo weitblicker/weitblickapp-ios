@@ -144,9 +144,17 @@ class BikeViewController: UIViewController {
             mapViewController?.locationManager = self.locationManager
             mapViewController?.projectid = UserDefaults.standard.integer(forKey: "projectID")
             mapViewController?.project = self.project
-            
-
         }
+        if segue.destination is ProjectCycleViewController{
+            let viewController = segue.destination as? ProjectCycleViewController
+            viewController?.viewController = self 
+        }
+    }
+    
+    func updateTitle(completion: @escaping (_ answer : Bool) -> ()){
+        print("In UpdateTitle " + UserDefaults.standard.string(forKey: "projectName")!.description)
+        self.cycleProjectTitle.setTitle(UserDefaults.standard.string(forKey: "projectName"), for: .normal)
+        completion(true)
     }
     
     func showAlertMess(userMessage: String){
