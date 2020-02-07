@@ -250,6 +250,8 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
             cell.spendenstand.text = "5005"
             cell.spendenziel.text = "6000"
             cell.spendenzielName.text = "Weltfrieden"
+            cell.spenden_star_img.image = UIImage(named:"partner.png")
+            cell.spendenbeschreibung.text = "Probebeschreibung die über eine Zeile gehen sollte"
             counter = 2
             
             return cell

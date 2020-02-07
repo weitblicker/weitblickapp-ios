@@ -19,6 +19,10 @@ class P_DetailSpendenCell: UITableViewCell {
     @IBOutlet weak var spendenstand: UILabel!
     
     @IBOutlet weak var spendenziel: UILabel!
+    
+    @IBOutlet weak var spenden_star_img: UIImageView!
+    
+    @IBOutlet weak var spendenbeschreibung: UILabel!
     override func awakeFromNib() {
             super.awakeFromNib()
             // Initialization code
