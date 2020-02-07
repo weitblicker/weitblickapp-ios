@@ -35,8 +35,9 @@ class BlogService{
                         
                         var projectInt = 0
                         guard let project = blogDict.value(forKey: "project") else { return }
-                        if let projectString = project as? String{
-                            projectInt = Int.init(projectString)!
+                        if let projectString = project as? NSNumber{
+                            projectInt = Int.init(truncating: projectString)
+                            print(projectInt.description + "\n")
                         }
                         
                         guard let title = blogDict.value(forKey: "title") else { return }

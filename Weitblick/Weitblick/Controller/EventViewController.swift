@@ -38,7 +38,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
         let cell = tableView.dequeueReusableCell(withIdentifier:"event_cell", for: indexPath)as! EventTableViewCell
         cell.event_date.text = eventList[indexPath.row].getStartDate.dateAndTimetoString()
-        cell.event_host.text = eventList[indexPath.row].getHost
+        cell.event_host.text = eventList[indexPath.row].getHost.getName
         cell.event_location.text = eventList[indexPath.row].getLocation.getAddress
         cell.event_description.text = eventList[indexPath.row].getTitle
         cell.event_image.image = eventList[indexPath.row].getImage
