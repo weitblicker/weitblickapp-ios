@@ -153,7 +153,8 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
         blog_detail_description.sizeToFit()
         blog_detail_date.text = blog_object?.getCreationDate.dateAndTimetoString()
         blog_detail_country.text = "Indien"
-        blog_detail_author_name.text = blog_object?.g
+        blog_detail_author_name.text = blog_object?.getAuthor.getName
+        blog_detail_author_img.image = blog_object?.getAuthor.getImage
         
         // blog_detail_image.image = self.image
 
