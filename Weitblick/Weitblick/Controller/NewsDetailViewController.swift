@@ -27,6 +27,7 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
     var id = -1
     var project : Project?
     
+    
    
     //EVENT Variablen
   
@@ -36,11 +37,17 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         loadNewsDetail()
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-      
+
         
-        // Do any additional setup after loading the view.
+        if(news_object!.getProjectInt != 0){
+            self.tableView.delegate = self
+            self.tableView.dataSource = self
+            self.tableView.reloadData()
+        }else{
+            self.tableView.alpha = 0
+        }
+        
+      
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,10 +57,10 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           let cell =  tableView.dequeueReusableCell(withIdentifier:"newsproject_cell", for: indexPath)as! NewsDetailProjectCell
           
-          cell.project_image!.image = UIImage (named: "Weitblick")
-          cell.project_title.text = "Project Title"
-          cell.project_partner.text = "Partner"
-          cell.project_location.text = "Deutschland"
+       /* cell.project_image!.image = self.project!.getImage
+        cell.project_title.text = self.project!.getName
+        cell.project_partner.text = "Partner"
+        cell.project_location.text = self.project!.getLocation.getAddress*/
 
           
         /*  if(self.projectList[indexPath.row].getCycleObject.getDonations.isEmpty){
@@ -62,6 +69,13 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
                      cell.project_button_bike.alpha = 1*/
           return cell
       }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "goToProjectDetail", sender: self)
+    }
+    
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         let nav = self.navigationController?.navigationBar
         nav?.barStyle = UIBarStyle.default
@@ -70,9 +84,21 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
         let image = UIImage(named : "Weitblick")
         imageView.image = image
         navigationItem.titleView = imageView
+        loadProject()
       
 
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+               if segue.destination is ProjectDetailViewController
+               {
+                   let projectDetailViewController = segue.destination as? ProjectDetailViewController
+                   projectDetailViewController?.project_object = self.project
+                   
+
+               }
+         
+           }
     
     
     func loadNewsDetail(){
@@ -87,6 +113,26 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
         
         
     }
+    
+    public func loadProject(){
+           print("IN LOADPROJECTS1")
+        self.id = news_object!.getProjectInt
+           print("PROJECT ID")
+           print(news_object!.getProjectInt)
+           DataService.getProjectWithID(id: self.id) { (project) in
+                   self.project = project
+                   print("IN LOADPROJECTS2")
+                   print (self.project?.getName as Any)
+               DispatchQueue.main.async {
+                   self.tableView.delegate = self
+                   self.tableView.dataSource = self
+                   self.tableView.reloadData()
+                   
+               }
+                  
+              }
+              
+          }
    
 
 }
