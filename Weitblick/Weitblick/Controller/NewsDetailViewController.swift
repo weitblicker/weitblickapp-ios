@@ -38,17 +38,19 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
         super.viewDidLoad()
         loadNewsDetail()
 
-        
+         self.navigationController!.navigationBar.topItem!.title = "Zurück"
         if(news_object!.getProjectInt != 0){
-            self.tableView.delegate = self
-            self.tableView.dataSource = self
-            self.tableView.reloadData()
-        }else{
-            self.tableView.alpha = 0
-        }
+                      self.tableView.delegate = self
+                      self.tableView.dataSource = self
+                      self.tableView.reloadData()
+         }else{
+                      self.tableView.alpha = 0
+       }
         
       
     }
+    
+   
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
           1
@@ -57,7 +59,7 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           let cell =  tableView.dequeueReusableCell(withIdentifier:"newsproject_cell", for: indexPath)as! NewsDetailProjectCell
           
-       /* cell.project_image!.image = self.project!.getImage
+        /*cell.project_image!.image = self.project!.getImage
         cell.project_title.text = self.project!.getName
         cell.project_partner.text = "Partner"
         cell.project_location.text = self.project!.getLocation.getAddress*/
@@ -67,6 +69,8 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
                      cell.project_ride_button.alpha = 0
                  }else{
                      cell.project_button_bike.alpha = 1*/
+        cell.project_title.text = self.project?.getName
+        cell.project_location.text = self.project?.getLocation.getAddress
           return cell
       }
     

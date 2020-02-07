@@ -46,7 +46,7 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-           self.faq_object = questionsAll[indexPath.row]
+           self.faq_object = arr[indexPath.section][indexPath.row]
            self.performSegue(withIdentifier: "goFAQDetail", sender: self)
        }
     
@@ -56,7 +56,6 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
         let question = arr[indexPath.section][indexPath.row].question
         cell.faq_question.text = question
         cell.faq_question.sizeToFit();
-        //cell.faq_answer.text = answer
         cell.faq_answer.sizeToFit()
         return cell
          
