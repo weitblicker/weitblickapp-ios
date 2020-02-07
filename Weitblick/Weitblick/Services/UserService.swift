@@ -168,11 +168,12 @@ class UserService{
                 if let userDict = jsondata as? NSDictionary{
                     guard let username = userDict.value(forKey: "username") else { return }
                     let usernameString = username as! String
-                    
+                    var userImageString = ""
                     guard let imgUrl = userDict.value(forKey: "image") else { return }
-                    let imageString = imgUrl as! String
-                    
-                    let user = User(username: usernameString, image: imageString, km: 0.0, euro: 0.0)
+                    if let imageString = imgUrl as? String{
+                        userImageString = imageString
+                    }
+                    let user = User(username: usernameString, image: userImageString, km: 0.0, euro: 0.0)
                     completion(user)
                 }
                 
