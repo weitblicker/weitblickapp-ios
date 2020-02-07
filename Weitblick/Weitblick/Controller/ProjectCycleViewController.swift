@@ -19,6 +19,7 @@ class ProjectCycleViewController: UIViewController, UITableViewDataSource, UITab
 
     var counter = 0
     
+    
     @IBOutlet weak var tableView: UITableView!
     
         override func viewDidLoad() {
