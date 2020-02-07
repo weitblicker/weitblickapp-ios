@@ -88,7 +88,25 @@ print("blog4")
                                 }
                             }
                         }
-                        let blogEntry = BlogEntry(id: blogID!, title: blogTitle, text: blogText, created: blogCreated, updated: blogCreated, image: image, teaser: blogTeaser, range: blogRange,gallery: resultimages, projectInt: projectInt)
+                        
+                        guard let author = blogDict.value(forKey: "author") else { return }
+                        var authorObject = Author()
+                        if let authorDict = author as? NSDictionary{
+                            guard let imageURL = authorDict.value(forKey: "image") else { return }
+                            var image = UIImage(named: "Weitblick")
+                            if let img = imageURL as? String{
+                                let imgURL = NSURL(string : Constants.url + img)
+                                let data = NSData(contentsOf: (imgURL as URL?)!)
+                                image = UIImage(data: data! as Data)!
+                            }
+                            
+                            guard let name = authorDict.value(forKey: "name") else { return }
+                            let nameString = name as! String
+                            
+                            authorObject = Author(image: image!, name: nameString)
+                        }
+                        
+                        let blogEntry = BlogEntry(id: blogID!, title: blogTitle, text: blogText, created: blogCreated, updated: blogCreated, image: image, teaser: blogTeaser, range: blogRange,gallery: resultimages, projectInt: projectInt, author : authorObject)
                         resultimages = []
                         blogList.append(blogEntry)
                     }

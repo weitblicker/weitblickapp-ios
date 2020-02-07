@@ -150,7 +150,8 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
                                     }
                                 }
                             }
-                            let blogEntry = BlogEntry(id: blogID!, title: blogTitle, text: blogText, created: blogCreated, updated: blogCreated, image: image, teaser: blogTeaser, range: blogRange,gallery: resultimages, projectInt: projectInt)
+                            let author = Author()
+                            let blogEntry = BlogEntry(id: blogID!, title: blogTitle, text: blogText, created: blogCreated, updated: blogCreated, image: image, teaser: blogTeaser, range: blogRange,gallery: resultimages, projectInt: projectInt, author : author)
                             resultimages = []
                             self.blogList.append(blogEntry)
                         }
