@@ -24,6 +24,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
     var annotationList : [MKAnnotationView] = []
     var project_object : Project?
     var delegate = ProjectTableViewCell?.self
+    var hostList: String = ""
     
     @IBOutlet weak var triangle: UILabel!
     //    var count2 = 0
@@ -34,6 +35,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
     var clicked = 0
+    var counter = 0
     
     
 
@@ -43,8 +45,13 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
 
     func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {   // Mit dequeueReusableCell werden Zellen gemäß        der im Storyboard definierten Prototypen erzeugt
         let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as! ProjectTableViewCell
+        
         cell.project_image.image = self.projectList[indexPath.row].getImage
         cell.project_title.text = projectList[indexPath.row].getName
+        
+    
+        cell.project_city.text = projectList[indexPath.row].getHosts[0].getName
+       
         cell.project_location.text = projectList[indexPath.row].getLocation.getAddress
         cell.project_button_bike.tag = indexPath.row
         if(self.projectList[indexPath.row].getCycleObject.getDonations.isEmpty){
@@ -54,6 +61,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.project_button_bike.addTarget(self, action: #selector(ProjectViewController.goToCycle), for: .touchUpInside)
             cell.project_button_bike.tag = indexPath.row
         }
+        counter = 0
         return cell
     }
 

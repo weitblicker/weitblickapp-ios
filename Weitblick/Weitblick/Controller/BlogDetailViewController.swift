@@ -156,6 +156,8 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
         blog_detail_author_name.text = blog_object?.getAuthor.getName
         blog_detail_author_img.image = blog_object?.getAuthor.getImage
         
+        
+        
         // blog_detail_image.image = self.image
 
         photoSliderView.configure(with: blog_object!.getGallery)

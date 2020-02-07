@@ -32,13 +32,19 @@ class MapViewController: UIViewController {
     var projectid: Int = 0
     var project : Project?
     var hcKalmanFilter : HCKalmanAlgorithm?
-
+    var hostList: String = ""
+    var counter = 0
+    
     @IBOutlet weak var distanceLbl: UILabel!
     @IBOutlet weak var speedLbl: UILabel!
     @IBOutlet weak var donationLbl: UILabel!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var stopPlayButton: UIButton!
-
+    @IBOutlet weak var project_name: UILabel!
+    
+    @IBOutlet weak var project_partner: UILabel!
+    @IBOutlet weak var project_location: UILabel!
+    
     @IBAction func toLocationButton(_ sender: UIButton) {
          map.setCenter(map.userLocation.coordinate, animated: true)
     }
@@ -50,6 +56,16 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         self.navigationItem.hidesBackButton = true
+        self.project_name.text = self.project?.getName
+        self.project_location.text = self.project?.getLocation.getAddress
+        
+        for host in self.project!.getHosts{
+            self.hostList = self.hostList + host.getName + ","
+        }
+        self.project_partner.text = self.hostList
+        
+        
+        
         self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop500"), for: UIControl.State.normal)
         super.viewDidLoad()
         checkLocationServices()

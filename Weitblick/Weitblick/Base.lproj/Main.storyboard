@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1403,9 +1403,7 @@
                         <viewLayoutGuide key="safeArea" id="Y5m-t2-73n"/>
                     </view>
                     <connections>
-
                         <outlet property="tableView" destination="ZCW-uZ-Q7m" id="UGJ-r5-uWb"/>
-
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wfW-S6-xLU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1484,7 +1482,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="946"/>
                                 <subviews>
                                     <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="gaC-1F-m7c">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="619"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="616"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IVH-9a-pFd">
                                                 <rect key="frame" x="0.0" y="445" width="414" height="197"/>
@@ -1592,7 +1590,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Datum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzk-bo-qdc">
-                                                <rect key="frame" x="319" y="303" width="87" height="20"/>
+                                                <rect key="frame" x="319" y="303" width="87" height="16.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="87" id="hbz-X9-lHv"/>
                                                 </constraints>
@@ -1626,13 +1624,13 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usa-Xp-GY7">
-                                                <rect key="frame" x="20" y="366" width="373" height="20.5"/>
+                                                <rect key="frame" x="20" y="366" width="373" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bottom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAW-t1-55A">
-                                                <rect key="frame" x="179" y="609.5" width="56" height="21"/>
+                                                <rect key="frame" x="179" y="606.5" width="56" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2557,6 +2555,9 @@
                         <outlet property="distanceLbl" destination="XBf-40-Vp1" id="TUX-Rp-TYK"/>
                         <outlet property="donationLbl" destination="DB3-QT-6ap" id="85T-vU-T6q"/>
                         <outlet property="map" destination="Jv4-Pi-exn" id="JYm-e4-Lny"/>
+                        <outlet property="project_location" destination="LUW-4F-O8R" id="wRp-vz-V9p"/>
+                        <outlet property="project_name" destination="ryg-vg-7cn" id="UrT-he-eKP"/>
+                        <outlet property="project_partner" destination="Uws-nT-KyA" id="crW-5t-EgF"/>
                         <outlet property="stopPlayButton" destination="VRs-ev-0P4" id="p9D-6a-IOi"/>
                         <segue destination="le4-IP-dCU" kind="showDetail" identifier="goToTrackResult" id="5z7-Hy-q4a"/>
                         <segue destination="Iga-6e-GSm" kind="showDetail" identifier="showProjectInfo" id="Kkg-vc-dTE"/>
@@ -3212,7 +3213,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="946"/>
                                 <subviews>
                                     <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="5PK-qv-6yq">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="648"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="637.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H67-Rk-GTF">
                                                 <rect key="frame" x="192.5" y="22" width="29" height="21"/>
@@ -3221,7 +3222,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bottom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUf-cW-Ftf">
-                                                <rect key="frame" x="179" y="661.5" width="56" height="21"/>
+                                                <rect key="frame" x="179" y="651" width="56" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -3304,13 +3305,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projekt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6L-bQ-0aA">
-                                                <rect key="frame" x="20" y="423" width="134" height="24"/>
+                                                <rect key="frame" x="20" y="412.5" width="134" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oYL-Uw-6qz">
-                                                <rect key="frame" x="20" y="451" width="373" height="197"/>
+                                                <rect key="frame" x="20" y="440.5" width="373" height="197"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="blogproject_cell" rowHeight="154" id="1Xy-0j-rwQ" customClass="BlogDetailProjectCell" customModule="Weitblick" customModuleProvider="target">
@@ -3489,7 +3490,7 @@
             <objects>
                 <viewController id="IJW-E6-GkS" customClass="ContactViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C5n-I5-GjM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="639"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="632"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gia-Tc-yzL">
@@ -3912,7 +3913,7 @@
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="news_cell" rowHeight="336" translatesAutoresizingMaskIntoConstraints="NO" id="dWr-vm-PwS" customClass="NewsTableViewCell" customModule="Weitblick" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="news_cell" rowHeight="336" translatesAutoresizingMaskIntoConstraints="NO" id="dWr-vm-PwS" customClass="NewsTableViewCell" customModule="Weitblick" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="336"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dWr-vm-PwS" id="caN-oJ-AZJ">
@@ -4906,7 +4907,7 @@
                                 <rect key="frame" x="0.0" y="24" width="414" height="648"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="blog_cell" rowHeight="462" translatesAutoresizingMaskIntoConstraints="NO" id="3zr-23-yr1" customClass="BlogTableViewCell" customModule="Weitblick" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="blog_cell" rowHeight="462" translatesAutoresizingMaskIntoConstraints="NO" id="3zr-23-yr1" customClass="BlogTableViewCell" customModule="Weitblick" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="462"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3zr-23-yr1" id="8PA-FI-gLL">
@@ -5088,6 +5089,6 @@
         <segue reference="xNn-lR-evC"/>
         <segue reference="Cv5-VS-8qz"/>
         <segue reference="H1n-vc-OiY"/>
-        <segue reference="Jr1-oG-psr"/>
+        <segue reference="Kkg-vc-dTE"/>
     </inferredMetricsTieBreakers>
 </document>

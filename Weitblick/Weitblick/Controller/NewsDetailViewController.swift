@@ -117,7 +117,7 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
         news_detail_description.sizeToFit()
         news_detail_date.text = news_object?.getCreationDate.dateAndTimetoString()
         news_detail_title.text = news_object?.getTitle
-        news_detail_loaction.text = "Osnabrück"
+        news_detail_loaction.text = news_object?.getHost.getID
         photoSliderView.configure(with: (self.news_object?.getGallery)!)
         
         
