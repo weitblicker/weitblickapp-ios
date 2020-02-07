@@ -48,7 +48,7 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     self.blog_object = blogList[indexPath.row]
-        self.performSegue(withIdentifier: "goToBlogDetail", sender: self)
+    self.performSegue(withIdentifier: "goToBlogDetail", sender: self)
     }
 
 

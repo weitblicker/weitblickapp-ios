@@ -49,10 +49,6 @@ class ProjectCycleViewController: UIViewController, UITableViewDataSource, UITab
                            }
              
                        }
-                   
-            
-          
-            
     }
   
     
@@ -74,9 +70,8 @@ class ProjectCycleViewController: UIViewController, UITableViewDataSource, UITab
               cell.project_location.text = projectListCycle[indexPath.row].getLocation.getAddress
               //cell.project_partner.text = projectList[indexPath.row].getHosts[0]
                cell.project_image!.image = projectListCycle[indexPath.row].getImage
-        
-        cell.project_cycle_button.addTarget(self, action: #selector(ProjectCycleViewController.goToCycle), for: .touchUpInside)
-        cell.project_cycle_button.tag = indexPath.row
+      /*  cell.project_cycle_button.addTarget(self, action: #selector(ProjectCycleViewController.goToCycle), for: .touchUpInside)
+        cell.project_cycle_button.tag = indexPath.row*/
         
         print(projectListCycle[indexPath.row].getName)
            
@@ -84,6 +79,18 @@ class ProjectCycleViewController: UIViewController, UITableViewDataSource, UITab
            
            
            return cell
+       }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      // self.blog_object = projectList[indexPath.row]
+        let projectID = self.projectList[indexPath.row].getID
+        let projectName = self.projectList[indexPath.row].getName
+
+        UserDefaults.standard.set(projectID, forKey: "projectID")
+        UserDefaults.standard.set(projectName, forKey: "projectName")
+        print("ProjectName")
+        print(projectName)
+        
+       self.performSegue(withIdentifier: "goToBikeView", sender: self)
        }
     
     @objc func goToCycle(sender:UIButton!){
@@ -94,6 +101,8 @@ class ProjectCycleViewController: UIViewController, UITableViewDataSource, UITab
 
            UserDefaults.standard.set(projectID, forKey: "projectID")
            UserDefaults.standard.set(projectName, forKey: "projectName")
+        print("ProjectName")
+            print(projectName)
            self.tabBarController?.selectedIndex = 2
            
        }
