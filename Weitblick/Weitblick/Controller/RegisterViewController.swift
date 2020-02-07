@@ -19,8 +19,9 @@ class RegisterViewController: UIViewController, UIPopoverPresentationControllerD
     
     @IBAction func go(){
         
-        self.view.addSubview(popover)
-        popover.center = self.view.center
+       /* self.view.addSubview(popover)
+        popover.center = self.view.center*/
+        self.performSegue(withIdentifier: "goToAGB", sender: self)
        
     }
     

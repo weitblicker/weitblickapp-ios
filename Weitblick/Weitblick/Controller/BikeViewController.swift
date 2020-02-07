@@ -76,11 +76,11 @@ class BikeViewController: UIViewController {
     
     
     @IBAction func cycleTitleTApped(_ sender: Any) {
-        if (self.isTapped == 0){
+       
             print("IN DER IF")
              self.performSegue(withIdentifier: "goToProjectCycleView", sender: self)
             
-        }
+        
        
     }
     
