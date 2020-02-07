@@ -1142,7 +1142,7 @@
         <!--ProjectCycleViewController-->
         <scene sceneID="jiz-fX-TZf">
             <objects>
-                <viewController title="ProjectCycleViewController" id="LVg-gm-DNg" customClass="ProjecCycleViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ProjectCycleViewController" id="LVg-gm-DNg" customClass="ProjectCycleViewController" customModule="Weitblick" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NKs-Ga-4Ut">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="632"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1151,7 +1151,7 @@
                                 <rect key="frame" x="20" y="0.0" width="374" height="632"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="135" id="3iy-K9-0qm" customClass="ProjectCycleCell" customModule="Weitblick" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="project_cycle_cell" rowHeight="135" id="3iy-K9-0qm" customClass="ProjectCycleCell" customModule="Weitblick" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3iy-K9-0qm" id="gnh-2U-GJp">
@@ -1204,22 +1204,33 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="UgB-dh-K8X" firstAttribute="top" secondItem="5br-Kb-OPx" secondAttribute="bottom" constant="16" id="1a0-ai-SdE"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="2jY-3D-36x" secondAttribute="trailing" constant="4" id="3Rj-Gb-5fn"/>
                                                 <constraint firstItem="5br-Kb-OPx" firstAttribute="top" secondItem="ROT-u5-jeb" secondAttribute="bottom" constant="10" id="3bF-jS-ciK"/>
                                                 <constraint firstItem="UDV-YK-GWp" firstAttribute="top" secondItem="gnh-2U-GJp" secondAttribute="topMargin" id="4Il-f9-AND"/>
+                                                <constraint firstItem="e6X-y1-SBe" firstAttribute="top" secondItem="5br-Kb-OPx" secondAttribute="bottom" constant="2" id="4fa-F0-WQE"/>
                                                 <constraint firstItem="5br-Kb-OPx" firstAttribute="leading" secondItem="UDV-YK-GWp" secondAttribute="trailing" constant="8" id="4pt-Wf-Wk1"/>
                                                 <constraint firstItem="2Re-Ng-GMA" firstAttribute="leading" secondItem="5br-Kb-OPx" secondAttribute="trailing" constant="27" id="6FY-tJ-kfo"/>
+                                                <constraint firstItem="2jY-3D-36x" firstAttribute="top" secondItem="gnh-2U-GJp" secondAttribute="topMargin" constant="11" id="7nU-Hm-6pu"/>
+                                                <constraint firstItem="2jY-3D-36x" firstAttribute="leading" secondItem="ROT-u5-jeb" secondAttribute="trailing" constant="18" id="B0N-4G-rlF"/>
                                                 <constraint firstItem="ROT-u5-jeb" firstAttribute="top" secondItem="2jY-3D-36x" secondAttribute="top" id="BAp-Br-VpQ"/>
+                                                <constraint firstItem="2Re-Ng-GMA" firstAttribute="leading" secondItem="5br-Kb-OPx" secondAttribute="trailing" constant="27" id="Bg8-co-zMW"/>
                                                 <constraint firstItem="ROT-u5-jeb" firstAttribute="centerX" secondItem="e6X-y1-SBe" secondAttribute="centerX" id="EHj-qN-fdT"/>
+                                                <constraint firstItem="UDV-YK-GWp" firstAttribute="leading" secondItem="gnh-2U-GJp" secondAttribute="leadingMargin" id="EjY-lU-whL"/>
                                                 <constraint firstItem="ROT-u5-jeb" firstAttribute="trailing" secondItem="e6X-y1-SBe" secondAttribute="trailing" id="F0h-IS-90O"/>
                                                 <constraint firstItem="2Re-Ng-GMA" firstAttribute="top" secondItem="2jY-3D-36x" secondAttribute="bottom" constant="8" id="FTh-Lq-zKo"/>
                                                 <constraint firstItem="UgB-dh-K8X" firstAttribute="leading" secondItem="e6X-y1-SBe" secondAttribute="trailing" constant="8" id="Gkc-nh-ygc"/>
+                                                <constraint firstItem="5br-Kb-OPx" firstAttribute="top" secondItem="ROT-u5-jeb" secondAttribute="bottom" constant="10" id="KJO-Im-8HP"/>
                                                 <constraint firstItem="ROT-u5-jeb" firstAttribute="bottom" secondItem="2jY-3D-36x" secondAttribute="bottom" id="Khq-Pb-Ef4"/>
+                                                <constraint firstItem="UgB-dh-K8X" firstAttribute="top" secondItem="5br-Kb-OPx" secondAttribute="bottom" constant="16" id="MXY-W9-8xK"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="UDV-YK-GWp" secondAttribute="bottom" constant="13" id="TcW-hA-ggG"/>
                                                 <constraint firstItem="e6X-y1-SBe" firstAttribute="leading" secondItem="5br-Kb-OPx" secondAttribute="leading" id="Ts2-28-5pO"/>
                                                 <constraint firstItem="ROT-u5-jeb" firstAttribute="top" secondItem="gnh-2U-GJp" secondAttribute="topMargin" constant="11" id="Y2U-BD-4Ug"/>
                                                 <constraint firstItem="ROT-u5-jeb" firstAttribute="leading" secondItem="UDV-YK-GWp" secondAttribute="trailing" constant="8" id="a2m-w5-c21"/>
                                                 <constraint firstItem="UDV-YK-GWp" firstAttribute="bottom" secondItem="e6X-y1-SBe" secondAttribute="bottom" id="au5-ys-CBU"/>
                                                 <constraint firstItem="e6X-y1-SBe" firstAttribute="bottom" secondItem="UgB-dh-K8X" secondAttribute="bottom" id="b4N-3D-Z9Y"/>
                                                 <constraint firstItem="ROT-u5-jeb" firstAttribute="leading" secondItem="5br-Kb-OPx" secondAttribute="leading" id="bP7-SM-RFm"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="UgB-dh-K8X" secondAttribute="bottom" constant="13" id="cks-8W-Y8Z"/>
+                                                <constraint firstItem="UDV-YK-GWp" firstAttribute="top" secondItem="gnh-2U-GJp" secondAttribute="topMargin" id="idU-Oe-dVm"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="2jY-3D-36x" secondAttribute="trailing" constant="4" id="j6d-eY-5b5"/>
                                                 <constraint firstItem="2jY-3D-36x" firstAttribute="leading" secondItem="ROT-u5-jeb" secondAttribute="trailing" constant="18" id="jOj-DI-fzn"/>
                                                 <constraint firstItem="2Re-Ng-GMA" firstAttribute="trailing" secondItem="gnh-2U-GJp" secondAttribute="trailingMargin" id="jt9-ty-al9"/>
@@ -1227,8 +1238,11 @@
                                                 <constraint firstItem="e6X-y1-SBe" firstAttribute="top" secondItem="5br-Kb-OPx" secondAttribute="bottom" constant="2" id="pi4-h0-o4m"/>
                                                 <constraint firstItem="e6X-y1-SBe" firstAttribute="leading" secondItem="ROT-u5-jeb" secondAttribute="leading" id="pp3-C3-8nn"/>
                                                 <constraint firstItem="e6X-y1-SBe" firstAttribute="leading" secondItem="UDV-YK-GWp" secondAttribute="trailing" constant="8" id="pzb-bh-GaC"/>
+                                                <constraint firstItem="5br-Kb-OPx" firstAttribute="leading" secondItem="UDV-YK-GWp" secondAttribute="trailing" constant="8" id="qJd-fl-5YK"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="UDV-YK-GWp" secondAttribute="bottom" constant="13" id="ucw-TA-56K"/>
+                                                <constraint firstItem="2Re-Ng-GMA" firstAttribute="top" secondItem="2jY-3D-36x" secondAttribute="bottom" constant="8" id="xTZ-k7-l4e"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="2Re-Ng-GMA" secondAttribute="bottom" constant="42" id="xck-9W-RjU"/>
+                                                <constraint firstItem="ROT-u5-jeb" firstAttribute="leading" secondItem="UDV-YK-GWp" secondAttribute="trailing" constant="8" id="xh5-EM-pii"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -2152,7 +2166,7 @@
                         <outlet property="mapView" destination="EKi-jp-S9g" id="rNA-Na-THS"/>
                         <segue destination="jM0-XC-gLU" kind="showDetail" identifier="goToMapView" id="dBa-da-gue"/>
                         <segue destination="K2U-Dr-AIy" kind="showDetail" identifier="showLogin" id="H1n-vc-OiY"/>
-                        <segue destination="LVg-gm-DNg" kind="showDetail" identifier="goToProjectCycleView" id="qVj-MC-sNJ"/>
+                        <segue destination="LVg-gm-DNg" kind="presentation" identifier="goToProjectCycleView" id="qVj-MC-sNJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9mC-r5-gK8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
