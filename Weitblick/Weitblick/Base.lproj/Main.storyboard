@@ -224,7 +224,7 @@
                                                             <outlet property="partner_tableView" destination="wK3-ep-Sah" id="iFO-QS-Jen"/>
                                                         </connections>
                                                     </tableViewCell>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="spenden_cell" rowHeight="207" translatesAutoresizingMaskIntoConstraints="NO" id="iIp-qD-Px1" userLabel="spenden_cell" customClass="P_DetailSpendenCell" customModule="Weitblick" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="spenden_cell" rowHeight="207" translatesAutoresizingMaskIntoConstraints="NO" id="iIp-qD-Px1" userLabel="spenden_cell" customClass="P_DetailSpendenCell" customModule="Weitblick" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="215" width="419" height="207"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iIp-qD-Px1" id="alj-qb-fsF">
@@ -1589,8 +1589,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Datum" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzk-bo-qdc">
-                                                <rect key="frame" x="361" y="303" width="45" height="19.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Datum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzk-bo-qdc">
+                                                <rect key="frame" x="319" y="303" width="87" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="87" id="hbz-X9-lHv"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1648,7 +1651,10 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Autor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GqS-js-ApS">
-                                                <rect key="frame" x="86" y="300" width="253" height="33"/>
+                                                <rect key="frame" x="86" y="300" width="211" height="33"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="211" id="1mf-Vd-2tO"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1686,7 +1692,7 @@
                                             <constraint firstItem="hEz-CO-cnG" firstAttribute="centerX" secondItem="gaC-1F-m7c" secondAttribute="centerX" id="9oA-dd-EFF"/>
                                             <constraint firstItem="zzk-bo-qdc" firstAttribute="leading" secondItem="GqS-js-ApS" secondAttribute="trailing" constant="22" id="9pg-bB-Cjp"/>
                                             <constraint firstItem="IVH-9a-pFd" firstAttribute="leading" secondItem="gkt-hA-HhX" secondAttribute="leading" id="A3M-pH-eT1"/>
-                                            <constraint firstItem="GqS-js-ApS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Td2-Cr-DBI" secondAttribute="trailing" constant="8" symbolic="YES" id="Amz-nm-pcD"/>
+                                            <constraint firstItem="GqS-js-ApS" firstAttribute="leading" secondItem="Td2-Cr-DBI" secondAttribute="trailing" constant="28" id="Amz-nm-pcD"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Vo3-al-aZO" secondAttribute="trailing" constant="20" symbolic="YES" id="Bhi-JT-Cjl"/>
                                             <constraint firstItem="Vo3-al-aZO" firstAttribute="leading" secondItem="gaC-1F-m7c" secondAttribute="leading" constant="60" id="F23-aa-6qO"/>
                                             <constraint firstAttribute="bottom" secondItem="NAW-t1-55A" secondAttribute="bottom" constant="-11.5" id="HtR-dD-uGE"/>
@@ -1700,7 +1706,6 @@
                                             <constraint firstItem="usa-Xp-GY7" firstAttribute="top" secondItem="ol9-z7-7Gy" secondAttribute="bottom" constant="88.5" id="TnU-so-QXw"/>
                                             <constraint firstItem="gkt-hA-HhX" firstAttribute="leading" secondItem="gaC-1F-m7c" secondAttribute="leading" id="U3d-26-6TS"/>
                                             <constraint firstItem="OIz-aa-WQk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gaC-1F-m7c" secondAttribute="leading" id="Wse-u4-jhF"/>
-                                            <constraint firstItem="zzk-bo-qdc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gaC-1F-m7c" secondAttribute="leading" constant="20" symbolic="YES" id="XHA-b5-bKW"/>
                                             <constraint firstItem="hEz-CO-cnG" firstAttribute="top" secondItem="lvr-Un-HwS" secondAttribute="bottom" constant="43" id="XK5-PO-PwH"/>
                                             <constraint firstItem="wk5-je-lzU" firstAttribute="leading" secondItem="gaC-1F-m7c" secondAttribute="leading" constant="20" id="XRk-cF-gz9"/>
                                             <constraint firstItem="lvr-Un-HwS" firstAttribute="leading" secondItem="gaC-1F-m7c" secondAttribute="leading" id="Yci-z0-KT0"/>
@@ -3479,7 +3484,7 @@
             <objects>
                 <viewController id="IJW-E6-GkS" customClass="ContactViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C5n-I5-GjM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="639"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gia-Tc-yzL">
@@ -5080,6 +5085,6 @@
         <segue reference="xNn-lR-evC"/>
         <segue reference="Cv5-VS-8qz"/>
         <segue reference="H1n-vc-OiY"/>
-        <segue reference="F13-Pp-qPc"/>
+        <segue reference="Jr1-oG-psr"/>
     </inferredMetricsTieBreakers>
 </document>
