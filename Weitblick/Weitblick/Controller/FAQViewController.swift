@@ -12,17 +12,25 @@ import Foundation
 class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
     
     
-    var questions : [FAQEntry] = []
+    var questions1 : [FAQEntry] = []
+    var questions2 : [FAQEntry] = []
+    var questions3 : [FAQEntry] = []
+    var questionsAll : [FAQEntry] = []
     var faq_object: FAQEntry?
+    var counter_section1 = 0
+    var counter_section2 = 0
+    let numberOfRowsAtSection: [Int] = [5, 4]
+    var arr = [[FAQEntry]]()
    
     
-    let sections = ["Mitmachen und Spenden", "Struktur und Organisation", "Sonstiges"]
+    let sections = ["Mitmachen & Spenden", "Struktur & Organisation","Sonstiges"]
     
-    let data = [["0,0", "0,1", "0,2","0,1","2,2"], ["1,0", "1,1", "1,2", "1,1"]]
+  
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.sections.count
     }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection
                                 section: Int) -> String? {
        return sections[section]
@@ -30,22 +38,25 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
         
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-          3
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        print("IN NUMBER OF ROWS IN SECTION")
+        print(arr[section].count)
+        return arr[section].count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-           self.faq_object = questions[indexPath.row]
+           self.faq_object = questionsAll[indexPath.row]
            self.performSegue(withIdentifier: "goFAQDetail", sender: self)
        }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:"faq_cell", for: indexPath)as! FAQTableViewCell
-        let question = questions[indexPath.row].question
-        let answer = questions[indexPath.row].answer
+        
+        let question = arr[indexPath.section][indexPath.row].question
         cell.faq_question.text = question
         cell.faq_question.sizeToFit();
-        cell.faq_answer.text = answer
+        //cell.faq_answer.text = answer
         cell.faq_answer.sizeToFit()
         return cell
          
@@ -54,17 +65,34 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
 
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+      
         self.navigationController!.navigationBar.topItem!.title = "Zurück"
         print("FAQService executing")
         FAQService.loadFAQ { (list) in
             for faq in list{
-                self.questions.append(faq)
-            }
-            self.tableView.reloadData()
+                print(faq.title)
+                self.questionsAll.append(faq)
+                if(faq.title == "Mitmachen & Spenden"){
+                self.questions1.append(faq)
+            }else if (faq.title == "Struktur & Organisation"){
+            self.questions2.append(faq)
+                }else if (faq.title == "Sonstiges"){
+                    self.questions3.append(faq)
+                }
+          
         }
+             DispatchQueue.main.async {
+                self.arr.append(self.questions1)
+                self.arr.append(self.questions2)
+                self.arr.append(self.questions3)
+                 self.tableView.reloadData()
+                 self.tableView.delegate = self
+                self.tableView.dataSource = self
+            }
+        }
+       
 
         // Do any additional setup after loading the view.
     }

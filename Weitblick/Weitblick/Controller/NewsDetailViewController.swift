@@ -54,10 +54,7 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
           cell.project_title.text = "Project Title"
           cell.project_partner.text = "Partner"
           cell.project_location.text = "Deutschland"
-        
-        
-          
-      
+
           
         /*  if(self.projectList[indexPath.row].getCycleObject.getDonations.isEmpty){
                      cell.project_ride_button.alpha = 0
@@ -67,15 +64,11 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
       }
     override func viewWillAppear(_ animated: Bool) {
         let nav = self.navigationController?.navigationBar
-
         nav?.barStyle = UIBarStyle.default
-        
         let imageView = UIImageView(frame : CGRect(x : 0 , y : 0, width : 40 , height : 40))
         imageView.contentMode = .scaleAspectFit
-        
         let image = UIImage(named : "Weitblick")
         imageView.image = image
-        
         navigationItem.titleView = imageView
       
 
@@ -95,15 +88,5 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
         
     }
    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
