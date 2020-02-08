@@ -165,6 +165,7 @@ class UserService{
             let task = session.dataTask(with: request){
                 (data, response, error) in
                 let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                print(jsondata)
                 if let userDict = jsondata as? NSDictionary{
                     guard let username = userDict.value(forKey: "username") else { return }
                     let usernameString = username as! String
@@ -173,6 +174,17 @@ class UserService{
                     if let imageString = imgUrl as? String{
                         userImageString = imageString
                     }
+                    
+                    guard let firstName = userDict.value(forKey: "first_name") else { return }
+                    let firstNameString = firstName as! String
+                    
+                    guard let lastName = userDict.value(forKey: "last_name") else { return }
+                    let lastNameString = lastName as! String
+                    
+                    
+                    UserDefaults.standard.set(firstNameString, forKey: "firstname")
+                    UserDefaults.standard.set(lastNameString, forKey: "lastname")
+                    UserDefaults.standard.set(usernameString, forKey: "username")
                     let user = User(username: usernameString, image: userImageString, km: 0.0, euro: 0.0)
                     completion(user)
                 }
@@ -181,5 +193,86 @@ class UserService{
             
             task.resume()
         }
+    }
+    
+    static func uploadImage(paramName: String, fileName: String, image: UIImage, completion: ()-> ()) {
+        let url = URL(string: Constants.userURL)
+
+        // generate boundary string using a unique per-app string
+        let boundary = UUID().uuidString
+
+        let session = URLSession.shared
+
+        // Set the URLRequest to POST and to the specified URL
+        var urlRequest = URLRequest(url: url!)
+        urlRequest.httpMethod = "POST"
+
+        // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
+        // And the boundary is also set here
+        urlRequest.setValue("Token " + UserDefaults.standard.string(forKey: "key")!, forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        var data = Data()
+        let firstname = UserDefaults.standard.string(forKey: "firstname")?.description
+        let lastname  = UserDefaults.standard.string(forKey: "lastname")?.description
+        let username = UserDefaults.standard.string(forKey: "username")?.description
+        let filename = firstname!.description + lastname!.description + Date.init().dateAndTimetoStringISO().description
+        // Add the image data to the raw http request data
+        var string = ""
+        let boundstring = "\r\n--\(boundary)\r\n"
+        data.append(boundstring.data(using: .utf8)!)
+        print(string)
+        string = "Content-Disposition: form-data; name=\"image\"; filename=\"\(filename).png\"\r\n"
+        data.append(string.data(using: .utf8)!)
+        print(string)
+        string = "Content-Type: image/png\r\n\r\n"
+        data.append(string.data(using: .utf8)!)
+        print(string)
+        data.append(image.pngData()!)
+        //add data username, firstname, lastname
+        
+        data.append(boundstring.data(using: .utf8)!)
+        string = "Content-Disposition: form-data; name=\"first_name\"\r\n"
+        data.append(string.data(using: .utf8)!)
+        string = "Content-Type: text/plain; charset=UTF-8\r\n\r\n"
+        data.append(string.data(using: .utf8)!)
+        data.append((firstname!.description + "\r\n").data(using: .utf8)!)
+        
+        data.append(boundstring.data(using: .utf8)!)
+        string = "Content-Disposition: form-data; name=\"last_name\"\r\n"
+        data.append(string.data(using: .utf8)!)
+        string = "Content-Type: text/plain; charset=UTF-8\r\n\r\n"
+        data.append(string.data(using: .utf8)!)
+        data.append((lastname!.description + "\r\n").data(using: .utf8)!)
+        
+        data.append(boundstring.data(using: .utf8)!)
+        string = "Content-Disposition: form-data; name=\"username\"\r\n"
+        data.append(string.data(using: .utf8)!)
+        string = "Content-Type: text/plain; charset=UTF-8\r\n\r\n"
+        data.append(string.data(using: .utf8)!)
+        data.append((username!.description + "\r\n").data(using: .utf8)!)
+//        Content-Disposition: form-data; name="file1"; filename="a.txt"
+//        Content-Type: text/plain
+        
+            
+//
+//        data.append(("last_name: " + firstname! + "\r\n\r\n").data(using: .utf8)!)
+//        data.append(("first_name: " + lastname! + "\r\n\r\n").data(using: .utf8)!)
+//
+//
+        string = "\r\n--\(boundary)--\r\n"
+        data.append(string.data(using: .utf8)!)
+        print(string)
+        
+        
+        // Send a POST request to the URL, with the data we created earlier
+        session.uploadTask(with: urlRequest, from: data, completionHandler: { responseData, response, error in
+            if error == nil {
+                let jsonData = try? JSONSerialization.jsonObject(with: responseData!, options: .allowFragments)
+                if let json = jsonData as? [String: Any] {
+                    print("Success")
+                    print(json)
+                }
+            }
+        }).resume()
     }
 }
