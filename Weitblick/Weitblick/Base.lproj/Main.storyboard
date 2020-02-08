@@ -224,7 +224,7 @@
                                                             <outlet property="partner_tableView" destination="wK3-ep-Sah" id="iFO-QS-Jen"/>
                                                         </connections>
                                                     </tableViewCell>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="spenden_cell" rowHeight="207" translatesAutoresizingMaskIntoConstraints="NO" id="iIp-qD-Px1" userLabel="spenden_cell" customClass="P_DetailSpendenCell" customModule="Weitblick" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="spenden_cell" rowHeight="207" translatesAutoresizingMaskIntoConstraints="NO" id="iIp-qD-Px1" userLabel="spenden_cell" customClass="P_DetailSpendenCell" customModule="Weitblick" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="215" width="419" height="207"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iIp-qD-Px1" id="alj-qb-fsF">
@@ -2334,7 +2334,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jv4-Pi-exn">
-                                <rect key="frame" x="0.0" y="-3.5" width="414" height="719.5"/>
+                                <rect key="frame" x="0.0" y="-180" width="414" height="896"/>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aA-nR-WzA">
                                 <rect key="frame" x="86" y="570" width="242" height="116"/>
@@ -2386,13 +2386,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Strecke" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R76-Lb-x2q">
-                                <rect key="frame" x="57" y="142" width="127" height="33"/>
+                                <rect key="frame" x="57" y="142" width="127" height="20.5"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" text="Spende" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHH-oU-FKg">
-                                <rect key="frame" x="274" y="150" width="53" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" misplaced="YES" text="Spende" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHH-oU-FKg">
+                                <rect key="frame" x="255" y="150" width="72" height="21"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -2406,8 +2406,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="24,56 €" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DB3-QT-6ap">
-                                <rect key="frame" x="254.5" y="98.5" width="102.5" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="24,56 €" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DB3-QT-6ap">
+                                <rect key="frame" x="255" y="103" width="103" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="87" id="KF5-LZ-MiM"/>
                                 </constraints>
@@ -2455,7 +2455,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="marker" translatesAutoresizingMaskIntoConstraints="NO" id="T8G-z4-N7j">
-                                <rect key="frame" x="264" y="33.5" width="25" height="23.5"/>
+                                <rect key="frame" x="264" y="-143" width="25" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="V6e-4X-LTq"/>
                                 </constraints>
@@ -2511,9 +2511,8 @@
                             <constraint firstAttribute="trailing" secondItem="T8G-z4-N7j" secondAttribute="trailing" constant="125" id="LbT-dZ-PcA"/>
                             <constraint firstItem="4FG-yX-59U" firstAttribute="leading" secondItem="tnf-Td-zRP" secondAttribute="leadingMargin" constant="-10" id="NFg-AG-E8O"/>
                             <constraint firstItem="ryg-vg-7cn" firstAttribute="top" secondItem="zRI-y1-W90" secondAttribute="top" constant="30" id="NQo-8r-sJv"/>
-                            <constraint firstItem="DHH-oU-FKg" firstAttribute="top" secondItem="XBf-40-Vp1" secondAttribute="bottom" constant="6" id="Ni5-XV-5tp"/>
                             <constraint firstItem="ryg-vg-7cn" firstAttribute="leading" secondItem="XBf-40-Vp1" secondAttribute="leading" id="O8A-LW-73d"/>
-                            <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="DB3-QT-6ap" secondAttribute="trailing" constant="57" id="OeZ-ra-ZaB"/>
+                            <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="DB3-QT-6ap" secondAttribute="trailing" constant="56" id="OeZ-ra-ZaB"/>
                             <constraint firstItem="Uws-nT-KyA" firstAttribute="leading" secondItem="4FG-yX-59U" secondAttribute="trailing" constant="8" id="PYf-hY-JAg"/>
                             <constraint firstItem="VRs-ev-0P4" firstAttribute="centerX" secondItem="zRI-y1-W90" secondAttribute="centerX" id="QNF-cr-X01"/>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="bottom" secondItem="djn-zQ-deb" secondAttribute="bottom" constant="42" id="QRq-h4-9rd"/>
@@ -2522,9 +2521,9 @@
                             <constraint firstItem="U5I-RH-uMl" firstAttribute="leading" secondItem="Jv4-Pi-exn" secondAttribute="leading" id="W5O-JW-zF3"/>
                             <constraint firstItem="4FG-yX-59U" firstAttribute="top" secondItem="zRI-y1-W90" secondAttribute="top" constant="-10" id="Z5Q-fJ-aeg"/>
                             <constraint firstItem="djn-zQ-deb" firstAttribute="leading" secondItem="3aA-nR-WzA" secondAttribute="trailing" constant="-63" id="ZfZ-LR-qTC"/>
-                            <constraint firstItem="Jv4-Pi-exn" firstAttribute="top" secondItem="DB3-QT-6ap" secondAttribute="bottom" constant="-143" id="aTm-bK-t56"/>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="6DG-b7-7Tm" secondAttribute="trailing" constant="39" id="al6-fH-nfd"/>
                             <constraint firstItem="yNJ-YU-q42" firstAttribute="centerY" secondItem="Uws-nT-KyA" secondAttribute="centerY" constant="-2" id="art-kW-BuO"/>
+                            <constraint firstItem="XBf-40-Vp1" firstAttribute="top" secondItem="6DG-b7-7Tm" secondAttribute="bottom" constant="-77" id="b9k-Td-V37"/>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="3aA-nR-WzA" secondAttribute="trailing" constant="86" id="bYd-d0-uy7"/>
                             <constraint firstItem="yNJ-YU-q42" firstAttribute="trailing" secondItem="Jv4-Pi-exn" secondAttribute="trailing" id="bZK-yg-yI8"/>
                             <constraint firstItem="R76-Lb-x2q" firstAttribute="top" secondItem="yNJ-YU-q42" secondAttribute="bottom" constant="83" id="cG5-Y6-bK9"/>
@@ -2539,11 +2538,10 @@
                             <constraint firstAttribute="trailing" secondItem="LUW-4F-O8R" secondAttribute="trailing" constant="9" id="k7b-of-3VV"/>
                             <constraint firstItem="T8G-z4-N7j" firstAttribute="top" secondItem="Jv4-Pi-exn" secondAttribute="top" constant="37" id="m8n-at-PYr"/>
                             <constraint firstItem="6DG-b7-7Tm" firstAttribute="top" secondItem="yNJ-YU-q42" secondAttribute="bottom" constant="-1" id="nUm-Qz-Kdf"/>
+                            <constraint firstItem="DB3-QT-6ap" firstAttribute="top" secondItem="6DG-b7-7Tm" secondAttribute="bottom" constant="-77" id="pl0-t5-ZHa"/>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="bottom" secondItem="c9K-cK-2Et" secondAttribute="bottom" constant="43" id="qkx-20-9Az"/>
-                            <constraint firstItem="DB3-QT-6ap" firstAttribute="top" secondItem="DHH-oU-FKg" secondAttribute="bottom" constant="-72" id="qmC-wL-ezk"/>
                             <constraint firstItem="6DG-b7-7Tm" firstAttribute="top" secondItem="T8G-z4-N7j" secondAttribute="bottom" constant="1" id="rcf-Vy-vKM"/>
                             <constraint firstItem="yNJ-YU-q42" firstAttribute="centerY" secondItem="LUW-4F-O8R" secondAttribute="centerY" constant="-2.5" id="tYh-C3-G5M"/>
-                            <constraint firstItem="XBf-40-Vp1" firstAttribute="top" secondItem="R76-Lb-x2q" secondAttribute="bottom" constant="-72" id="u5c-Sl-LH6"/>
                             <constraint firstItem="yNJ-YU-q42" firstAttribute="top" secondItem="tnf-Td-zRP" secondAttribute="topMargin" constant="-13" id="ugB-zb-YcZ"/>
                             <constraint firstItem="6DG-b7-7Tm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zRI-y1-W90" secondAttribute="leading" id="x3n-Jw-9IC"/>
                             <constraint firstItem="djn-zQ-deb" firstAttribute="leading" secondItem="Jv4-Pi-exn" secondAttribute="trailing" constant="-149" id="x4i-GF-ZeC"/>
@@ -3505,7 +3503,7 @@
             <objects>
                 <viewController id="IJW-E6-GkS" customClass="ContactViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C5n-I5-GjM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="639"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="632"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gia-Tc-yzL">
@@ -5125,6 +5123,6 @@
         <segue reference="xNn-lR-evC"/>
         <segue reference="Cv5-VS-8qz"/>
         <segue reference="H1n-vc-OiY"/>
-        <segue reference="Jr1-oG-psr"/>
+        <segue reference="Kkg-vc-dTE"/>
     </inferredMetricsTieBreakers>
 </document>
