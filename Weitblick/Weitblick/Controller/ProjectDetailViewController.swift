@@ -339,6 +339,9 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     counter = 6
                     return bllist_cell
                 }
+            
+            let more_cell = tableView.dequeueReusableCell(withIdentifier:"show_more_blog_cell", for: indexPath)as! ShowMoreCell
+            return more_cell
                 
             
             
@@ -368,6 +371,8 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 nelist_cell.nelist_image!.image = UIImage(named: "Weitblick")
                 counter = 7
             }
+           let more_cell = tableView.dequeueReusableCell(withIdentifier:"show_more_news", for: indexPath)as! ShowMoreCell
+            return more_cell
             return cell
             
         }
@@ -394,10 +399,12 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 return evlist_cell
             }
         }
+        let more_cell = tableView.dequeueReusableCell(withIdentifier:"show_more_event_cell", for: indexPath)as! ShowMoreCell
+        return more_cell
        
        
-    let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! P_DetailNewsCell
-        return cell
+    /*let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! P_DetailNewsCell
+        return cell*/
 
     }
  

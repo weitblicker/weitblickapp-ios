@@ -812,7 +812,7 @@
                                                                                 <outlet property="bllist_title" destination="YAw-aq-hb3" id="iU9-J1-t4w"/>
                                                                             </connections>
                                                                         </tableViewCell>
-                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="59" id="q0g-gH-xEp">
+                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="show_more_blog_cell" rowHeight="59" id="q0g-gH-xEp" customClass="ShowMoreCell" customModule="Weitblick" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="272" width="419" height="59"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q0g-gH-xEp" id="KQQ-ax-OTv">
@@ -986,7 +986,7 @@
                                                                                 <outlet property="nelist_title" destination="ovo-aI-akY" id="QkM-r8-rBU"/>
                                                                             </connections>
                                                                         </tableViewCell>
-                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="68" id="4oy-hE-DHR">
+                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="show_more_news" rowHeight="68" id="4oy-hE-DHR" customClass="ShowMoreCell" customModule="Weitblick" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="292" width="419" height="68"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4oy-hE-DHR" id="sln-eM-WE5">
@@ -1118,7 +1118,7 @@
                                                                                 <outlet property="evlist_title" destination="4Yw-D6-Svz" id="6F3-Se-ZOk"/>
                                                                             </connections>
                                                                         </tableViewCell>
-                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="51" id="xq8-lL-Ck7">
+                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="show_more_event_cell" rowHeight="51" id="xq8-lL-Ck7" customClass="ShowMoreCell" customModule="Weitblick" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="253" width="419" height="51"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xq8-lL-Ck7" id="fmX-To-3hc">
@@ -1482,7 +1482,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="946"/>
                                 <subviews>
                                     <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="gaC-1F-m7c">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="616"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="619"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IVH-9a-pFd">
                                                 <rect key="frame" x="0.0" y="445" width="414" height="197"/>
@@ -1590,7 +1590,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Datum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzk-bo-qdc">
-                                                <rect key="frame" x="319" y="303" width="87" height="16.5"/>
+                                                <rect key="frame" x="319" y="303" width="87" height="19.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="87" id="hbz-X9-lHv"/>
                                                 </constraints>
@@ -1624,13 +1624,13 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usa-Xp-GY7">
-                                                <rect key="frame" x="20" y="366" width="373" height="17.5"/>
+                                                <rect key="frame" x="20" y="366" width="373" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bottom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAW-t1-55A">
-                                                <rect key="frame" x="179" y="606.5" width="56" height="21"/>
+                                                <rect key="frame" x="179" y="609.5" width="56" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -3213,7 +3213,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="946"/>
                                 <subviews>
                                     <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="5PK-qv-6yq">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="637.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="648"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H67-Rk-GTF">
                                                 <rect key="frame" x="192.5" y="22" width="29" height="21"/>
@@ -3222,7 +3222,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bottom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUf-cW-Ftf">
-                                                <rect key="frame" x="179" y="651" width="56" height="21"/>
+                                                <rect key="frame" x="179" y="661.5" width="56" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -3305,13 +3305,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projekt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6L-bQ-0aA">
-                                                <rect key="frame" x="20" y="412.5" width="134" height="24"/>
+                                                <rect key="frame" x="20" y="423" width="134" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oYL-Uw-6qz">
-                                                <rect key="frame" x="20" y="440.5" width="373" height="197"/>
+                                                <rect key="frame" x="20" y="451" width="373" height="197"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="blogproject_cell" rowHeight="154" id="1Xy-0j-rwQ" customClass="BlogDetailProjectCell" customModule="Weitblick" customModuleProvider="target">
