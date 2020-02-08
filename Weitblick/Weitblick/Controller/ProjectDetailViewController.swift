@@ -183,6 +183,14 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
     func loadProjectDetail(){
         
         let markdownParser = MarkdownParser()
+        let blogIDs : [Int] = project_object?.getBlogs ?? []
+        for id in blogIDs{
+            BlogService.getBlogByID(id: id) { (blogEntry) in
+                DispatchQueue.main.async {
+                    self.blogList.append(blogEntry)
+                }
+            }
+        }
         project_detail_description.attributedText = markdownParser.parse(project_object!.getDescription)
         project_detail_title.text = project_object?.getName
         project_detail_location.text = project_object?.getLocation.getAddress
@@ -194,7 +202,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     
-    
+    var blogList : [BlogEntry] = []
        var projectList : [Project] = []
        var locationList : [Location] = []
        var locationListID : [Int] = []
