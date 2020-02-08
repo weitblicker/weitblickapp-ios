@@ -23,6 +23,7 @@ struct Constants{
     static let regex2 = "" // \[?(!)\[(?<alt>[^\]\[]*\[?[^\]\[]*\]?[^\]\[]*)\]\((?<url>[^\s]+?)(?:\s+(["'])(?<title>.*?)\4)?\)
     static let regexReplace = "!\\[(.*?)\\]\\((.*?)\\)"
     static let rect = CGRect.init(x: 200/2, y: 50/2, width: 400, height: 180)
+    static let lineFeed = "\r\n"
 }
 
 struct FAQEntry{

@@ -99,11 +99,20 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
 
        if let image = info[.originalImage] as? UIImage {
           self.profile_image.image = image
+        let param = "image"
+        UserService.uploadImage(paramName: param, fileName: "param_" + Date().description, image: image, completion: {
+                print("Success")
+        })
        }
        else
          if let image = info[.editedImage] as? UIImage {
           self.profile_image.image = image
+            let param = "image"
+            UserService.uploadImage(paramName: param, fileName: "param_" + Date().description + ".png", image: image, completion: {
+                    print("Success")
+            })
         }
+        
          self.dismiss(animated: true, completion: nil)
     }
     
