@@ -22,8 +22,10 @@ class BlogEntry{
     private var gallery : [UIImage]
     private var projectInt : Int
     private var author : Author
+    private var location : Location
+    private var host : Host
 
-    init(id : Int, title : String, text : String,  created : Date, updated : Date, image : UIImage, teaser : String, range: String, gallery : [UIImage], projectInt : Int, author : Author){
+    init(id : Int, title : String, text : String,  created : Date, updated : Date, image : UIImage, teaser : String, range: String, gallery : [UIImage], projectInt : Int, author : Author, location : Location, host : Host){
         
         self.id = id
         self.title = title
@@ -38,7 +40,17 @@ class BlogEntry{
         self.image = self.image.crop(to: size)
         self.gallery = gallery
         self.author = author
+        self.location = location
+        self.host = host
         
+    }
+    
+    public var getHost : Host{
+        return host
+    }
+    
+    public var getLocation : Location{
+        return self.location
     }
     
     public var getAuthor : Author{
