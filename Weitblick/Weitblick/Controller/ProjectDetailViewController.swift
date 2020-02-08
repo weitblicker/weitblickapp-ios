@@ -67,6 +67,16 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
     var counter_news = 0
     var counter_events = 0
     var counter_blogs = 0
+    var newsList : [NewsEntry] = []
+
+      var blogList : [BlogEntry] = []
+
+    var projectList : [Project] = []
+    var locationList : [Location] = []
+     var locationListID : [Int] = []
+    var counter_partner = 0
+  var counter = 0
+      
 
     @IBOutlet weak var ButtonFav: UIButton!
 
@@ -164,20 +174,13 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
 
-    var newsList : [NewsEntry] = []
-
-    var blogList : [BlogEntry] = []
-
-       var projectList : [Project] = []
-       var locationList : [Location] = []
-       var locationListID : [Int] = []
-        var counter = 0
+  
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
        // if(tableView == self.project_tableView)
-            return 13
+            return 20
 
 
        }
@@ -201,10 +204,12 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
             }else if (indexPath.row == 1){
                 print ("IN PARTNER IF 2")
                 let palist_cell = cell.partner_tableView.dequeueReusableCell(withIdentifier:"palist_cell", for: indexPath)as! PaListCell
-                palist_cell.palist_name.text = "Partner Namen"
-                palist_cell.palist_description.text = "Der große Sponsor VW spendet 50000€ fur dieses Projekt"
+                if(self.counter_partner < (self.project_object?.getPartners.count)!){
+                    palist_cell.palist_name.text = self.project_object?.getPartners[counter_partner].getName
+                palist_cell.palist_description.text = self.project_object?.getPartners[counter_partner].getDescription
                 counter = 1
                 return palist_cell
+                }
 
             }
 
@@ -242,7 +247,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 //
 //                   }
 
-            cell.gefahren.text = project_object!.getCycleObject.getkmSum.description
+            cell.gefahren.text = project_object!.getCycleObject.getkmSum.description + " km"
             cell.radfahrer_anzahl.text = "34"
             counter += 1
 
@@ -317,13 +322,15 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                  if (indexPath.row == 9){
                     print ("IN BLOG IF 2")
                     let bllist_cell = cell.blog_tableView.dequeueReusableCell(withIdentifier:"bllist_cell", for: indexPath)as! BlListCell
-                    bllist_cell.bllist_author.text = "Blog auto"
-                    bllist_cell.bllist_title.text = "Title des Blogs"
-                    bllist_cell.bllist_date.text = "12.12.2019"
-                    bllist_cell.bllist_description.text = "Beipsieltext für einen Blogeintrag für der sehr serh lange sein soll und über Zeilen gehen muss"
-                    bllist_cell.bllist_image.image = UIImage(named: "Weitblick")
+                    if(self.counter_blogs < self.blogList.count){
+                        bllist_cell.bllist_author.text = self.blogList[self.counter_blogs].getAuthor.getName
+                        bllist_cell.bllist_title.text = self.blogList[self.counter_blogs].getTitle
+                        bllist_cell.bllist_date.text = self.blogList[self.counter_blogs].getCreationDate.dateAndTimetoString()
+                        bllist_cell.bllist_description.text = self.blogList[self.counter_blogs].getText
+                        bllist_cell.bllist_image.image = self.blogList[self.counter_blogs].getImage
                     counter = 6
                     return bllist_cell
+                    }
                 }
 
 //            let more_cell = tableView.dequeueReusableCell(withIdentifier:"show_more_blog_cell", for: indexPath)as! ShowMoreBlogCell
@@ -349,12 +356,14 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
             }else if (indexPath.row == 11){
                  print("IN NEWS IF 2")
                 let nelist_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"nelist_cell", for: indexPath)as! NeListCell
-                nelist_cell.nelist_author.text = "VorName NAchname"
-                nelist_cell.nelist_description.text = "sdhbvshdvbhdbvhjbdvhbd"
-                nelist_cell.nelist_title.text = "News Title"
-                nelist_cell.nelist_location.text = "Osnabrück"
-                nelist_cell.nelist_image!.image = UIImage(named: "Weitblick")
+                if(self.counter_news < self.newsList.count){
+                    nelist_cell.nelist_author.text = self.newsList[self.counter_news].getAuthor.getName
+                    nelist_cell.nelist_description.text = self.newsList[self.counter_news].getText
+                    nelist_cell.nelist_title.text = self.newsList[self.counter_news].getTitle
+                    nelist_cell.nelist_location.text = self.newsList[self.counter_news].getHost.getLocation.getAddress
+                    nelist_cell.nelist_image!.image = self.newsList[self.counter_news].getImage
                 counter = 7
+                }
             }
 
 //           let more_cell = tableView.dequeueReusableCell(withIdentifier:"show_more_news", for: indexPath)as! ShowMoreNewsCell
@@ -372,14 +381,14 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
             if(indexPath.row == 12){
               print("IN EVENT IF 1")
                 let evhead_cell = cell.event_tableView.dequeueReusableCell(withIdentifier:"evhead_cell", for: indexPath)as! EvHeadCell
-                evhead_cell.imageView!.image = UIImage (named: "aktuelles.b.png")
                 return evhead_cell
 
             }
             else if(indexPath.row == 13){
                 print("IN EVENT IF 2")
                 let evlist_cell = cell.event_tableView.dequeueReusableCell(withIdentifier:"evlist_cell", for: indexPath)as! EvListCell
-                evlist_cell.evlist_date.text =  "12-12-12"
+               
+                evlist_cell.evlist_date.text = "12.12.12"
                 evlist_cell.evlist_location.text = "Osnabrück"
                 evlist_cell.evlist_title.text = "News title"
                 evlist_cell.evlist_time.text = "18 UHr"
