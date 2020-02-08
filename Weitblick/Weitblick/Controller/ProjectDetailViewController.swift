@@ -316,8 +316,8 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     return bllist_cell
                 }
 
-            let more_cell = tableView.dequeueReusableCell(withIdentifier:"show_more_blog_cell", for: indexPath)as! ShowMoreBlogCell
-            return more_cell
+//            let more_cell = tableView.dequeueReusableCell(withIdentifier:"show_more_blog_cell", for: indexPath)as! ShowMoreBlogCell
+//            return more_cell
 
 
 
@@ -347,8 +347,8 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 counter = 7
             }
 
-           let more_cell = tableView.dequeueReusableCell(withIdentifier:"show_more_news", for: indexPath)as! ShowMoreNewsCell
-            return more_cell
+//           let more_cell = tableView.dequeueReusableCell(withIdentifier:"show_more_news", for: indexPath)as! ShowMoreNewsCell
+//            return more_cell
 
             return cell
 
@@ -376,8 +376,8 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 evlist_cell.evlist_description.text = "sajhvfhsdvcfhsdbch"
                 return evlist_cell
 
-                let more_cell = tableView.dequeueReusableCell(withIdentifier:"show_more_event_cell", for: indexPath)as! ShowMoreEventsCell
-                      return more_cell
+//                let more_cell = tableView.dequeueReusableCell(withIdentifier:"show_more_event_cell", for: indexPath)as! ShowMoreEventsCell
+//                      return more_cell
             }
         }
 
