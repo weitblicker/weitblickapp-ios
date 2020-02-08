@@ -191,6 +191,15 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 }
             }
         }
+        
+        let newsIDs : [Int] = project_object?.getNews ?? []
+        for id in newsIDs{
+            DataService.getNewsByID(id: id) { (newsEntry) in
+                DispatchQueue.main.async {
+                    self.newsList.append(newsEntry)
+                }
+            }
+        }
         project_detail_description.attributedText = markdownParser.parse(project_object!.getDescription)
         project_detail_title.text = project_object?.getName
         project_detail_location.text = project_object?.getLocation.getAddress
@@ -201,7 +210,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         
     }
     
-    
+    var newsList : [NewsEntry] = []
     var blogList : [BlogEntry] = []
        var projectList : [Project] = []
        var locationList : [Location] = []

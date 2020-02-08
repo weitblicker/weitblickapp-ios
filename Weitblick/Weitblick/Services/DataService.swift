@@ -9,6 +9,168 @@
 import UIKit
 
 class DataService{
+    
+    static func getNewsByID(id : Int, completion: @escaping (_ newsEntry : NewsEntry) -> ()){
+        
+        var resultimages : [UIImage] = []
+        let urlString = "https://weitblicker.org/rest/news/" + id.description
+        let url = NSURL(string: urlString)
+        let str = "surfer:hangloose"
+        let dataB64 = Data(str.utf8).base64EncodedString();
+        var task = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
+        task.httpMethod = "GET"
+        task.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        task.addValue("Basic " + dataB64, forHTTPHeaderField: "Authorization")
+
+        URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
+            if let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments){
+        if let newsArray = jsondata as? NSArray{
+            for news in newsArray{
+                if let newsDict = news as? NSDictionary{
+
+                    guard let id = newsDict.value(forKey: "id")  else { return }
+                    let IDString = id as! String
+                    let newsID = Int.init(IDString)
+
+                    guard let title = newsDict.value(forKey: "title") else { return }
+                    let newsTitle = title as! String
+
+                    guard let text = newsDict.value(forKey: "text") else { return }
+                    var newsText = text as! String
+                    newsText = extractRegex(input: newsText, regex: DataService.matches(for: Constants.regexReplace, in: newsText))
+
+                    guard let created = newsDict.value(forKey: "published") else { return } //from added to published
+                    let createdString = created as! String
+                    print(createdString)
+                    let substrings = createdString.split(separator: "Z")
+                    print(substrings.first!.description + "Z\n")
+                    let newsCreated = self.handleDateWithOutTimeZone(date: substrings.first!.description)
+//                    print(newsCreated.description + "\n")
+
+
+                    guard let imageURLJSON = newsDict.value(forKey : "image") else { return }
+                    var imageURL = ""
+                    if let mainImageDict = imageURLJSON as? NSDictionary{
+                        guard let imgURL = mainImageDict.value(forKey: "url") else { return }
+                        imageURL = imgURL as! String
+                    }
+                    var image : UIImage
+                    if(imageURL == ""){
+                        let size = CGSize.init(width: 334, height: 176)
+                        image = UIImage(named: "Weitblick")!.crop(to: size)
+                    }else{
+                        let imgURL = NSURL(string : Constants.url + imageURL)
+                        let data = NSData(contentsOf: (imgURL as URL?)!)
+                        image = UIImage(data: data! as Data)!
+
+                    }
+
+                    guard let published = newsDict.value(forKey: "published") else { return }
+                    let publishedString = published as! String
+                    let newsUpdated = self.handleDateWithTimeZone(date: publishedString)
+                    guard let range = newsDict.value(forKey: "range") else { return }
+                    let newsRange = range as! String
+
+                    guard let Dictteaser = newsDict.value(forKey: "teaser") else { return }
+                    let newsTeaser = Dictteaser as! String
+
+                    guard let gallery = newsDict.value(forKey: "photos") else { return }
+                    if let imageArray = gallery as? NSArray{
+                        for img in imageArray{
+                            if let imgDict = img as? NSDictionary{
+                                guard let url = imgDict.value(forKey : "url") else { return }
+                                let urlString = url as! String
+                                let imgURL = NSURL(string : Constants.url + urlString)
+                                let data = NSData(contentsOf: (imgURL as URL?)!)
+                                let image = UIImage(data: data! as Data)!
+                                resultimages.append(image)
+                            }
+                        }
+                    }
+                    var projectInt = 0
+                    guard let project = newsDict.value(forKey: "project") else { return }
+                    if let projectString = project as? NSNumber{
+                        projectInt = Int.init(truncating: projectString)
+                        print(projectInt.description + "\n")
+                    }
+                    
+                    
+                    
+                    var hostObject = Host()
+                    guard let host = newsDict.value(forKey: "host") else { return }
+                    if let hostDict = host as? NSDictionary{
+                        //init(id : Int, name : String, partners : [Int], bankAccount : BankAccount){
+                        guard let hostID = hostDict.value(forKey: "id") else { return }
+                        let hostIDString = hostID as! String
+                        guard let hostName = hostDict.value(forKey : "name") else { return }
+                        let hostNameString = hostName as! String
+                        guard let hostPartners = hostDict.value(forKey : "partners") else { return }
+                        var hostPartnerList : [Int] = []
+                        if let hostPartnerArray = hostPartners as? NSArray{
+                            for hostPartner in hostPartnerArray{
+                                hostPartnerList.append(hostPartner as! Int)
+                            }
+                        }
+                        
+                        guard let locationJSON = hostDict.value(forKey: "location") else { return }
+                        var location : Location = Location()
+                        if let locationDict = locationJSON as? NSDictionary{
+                            guard let id = locationDict.value(forKey: "id")  else { return }
+                            let IDString = id as! String
+                            let locationID = Int.init(IDString)
+                            guard let lat = locationDict.value(forKey: "lat")  else { return }
+                            let latNumber = lat as! NSNumber
+                            let locationLat = Double.init(truncating: latNumber)
+                            guard let lng = locationDict.value(forKey: "lng")  else { return }
+                            let lngNumber = lng as! NSNumber
+                            let locationLng = Double.init(truncating: lngNumber)
+                            guard let address = locationDict.value(forKey: "address")  else { return }
+                            let locationAddress = address as! String
+                            location = Location(id: locationID!, lat: locationLat, lng: locationLng, address: locationAddress)
+                        }
+                        
+                        var hostbankAcc : BankAccount = BankAccount()
+    //                                "account_holder": "Weitblick Münster e.V.",
+    //                                "iban": "DE64400800400604958800",
+    //                                "bic": "DRESDEFF400"
+                        guard let hostbank = hostDict.value(forKey : "bank_account") else { return }
+                        if let hostbankDict = hostbank as? NSDictionary{
+                            guard let holder = hostbankDict.value(forKey: "account_holder") else { return }
+                            let holderString = holder as! String
+                            guard let iban = hostbankDict.value(forKey: "iban") else { return }
+                            let ibanString = iban as! String
+                            guard let bic = hostbankDict.value(forKey: "bic") else { return }
+                            let bicString = bic as! String
+                            hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
+                        }
+                        hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location)
+                        
+                    }
+                    
+                    guard let author = newsDict.value(forKey: "author") else { return }
+                    var authorObject = Author()
+                    if let authorDict = author as? NSDictionary{
+                        guard let imageURL = authorDict.value(forKey: "image") else { return }
+                        var image = UIImage(named: "Weitblick")
+                        if let img = imageURL as? String{
+                            let imgURL = NSURL(string : Constants.url + img)
+                            let data = NSData(contentsOf: (imgURL as URL?)!)
+                            image = UIImage(data: data! as Data)!
+                        }
+                        
+                        guard let name = authorDict.value(forKey: "name") else { return }
+                        let nameString = name as! String
+                        
+                        authorObject = Author(image: image!, name: nameString)
+                    }
+
+                    let newsEntry = NewsEntry(id: newsID!, title: newsTitle, text: newsText, gallery: resultimages, created: newsCreated , updated: newsCreated, range: newsRange, image: image, teaser: newsTeaser, host: hostObject, projectInt : projectInt, author: authorObject)
+                    completion(newsEntry)
+                }
+            }
+                }}
+        }).resume()
+    }
 
     static func loadNews(date : Date,completion: @escaping (_ newsList : [NewsEntry]) -> ()){
         var newsList : [NewsEntry] = []
