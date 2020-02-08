@@ -38,6 +38,7 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
     @IBOutlet weak var blog_detail_author_name: UILabel!
     
     @IBOutlet weak var blog_detail_description: UILabel!
+    @IBOutlet weak var blog_detail_host: UILabel!
     
      @IBOutlet var photoSliderView: PhotoSliderView!
      
@@ -153,9 +154,10 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
         blog_detail_title.text = blog_object?.getTitle
         blog_detail_description.sizeToFit()
         blog_detail_date.text = blog_object?.getCreationDate.dateAndTimetoString()
-        blog_detail_country.text = "Indien"
+        blog_detail_country.text = blog_object?.getLocation.getAddress
         blog_detail_author_name.text = blog_object?.getAuthor.getName
         blog_detail_author_img.image = blog_object?.getAuthor.getImage
+        blog_detail_host.text = blog_object?.getHost.getName
         
         
         
