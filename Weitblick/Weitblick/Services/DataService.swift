@@ -410,6 +410,30 @@ class DataService{
                     }
                 }
                 
+                var partnerList : [Partner] = []
+                guard let partners = projectDict.value(forKey: "partners") else { return }
+                if let partnerArray = partners as? NSArray{
+                    for partnerEntry in partnerArray{
+                        var partnerObject = Partner()
+                        if let partnerDict = partnerEntry as? NSDictionary{
+                            guard let name = partnerDict.value(forKey: "name") else { return }
+                            let nameString = name as! String
+                            
+                            guard let description = partnerDict.value(forKey: "description") else { return }
+                            let descriptionString = description as! String
+                            
+                            guard let logo = partnerDict.value(forKey : "logo") else { return }
+                            let urlString = logo as! String
+                            let imgURL = NSURL(string : Constants.url + urlString)
+                            let data = NSData(contentsOf: (imgURL as URL?)!)
+                            let logoImg = UIImage(data: data! as Data)!
+                            
+                            partnerObject = Partner(name: nameString, description: descriptionString, logo: logoImg)
+                            partnerList.append(partnerObject)
+                        }
+                    }
+                }
+                
                 var milestoneList : [Milestone] = []
                 guard let milestones = projectDict.value(forKey: "milestones") else { return }
                 if let milestoneArray = milestones as? NSArray{
@@ -435,7 +459,7 @@ class DataService{
                     }
                 }
 
-                projectReturn = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleObject: cycleObject, news: newsIDArray, blog: blogIDArray, milestones: milestoneList)
+                projectReturn = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleObject: cycleObject, news: newsIDArray, blog: blogIDArray, milestones: milestoneList, partners: partnerList)
                 completion(projectReturn!)
             }
         }
@@ -640,6 +664,29 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                             }
                         }
                     }
+                    var partnerList : [Partner] = []
+                    guard let partners = projectDict.value(forKey: "partners") else { return }
+                    if let partnerArray = partners as? NSArray{
+                        for partnerEntry in partnerArray{
+                            var partnerObject = Partner()
+                            if let partnerDict = partnerEntry as? NSDictionary{
+                                guard let name = partnerDict.value(forKey: "name") else { return }
+                                let nameString = name as! String
+                                
+                                guard let description = partnerDict.value(forKey: "description") else { return }
+                                let descriptionString = description as! String
+                                
+                                guard let logo = partnerDict.value(forKey : "logo") else { return }
+                                let urlString = logo as! String
+                                let imgURL = NSURL(string : Constants.url + urlString)
+                                let data = NSData(contentsOf: (imgURL as URL?)!)
+                                let logoImg = UIImage(data: data! as Data)!
+                                
+                                partnerObject = Partner(name: nameString, description: descriptionString, logo: logoImg)
+                                partnerList.append(partnerObject)
+                            }
+                        }
+                    }
 
 
                     var resultHosts : [Host] = []
@@ -712,7 +759,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                         }
                     }
 
-                    let project = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleObject: cycleObject, news: newsIDArray, blog: blogIDArray, milestones: milestoneList)
+                    let project = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleObject: cycleObject, news: newsIDArray, blog: blogIDArray, milestones: milestoneList, partners: partnerList)
                     projectList.append(project)
                     resultimages = []
                 }
@@ -720,6 +767,10 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
             completion(projectList)
             }
         }).resume()
+    }
+    
+    static func getBlogByID(id : Int){
+        
     }
 
     

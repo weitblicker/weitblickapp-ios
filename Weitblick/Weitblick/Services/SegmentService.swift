@@ -10,6 +10,27 @@ import UIKit
 
 class SegmentService{
     
+    static func getTourID(completion: @escaping (_ id : Int) -> ()){
+        let url = NSURL(string: "https://weitblicker.org/rest/cycle/tours/new")
+        var request = URLRequest(url:url! as URL)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let token = UserDefaults.standard.string(forKey: "key")!
+        request.addValue("Token " + token, forHTTPHeaderField: "Authorization")
+        let task = URLSession.shared.dataTask(with: request){(data, response, error) in
+            if let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments){
+                if let tourDict = jsondata as? NSDictionary{
+                    guard let tourID = tourDict.value(forKey: "tour_index") else { return }
+                    let tourIDInt = tourID as! Int
+                    completion(tourIDInt)
+                }
+            }
+        }
+        task.resume()
+        
+        
+    }
+    
     static func sendSegment(start: Date, end: Date, distance: Double, projectID: Int, tourID: Int, completion: @escaping (_ response: String) -> ()){
         
         let url = NSURL(string: Constants.cycleURL)

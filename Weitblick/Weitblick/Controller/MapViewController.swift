@@ -28,7 +28,7 @@ class MapViewController: UIViewController {
     var timer : Timer = Timer.init()
     var start : Date = Date()
     var end : Date = Date()
-    var tours = UserDefaults.standard.integer(forKey: "tours")
+    var tours = 0
     var projectid: Int = 0
     var project : Project?
     var hcKalmanFilter : HCKalmanAlgorithm?
@@ -75,11 +75,14 @@ class MapViewController: UIViewController {
         checkLocationServices()
         distanceLbl.text = "0.00 km"
         donationLbl.text = "0.00 €"
-        let user = UserDefaults.standard
-        var tours = user.integer(forKey: "tours")
-        tours += 1
-        user.set(tours, forKey: "tours")
-        user.synchronize()
+        SegmentService.getTourID { (id) in
+            DispatchQueue.main.async {
+                self.tours = id
+                print("New ID: "+id.description)
+                UserDefaults.standard.set(self.tours, forKey: "tours")
+                UserDefaults.standard.synchronize()
+            }
+        }
     }
 
     func setupSegmentations(){
@@ -95,7 +98,7 @@ class MapViewController: UIViewController {
 
         currentDistance = totalDistance
         end = Date()
-        SegmentService.sendSegment(start: start, end: end, distance: distanceToSent, projectID: projectid, tourID: tours) { (response) in
+        SegmentService.sendSegment(start: start, end: end, distance: distanceToSent, projectID: projectid, tourID: self.tours) { (response) in
             print("In SegmentService Completionhandler")
             print(response)
             self.start = self.end
