@@ -201,7 +201,10 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
             cell.spendenkonto.text = project_object!.getHosts[0].getBankAccount.getIban
             cell.spendenstand.text = project_object!.getCycleObject.getEuroSum.description
             cell.spendenziel.text = project_object!.getCycleObject.getEuroGoal.description
-            cell.spendenbeschreibung.text = project_object!.getCycleObject.getDonations[0].getDescription
+            if(project_object!.getCycleObject.getDonations.count > 0){
+                 cell.spendenbeschreibung.text = project_object!.getCycleObject.getDonations[0].getDescription
+            }
+          
             counter = 2
 
             return cell
@@ -211,13 +214,13 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         else if (counter == 2){
             print("IN FAHRRAD")
             let cell = tableView.dequeueReusableCell(withIdentifier:"fahrrad_cell", for: indexPath)as! P_DetailFahrradCell
-            if(!(self.project_object?.getCycleObject.getDonations.isEmpty)!){
-
-                cell.customizeChart(dataPoints: stats, values: goals.map{ Double($0) })
-                   } else{
-                       PieChart.alpha = 0
-
-                   }
+//            if(!(self.project_object?.getCycleObject.getDonations.isEmpty)!){
+//
+//                cell.customizeChart(dataPoints: stats, values: goals.map{ Double($0) })
+//                   } else{
+//                       PieChart.alpha = 0
+//
+//                   }
 
             cell.gefahren.text = project_object!.getCycleObject.getkmSum.description
             cell.radfahrer_anzahl.text = "34"
@@ -239,9 +242,12 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
             }else if (indexPath.row == 5){
                 print("IN SPONSOR IF 2")
              let splist_cell = cell.sponsor_tableView.dequeueReusableCell(withIdentifier:"splist_cell", for: indexPath)as! SpListCell
+                
+                if(self.project_object!.getCycleObject.getDonations.count > 0){
 
                 splist_cell.splist_sponsor.text = self.project_object!.getCycleObject.getDonations[0].getSponsor.getName
                 splist_cell.splist_description.text = self.project_object!.getCycleObject.getDonations[0].getSponsor.getDescription
+                }
                 counter = 4
                 return splist_cell
 
@@ -264,9 +270,11 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     print ("IN MEILENSTEIN IF 2")
                     let melist_cell = cell.meilenstein_tableView.dequeueReusableCell(withIdentifier:"melist_cell", for: indexPath)as! MeListCell
 //                melist_cell.melist_date.text = project_object?.getMilestones[self.counter_milestones].getDate.dateAndTimetoString()
+                if((project_object?.getMilestones.count)! > 0){
                 melist_cell.melist_headline.text = project_object?.getMilestones[self.counter_milestones].getName
                 melist_cell.melist_description.text = project_object?.getMilestones[self.counter_milestones].getDescription
                 self.counter_milestones += 1
+                }
 
                 counter = 5
                 return melist_cell
