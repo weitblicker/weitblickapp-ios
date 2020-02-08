@@ -371,8 +371,8 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 nelist_cell.nelist_image!.image = UIImage(named: "Weitblick")
                 counter = 7
             }
-           let more_cell = tableView.dequeueReusableCell(withIdentifier:"show_more_news", for: indexPath)as! ShowMoreCell
-            return more_cell
+          /* let more_cell = tableView.dequeueReusableCell(withIdentifier:"show_more_news", for: indexPath)as! ShowMoreCell
+            return more_cell*/
             return cell
             
         }
