@@ -392,8 +392,32 @@ class DataService{
                         }
                     }
                 }
+                
+                var milestoneList : [Milestone] = []
+                guard let milestones = projectDict.value(forKey: "milestones") else { return }
+                if let milestoneArray = milestones as? NSArray{
+                    for m in milestoneArray{
+                        var milestoneObject = Milestone()
+                        if let milestoneDict = m as? NSDictionary{
+                            guard let name = milestoneDict.value(forKey: "name") else { return }
+                            let nameString = name as! String
+                            
+                            guard let description = milestoneDict.value(forKey: "description") else { return }
+                            let descriptionString = description as! String
+                            
+                            guard let date = milestoneDict.value(forKey: "date") else { return }
+                            let dateDate = handleDate(date: date as! String)
+                            
+                            guard let reached = milestoneDict.value(forKey: "reached") else { return }
+                            let reachedBool = reached as! Bool
+                            
+                            milestoneObject = Milestone(name: nameString, description: descriptionString, date: dateDate, reached: reachedBool)
+                            milestoneList.append(milestoneObject)
+                        }
+                    }
+                }
 
-                projectReturn = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleObject: cycleObject, news: newsIDArray, blog: blogIDArray)
+                projectReturn = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleObject: cycleObject, news: newsIDArray, blog: blogIDArray, milestones: milestoneList)
                 completion(projectReturn!)
             }
         }
@@ -670,7 +694,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                         }
                     }
 
-                    let project = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleObject: cycleObject, news: newsIDArray, blog: blogIDArray)
+                    let project = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleObject: cycleObject, news: newsIDArray, blog: blogIDArray, milestones: milestoneList)
                     projectList.append(project)
                     resultimages = []
                 }
