@@ -21,8 +21,9 @@ class NewsEntry{
     private var teaser : String
     private var host : Host
     private var projectInt : Int
+    private var author : Author
 
-    init(id : Int, title : String, text : String, gallery : [UIImage], created : Date, updated : Date, range : String, image : UIImage, teaser: String, host : Host, projectInt : Int){
+    init(id : Int, title : String, text : String, gallery : [UIImage], created : Date, updated : Date, range : String, image : UIImage, teaser: String, host : Host, projectInt : Int, author:Author){
 
         self.id = id
         self.title = title
@@ -34,6 +35,7 @@ class NewsEntry{
         self.image = image
         self.teaser = teaser
         self.projectInt = projectInt
+        self.author = author
         
         let size = CGSize.init(width: 668, height: 284)
         self.image = self.image.crop(to: size)
@@ -49,6 +51,10 @@ class NewsEntry{
             self.gallery.append(image!)
         }
     }
+    public var getAuthor : Author{
+        return self.author
+    }
+    
     public var getProjectInt : Int{
         return self.projectInt
     }

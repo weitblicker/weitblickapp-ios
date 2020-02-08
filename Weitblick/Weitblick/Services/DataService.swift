@@ -147,8 +147,25 @@ class DataService{
                         hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location)
                         
                     }
+                    
+                    guard let author = newsDict.value(forKey: "author") else { return }
+                    var authorObject = Author()
+                    if let authorDict = author as? NSDictionary{
+                        guard let imageURL = authorDict.value(forKey: "image") else { return }
+                        var image = UIImage(named: "Weitblick")
+                        if let img = imageURL as? String{
+                            let imgURL = NSURL(string : Constants.url + img)
+                            let data = NSData(contentsOf: (imgURL as URL?)!)
+                            image = UIImage(data: data! as Data)!
+                        }
+                        
+                        guard let name = authorDict.value(forKey: "name") else { return }
+                        let nameString = name as! String
+                        
+                        authorObject = Author(image: image!, name: nameString)
+                    }
 
-                    let newsEntry = NewsEntry(id: newsID!, title: newsTitle, text: newsText, gallery: resultimages, created: newsCreated , updated: newsCreated, range: newsRange, image: image, teaser: newsTeaser, host: hostObject, projectInt : projectInt)
+                    let newsEntry = NewsEntry(id: newsID!, title: newsTitle, text: newsText, gallery: resultimages, created: newsCreated , updated: newsCreated, range: newsRange, image: image, teaser: newsTeaser, host: hostObject, projectInt : projectInt, author: authorObject)
                     resultimages = []
                     newsList.append(newsEntry)
                 }
