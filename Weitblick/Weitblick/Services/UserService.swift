@@ -215,7 +215,7 @@ class UserService{
         let firstname = UserDefaults.standard.string(forKey: "firstname")?.description
         let lastname  = UserDefaults.standard.string(forKey: "lastname")?.description
         let username = UserDefaults.standard.string(forKey: "username")?.description
-        let filename = firstname!.description + lastname!.description + Date.init().dateAndTimetoStringISO().description
+        let filename = username!.description + Date.init().dateAndTimetoStringISO().description
         // Add the image data to the raw http request data
         var string = ""
         let boundstring = "\r\n--\(boundary)\r\n"
@@ -235,14 +235,14 @@ class UserService{
         data.append(string.data(using: .utf8)!)
         string = "Content-Type: text/plain; charset=UTF-8\r\n\r\n"
         data.append(string.data(using: .utf8)!)
-        data.append((firstname!.description + "\r\n").data(using: .utf8)!)
+        data.append((username!.description + "\r\n").data(using: .utf8)!)
         
         data.append(boundstring.data(using: .utf8)!)
         string = "Content-Disposition: form-data; name=\"last_name\"\r\n"
         data.append(string.data(using: .utf8)!)
         string = "Content-Type: text/plain; charset=UTF-8\r\n\r\n"
         data.append(string.data(using: .utf8)!)
-        data.append((lastname!.description + "\r\n").data(using: .utf8)!)
+        data.append((username!.description + "\r\n").data(using: .utf8)!)
         
         data.append(boundstring.data(using: .utf8)!)
         string = "Content-Disposition: form-data; name=\"username\"\r\n"

@@ -25,7 +25,7 @@ class Milestone{
     init(){
         self.name = ""
         self.description = ""
-        self.date = handleDate(date: "01-01-1970")
+        self.date = Date()
         self.reached = false
     }
     

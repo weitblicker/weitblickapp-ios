@@ -406,7 +406,8 @@ class DataService{
                             let descriptionString = description as! String
                             
                             guard let date = milestoneDict.value(forKey: "date") else { return }
-                            let dateDate = handleDate(date: date as! String)
+                            let dateString = date as! String
+                            let dateDate = handleDateSimple(date: dateString)
                             
                             guard let reached = milestoneDict.value(forKey: "reached") else { return }
                             let reachedBool = reached as! Bool
@@ -612,8 +613,8 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                                 let descriptionString = description as! String
                                 
                                 guard let date = milestoneDict.value(forKey: "date") else { return }
-                                let dateDate = handleDate(date: date as! String)
-                                
+                                let dateString = date as! String
+                                let dateDate = handleDateSimple(date: dateString)
                                 guard let reached = milestoneDict.value(forKey: "reached") else { return }
                                 let reachedBool = reached as! Bool
                                 
@@ -711,6 +712,14 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
         let dateFormatter = DateFormatter()
         //2020-01-23T11:20:07Z+0000
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        return dateFormatter.date(from:date)!
+    }
+    
+    static func handleDateSimple(date : String) -> Date{
+        let dateFormatter = DateFormatter()
+        //2020-01-23T11:20:07Z+0000
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.date(from:date)!
     }

@@ -31,6 +31,7 @@ class RouteService{
         }
         let task = URLSession.shared.dataTask(with: request){(data, response, error) in
             let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+            print(jsondata)
             if let routeArray = jsondata as? NSArray{
                 for route in routeArray{
                     if let routeDict = route as? NSDictionary{
