@@ -13,6 +13,9 @@ import UIKit
 class ShowMoreBlogCell: UITableViewCell{
     
     
+    @IBOutlet weak var show_more_button: UIButton!
+    
+    
     override func awakeFromNib() {
                     super.awakeFromNib()
                 }

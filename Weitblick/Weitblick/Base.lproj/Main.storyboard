@@ -232,7 +232,7 @@
                                                             <outlet property="partner_tableView" destination="wK3-ep-Sah" id="iFO-QS-Jen"/>
                                                         </connections>
                                                     </tableViewCell>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="spenden_cell" rowHeight="207" translatesAutoresizingMaskIntoConstraints="NO" id="iIp-qD-Px1" userLabel="spenden_cell" customClass="P_DetailSpendenCell" customModule="Weitblick" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="spenden_cell" rowHeight="207" translatesAutoresizingMaskIntoConstraints="NO" id="iIp-qD-Px1" userLabel="spenden_cell" customClass="P_DetailSpendenCell" customModule="Weitblick" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="215" width="419" height="207"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iIp-qD-Px1" id="alj-qb-fsF">
@@ -879,8 +879,19 @@
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q0g-gH-xEp" id="KQQ-ax-OTv">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="419" height="59"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
+                                                                                <subviews>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9tx-c8-Arg">
+                                                                                        <rect key="frame" x="144" y="14" width="102" height="30"/>
+                                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        <state key="normal" title="Mehr anzeigen"/>
+                                                                                    </button>
+                                                                                </subviews>
                                                                             </tableViewCellContentView>
                                                                             <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <connections>
+                                                                                <outlet property="show_more_button" destination="9tx-c8-Arg" id="IXi-oZ-Dze"/>
+                                                                            </connections>
                                                                         </tableViewCell>
                                                                     </prototypes>
                                                                 </tableView>
@@ -1053,9 +1064,21 @@
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4oy-hE-DHR" id="sln-eM-WE5">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="419" height="68"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
+                                                                                <subviews>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Vk-ba-hag">
+                                                                                        <rect key="frame" x="146" y="11" width="102" height="30"/>
+                                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                        <state key="normal" title="Mehr anzeigen"/>
+                                                                                    </button>
+                                                                                </subviews>
                                                                             </tableViewCellContentView>
                                                                             <color key="backgroundColor" red="0.92156862750000001" green="0.50196078430000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <color key="tintColor" red="0.92156862750000001" green="0.50196078430000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <connections>
+                                                                                <outlet property="show_more_button" destination="9Vk-ba-hag" id="9Ue-NI-axU"/>
+                                                                            </connections>
                                                                         </tableViewCell>
                                                                     </prototypes>
                                                                 </tableView>
@@ -1185,8 +1208,19 @@
                                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xq8-lL-Ck7" id="fmX-To-3hc">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="419" height="51"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
+                                                                                <subviews>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eq8-v3-DDd">
+                                                                                        <rect key="frame" x="151" y="0.0" width="102" height="30"/>
+                                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        <state key="normal" title="Mehr anzeigen"/>
+                                                                                    </button>
+                                                                                </subviews>
                                                                             </tableViewCellContentView>
                                                                             <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <connections>
+                                                                                <outlet property="show_more_event" destination="eq8-v3-DDd" id="XFY-af-IHf"/>
+                                                                            </connections>
                                                                         </tableViewCell>
                                                                     </prototypes>
                                                                 </tableView>

@@ -12,6 +12,7 @@ import UIKit
 
 class ShowMoreNewsCell: UITableViewCell{
     
+    @IBOutlet weak var show_more_button: UIButton!
     
     override func awakeFromNib() {
                     super.awakeFromNib()
