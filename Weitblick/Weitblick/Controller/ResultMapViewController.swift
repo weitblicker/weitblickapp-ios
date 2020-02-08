@@ -50,6 +50,8 @@ class ResultMapViewController: UIViewController ,UITableViewDataSource, UITableV
         }else{
            self.projectTitle.text = "Kein Projekt ausgewählt"
         }
+        
+        
     
     }
     
