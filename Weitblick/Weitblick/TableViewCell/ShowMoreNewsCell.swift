@@ -10,7 +10,7 @@ import Foundation
 
 import UIKit
 
-class ShowMoreCell: UITableViewCell{
+class ShowMoreNewsCell: UITableViewCell{
     
     
     override func awakeFromNib() {

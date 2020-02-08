@@ -146,6 +146,7 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
       
     
     func loadDetailBlog(){
+        //Datum, Stadt
 
         let markdownParser = MarkdownParser()
         blog_detail_description.attributedText = markdownParser.parse(blog_object!.getText)
@@ -155,6 +156,7 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
         blog_detail_country.text = "Indien"
         blog_detail_author_name.text = blog_object?.getAuthor.getName
         blog_detail_author_img.image = blog_object?.getAuthor.getImage
+        
         
         
         
