@@ -136,6 +136,14 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
     func loadProjectDetail(){
 
         let markdownParser = MarkdownParser()
+        let blogIDs : [Int] = project_object?.getBlogs ?? []
+        for id in blogIDs{
+            BlogService.getBlogByID(id: id) { (blogEntry) in
+                DispatchQueue.main.async {
+                    self.blogList.append(blogEntry)
+                }
+            }
+        }
         project_detail_description.attributedText = markdownParser.parse(project_object!.getDescription)
         project_detail_title.text = project_object?.getName
         project_detail_location.text = project_object?.getLocation.getAddress
@@ -147,6 +155,8 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
 
+
+    var blogList : [BlogEntry] = []
 
        var projectList : [Project] = []
        var locationList : [Location] = []
@@ -169,7 +179,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
         //partner
        // if (self.project_object!.getPartnerID.count > 0 ){
-        
+
         if(counter == 0){
         print("IN PARTNER")
              let cell =  tableView.dequeueReusableCell(withIdentifier:"partner_cell", for: indexPath)as! P_DetailPartnerCell
@@ -194,7 +204,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
         }
             //spenden
-       
+
         else if (counter == 1){
             print("IN Spenden")
             let cell = tableView.dequeueReusableCell(withIdentifier:"spenden_cell", for: indexPath)as! P_DetailSpendenCell
@@ -204,12 +214,12 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
             if(project_object!.getCycleObject.getDonations.count > 0){
                  cell.spendenbeschreibung.text = project_object!.getCycleObject.getDonations[0].getDescription
             }
-          
+
             counter = 2
 
             return cell
         }
-            
+
             //fahrrad
         else if (counter == 2){
             print("IN FAHRRAD")
@@ -232,7 +242,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
         //sponsor
         else if(self.project_object!.getCycleObject.getDonations.count > 0){
-        
+
             print ("IN SPONSOR")
             let cell = tableView.dequeueReusableCell(withIdentifier:"sponsor_cell", for: indexPath)as! P_DetailSponsorCell
             if(indexPath.row == 4){
@@ -245,7 +255,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
                 splist_cell.splist_sponsor.text = self.project_object!.getCycleObject.getDonations[0].getSponsor.getName
                 splist_cell.splist_description.text = self.project_object!.getCycleObject.getDonations[0].getSponsor.getDescription
-                
+
                 counter += 1
                 return splist_cell
 
@@ -267,11 +277,11 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     print ("IN MEILENSTEIN IF 2")
                     let melist_cell = cell.meilenstein_tableView.dequeueReusableCell(withIdentifier:"melist_cell", for: indexPath)as! MeListCell
               melist_cell.melist_date.text = project_object?.getMilestones[self.counter_milestones].getDate.dateAndTimetoString()
-                
+
                 melist_cell.melist_headline.text = project_object?.getMilestones[self.counter_milestones].getName
                 melist_cell.melist_description.text = project_object?.getMilestones[self.counter_milestones].getDescription
                 self.counter_milestones += 1
-                
+
 
                 counter += 1
                 return melist_cell
@@ -365,12 +375,12 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 evlist_cell.evlist_time.text = "18 UHr"
                 evlist_cell.evlist_description.text = "sajhvfhsdvcfhsdbch"
                 return evlist_cell
-                
+
                 let more_cell = tableView.dequeueReusableCell(withIdentifier:"show_more_event_cell", for: indexPath)as! ShowMoreEventsCell
                       return more_cell
             }
         }
-    
+
 
 
     let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! P_DetailNewsCell

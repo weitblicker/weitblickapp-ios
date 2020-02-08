@@ -423,11 +423,12 @@ class DataService{
                             let descriptionString = description as! String
                             
                             guard let logo = partnerDict.value(forKey : "logo") else { return }
-                            let urlString = logo as! String
-                            let imgURL = NSURL(string : Constants.url + urlString)
-                            let data = NSData(contentsOf: (imgURL as URL?)!)
-                            let logoImg = UIImage(data: data! as Data)!
-                            
+                            var logoImg = UIImage(named: "Weitblick")!
+                            if let urlString = logo as? String{
+                                 let imgURL = NSURL(string : Constants.url + urlString)
+                                let data = NSData(contentsOf: (imgURL as URL?)!)
+                                logoImg = UIImage(data: data! as Data)!
+                            }
                             partnerObject = Partner(name: nameString, description: descriptionString, logo: logoImg)
                             partnerList.append(partnerObject)
                         }
@@ -677,11 +678,12 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                                 let descriptionString = description as! String
                                 
                                 guard let logo = partnerDict.value(forKey : "logo") else { return }
-                                let urlString = logo as! String
-                                let imgURL = NSURL(string : Constants.url + urlString)
-                                let data = NSData(contentsOf: (imgURL as URL?)!)
-                                let logoImg = UIImage(data: data! as Data)!
-                                
+                                var logoImg = UIImage(named: "Weitblick")!
+                                if let urlString = logo as? String{
+                                     let imgURL = NSURL(string : Constants.url + urlString)
+                                    let data = NSData(contentsOf: (imgURL as URL?)!)
+                                    logoImg = UIImage(data: data! as Data)!
+                                }
                                 partnerObject = Partner(name: nameString, description: descriptionString, logo: logoImg)
                                 partnerList.append(partnerObject)
                             }
@@ -769,9 +771,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
         }).resume()
     }
     
-    static func getBlogByID(id : Int){
-        
-    }
+    
 
     
 
