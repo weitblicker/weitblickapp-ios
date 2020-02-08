@@ -18,20 +18,26 @@ class SegmentService{
         var request = URLRequest(url:url! as URL)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+        let token = UserDefaults.standard.string(forKey: "key")!
+        print(token)
+        request.addValue("Token " + token, forHTTPHeaderField: "Authorization")
         let user = UserDefaults.standard
         let toursID = user.integer(forKey: "tours")
-        let token = user.string(forKey: "key")
-        let postString = ["start": start.dateAndTimetoStringISO() ,"end": end.dateAndTimetoStringISO(), "distance": distance.description, "project": projectID.description, "tour": toursID.description, "token": token] as! [String: String]
-        do{
-            let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
-            request.httpBody = jsonUser
-        }catch {
-            print("Error: cannot create JSON from todo")
-            return
-        }
+        let postString = ["start": start.dateAndTimetoStringISO() ,"end": end.dateAndTimetoStringISO(), "distance": distance.description, "project": projectID.description, "tour": toursID.description]
+        let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
+        request.httpBody = jsonUser
+        print("Sending Segments ..")
         let task = URLSession.shared.dataTask(with: request){(data, response, error) in
-           
+            print("Response")
+           print(response)
+            print("Data")
+            print(data)
+            if let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments){
+                print(jsondata)
+            }
+            
+            print("Error")
+            print(error)
         }
         task.resume()
         

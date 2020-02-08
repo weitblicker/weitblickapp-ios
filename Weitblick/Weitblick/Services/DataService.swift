@@ -147,8 +147,25 @@ class DataService{
                         hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location)
                         
                     }
+                    
+                    guard let author = newsDict.value(forKey: "author") else { return }
+                    var authorObject = Author()
+                    if let authorDict = author as? NSDictionary{
+                        guard let imageURL = authorDict.value(forKey: "image") else { return }
+                        var image = UIImage(named: "Weitblick")
+                        if let img = imageURL as? String{
+                            let imgURL = NSURL(string : Constants.url + img)
+                            let data = NSData(contentsOf: (imgURL as URL?)!)
+                            image = UIImage(data: data! as Data)!
+                        }
+                        
+                        guard let name = authorDict.value(forKey: "name") else { return }
+                        let nameString = name as! String
+                        
+                        authorObject = Author(image: image!, name: nameString)
+                    }
 
-                    let newsEntry = NewsEntry(id: newsID!, title: newsTitle, text: newsText, gallery: resultimages, created: newsCreated , updated: newsCreated, range: newsRange, image: image, teaser: newsTeaser, host: hostObject, projectInt : projectInt)
+                    let newsEntry = NewsEntry(id: newsID!, title: newsTitle, text: newsText, gallery: resultimages, created: newsCreated , updated: newsCreated, range: newsRange, image: image, teaser: newsTeaser, host: hostObject, projectInt : projectInt, author: authorObject)
                     resultimages = []
                     newsList.append(newsEntry)
                 }
@@ -406,7 +423,8 @@ class DataService{
                             let descriptionString = description as! String
                             
                             guard let date = milestoneDict.value(forKey: "date") else { return }
-                            let dateDate = handleDate(date: date as! String)
+                            let dateString = date as! String
+                            let dateDate = handleDateSimple(date: dateString)
                             
                             guard let reached = milestoneDict.value(forKey: "reached") else { return }
                             let reachedBool = reached as! Bool
@@ -612,8 +630,8 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                                 let descriptionString = description as! String
                                 
                                 guard let date = milestoneDict.value(forKey: "date") else { return }
-                                let dateDate = handleDate(date: date as! String)
-                                
+                                let dateString = date as! String
+                                let dateDate = handleDateSimple(date: dateString)
                                 guard let reached = milestoneDict.value(forKey: "reached") else { return }
                                 let reachedBool = reached as! Bool
                                 
@@ -711,6 +729,14 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
         let dateFormatter = DateFormatter()
         //2020-01-23T11:20:07Z+0000
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        return dateFormatter.date(from:date)!
+    }
+    
+    static func handleDateSimple(date : String) -> Date{
+        let dateFormatter = DateFormatter()
+        //2020-01-23T11:20:07Z+0000
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.date(from:date)!
     }

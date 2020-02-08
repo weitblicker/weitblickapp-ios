@@ -16,21 +16,22 @@ class RouteService{
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();
         var request = URLRequest(url:url! as URL)
-        request.httpMethod = "POST"
+        request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+        request.addValue("Token: "+UserDefaults.standard.string(forKey: "key")!, forHTTPHeaderField: "Authorization")
         let user = UserDefaults.standard
-        let token = user.string(forKey: "key")
-        let postString = ["token": token] as! [String: String]
-        do{
-            let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
-            request.httpBody = jsonUser
-        }catch {
-            print("Error: cannot create JSON from todo")
-            return
-        }
+//        let token = user.string(forKey: "key")
+//        let postString = ["token": token] as! [String: String]
+//        do{
+//            let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
+//            request.httpBody = jsonUser
+//        }catch {
+//            print("Error: cannot create JSON from todo")
+//            return
+//        }
         let task = URLSession.shared.dataTask(with: request){(data, response, error) in
             let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+            print(jsondata)
             if let routeArray = jsondata as? NSArray{
                 for route in routeArray{
                     if let routeDict = route as? NSDictionary{
