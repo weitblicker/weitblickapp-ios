@@ -63,6 +63,10 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var map: MKMapView!
     var count = 0
     var postCount = 0
+    var counter_milestones = 0
+    var counter_news = 0
+    var counter_events = 0
+    var counter_blogs = 0
     
     @IBOutlet weak var ButtonFav: UIButton!
 
@@ -77,14 +81,9 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         
         self.project_tableView.reloadData()
         
-        if(!(self.project_object?.getCycleObject.getDonations.isEmpty)!){
-
-        customizeChart(dataPoints: stats, values: goals.map{ Double($0) })
-        } else{
-            PieChart.alpha = 0
-            
-        }
+       
         loadProjectDetail()
+        loadMap()
 
       //  setUpButton()
         
@@ -98,52 +97,6 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet var photoSliderView: PhotoSliderView!
     
 
-    func customizeChart(dataPoints: [String], values: [Double]) {
-      // TO-DO: customize the chart here
-        // 1. Set ChartDataEntry
-        var dataEntries: [ChartDataEntry] = []
-        for i in 0..<dataPoints.count {
-          let dataEntry = PieChartDataEntry(value: values[i], label: dataPoints[i], data: dataPoints[i] as AnyObject)
-          dataEntries.append(dataEntry)
-        }
-        // 2. Set ChartDataSet
-        let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: nil)
-        var  colors: [UIColor] = []
-              let colorOne = UIColor(rgb: 0xFF9900)
-              let colorTwo = UIColor(rgb: 0x2C2C2C)
-        let colorThree = UIColor(rgb : 0x0972b3)
-               colors.append(colorTwo)
-        colors.append(colorOne)
-         colors.append(colorThree)
-        pieChartDataSet.colors = colors
-
-
-        // 3. Set ChartData
-         let pieChartData = PieChartData(dataSet: pieChartDataSet)
-         let format = NumberFormatter()
-         format.numberStyle = .none
-         let formatter = DefaultValueFormatter(formatter: format)
-         pieChartData.setValueFormatter(formatter)
-
-        // 4. Assign it to the chart’s data
-        PieChart.data = pieChartData;
-
-        // ausblenden
-      //  PieChart.highlightPerTapEnabled = false
-        PieChart.usePercentValuesEnabled = false
-
-        //Text auf Chart ausblenden
-        PieChart.drawEntryLabelsEnabled = false
-        //Zahlenangaben auf Chart ausblenden
-        //pieChartDataSet.drawValuesEnabled = false
-        //Legende ausblenden
-       // PieChart.legend.enabled = false
-       
-        
-       loadMap()
-        
-        
-    }
     
     func loadMap(){
         let annotation = MKPointAnnotation()
@@ -223,7 +176,6 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
             if(indexPath.row == 0){
                 print ("IN PARTNER IF 1")
             let pahead_cell = cell.partner_tableView.dequeueReusableCell(withIdentifier:"pahead_cell", for: indexPath)as! PaHeadCell
-                pahead_cell.imageView!.image = UIImage(named: "partner.png")
                 return pahead_cell
             }else if (indexPath.row == 1){
                 print ("IN PARTNER IF 2")
@@ -246,10 +198,10 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         else if (counter == 1){
             print("IN Spenden")
             let cell = tableView.dequeueReusableCell(withIdentifier:"spenden_cell", for: indexPath)as! P_DetailSpendenCell
-            cell.spendenkonto.text = "DE!132132243543546457"
-            cell.spendenstand.text = "5005"
-            cell.spendenziel.text = "6000"
-            cell.spendenzielName.text = "Weltfrieden"
+            cell.spendenkonto.text = project_object!.getHosts[0].getBankAccount.getIban
+            cell.spendenstand.text = project_object!.getCycleObject.getEuroSum.description
+            cell.spendenziel.text = project_object!.getCycleObject.getEuroGoal.description
+            cell.spendenbeschreibung.text = project_object!.getCycleObject.getDonations[0].getDescription
             counter = 2
             
             return cell
@@ -259,7 +211,15 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         else if (counter == 2){
             print("IN FAHRRAD")
             let cell = tableView.dequeueReusableCell(withIdentifier:"fahrrad_cell", for: indexPath)as! P_DetailFahrradCell
-            cell.gefahren.text = "500km"
+            if(!(self.project_object?.getCycleObject.getDonations.isEmpty)!){
+
+                cell.customizeChart(dataPoints: stats, values: goals.map{ Double($0) })
+                   } else{
+                       PieChart.alpha = 0
+                       
+                   }
+
+            cell.gefahren.text = project_object!.getCycleObject.getkmSum.description
             cell.radfahrer_anzahl.text = "34"
             counter = 3
             
@@ -279,9 +239,9 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
             }else if (indexPath.row == 5){
                 print("IN SPONSOR IF 2")
              let splist_cell = cell.sponsor_tableView.dequeueReusableCell(withIdentifier:"splist_cell", for: indexPath)as! SpListCell
-                splist_cell.splist_sponsor.text = "MERCEDES BENZ"
-                splist_cell.splist_image!.image = UIImage(named: "partner.png")
-                splist_cell.splist_description.text = "skfbshbflhsdblfhvdslfhvsdlfbhasjdnksjdbköjsbfkbsdfk"
+                
+                splist_cell.splist_sponsor.text = self.project_object!.getCycleObject.getDonations[0].getSponsor.getName
+                splist_cell.splist_description.text = self.project_object!.getCycleObject.getDonations[0].getSponsor.getDescription
                 counter = 4
                 return splist_cell
                 
@@ -303,10 +263,11 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 else if(indexPath.row == 7){
                     print ("IN MEILENSTEIN IF 2")
                     let melist_cell = cell.meilenstein_tableView.dequeueReusableCell(withIdentifier:"melist_cell", for: indexPath)as! MeListCell
-                melist_cell.melist_date.text = "13.13.2013"
-                melist_cell.melist_headline.text = "Meienstein Titel"
-                melist_cell.melist_description.text = "shdbvhsdbvhsdbvyjhbv,jhbv,jhbds,hvbdfkhbvfkbvf"
-                melist_cell.melist_image!.image = UIImage (named: "Weitblick")
+//                melist_cell.melist_date.text = project_object?.getMilestones[self.counter_milestones].getDate.dateAndTimetoString()
+                melist_cell.melist_headline.text = project_object?.getMilestones[self.counter_milestones].getName
+                melist_cell.melist_description.text = project_object?.getMilestones[self.counter_milestones].getDescription
+                self.counter_milestones += 1
+            
                 counter = 5
                 return melist_cell
                     
@@ -331,7 +292,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                  if (indexPath.row == 9){
                     print ("IN BLOG IF 2")
                     let bllist_cell = cell.blog_tableView.dequeueReusableCell(withIdentifier:"bllist_cell", for: indexPath)as! BlListCell
-                    bllist_cell.bllist_author.text = "Autor des Blogs"
+                    bllist_cell.bllist_author.text = "Blog auto"
                     bllist_cell.bllist_title.text = "Title des Blogs"
                     bllist_cell.bllist_date.text = "12.12.2019"
                     bllist_cell.bllist_description.text = "Beipsieltext für einen Blogeintrag für der sehr serh lange sein soll und über Zeilen gehen muss"
@@ -359,12 +320,11 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
             if(indexPath.row == 10){
                 print("IN NEWS IF 1")
             let nehead_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"nehead_cell", for: indexPath)as! NeHeadCell
-                nehead_cell.imageView!.image = UIImage (named: "aktuelles.b.png")
                 return nehead_cell
             }else if (indexPath.row == 11){
                  print("IN NEWS IF 2")
                 let nelist_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"nelist_cell", for: indexPath)as! NeListCell
-                nelist_cell.nelist_author.text = "Name Author"
+                nelist_cell.nelist_author.text = "VorName NAchname"
                 nelist_cell.nelist_description.text = "sdhbvshdvbhdbvhjbdvhbd"
                 nelist_cell.nelist_title.text = "News Title"
                 nelist_cell.nelist_location.text = "Osnabrück"
@@ -391,7 +351,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
             else if(indexPath.row == 13){
                 print("IN EVENT IF 2")
                 let evlist_cell = cell.event_tableView.dequeueReusableCell(withIdentifier:"evlist_cell", for: indexPath)as! EvListCell
-                evlist_cell.evlist_date.text = "12.12.2018"
+                evlist_cell.evlist_date.text =  "12-12-12"
                 evlist_cell.evlist_location.text = "Osnabrück"
                 evlist_cell.evlist_title.text = "News title"
                 evlist_cell.evlist_time.text = "18 UHr"
