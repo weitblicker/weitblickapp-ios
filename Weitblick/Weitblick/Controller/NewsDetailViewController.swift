@@ -22,6 +22,8 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var news_detail_description: UILabel!
      @IBOutlet var photoSliderView: PhotoSliderView!
     @IBOutlet weak var news_detail_image: UIImageView!
+    @IBOutlet weak var news_detail_author: UILabel!
+    @IBOutlet weak var news_detail_author_image: UIImageView!
     
     @IBOutlet weak var project_label: UILabel!
     
@@ -74,8 +76,9 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
                      cell.project_button_bike.alpha = 1*/
         cell.project_title.text = self.project?.getName
         cell.project_location.text = self.project?.getLocation.getAddress
-        cell.project_partner.text = "Partner"
+        cell.project_partner.text = self.project?.getHosts.first?.getCity.uppercased()
         cell.project_image.image = self.project?.getImage
+        
           return cell
       }
     
@@ -117,7 +120,10 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
         news_detail_description.sizeToFit()
         news_detail_date.text = news_object?.getCreationDate.dateAndTimetoString()
         news_detail_title.text = news_object?.getTitle
-        news_detail_loaction.text = news_object?.getHost.getID
+        news_detail_loaction.text = news_object?.getHost.getCity.uppercased()
+        news_detail_author.text = news_object?.getAuthor.getName
+        news_detail_author_image.image = news_object?.getAuthor.getImage
+        
         photoSliderView.configure(with: (self.news_object?.getGallery)!)
         
         

@@ -62,6 +62,7 @@ class DataService{
                         let imgURL = NSURL(string : Constants.url + imageURL)
                         let data = NSData(contentsOf: (imgURL as URL?)!)
                         image = UIImage(data: data! as Data)!
+                        resultimages.append(image)
 
                     }
 
@@ -103,6 +104,10 @@ class DataService{
                         guard let hostID = hostDict.value(forKey: "id") else { return }
                         let hostIDString = hostID as! String
                         guard let hostName = hostDict.value(forKey : "name") else { return }
+                        
+                        guard let city = hostDict.value(forKey: "city") else { return }
+                        let cityString = city as! String
+                
                         let hostNameString = hostName as! String
                         guard let hostPartners = hostDict.value(forKey : "partners") else { return }
                         var hostPartnerList : [Int] = []
@@ -143,7 +148,7 @@ class DataService{
                             let bicString = bic as! String
                             hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
                         }
-                        hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location)
+                        hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location, city: cityString)
                         
                     }
                     
@@ -151,7 +156,7 @@ class DataService{
                     var authorObject = Author()
                     if let authorDict = author as? NSDictionary{
                         guard let imageURL = authorDict.value(forKey: "image") else { return }
-                        var image = UIImage(named: "Weitblick")
+                        var image = UIImage(named: "profileBlack100")
                         if let img = imageURL as? String{
                             let imgURL = NSURL(string : Constants.url + img)
                             let data = NSData(contentsOf: (imgURL as URL?)!)
@@ -225,6 +230,7 @@ class DataService{
                         let imgURL = NSURL(string : Constants.url + imageURL)
                         let data = NSData(contentsOf: (imgURL as URL?)!)
                         image = UIImage(data: data! as Data)!
+                        resultimages.append(image)
 
                     }
 
@@ -267,6 +273,8 @@ class DataService{
                         let hostIDString = hostID as! String
                         guard let hostName = hostDict.value(forKey : "name") else { return }
                         let hostNameString = hostName as! String
+                        guard let city = hostDict.value(forKey: "city") else { return }
+                        let cityString = city as! String
                         guard let hostPartners = hostDict.value(forKey : "partners") else { return }
                         var hostPartnerList : [Int] = []
                         if let hostPartnerArray = hostPartners as? NSArray{
@@ -306,7 +314,7 @@ class DataService{
                             let bicString = bic as! String
                             hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
                         }
-                        hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location)
+                        hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location, city: cityString)
                         
                     }
                     
@@ -314,7 +322,7 @@ class DataService{
                     var authorObject = Author()
                     if let authorDict = author as? NSDictionary{
                         guard let imageURL = authorDict.value(forKey: "image") else { return }
-                        var image = UIImage(named: "Weitblick")
+                        var image = UIImage(named: "profileBlack100")
                         if let img = imageURL as? String{
                             let imgURL = NSURL(string : Constants.url + img)
                             let data = NSData(contentsOf: (imgURL as URL?)!)
@@ -372,6 +380,7 @@ class DataService{
                     let imgURL = NSURL(string : Constants.url + imageURL)
                     let data = NSData(contentsOf: (imgURL as URL?)!)
                     image = UIImage(data: data! as Data)!
+                    resultimages.append(image)
 
                 }
                 guard let description = projectDict.value(forKey: "description") else { return }
@@ -512,6 +521,8 @@ class DataService{
                             let hostIDString = hostID as! String
                             guard let hostName = hostDict.value(forKey : "name") else { return }
                             let hostNameString = hostName as! String
+                            guard let city = hostDict.value(forKey: "city") else { return }
+                            let cityString = city as! String
                             guard let hostPartners = hostDict.value(forKey : "partners") else { return }
                             var hostPartnerList : [Int] = []
                             if let hostPartnerArray = hostPartners as? NSArray{
@@ -551,7 +562,7 @@ class DataService{
                                 let bicString = bic as! String
                                 hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
                             }
-                            let hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location)
+                            let hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location, city: cityString)
                             resultHosts.append(hostObject)
                         }
                     }
@@ -670,6 +681,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                         let imgURL = NSURL(string : Constants.url + imageURL)
                         let data = NSData(contentsOf: (imgURL as URL?)!)
                         image = UIImage(data: data! as Data)!
+                        resultimages.append(image)
 
                     }
                     guard let description = projectDict.value(forKey: "description") else { return }
@@ -863,6 +875,8 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                                 let hostIDString = hostID as! String
                                 guard let hostName = hostDict.value(forKey : "name") else { return }
                                 let hostNameString = hostName as! String
+                                guard let city = hostDict.value(forKey: "city") else { return }
+                                let cityString = city as! String
                                 guard let hostPartners = hostDict.value(forKey : "partners") else { return }
                                 var hostPartnerList : [Int] = []
                                 if let hostPartnerArray = hostPartners as? NSArray{
@@ -902,7 +916,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                                     let bicString = bic as! String
                                     hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
                                 }
-                                let hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location)
+                                let hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location, city: cityString)
                                 resultHosts.append(hostObject)
                             }
                         }

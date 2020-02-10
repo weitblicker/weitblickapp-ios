@@ -19,7 +19,7 @@ class Author{
     }
 
     init(){
-        self.image = UIImage(named: "Weitblick")!
+        self.image = UIImage(named: "profileBlack100")!
         self.name = ""
     }
     

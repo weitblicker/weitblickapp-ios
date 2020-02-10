@@ -12,16 +12,18 @@ class Host{
     
     private var id : String
     private var name : String
+    private var city : String
     private var partners : [Int]
     private var bankAccount : BankAccount
     private var location : Location
     
-    init(id : String, name : String, partners : [Int], bankAccount : BankAccount, location : Location){
+    init(id : String, name : String, partners : [Int], bankAccount : BankAccount, location : Location, city : String){
         self.id = id
         self.name = name
         self.partners = partners
         self.bankAccount = bankAccount
         self.location = location
+        self.city = city
     }
     
     init(){
@@ -30,6 +32,11 @@ class Host{
         self.partners = []
         self.bankAccount = BankAccount()
         self.location = Location()
+        self.city = ""
+    }
+    
+    public var getCity : String{
+        return self.city
     }
     
     public var getLocation : Location{
