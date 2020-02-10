@@ -31,8 +31,8 @@ class RouteViewController: UIViewController,UITableViewDataSource, UITableViewDe
         var donation = routeList[indexPath.row].getDonation
         donation = round(donation*100)/100
         cell.donation.text = donation.description
-        cell.time.text = routeList[indexPath.row].getDuration.description 
-        cell.date.text = routeList[indexPath.row].getDate.dateAndTimetoString()
+        cell.time.text = routeList[indexPath.row].getDuration.description.handleTime
+        cell.date.text = routeList[indexPath.row].getDate.dateAndTimetoStringRoutes()
         return cell
         
     }
