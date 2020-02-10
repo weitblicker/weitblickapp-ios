@@ -47,6 +47,7 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
     var id = -1
     var project : Project?
     
+    @IBOutlet weak var marker: UIImageView!
     
     override func viewDidLoad() {
         
@@ -69,6 +70,9 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
             self.project_label.text = ""
         }
         
+        if(blog_object!.getLocation.getAddress == ""){
+            marker.alpha = 0
+           }
        
         
         
@@ -167,4 +171,6 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
         photoSliderView.configure(with: blog_object!.getGallery)
 
     }
+    
+   
 }
