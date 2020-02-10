@@ -54,6 +54,19 @@ extension String {
     var html2String: String {
         return html2AttributedString?.string ?? ""
     }
+    
+    var handleTime: String{
+        let timeInt = Int.init(self)!
+        let hoursInt = timeInt / 60
+        let minInt = timeInt - (hoursInt) * 60
+        if(minInt < 10){
+            return hoursInt.description + ":0" + minInt.description
+        }else{
+            return hoursInt.description + ":" + minInt.description
+        }
+        
+    }
+    
 }
 
 extension UIImage{
@@ -119,7 +132,15 @@ extension Date{
             formatter.dateStyle = .short
             formatter.dateFormat = format
     return formatter.string(from: self)
-        }
+    }
+    
+    func dateAndTimetoStringRoutes(format: String = "dd.MM.yy") -> String {
+    let formatter = DateFormatter()
+            formatter.dateStyle = .short
+            formatter.dateFormat = format
+    return formatter.string(from: self)
+    }
+    
 }
 
 extension Date{
@@ -145,6 +166,29 @@ extension Date{
                 formatter.dateFormat = format
         return formatter.string(from: self)
     }
+    
+    
+    
+    func isToDate() -> Bool{
+        let dateString = self.dateAndTimetoString();
+        let dateTodayString = Date().dateAndTimetoString();
+        if(dateString == dateTodayString){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    func isYesterDate() -> Bool {
+        let dateString = self.dateAndTimetoString();
+        let yesterDateString = Date().addingTimeInterval(-24 * 60 * 60).dateAndTimetoString();
+        if(dateString == yesterDateString){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
 }
 
 func handleDate(date : String) -> Date{
@@ -153,5 +197,11 @@ func handleDate(date : String) -> Date{
     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
     return dateFormatter.date(from:date)!
 }
+
+
+
+
+
+
 
 

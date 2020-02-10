@@ -39,14 +39,17 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
         let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! NewsTableViewCell
         // Zelle konfigurieren
-       
-
         cell.news_image.image = newsList[indexPath.row].getImage
        // cell.formlabel.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
         // TODO If TEASER = NIL OR ""
-        cell.news_date.text =  newsList[indexPath.row].getCreationDate.dateAndTimetoString()
-        //cell.news_location.text = newsList[indexPath.row].getHost.getName
-        // TODO If TEASER = NIL OR ""
+        let date = newsList[indexPath.row].getCreationDate
+        if(date.isToDate()){
+            cell.news_date.text = "Heute"
+        }else if(date.isYesterDate()){
+            cell.news_date.text = "Gestern"
+        }else{
+            cell.news_date.text =  date.dateAndTimetoString()
+        }
         cell.news_hostLbl.text = newsList[indexPath.row].getHost.getCity.uppercased()
         cell.news_description.text = newsList[indexPath.row].getTeaser.html2String
         cell.news_description.sizeToFit()
@@ -101,7 +104,7 @@ override func viewDidLoad() {
 }
     private func handleDate(date : String) -> Date{
        let dateFormatter = DateFormatter()
-       dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+       dateFormatter.dateFormat = "yyyy-MM-dd"
        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
        return dateFormatter.date(from:date)!
    }
