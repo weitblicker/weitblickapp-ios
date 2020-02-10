@@ -465,7 +465,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
         //event
         //else if (self.project_object.geEvent.count)
-        else if(self.event_list.count > 0 && self.event_loaded == false){
+        else{
             print("IN EVENt")
             let cell = tableView.dequeueReusableCell(withIdentifier:"event_cell", for: indexPath)as! P_DetailEventCell
          //   if(indexPath.row == self.counter_index_path){
