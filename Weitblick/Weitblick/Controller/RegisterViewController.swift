@@ -21,7 +21,7 @@ class RegisterViewController: UIViewController, UIPopoverPresentationControllerD
         
        /* self.view.addSubview(popover)
         popover.center = self.view.center*/
-        self.performSegue(withIdentifier: "goToAGB", sender: self)
+    //    self.performSegue(withIdentifier: "goToAGB", sender: self)
        
     }
     
