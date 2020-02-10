@@ -45,6 +45,8 @@ class EventService{
                             let hostIDString = hostID as! String
                             guard let hostName = hostDict.value(forKey : "name") else { return }
                             let hostNameString = hostName as! String
+                            guard let city = hostDict.value(forKey: "city") else { return }
+                            let cityString = city as! String
                             guard let hostPartners = hostDict.value(forKey : "partners") else { return }
                             var hostPartnerList : [Int] = []
                             if let hostPartnerArray = hostPartners as? NSArray{
@@ -84,7 +86,7 @@ class EventService{
                                 let bicString = bic as! String
                                 hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
                             }
-                            hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location)
+                            hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location, city: cityString)
                             
                         }
                         

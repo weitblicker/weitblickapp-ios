@@ -93,7 +93,7 @@ class BlogService{
                     var authorObject = Author()
                     if let authorDict = author as? NSDictionary{
                         guard let imageURL = authorDict.value(forKey: "image") else { return }
-                        var image = UIImage(named: "Weitblick")
+                        var image = UIImage(named: "profileBlack100")
                         if let img = imageURL as? String{
                             let imgURL = NSURL(string : Constants.url + img)
                             let data = NSData(contentsOf: (imgURL as URL?)!)
@@ -131,6 +131,8 @@ class BlogService{
                         let hostIDString = hostID as! String
                         guard let hostName = hostDict.value(forKey : "name") else { return }
                         let hostNameString = hostName as! String
+                        guard let city = hostDict.value(forKey: "city") else { return }
+                        let cityString = city as! String
                         guard let hostPartners = hostDict.value(forKey : "partners") else { return }
                         var hostPartnerList : [Int] = []
                         if let hostPartnerArray = hostPartners as? NSArray{
@@ -170,7 +172,7 @@ class BlogService{
                             let bicString = bic as! String
                             hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
                         }
-                        hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location)
+                        hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location, city: cityString)
                         
                     }
                     
@@ -268,7 +270,7 @@ print("blog4")
                         var authorObject = Author()
                         if let authorDict = author as? NSDictionary{
                             guard let imageURL = authorDict.value(forKey: "image") else { return }
-                            var image = UIImage(named: "Weitblick")
+                            var image = UIImage(named: "profileBlack100")
                             if let img = imageURL as? String{
                                 let imgURL = NSURL(string : Constants.url + img)
                                 let data = NSData(contentsOf: (imgURL as URL?)!)
@@ -306,6 +308,8 @@ print("blog4")
                             let hostIDString = hostID as! String
                             guard let hostName = hostDict.value(forKey : "name") else { return }
                             let hostNameString = hostName as! String
+                            guard let city = hostDict.value(forKey: "city") else { return }
+                            let cityString = city as! String
                             guard let hostPartners = hostDict.value(forKey : "partners") else { return }
                             var hostPartnerList : [Int] = []
                             if let hostPartnerArray = hostPartners as? NSArray{
@@ -345,7 +349,7 @@ print("blog4")
                                 let bicString = bic as! String
                                 hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
                             }
-                            hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location)
+                            hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location, city: cityString)
                             
                         }
                         
