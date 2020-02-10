@@ -62,6 +62,7 @@ class DataService{
                         let imgURL = NSURL(string : Constants.url + imageURL)
                         let data = NSData(contentsOf: (imgURL as URL?)!)
                         image = UIImage(data: data! as Data)!
+                        resultimages.append(image)
 
                     }
 
@@ -229,6 +230,7 @@ class DataService{
                         let imgURL = NSURL(string : Constants.url + imageURL)
                         let data = NSData(contentsOf: (imgURL as URL?)!)
                         image = UIImage(data: data! as Data)!
+                        resultimages.append(image)
 
                     }
 
@@ -378,6 +380,7 @@ class DataService{
                     let imgURL = NSURL(string : Constants.url + imageURL)
                     let data = NSData(contentsOf: (imgURL as URL?)!)
                     image = UIImage(data: data! as Data)!
+                    resultimages.append(image)
 
                 }
                 guard let description = projectDict.value(forKey: "description") else { return }
@@ -678,6 +681,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                         let imgURL = NSURL(string : Constants.url + imageURL)
                         let data = NSData(contentsOf: (imgURL as URL?)!)
                         image = UIImage(data: data! as Data)!
+                        resultimages.append(image)
 
                     }
                     guard let description = projectDict.value(forKey: "description") else { return }

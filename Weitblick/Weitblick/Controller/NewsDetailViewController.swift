@@ -76,7 +76,7 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
                      cell.project_button_bike.alpha = 1*/
         cell.project_title.text = self.project?.getName
         cell.project_location.text = self.project?.getLocation.getAddress
-        cell.project_partner.text = "Partner"
+        cell.project_partner.text = self.project?.getHosts.first?.getCity.uppercased()
         cell.project_image.image = self.project?.getImage
         
           return cell
