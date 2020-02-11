@@ -49,6 +49,7 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
     
     @IBOutlet weak var marker: UIImageView!
     
+    @IBOutlet weak var orangeLabel: UILabel!
     override func viewDidLoad() {
         
         
@@ -68,6 +69,7 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
         }else{
             self.tableView.alpha = 0
             self.project_label.text = ""
+            orangeLabel.alpha = 0
         }
         
         if(blog_object!.getLocation.getAddress == ""){

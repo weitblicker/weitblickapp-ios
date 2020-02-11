@@ -1901,6 +1901,7 @@
                         <outlet property="news_detail_description" destination="usa-Xp-GY7" id="ZW4-HE-Mgj"/>
                         <outlet property="news_detail_loaction" destination="Vo3-al-aZO" id="aUC-sx-i0T"/>
                         <outlet property="news_detail_title" destination="ol9-z7-7Gy" id="ELq-q4-B9X"/>
+                        <outlet property="orangeLabel" destination="gkt-hA-HhX" id="inh-Wc-o9E"/>
                         <outlet property="photoSliderView" destination="lvr-Un-HwS" id="o8s-1x-ojN"/>
                         <outlet property="project_label" destination="wk5-je-lzU" id="7g5-LK-tWn"/>
                         <outlet property="tableView" destination="IVH-9a-pFd" id="bgy-q5-TfS"/>
@@ -3369,7 +3370,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="772"/>
                                 <subviews>
                                     <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="5PK-qv-6yq">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="647"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="681.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H67-Rk-GTF">
                                                 <rect key="frame" x="192.5" y="22" width="29" height="21"/>
@@ -3482,13 +3483,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projekt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6L-bQ-0aA">
-                                                <rect key="frame" x="20" y="422" width="134" height="22"/>
+                                                <rect key="frame" x="20" y="445" width="134" height="22"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
                                                 <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oYL-Uw-6qz">
-                                                <rect key="frame" x="20" y="448" width="373" height="199"/>
+                                                <rect key="frame" x="20" y="482" width="373" height="198.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="blogproject_cell" rowHeight="154" id="1Xy-0j-rwQ" customClass="BlogDetailProjectCell" customModule="Weitblick" customModuleProvider="target">
@@ -3575,6 +3576,17 @@
                                                 </prototypes>
                                                 <sections/>
                                             </tableView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4q1-dV-dkg">
+                                                <rect key="frame" x="0.0" y="419" width="235" height="15"/>
+                                                <color key="backgroundColor" red="0.92156862750000001" green="0.50196078430000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="235" id="bVj-Th-QP8"/>
+                                                    <constraint firstAttribute="height" constant="15" id="oa3-Ct-Jp2"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -3592,14 +3604,15 @@
                                             <constraint firstItem="wUm-c1-YJT" firstAttribute="top" secondItem="kUk-Ju-9a6" secondAttribute="bottom" constant="13" id="ICG-8n-Nmn"/>
                                             <constraint firstItem="qH3-c0-oNq" firstAttribute="top" secondItem="u8M-Lg-FGw" secondAttribute="bottom" constant="1.5" id="JvU-ww-nIr"/>
                                             <constraint firstItem="w0e-ul-mjq" firstAttribute="top" secondItem="kUk-Ju-9a6" secondAttribute="bottom" constant="32" id="KEO-rV-jtv"/>
+                                            <constraint firstItem="V6L-bQ-0aA" firstAttribute="top" secondItem="4q1-dV-dkg" secondAttribute="bottom" constant="11" id="R0b-Tj-fyq"/>
                                             <constraint firstItem="MmM-QM-5v4" firstAttribute="top" secondItem="qH3-c0-oNq" secondAttribute="bottom" constant="7.5" id="SBh-WM-wkx"/>
                                             <constraint firstItem="kUk-Ju-9a6" firstAttribute="leading" secondItem="5PK-qv-6yq" secondAttribute="leading" id="SFr-rr-Y6x"/>
                                             <constraint firstItem="MmM-QM-5v4" firstAttribute="leading" secondItem="5PK-qv-6yq" secondAttribute="leading" constant="20" id="Uhn-NN-xRK"/>
+                                            <constraint firstItem="4q1-dV-dkg" firstAttribute="leading" secondItem="5PK-qv-6yq" secondAttribute="leading" id="VN1-gz-Sw4"/>
                                             <constraint firstItem="kUk-Ju-9a6" firstAttribute="top" secondItem="5PK-qv-6yq" secondAttribute="top" id="YDD-kU-3Ba"/>
                                             <constraint firstItem="thq-HD-zUk" firstAttribute="leading" secondItem="5PK-qv-6yq" secondAttribute="leading" constant="63" id="YjZ-RH-oD8"/>
-                                            <constraint firstAttribute="bottom" secondItem="qUf-cW-Ftf" secondAttribute="bottom" constant="-34.5" id="eDi-jS-g1V"/>
-                                            <constraint firstItem="V6L-bQ-0aA" firstAttribute="top" secondItem="War-NI-c3f" secondAttribute="bottom" constant="16.5" id="fW6-a5-ssV"/>
-                                            <constraint firstItem="oYL-Uw-6qz" firstAttribute="top" secondItem="V6L-bQ-0aA" secondAttribute="bottom" constant="4" id="fyh-AJ-kF3"/>
+                                            <constraint firstAttribute="bottom" secondItem="qUf-cW-Ftf" secondAttribute="bottom" id="eDi-jS-g1V"/>
+                                            <constraint firstItem="oYL-Uw-6qz" firstAttribute="top" secondItem="V6L-bQ-0aA" secondAttribute="bottom" constant="15" id="fyh-AJ-kF3"/>
                                             <constraint firstAttribute="trailing" secondItem="MmM-QM-5v4" secondAttribute="trailing" constant="21" id="gik-cm-Was"/>
                                             <constraint firstItem="H67-Rk-GTF" firstAttribute="top" secondItem="5PK-qv-6yq" secondAttribute="top" constant="22" id="h35-BH-CH5"/>
                                             <constraint firstItem="0Vt-Ri-1h5" firstAttribute="top" secondItem="5PK-qv-6yq" secondAttribute="top" constant="213" id="ke5-K7-1ti"/>
@@ -3609,13 +3622,14 @@
                                             <constraint firstItem="1xp-Pr-vAQ" firstAttribute="top" secondItem="5PK-qv-6yq" secondAttribute="top" constant="335" id="n5A-rD-mpf"/>
                                             <constraint firstAttribute="trailing" secondItem="V6L-bQ-0aA" secondAttribute="trailing" constant="260" id="nwO-Up-zw5"/>
                                             <constraint firstAttribute="trailing" secondItem="oYL-Uw-6qz" secondAttribute="trailing" constant="21" id="oM5-t4-hby"/>
-                                            <constraint firstItem="qUf-cW-Ftf" firstAttribute="top" secondItem="oYL-Uw-6qz" secondAttribute="bottom" constant="13.5" id="pzt-rA-AUh"/>
+                                            <constraint firstItem="qUf-cW-Ftf" firstAttribute="top" secondItem="oYL-Uw-6qz" secondAttribute="bottom" constant="-20" id="pzt-rA-AUh"/>
                                             <constraint firstItem="wUm-c1-YJT" firstAttribute="leading" secondItem="5PK-qv-6yq" secondAttribute="leading" constant="20" id="q7h-Jz-Lld"/>
                                             <constraint firstItem="qUf-cW-Ftf" firstAttribute="top" secondItem="War-NI-c3f" secondAttribute="bottom" constant="255" id="qLy-lv-Z6n"/>
                                             <constraint firstItem="bjV-cf-JKi" firstAttribute="top" secondItem="5PK-qv-6yq" secondAttribute="top" constant="335" id="s9P-8P-tsH"/>
                                             <constraint firstItem="bjV-cf-JKi" firstAttribute="leading" secondItem="5PK-qv-6yq" secondAttribute="leading" constant="88" id="siG-G9-fzm"/>
                                             <constraint firstItem="thq-HD-zUk" firstAttribute="top" secondItem="5PK-qv-6yq" secondAttribute="top" constant="231" id="sqk-FL-8uW"/>
                                             <constraint firstAttribute="trailing" secondItem="1xp-Pr-vAQ" secondAttribute="trailing" constant="21" id="stQ-9J-eRI"/>
+                                            <constraint firstItem="4q1-dV-dkg" firstAttribute="top" secondItem="War-NI-c3f" secondAttribute="bottom" constant="13.5" id="taN-xW-ko8"/>
                                             <constraint firstItem="w0e-ul-mjq" firstAttribute="centerX" secondItem="5PK-qv-6yq" secondAttribute="centerX" id="zug-wz-Nki"/>
                                         </constraints>
                                     </view>
@@ -3651,6 +3665,7 @@
                         <outlet property="blog_detail_host" destination="thq-HD-zUk" id="SkQ-FA-iNn"/>
                         <outlet property="blog_detail_title" destination="MmM-QM-5v4" id="DuA-uV-kyR"/>
                         <outlet property="marker" destination="0Vt-Ri-1h5" id="uxe-Db-FdK"/>
+                        <outlet property="orangeLabel" destination="4q1-dV-dkg" id="PEW-10-icS"/>
                         <outlet property="photoSliderView" destination="kUk-Ju-9a6" id="ega-ib-ufM"/>
                         <outlet property="project_label" destination="V6L-bQ-0aA" id="jN3-Fm-6LD"/>
                         <outlet property="tableView" destination="oYL-Uw-6qz" id="fSj-Sf-d3W"/>
@@ -5319,6 +5334,6 @@
         <segue reference="HIy-1P-iki"/>
         <segue reference="Cv5-VS-8qz"/>
         <segue reference="SuE-yg-A6n"/>
-        <segue reference="Kkg-vc-dTE"/>
+        <segue reference="Jr1-oG-psr"/>
     </inferredMetricsTieBreakers>
 </document>

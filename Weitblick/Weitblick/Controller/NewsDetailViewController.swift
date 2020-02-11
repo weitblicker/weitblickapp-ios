@@ -32,7 +32,8 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
     var project : Project?
     
     
-   
+    @IBOutlet weak var orangeLabel: UILabel!
+    
     //EVENT Variablen
   
     var news_object : NewsEntry?
@@ -50,6 +51,7 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
          }else{
                       self.tableView.alpha = 0
             self.project_label.text = ""
+            orangeLabel.alpha = 0
        }
         
       
