@@ -12,8 +12,10 @@ class DataService{
     
     static func getNewsByID(id : Int, completion: @escaping (_ newsEntry : NewsEntry) -> ()){
         
+        print("IN DATASERVICE GET NEWS BY ID")
         var resultimages : [UIImage] = []
         let urlString = "https://weitblicker.org/rest/news/" + id.description
+        print(urlString)
         let url = NSURL(string: urlString)
         let str = "surfer:hangloose"
         let dataB64 = Data(str.utf8).base64EncodedString();
@@ -27,7 +29,7 @@ class DataService{
         if let newsArray = jsondata as? NSArray{
             for news in newsArray{
                 if let newsDict = news as? NSDictionary{
-
+print(1)
                     guard let id = newsDict.value(forKey: "id")  else { return }
                     let IDString = id as! String
                     let newsID = Int.init(IDString)
@@ -47,7 +49,7 @@ class DataService{
                     let newsCreated = self.handleDateWithOutTimeZone(date: substrings.first!.description)
 //                    print(newsCreated.description + "\n")
 
-
+print(2)
                     guard let imageURLJSON = newsDict.value(forKey : "image") else { return }
                     var imageURL = ""
                     if let mainImageDict = imageURLJSON as? NSDictionary{
@@ -65,7 +67,7 @@ class DataService{
                         resultimages.append(image)
 
                     }
-
+print(3)
                     guard let published = newsDict.value(forKey: "published") else { return }
                     let publishedString = published as! String
                     let newsUpdated = self.handleDateWithTimeZone(date: publishedString)
@@ -95,7 +97,7 @@ class DataService{
                         print(projectInt.description + "\n")
                     }
                     
-                    
+   print(4)
                     
                     var hostObject = Host()
                     guard let host = newsDict.value(forKey: "host") else { return }
@@ -116,7 +118,7 @@ class DataService{
                                 hostPartnerList.append(hostPartner as! Int)
                             }
                         }
-                        
+            print(5)
                         guard let locationJSON = hostDict.value(forKey: "location") else { return }
                         var location : Location = Location()
                         if let locationDict = locationJSON as? NSDictionary{
@@ -133,7 +135,7 @@ class DataService{
                             let locationAddress = address as! String
                             location = Location(id: locationID!, lat: locationLat, lng: locationLng, address: locationAddress)
                         }
-                        
+              print(6)
                         var hostbankAcc : BankAccount = BankAccount()
     //                                "account_holder": "Weitblick Münster e.V.",
     //                                "iban": "DE64400800400604958800",
@@ -151,7 +153,7 @@ class DataService{
                         hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location, city: cityString)
                         
                     }
-                    
+        print(7)
                     guard let author = newsDict.value(forKey: "author") else { return }
                     var authorObject = Author()
                     if let authorDict = author as? NSDictionary{
@@ -168,7 +170,7 @@ class DataService{
                         
                         authorObject = Author(image: image!, name: nameString)
                     }
-
+                    print("Vor Completion : \n\n\n\n")
                     let newsEntry = NewsEntry(id: newsID!, title: newsTitle, text: newsText, gallery: resultimages, created: newsCreated , updated: newsCreated, range: newsRange, image: image, teaser: newsTeaser, host: hostObject, projectInt : projectInt, author: authorObject)
                     completion(newsEntry)
                 }
