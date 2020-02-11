@@ -59,7 +59,8 @@ class ResultMapViewController: UIViewController ,UITableViewDataSource, UITableV
         totalDonation.text = DonationText
         if(UserDefaults.standard.string(forKey: "projectName") != nil){
         self.projectTitle.text = UserDefaults.standard.string(forKey: "projectName")
-            self.project_image.image = self.project?.getImage
+            self.project_image.image = self.project?.getImageOrigin
+            
         }else{
            self.projectTitle.text = "Kein Projekt ausgewählt"
         }

@@ -38,8 +38,15 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
         cell.blog_description.text = blogList[indexPath.row].getText
         cell.triangle.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
         cell.blog_title.sizeToFit()
-        cell.blog_city.text = blogList[indexPath.row].getHost.getID.description
-        cell.blog_country.text = blogList[indexPath.row].getHost.getLocation.getAddress
+        if(blogList[indexPath.row].getLocation.getAddress == ""){
+                  cell.blog_location_marker.alpha = 0
+                  cell.blog_country.text = "     "
+             
+              }else{
+                  cell.blog_country.text = blogList[indexPath.row].getLocation.getAddress
+                  
+              }
+        
         //cell.blog_button_detail.tag = indexPath.row
         
        

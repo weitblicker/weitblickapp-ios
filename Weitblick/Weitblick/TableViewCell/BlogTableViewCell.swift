@@ -13,6 +13,9 @@ import  UIKit
 class BlogTableViewCell: UITableViewCell {
     
     
+    
+    @IBOutlet weak var blog_location_marker: UIImageView!
+    
     @IBOutlet weak var blog_image: UIImageView!
     
     @IBOutlet weak var blog_date: UILabel!

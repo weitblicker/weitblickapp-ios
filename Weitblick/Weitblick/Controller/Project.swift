@@ -15,6 +15,7 @@ class Project{
     private var published : Date
     private var name : String
     private var image : UIImage
+    private var image_origin : UIImage
     private var gallery : [UIImage]
     private var hosts : [Host]
     private var description : String
@@ -45,10 +46,15 @@ class Project{
         self.cycleObject = cycleObject
         
         let size = CGSize.init(width: 400 , height: 400)
+        let size2 = CGSize.init(width: 1000, height: 400)
         self.image = self.image.crop(to: size)
+        self.image_origin = image.crop(to: size2)
         
         self.gallery = gallery
        
+    }
+    public var getImageOrigin: UIImage{
+        return self.image_origin
     }
     
     public var getPartners : [Partner]{

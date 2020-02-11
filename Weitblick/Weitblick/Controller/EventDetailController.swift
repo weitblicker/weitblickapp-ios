@@ -13,6 +13,7 @@ import MarkdownKit
 class EventDetailViewController: UIViewController {
     
     
+    @IBOutlet weak var location_unten: UILabel!
     @IBOutlet weak var event_detail_Location_Title: UILabel!
     @IBOutlet weak var event_detail_date: UILabel!
     @IBOutlet weak var slider: PhotoSliderView!
@@ -65,6 +66,7 @@ class EventDetailViewController: UIViewController {
         event_detail_date.text = event_object?.getStartDate.dateAndTimetoString()
         event_detail_location.text = event_object?.getLocation.getAddress
         event_detail_Location_Title.text = event_object?.getHost.getLocation.getAddress
+        location_unten.text = event_object?.getLocation.getAddress
         slider.configure(with: [(self.event_object?.getImage)!])
          
          
