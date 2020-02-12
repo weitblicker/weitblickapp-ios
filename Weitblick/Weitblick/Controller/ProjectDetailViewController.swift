@@ -110,21 +110,22 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+             
 
-        self.project_tableView.reloadData()
+        //self.project_tableView.reloadData()
 
         print("Vor load detail")
         loadProjectDetail()
         loadMap()
-
+        self.project_tableView.delegate = self
+        self.project_tableView.dataSource = self
       //  setUpButton()
         
         
  
-      
-       self.project_tableView.delegate = self
-       self.project_tableView.dataSource = self
-       self.project_tableView.reloadData()
+     
+      // self.project_tableView.reloadData()
         
     
 
@@ -170,37 +171,50 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
     }
 
-    func loadProjectDetail(){
-        print("IN LOAD PROJECT DETAIL")
+  func loadProjectDetail(){
+        print("IN  LOAD PROJECT DETAIL")
+        let dispatchGroup = DispatchGroup()
+        
 
         let markdownParser = MarkdownParser()
         let blogIDs : [Int] = project_object?.getBlogs ?? []
+        
         for id in blogIDs{
+            dispatchGroup.enter()
             BlogService.getBlogByID(id: id) { (blogEntry) in
-              //  DispatchQueue.main.async {
-                    print(blogEntry.getTitle)
+                DispatchQueue.main.async {
+                    print ("IN GET BLOGS ENTRY")
                     self.blogList.append(blogEntry)
-                   // self.project_tableView.reloadData()
-               // }
+                    dispatchGroup.leave()   // <<----
+                }
             }
         }
+    
 
         let newsIDs : [Int] = project_object?.getNews ?? []
+        
         for id in newsIDs{
+            dispatchGroup.enter()
             DataService.getNewsByID(id: id) { (newsEntry) in
-              //  DispatchQueue.main.async {
-                    print("IN EINER NEWS ENTRY")
+                DispatchQueue.main.async {
+                    print ("IN GET NEWS ENTRY")
                     print(newsEntry.getTitle)
                     self.newsList.append(newsEntry)
-                    //self.project_tableView.reloadData()
-              //  }
+                    dispatchGroup.leave()
+                }
             }
+        }
+        dispatchGroup.notify(queue: .main) {
+            print("In Dispatch Group Notify \n")
+            print(self.newsList.count)
+            print(self.blogList.count)
+            self.project_tableView.reloadData()
         }
         project_detail_description.attributedText = markdownParser.parse(project_object!.getDescription)
         project_detail_title.text = project_object?.getName
         project_detail_location.text = project_object?.getLocation.getAddress
         // project_detail_image.image = img
-      //  print("GALLERY COUNT")
+        print("GALLERY COUNT")
         print(project_object?.getGallery.count)
         photoSliderView.configure(with: project_object!.getGallery)
 
@@ -212,13 +226,11 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-       // if(tableView == self.project_tableView)
-        return 6
+        return project_object!.getCelLCount
 
        }
 
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
 
         print("IN TABLEVIEW")
         //partner
@@ -259,10 +271,10 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         else if (project_object!.getCycleObject.getDonations.count > 0 && self.spenden_loaded == false){
             print("IN Spenden")
             let cell = tableView.dequeueReusableCell(withIdentifier:"spenden_cell", for: indexPath)as! P_DetailSpendenCell
-            cell.spendenkonto.text = "Spendenkonto"
+            cell.spendenkonto.text = "Spendenkonto" //donation bank
             cell.spendenstand.text = "598"
-            cell.spendenziel.text = "6000"
-            cell.spendenbeschreibung.text = "Beschreibung"
+            cell.spendenziel.text = "6000"//donation goal
+            cell.spendenbeschreibung.text = "Beschreibung" // donation description
             print(self.counter_index_path)
             self.counter_index_path += 1
             
@@ -318,7 +330,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
              let splist_cell = cell.sponsor_tableView.dequeueReusableCell(withIdentifier:"splist_cell", for: indexPath)as! SpListCell
                 
                 if(self.counter_sponsor < (self.project_object?.getCycleObject.getDonations.count)!){
-
+                    //mehrere Sponsoren könnten sein
                 splist_cell.splist_sponsor.text = self.project_object?.getCycleObject.getDonations[0].getSponsor.getName
                 splist_cell.splist_description.text = self.project_object?.getCycleObject.getDonations[0].getSponsor.getDescription
                     
@@ -362,15 +374,11 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                  return melist_cell
                 }
                 print(self.counter_index_path)
-
                 self.counter_index_path += 1
                 counter = 5
                 self.meilenstein_list = true
-                
-
                 }
             self.meilenstein_loaded = true
-
             return cell
         }
 

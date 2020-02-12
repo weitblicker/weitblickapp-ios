@@ -24,12 +24,13 @@ class Project{
     private var milestones : [Milestone]
     private var cycleObject : CycleEntry
     private var partners : [Partner]
+    private var cellCount : Int
   
     
     private var news : [Int]
     private var blog : [Int]
     
-    init(id : Int,published : Date, name : String, image: UIImage, gallery : [UIImage], hosts : [Host], description : String, location : Location, partnerID : [Int], cycleObject : CycleEntry, news : [Int], blog : [Int], milestones : [Milestone], partners : [Partner]){
+    init(id : Int,published : Date, name : String, image: UIImage, gallery : [UIImage], hosts : [Host], description : String, location : Location, partnerID : [Int], cycleObject : CycleEntry, news : [Int], blog : [Int], milestones : [Milestone], partners : [Partner], cellCount : Int){
         self.id = id
         self.published = published
         self.name = name
@@ -42,6 +43,7 @@ class Project{
         self.blog = blog
         self.milestones = milestones
         self.partners = partners
+        self.cellCount = cellCount
         
         self.cycleObject = cycleObject
         
@@ -52,6 +54,10 @@ class Project{
         
         self.gallery = gallery
        
+    }
+    
+    public var getCelLCount : Int{
+        return self.cellCount
     }
     public var getImageOrigin: UIImage{
         return self.image_origin
