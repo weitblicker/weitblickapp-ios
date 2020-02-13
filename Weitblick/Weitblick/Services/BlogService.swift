@@ -11,6 +11,7 @@ import UIKit
 class BlogService{
     
     static func getBlogByID(id : Int, completion: @escaping (_ blog : BlogEntry) -> ()){
+        print("IN BLOG SERVICE")
         
         var resultimages : [UIImage] = []
         let urlString = "https://weitblicker.org/rest/blog/" + id.description
@@ -21,14 +22,11 @@ class BlogService{
         task.httpMethod = "GET"
         task.addValue("application/json", forHTTPHeaderField: "Content-Type")
         task.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-        print("blog1")
+        
         URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
+            print("Succesfull in Blog By ID\n")
         let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-        if let newsArray = jsondata as? NSArray{
-            print("blog2")
-            for news in newsArray{
-                print("blog3")
-                if let blogDict = news as? NSDictionary{
+                if let blogDict = jsondata as? NSDictionary{
                     guard let id = blogDict.value(forKey: "id")  else { return }
                     let IDString = id as! String
                     let blogID = Int.init(IDString)
@@ -177,13 +175,13 @@ class BlogService{
                     }
                     
                     let blogEntry = BlogEntry(id: blogID!, title: blogTitle, text: blogText, created: blogCreated, updated: blogCreated, image: image, teaser: blogTeaser, range: blogRange,gallery: resultimages, projectInt: projectInt, author : authorObject, location: location, host : hostObject)
+                    print("BlogEntry CREATED IN BLOG BY ID \n\n\n")
                     completion(blogEntry)
                     }
                 }
             
 
-        }
-        }).resume()
+        ).resume()
         
     }
     
