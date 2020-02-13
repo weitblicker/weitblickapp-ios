@@ -27,8 +27,8 @@ class Project{
     private var cellCount : Int
   
     
-    private var news : [Int]
-    private var blog : [Int]
+    private var news : [Int] = []
+    private var blog : [Int] = []
     
     init(id : Int,published : Date, name : String, image: UIImage, gallery : [UIImage], hosts : [Host], description : String, location : Location, partnerID : [Int], cycleObject : CycleEntry, news : [Int], blog : [Int], milestones : [Milestone], partners : [Partner], cellCount : Int){
         self.id = id

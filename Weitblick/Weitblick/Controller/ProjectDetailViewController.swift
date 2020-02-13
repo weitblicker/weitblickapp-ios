@@ -100,12 +100,12 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-                self.loadProjectDetail()
-                self.loadMap()
-                self.project_tableView.delegate = self
-                self.project_tableView.dataSource = self
-                self.project_tableView.reloadData()
+        self.project_tableView.delegate = self
+        self.project_tableView.dataSource = self
+        self.loadProjectDetail()
+        self.loadMap()
+        
+        self.project_tableView.reloadData()
 
 
       //  setUpButton()
@@ -192,12 +192,8 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                    dispatchGroup.enter()
                    BlogService.getBlogByID(id: id) { (blogEntry) in
                        DispatchQueue.main.async {
-                           print ("IN GET BLOGS ENTRY")
-                           print(blogEntry.getTitle)
                            self.blogList.append(blogEntry)
-                       
-                        print("BLOGLIST COUNT: " + self.blogList.count.description)
-                        //   dispatchGroup.leave()
+                           dispatchGroup.leave()
                        }
                    }
                }
@@ -209,18 +205,35 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                    dispatchGroup.enter()
                    DataService.getNewsByID(id: id) { (newsEntry) in
                        DispatchQueue.main.async {
-                           print ("IN GET NEWS ENTRY")
-                           print(newsEntry.getTitle)
                            self.newsList.append(newsEntry)
-                            print("NEWSLIST COUNT: " + self.newsList.count.description)
-                        //   dispatchGroup.leave()
+                           dispatchGroup.leave()
                        }
                    }
                }
                dispatchGroup.notify(queue: .main) {
                 print("In Dispatch Group Notify \n")
                 print("NEWSLIST COUNT: " + self.newsList.count.description)
-                
+                self.partner_loaded =  false
+                self.partner_head = false
+                self.partner_list = false
+                self.spenden_loaded = false
+                self.fahrrad_loaded  =  false
+                self.sponsor_loaded  =  false
+                self.sponsor_head  =  false
+                self.sponsor_list  =  false
+                self.meilenstein_loaded  = false
+                self.meilenstein_head  = false
+                self.meilenstein_list  = false
+                self.blog_loaded  =  false
+                self.blog_head  =  false
+                self.blog_list  =  false
+                self.news_loaded  = false
+                self.news_head  = false
+                self.news_list  = false
+                self.event_loaded  = false
+                self.event_head  = false
+                self.event_list  = false
+                self.project_tableView.reloadData()
                  
                }
                project_detail_description.attributedText = markdownParser.parse(project_object!.getDescription)
@@ -404,9 +417,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                         print("BLOG COUNT : " + (self.project_object?.getBlogs.count.description)!)
                             let bllist_cell = cell.blog_tableView.dequeueReusableCell(withIdentifier:"bllist_cell", for: indexPath)as! BlListCell
                            print("COUNTER: " + self.counter_blogs.description)
-                        if(self.counter_blogs < (self.project_object?.getBlogs.count)!){
-                                print("IN IF COUNTER < COUNT")
-                                print(self.blogList[self.counter_blogs].getTitle)
+                        if(self.counter_blogs < (self.project_object?.getBlogs.count)! && self.blogList.count>0){
                                 bllist_cell.bllist_author.text = self.blogList[self.counter_blogs].getAuthor.getName
                                 bllist_cell.bllist_title.text = self.blogList[self.counter_blogs].getTitle
                                 bllist_cell.bllist_date.text = self.blogList[self.counter_blogs].getCreationDate.dateAndTimetoString()
@@ -443,7 +454,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     }else if(self.news_list == false){
                          print("IN NEWS IF 2")
                         let nelist_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"nelist_cell", for: indexPath)as! NeListCell
-                        if(self.counter_news < self.newsList.count){
+                        if(self.counter_news < self.newsList.count && self.counter_news < 3){
                             print("IN NEWS IF COUNTER")
                             nelist_cell.nelist_author.text = self.newsList[self.counter_news].getAuthor.getName
                             nelist_cell.nelist_description.text = self.newsList[self.counter_news].getText
