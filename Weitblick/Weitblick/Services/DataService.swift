@@ -639,6 +639,8 @@ class DataService{
                                 let project = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleObject: cycleObject, news: newsIDArray, blog: blogIDArray, milestones: milestoneList, partners: partnerList, cellCount: cellcount)
                                 resultimages = []
                                 cellcount = 0;
+                                print("Project with ID successfully fetched!\n")
+                                completion(project)
                             }
         
         }

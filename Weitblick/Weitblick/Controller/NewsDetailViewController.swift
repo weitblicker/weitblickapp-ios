@@ -41,18 +41,12 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         loadNewsDetail()
-
-         self.navigationController!.navigationBar.topItem!.title = "Zurück"
-        if(news_object!.getProjectInt != 0){
-                      self.tableView.delegate = self
-                      self.tableView.dataSource = self
-                      self.tableView.reloadData()
-         }else{
-                      self.tableView.alpha = 0
-            self.project_label.text = ""
-            orangeLabel.alpha = 0
-       }
+        self.navigationController!.navigationBar.topItem!.title = "Zurück"
+        
+       
         
       
     }
@@ -65,17 +59,6 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
       
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           let cell =  tableView.dequeueReusableCell(withIdentifier:"newsproject_cell", for: indexPath)as! NewsDetailProjectCell
-          
-        /*cell.project_image!.image = self.project!.getImage
-        cell.project_title.text = self.project!.getName
-        cell.project_partner.text = "Partner"
-        cell.project_location.text = self.project!.getLocation.getAddress*/
-
-          
-        /*  if(self.projectList[indexPath.row].getCycleObject.getDonations.isEmpty){
-                     cell.project_ride_button.alpha = 0
-                 }else{
-                     cell.project_button_bike.alpha = 1*/
         cell.project_title.text = self.project?.getName
         cell.project_location.text = self.project?.getLocation.getAddress
         cell.project_partner.text = self.project?.getHosts.first?.getCity.uppercased()
@@ -98,21 +81,16 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
         let image = UIImage(named : "Weitblick")
         imageView.image = image
         navigationItem.titleView = imageView
-        loadProject()
       
 
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-               if segue.destination is ProjectDetailViewController
-               {
-                   let projectDetailViewController = segue.destination as? ProjectDetailViewController
-                   projectDetailViewController?.project_object = self.project
-                   
-
-               }
-         
-           }
+        if segue.destination is ProjectDetailViewController{
+            let projectDetailViewController = segue.destination as? ProjectDetailViewController
+            projectDetailViewController?.project_object = self.project
+        }
+    }
     
     
     func loadNewsDetail(){
@@ -125,31 +103,25 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
         news_detail_loaction.text = news_object?.getHost.getCity.uppercased()
         news_detail_author.text = news_object?.getAuthor.getName
         news_detail_author_image.image = news_object?.getAuthor.getImage
-        
         photoSliderView.configure(with: (self.news_object?.getGallery)!)
-        
-        
+        if(news_object!.getProjectInt != 0){
+            loadProject()
+        }else{
+            self.tableView.alpha = 0
+            self.project_label.text = ""
+            orangeLabel.alpha = 0
+        }
     }
     
     public func loadProject(){
-           print("IN LOADPROJECTS1")
         self.id = news_object!.getProjectInt
-           print("PROJECT ID")
-           print(news_object!.getProjectInt)
-           DataService.getProjectWithID(id: self.id) { (project) in
-                   self.project = project
-                   print("IN LOADPROJECTS2")
-                   print (self.project?.getName as Any)
-               DispatchQueue.main.async {
-                   self.tableView.delegate = self
-                   self.tableView.dataSource = self
-                   self.tableView.reloadData()
-                   
-               }
-                  
-              }
-              
-          }
-   
-
+        DataService.getProjectWithID(id: self.id) { (project) in
+            DispatchQueue.main.async {
+                self.project = project
+                print(project.getName)
+                print(project.getDescription)
+                self.tableView.reloadData()
+            }
+        }
+    }
 }

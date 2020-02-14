@@ -233,6 +233,10 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 self.event_loaded  = false
                 self.event_head  = false
                 self.event_list  = false
+                self.counter_partner = 0
+                self.counter_sponsor = 0
+                 self.counter_milestones = 0
+                print("PARTNERLOADED AB HIER")
                 self.project_tableView.reloadData()
                  
                }
@@ -286,8 +290,11 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                         return pahead_cell
                     }
                     if(self.partner_list == false){
+                        print("PARTNERLOADED vor drittem mal partner loaded")
                         print ("IN PARTNER IF 2")
                         let palist_cell = cell.partner_tableView.dequeueReusableCell(withIdentifier:"palist_cell", for: indexPath)as! PaListCell
+                        print("PARTNERLOADED: " + self.counter_partner.description);
+                        print("PARTNERLOADED: " + (self.project_object?.getPartners.count.description)!)
                         if(self.counter_partner < (self.project_object?.getPartners.count)!){
                             palist_cell.palist_name.text = self.project_object?.getPartners[counter_partner].getName
                             print(palist_cell.palist_name.text)
@@ -416,8 +423,9 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                             print ("IN BLOG IF 2")
                         print("BLOG COUNT : " + (self.project_object?.getBlogs.count.description)!)
                             let bllist_cell = cell.blog_tableView.dequeueReusableCell(withIdentifier:"bllist_cell", for: indexPath)as! BlListCell
-                           print("COUNTER: " + self.counter_blogs.description)
-                        if(self.counter_blogs < (self.project_object?.getBlogs.count)! && self.blogList.count>0){
+                        print("COUNTER bloglist: " + self.blogList.count.description)
+                        print("COUNTER: " + (project_object?.getBlogs.count.description)!)
+                        if(self.counter_blogs < ((self.project_object?.getBlogs.count)!) && self.blogList.count>0){
                                 bllist_cell.bllist_author.text = self.blogList[self.counter_blogs].getAuthor.getName
                                 bllist_cell.bllist_title.text = self.blogList[self.counter_blogs].getTitle
                                 bllist_cell.bllist_date.text = self.blogList[self.counter_blogs].getCreationDate.dateAndTimetoString()
