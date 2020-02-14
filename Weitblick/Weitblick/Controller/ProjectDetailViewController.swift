@@ -268,7 +268,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
        // if(tableView == self.project_tableView)
-        return self.project_object!.getCelLCount
+        return self.project_object!.getCelLCount + 6
 
 
        }
