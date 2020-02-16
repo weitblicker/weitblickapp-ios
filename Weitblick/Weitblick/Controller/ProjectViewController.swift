@@ -50,7 +50,7 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.project_title.text = projectList[indexPath.row].getName
         
     
-        cell.project_city.text = projectList[indexPath.row].getHosts[0].getName
+        cell.project_city.text = projectList[indexPath.row].getHosts[0].getCity.uppercased()
        
         cell.project_location.text = projectList[indexPath.row].getLocation.getAddress
         cell.project_button_bike.tag = indexPath.row

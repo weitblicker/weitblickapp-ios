@@ -19,13 +19,17 @@ class User{
         self.username = username
         print(image)
         if(image == ""){
-            self.image = UIImage(named: "Weitblick")!
+            self.image = UIImage(named: "profileBlack100")!
         }else{
             let imgURL = NSURL(string : Constants.url + image)
             let data = NSData(contentsOf: (imgURL as URL?)!)
             self.image = UIImage(data: data! as Data)!
             
         }
+        
+        let size = CGSize.init(width: 100, height: 100)
+        self.image = self.image.crop(to: size)
+        
         self.km = km
         self.euro = euro
     }

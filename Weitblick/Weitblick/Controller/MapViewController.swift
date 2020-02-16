@@ -66,7 +66,7 @@ class MapViewController: UIViewController {
                 self.hostList = self.hostList + host.getName
             }
         }
-        self.project_partner.text = self.hostList
+        self.project_partner.text = self.project?.getHosts[0].getCity.uppercased()
         
         
         

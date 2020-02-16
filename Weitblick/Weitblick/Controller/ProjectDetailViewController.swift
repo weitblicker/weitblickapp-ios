@@ -58,7 +58,8 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
     @IBOutlet weak var uebersicht: UILabel!
 
-
+    @IBOutlet weak var project_detail_date: UILabel!
+    
 
     @IBOutlet weak var map: MKMapView!
    var count = 0
@@ -243,6 +244,8 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                project_detail_description.attributedText = markdownParser.parse(project_object!.getDescription)
                project_detail_title.text = project_object?.getName
                project_detail_location.text = project_object?.getLocation.getAddress
+        project_detail_date.text = project_object?.getPublished.dateAndTimetoString()
+            
                // project_detail_image.image = img
                print("GALLERY COUNT")
                print(project_object?.getGallery.count)
