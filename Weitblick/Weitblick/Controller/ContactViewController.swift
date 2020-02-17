@@ -13,6 +13,11 @@ class ContactViewController: UIViewController{
     
     
     override func viewDidLoad() {
+        FAQService.loadContact { (contactObject) in
+             DispatchQueue.main.async {
+                       
+                       }
+        }
         
     }
     override func viewWillAppear(_ animated: Bool) {
