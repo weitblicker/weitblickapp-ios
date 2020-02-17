@@ -10,6 +10,45 @@ import UIKit
 
 class FAQService{
     
+    static func loadContact(completion: @escaping (_ contactObject : ContactObject) -> ()){
+    
+        let url = NSURL(string : Constants.agbURL)
+        let str = "surfer:hangloose"
+        let test2 = Data(str.utf8).base64EncodedString();
+        var request = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+        URLSession.shared.dataTask(with: request, completionHandler: {(data,response,error) -> Void in
+            
+            let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+            if let contactDict = jsondata as? NSDictionary{
+                
+                guard let title = contactDict.value(forKey: "title")  else { return }
+                let titleString = title as! String
+                
+                var image : UIImage?
+                guard let imageJSON = contactDict.value(forKey : "image") else { return }
+                if let imageString = imageJSON as? String{
+                    if(imageString == ""){
+                        let size = CGSize.init(width: 334, height: 176)
+                        image = UIImage(named: "Weitblick")!.crop(to: size)
+                    }else{
+                        let imgURL = NSURL(string : Constants.url + imageString)
+                        let data = NSData(contentsOf: (imgURL as URL?)!)
+                        image = UIImage(data: data! as Data)!
+                    }
+                }
+                
+                guard let text = contactDict.value(forKey: "text")  else { return }
+                let textString = text as! String
+                
+                let contactObject = ContactObject(title: titleString, image: image!, text: textString)
+                completion(contactObject)
+            }
+        }).resume()
+    }
+    
     static func loadAGBS(completion: @escaping (_ agbObject : AGBObject) -> ()){
 //        private var title: String
 //        private var image : UIImage
@@ -29,7 +68,7 @@ class FAQService{
                 guard let title = agbDict.value(forKey: "title")  else { return }
                 let titleString = title as! String
                 
-                var image : UIImage
+                var image : UIImage?
                 guard let imageJSON = agbDict.value(forKey : "image") else { return }
                 if let imageString = imageJSON as? String{
                     if(imageString == ""){
@@ -45,7 +84,7 @@ class FAQService{
                 guard let text = agbDict.value(forKey: "text")  else { return }
                 let textString = text as! String
                 
-                let agbObject = AGBObject(title: titleString, image: image, text: textString)
+                let agbObject = AGBObject(title: titleString, image: image!, text: textString)
                 completion(agbObject)
             }
             
