@@ -12,7 +12,7 @@ class FAQService{
     
     static func loadContact(completion: @escaping (_ contactObject : ContactObject) -> ()){
     
-        let url = NSURL(string : Constants.agbURL)
+        let url = NSURL(string : Constants.contactURL)
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();
         var request = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)

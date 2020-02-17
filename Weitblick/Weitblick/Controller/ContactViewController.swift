@@ -8,13 +8,31 @@
 
 import Foundation
 import UIKit
+import MarkdownKit
 
 class ContactViewController: UIViewController{
     
+    @IBOutlet weak var contact_title: UILabel!
+    
+    @IBOutlet weak var contact_description: UILabel!
+    @IBOutlet weak var contact_image: UIImageView!
+    
     
     override func viewDidLoad() {
+        print("IN CONTACT VIEW CONTROLLER")
+        let markdownParser = MarkdownParser()
         FAQService.loadContact { (contactObject) in
              DispatchQueue.main.async {
+                self.contact_title.text =
+                contactObject.getTitle
+                print(contactObject.getTitle)
+                self.contact_title.sizeToFit()
+                self.contact_image.image =
+                contactObject.getImage
+                self.contact_description.attributedText =
+                markdownParser.parse(contactObject.getText)
+                self.contact_description.sizeToFit()
+                
                        
                        }
         }

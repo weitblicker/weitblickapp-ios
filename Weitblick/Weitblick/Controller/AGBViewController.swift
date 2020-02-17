@@ -7,11 +7,10 @@
 //
 
 import UIKit
+import MarkdownKit
 
 class AGBViewController: UIViewController {
 
- 
-    
 
     @IBOutlet weak var textLabel: UILabel!
     
@@ -20,21 +19,19 @@ class AGBViewController: UIViewController {
     @IBOutlet weak var agb_title: UILabel!
     
     override func viewDidLoad() {
+        let markdownParser = MarkdownParser()
         
         
         FAQService.loadAGBS { (agbObject) in
             DispatchQueue.main.async {
-            self.textLabel.text = agbObject.getText
+                self.textLabel.attributedText = markdownParser.parse(agbObject.getText)
             self.agb_image.image = agbObject.getImage
             self.agb_title.text = agbObject.getTitle
             self.textLabel.sizeToFit()
             }
         }
          super.viewDidLoad()
-         print("IN AGB")
          
-
-         // Do any additional setup after loading the view.
      }
 
 }
