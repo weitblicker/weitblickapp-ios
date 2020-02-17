@@ -59,9 +59,9 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var uebersicht: UILabel!
 
     @IBOutlet weak var project_detail_date: UILabel!
-    
+
     @IBOutlet weak var project_detail_maplocation: UILabel!
-    
+
     @IBOutlet weak var map: MKMapView!
    var count = 0
     var postCount = 0
@@ -94,7 +94,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
        var more_news_loaded : Bool = false
        var more_event_loaded : Bool = false
     var more_blog_loaded : Bool = false
-    
+
 
     @IBOutlet weak var ButtonFav: UIButton!
 
@@ -105,18 +105,18 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
     var project_object: Project?
 
     override func viewDidLoad() {
-        
+
         super.viewDidLoad()
         self.project_tableView.delegate = self
         self.project_tableView.dataSource = self
         self.loadProjectDetail()
         self.loadMap()
-        
+
         self.project_tableView.reloadData()
 
 
       //  setUpButton()
-    
+
 
     }
 
@@ -187,14 +187,14 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 //        print("GALLERY COUNT")
 //        print(project_object?.getGallery.count)
 //        photoSliderView.configure(with: project_object!.getGallery)
-        
+
         print("IN  LOAD PROJECT DETAIL")
                let dispatchGroup = DispatchGroup()
-               
+
 
                let markdownParser = MarkdownParser()
                let blogIDs : [Int] = project_object?.getBlogs ?? []
-               
+
                for id in blogIDs{
                    dispatchGroup.enter()
                    BlogService.getBlogByID(id: id) { (blogEntry) in
@@ -204,10 +204,10 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                        }
                    }
                }
-           
+
 
                let newsIDs : [Int] = project_object?.getNews ?? []
-               
+
                for id in newsIDs{
                    dispatchGroup.enter()
                    DataService.getNewsByID(id: id) { (newsEntry) in
@@ -227,7 +227,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                                   }
                               }
                           }
-        
+
                 dispatchGroup.notify(queue: .main) {
                 print("In Dispatch Group Notify \n")
                 print("EVENTLIST COUNT: " + self.eventList.count.description)
@@ -254,7 +254,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 self.more_blog_loaded = false
                 self.more_news_loaded = false
                 self.more_event_loaded = false
-                
+
                 self.postCount = 0
                 self.counter_milestones = 0
                 self.counter_news = 0
@@ -264,7 +264,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 self.counter_partner = 0
                 print("PARTNERLOADED AB HIER")
                 self.project_tableView.reloadData()
-                 
+
                }
                project_detail_description.attributedText = markdownParser.parse(project_object!.getDescription)
                project_detail_title.text = project_object?.getName
@@ -272,16 +272,16 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
               project_detail_maplocation.text = project_object?.getLocation.getAddress
         project_detail_date.text = project_object?.getPublished.dateAndTimetoString()
        // annotation.title = project_object?.getLocation.getAddress
-            
+
                // project_detail_image.image = img
                print("GALLERY COUNT")
                print(project_object?.getGallery.count)
                photoSliderView.configure(with: project_object!.getGallery)
-             
-        
 
 
-        
+
+
+
     }
 
 
@@ -340,7 +340,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     self.partner_loaded = true
                     return cell
                 }
-                    
+
                  //spenden
         if (self.spenden_loaded == false && self.project_object?.getDonationGlobal.getDonationGoal != 0.0) {
                     print("IN Spenden")
@@ -367,9 +367,11 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         //                   }
 
                     cell.gefahren.text = project_object!.getCycleObject.getkmSum.description + " km"
+
                     cell.spendenstand.text = project_object!.getCycleObject.getEuroSum.description + " €"
                     cell.spendenziel.text = project_object!.getCycleObject.getEuroGoal.description + " €"
                     cell.radfahrer_anzahl.text = project_object!.getCycleObject.getCyclists.description
+
                     counter = 3
                     self.fahrrad_loaded = true
 
@@ -390,9 +392,9 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     }//else if (indexPath.row == self.counter_index_path){
                      if(self.sponsor_list == false){
                         print("IN SPONSOR IF 2")
-                       
+
                      let splist_cell = cell.sponsor_tableView.dequeueReusableCell(withIdentifier:"splist_cell", for: indexPath)as! SpListCell
-                        
+
                         if(self.counter_sponsor < (self.project_object?.getCycleObject.getDonations.count)!){
                             //mehrere Sponsoren könnten sein
                         splist_cell.splist_sponsor.text = self.project_object?.getCycleObject.getDonations[0].getSponsor.getName
@@ -466,8 +468,8 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                             }else{
                                 self.blog_list = true
                         }
-                        
-                       
+
+
                         }
                     if(self.blogList.count > 3 && self.more_blog_loaded == false){
                         print("IN BLOG IF 3")
@@ -502,7 +504,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                             nelist_cell.nelist_location.text = self.newsList[self.counter_news].getHost.getLocation.getAddress
                             nelist_cell.nelist_image!.image = self.newsList[self.counter_news].getImage
                             nelist_cell.nelist_profileimg.image = self.newsList[self.counter_news].getAuthor.getImage
-                            
+
                             self.counter_news += 1
                             return nelist_cell
                         }else{
@@ -522,7 +524,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 //event
         print("EVENT COUNT : "+self.project_object!.getEvents.count.description)
                  if (self.project_object!.getEvents.count > 0 && self.event_loaded == false){
-        
+
                     print("IN EVENt")
                     let cell = tableView.dequeueReusableCell(withIdentifier:"event_cell", for: indexPath)as! P_DetailEventCell
                     if(self.event_head == false){
@@ -533,7 +535,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
                     }
                     if(self.event_list == false){
-                       
+
                         print("IN EVENT IF 2")
                         let evlist_cell = cell.event_tableView.dequeueReusableCell(withIdentifier:"evlist_cell", for: indexPath)as! EvListCell
                          if(self.counter_events < self.eventList.count && self.counter_events < 3){
@@ -547,7 +549,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                             return evlist_cell
                         }else{
                         self.event_list = true
-                        
+
                         }
 
 
@@ -564,10 +566,10 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
          let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
          return cell
         }
-    
- 
 
-       
-    
+
+
+
+
 
 }
