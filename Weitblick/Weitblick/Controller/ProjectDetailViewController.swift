@@ -357,7 +357,8 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     cell.gefahren.text = project_object!.getCycleObject.getkmSum.description + " km"
                     cell.spendenstand.text = project_object!.getCycleObject.getEuroSum.description
                     cell.spendenziel.text = project_object!.getCycleObject.getEuroGoal.description
-                    cell.radfahrer_anzahl.text = "34"
+                    cell.radfahrer_anzahl.text = self.project_object?.getCycleObject.getCyclists.description
+                    
                     counter = 3
                     self.fahrrad_loaded = true
 
@@ -385,6 +386,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                             //mehrere Sponsoren könnten sein
                         splist_cell.splist_sponsor.text = self.project_object?.getCycleObject.getDonations[0].getSponsor.getName
                         splist_cell.splist_description.text = self.project_object?.getCycleObject.getDonations[0].getSponsor.getDescription
+                            splist_cell.splist_image.image = self.project_object?.getCycleObject.getDonations[0].getSponsor.getLogo
                         self.counter_sponsor += 1
                         return splist_cell
                         }else {
