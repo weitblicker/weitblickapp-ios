@@ -213,7 +213,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                        }
                    }
                }
-       // let eventIDs : [Int] = project_object?.ge
+        let eventIDs : [Int] = project_object?.getEvents ?? []
             for id in eventIDs{
                               dispatchGroup.enter()
                 EventService.getEventByID(id: id) { (event) in
@@ -223,9 +223,10 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                                   }
                               }
                           }
-               dispatchGroup.notify(queue: .main) {
+        
+                dispatchGroup.notify(queue: .main) {
                 print("In Dispatch Group Notify \n")
-                print("NEWSLIST COUNT: " + self.newsList.count.description)
+                print("EVENTLIST COUNT: " + self.eventList.count.description)
                 self.partner_loaded =  false
                 self.partner_head = false
                 self.partner_list = false
@@ -329,15 +330,13 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 }
                     
                  //spenden
-                 if (project_object!.getCycleObject.getDonations.count > 0 && self.spenden_loaded == false){
+                 if (self.spenden_loaded == false){
                     print("IN Spenden")
                     let cell = tableView.dequeueReusableCell(withIdentifier:"spenden_cell", for: indexPath)as! P_DetailSpendenCell
-                    cell.spendenkonto.text = "Spendenkonto" //donation bank
-                    cell.spendenstand.text = "598"
-                    cell.spendenziel.text = "6000"//donation goal
-                    cell.spendenbeschreibung.text = "Beschreibung" // donation description
-                    
-                    counter = 2
+                    cell.spendenkonto.text = self.project_object?.getDonationGlobal.getDonationAccount.getIban
+                    cell.spendenstand.text = self.project_object?.getDonationGlobal.getCurrent.description
+                    cell.spendenziel.text = self.project_object?.getDonationGlobal.getDonationGoal.description
+                    cell.spendenbeschreibung.text = self.project_object?.getDonationGlobal.getDescription
                     self.spenden_loaded = true
 
                     return cell
@@ -504,7 +503,9 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 }
 
                 //event
-                 if (1 == 1){
+        print("EVENT COUNT : "+self.project_object!.getEvents.count.description)
+                 if (self.project_object!.getEvents.count > 0 && self.event_loaded == false){
+        
                     print("IN EVENt")
                     let cell = tableView.dequeueReusableCell(withIdentifier:"event_cell", for: indexPath)as! P_DetailEventCell
                     if(self.event_head == false){
@@ -515,19 +516,26 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
                     }
                     if(self.event_list == false){
+                       
                         print("IN EVENT IF 2")
                         let evlist_cell = cell.event_tableView.dequeueReusableCell(withIdentifier:"evlist_cell", for: indexPath)as! EvListCell
-                        evlist_cell.evlist_date.text = "12.12.12"
-                        evlist_cell.evlist_location.text = "Osnabrück"
-                        evlist_cell.evlist_title.text = "News title"
-                        evlist_cell.evlist_time.text = "18 UHr"
-                        evlist_cell.evlist_description.text = "sajhvfhsdvcfhsdbch"
+                         if(self.counter_events < self.eventList.count && self.counter_events < 3){
+                            print("IN EVENT IF 3")
+                            evlist_cell.evlist_date.text = self.eventList[self.counter_events].getStartDate.dateAndTimetoString()
+                            evlist_cell.evlist_location.text = self.eventList[self.counter_events].getLocation.getAddress
+                            evlist_cell.evlist_title.text = self.eventList[self.counter_events].getTitle
+                            evlist_cell.evlist_time.text = "18 Uhr"//self.eventList[self.counter_events]
+                            evlist_cell.evlist_description.text = self.eventList[self.counter_events].getDescription
+                            self.counter_events += 1
+                            return evlist_cell
+                        }else{
                         self.event_list = true
-                        return evlist_cell
+                        
+                        }
 
 
                     }
-                    else if(1 == 1){
+                    else if(self.eventList.count > 3){
                         print("IN EVENT IF 3")
                         let more_cell = cell.event_tableView.dequeueReusableCell(withIdentifier:"show_more_event_cell", for: indexPath)as! ShowMoreEventsCell
                        return more_cell
@@ -535,8 +543,11 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     self.event_loaded = true
                     return cell
                  }
-
+         let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
+         return cell
         }
+    
+ 
 
        
     
