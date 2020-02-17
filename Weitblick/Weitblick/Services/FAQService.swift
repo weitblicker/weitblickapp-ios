@@ -10,6 +10,13 @@ import UIKit
 
 class FAQService{
     
+    static func loadContact(completion: @escaping (_ agbObject : AGBObject) -> ()){
+    
+        
+        
+    
+    }
+    
     static func loadAGBS(completion: @escaping (_ agbObject : AGBObject) -> ()){
 //        private var title: String
 //        private var image : UIImage
@@ -29,7 +36,7 @@ class FAQService{
                 guard let title = agbDict.value(forKey: "title")  else { return }
                 let titleString = title as! String
                 
-                var image : UIImage
+                var image : UIImage?
                 guard let imageJSON = agbDict.value(forKey : "image") else { return }
                 if let imageString = imageJSON as? String{
                     if(imageString == ""){
@@ -45,7 +52,7 @@ class FAQService{
                 guard let text = agbDict.value(forKey: "text")  else { return }
                 let textString = text as! String
                 
-                let agbObject = AGBObject(title: titleString, image: image, text: textString)
+                let agbObject = AGBObject(title: titleString, image: image!, text: textString)
                 completion(agbObject)
             }
             
@@ -98,7 +105,7 @@ class FAQService{
                 if let membersArray = members as? NSArray{
                     for memberItem in membersArray{
                         if let memberDict = memberItem as? NSDictionary{
-                            s
+                            
                             guard let name = memberDict.value(forKey: "name") else { return }
                             let nameString = name as! String
                             
