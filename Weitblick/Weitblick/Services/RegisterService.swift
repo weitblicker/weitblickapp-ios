@@ -39,7 +39,7 @@ class RegisterService {
                   print("User: ")
                   print(jsonUser.html2String)
                 }catch {
-                  print("Error: cannot create JSON from todo")
+                  print("Error: cannot create JSON from user")
                   return
                 }
                 let session = URLSession.shared
