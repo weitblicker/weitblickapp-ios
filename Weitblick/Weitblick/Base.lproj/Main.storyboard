@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1497,13 +1497,13 @@
                                                         <fragment content="Partner">
                                                             <attributes>
                                                                 <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <font key="NSFont" size="15" name="OpenSans-Bold"/>
+                                                                <font key="NSFont" metaFont="system" size="15"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5br-Kb-OPx">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5br-Kb-OPx">
                                                     <rect key="frame" x="128" y="53" width="169" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="169" id="uMm-Sa-Keb"/>
@@ -1512,7 +1512,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Land" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UgB-dh-K8X">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Land" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UgB-dh-K8X">
                                                     <rect key="frame" x="157" y="90" width="160" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="VSa-Lo-3d1"/>
@@ -1529,7 +1529,7 @@
                                                     </constraints>
                                                     <state key="normal" title="Button" image="bike"/>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marker" translatesAutoresizingMaskIntoConstraints="NO" id="e6X-y1-SBe">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="marker" translatesAutoresizingMaskIntoConstraints="NO" id="e6X-y1-SBe">
                                                     <rect key="frame" x="129" y="90" width="20" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="gus-QT-tAU"/>
@@ -1579,7 +1579,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="ZCW-uZ-Q7m" id="UGJ-r5-uWb"/>
-                        <segue destination="Iga-6e-GSm" kind="show" identifier="goToProjectDetail" id="Xvg-ET-l87"/>
+                        <segue destination="Iga-6e-GSm" kind="replace" identifier="goToProjectDetail" splitViewControllerTargetIndex="1" id="Xvg-ET-l87"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wfW-S6-xLU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2587,10 +2587,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9K-cK-2Et" userLabel="infoButton">
-                                <rect key="frame" x="99" y="604" width="43" height="39"/>
+                                <rect key="frame" x="106" y="600" width="43" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="43" id="Ewd-dZ-Ds7"/>
-                                    <constraint firstAttribute="height" constant="39" id="guh-hb-MTa"/>
+                                    <constraint firstAttribute="height" constant="43" id="guh-hb-MTa"/>
                                 </constraints>
                                 <state key="normal" image="info"/>
                                 <connections>
@@ -2626,7 +2626,7 @@
                                     <fragment content="OSNABRÜCK">
                                         <attributes>
                                             <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <font key="NSFont" size="15" name="OpenSans-Bold"/>
+                                            <font key="NSFont" metaFont="system" size="15"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -2672,7 +2672,6 @@
                             <constraint firstItem="T8G-z4-N7j" firstAttribute="leading" secondItem="Uws-nT-KyA" secondAttribute="trailing" constant="14" id="04x-5M-eRn"/>
                             <constraint firstItem="6DG-b7-7Tm" firstAttribute="top" secondItem="4FG-yX-59U" secondAttribute="bottom" constant="1" id="060-Bk-ULe"/>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ryg-vg-7cn" secondAttribute="trailing" symbolic="YES" id="4Hq-Lh-nLo"/>
-                            <constraint firstItem="c9K-cK-2Et" firstAttribute="leading" secondItem="zRI-y1-W90" secondAttribute="leading" constant="99" id="4ff-dI-31Q"/>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="bottom" secondItem="VRs-ev-0P4" secondAttribute="bottom" constant="29" id="57I-PV-GFw"/>
                             <constraint firstItem="LUW-4F-O8R" firstAttribute="top" secondItem="U5I-RH-uMl" secondAttribute="bottom" constant="-19" id="9kY-jS-VSv"/>
                             <constraint firstItem="DHH-oU-FKg" firstAttribute="top" secondItem="zRI-y1-W90" secondAttribute="top" constant="98" id="9pT-uC-090"/>
@@ -2688,8 +2687,9 @@
                             <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="DB3-QT-6ap" secondAttribute="trailing" constant="47" id="OeZ-ra-ZaB"/>
                             <constraint firstItem="Uws-nT-KyA" firstAttribute="leading" secondItem="4FG-yX-59U" secondAttribute="trailing" constant="8" id="PYf-hY-JAg"/>
                             <constraint firstItem="VRs-ev-0P4" firstAttribute="centerX" secondItem="zRI-y1-W90" secondAttribute="centerX" id="QNF-cr-X01"/>
-                            <constraint firstItem="zRI-y1-W90" firstAttribute="bottom" secondItem="djn-zQ-deb" secondAttribute="bottom" constant="42" id="QRq-h4-9rd"/>
+                            <constraint firstItem="djn-zQ-deb" firstAttribute="top" secondItem="Jv4-Pi-exn" secondAttribute="bottom" constant="-114" id="Rh0-Ae-miM"/>
                             <constraint firstItem="XBf-40-Vp1" firstAttribute="leading" secondItem="zRI-y1-W90" secondAttribute="leading" constant="43" id="SPw-xS-X2m"/>
+                            <constraint firstItem="VRs-ev-0P4" firstAttribute="leading" secondItem="c9K-cK-2Et" secondAttribute="trailing" constant="24" id="SlT-IT-JuZ"/>
                             <constraint firstItem="R76-Lb-x2q" firstAttribute="top" secondItem="zRI-y1-W90" secondAttribute="top" constant="98" id="Ubg-v1-9SR"/>
                             <constraint firstItem="U5I-RH-uMl" firstAttribute="leading" secondItem="Jv4-Pi-exn" secondAttribute="leading" id="W5O-JW-zF3"/>
                             <constraint firstItem="4FG-yX-59U" firstAttribute="top" secondItem="zRI-y1-W90" secondAttribute="top" constant="-10" id="Z5Q-fJ-aeg"/>
@@ -2699,6 +2699,7 @@
                             <constraint firstItem="yNJ-YU-q42" firstAttribute="trailing" secondItem="Jv4-Pi-exn" secondAttribute="trailing" id="bZK-yg-yI8"/>
                             <constraint firstItem="R76-Lb-x2q" firstAttribute="top" secondItem="yNJ-YU-q42" secondAttribute="bottom" constant="83" id="cG5-Y6-bK9"/>
                             <constraint firstItem="LUW-4F-O8R" firstAttribute="leading" secondItem="T8G-z4-N7j" secondAttribute="trailing" constant="8" id="dff-IL-2d1"/>
+                            <constraint firstItem="djn-zQ-deb" firstAttribute="leading" secondItem="VRs-ev-0P4" secondAttribute="trailing" constant="24" id="epB-Sd-czK"/>
                             <constraint firstItem="yNJ-YU-q42" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Jv4-Pi-exn" secondAttribute="leading" id="f6M-2A-Ul4"/>
                             <constraint firstItem="wxR-u4-4YA" firstAttribute="top" secondItem="6DG-b7-7Tm" secondAttribute="bottom" constant="38" id="flL-8Z-fDa"/>
                             <constraint firstItem="zRI-y1-W90" firstAttribute="trailing" secondItem="DHH-oU-FKg" secondAttribute="trailing" constant="77" id="hah-H6-w9v"/>
@@ -2715,7 +2716,6 @@
                             <constraint firstItem="yNJ-YU-q42" firstAttribute="centerY" secondItem="LUW-4F-O8R" secondAttribute="centerY" constant="-0.25" id="tYh-C3-G5M"/>
                             <constraint firstItem="yNJ-YU-q42" firstAttribute="top" secondItem="tnf-Td-zRP" secondAttribute="topMargin" constant="-13" id="ugB-zb-YcZ"/>
                             <constraint firstItem="6DG-b7-7Tm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zRI-y1-W90" secondAttribute="leading" id="x3n-Jw-9IC"/>
-                            <constraint firstItem="djn-zQ-deb" firstAttribute="leading" secondItem="Jv4-Pi-exn" secondAttribute="trailing" constant="-149" id="x4i-GF-ZeC"/>
                             <constraint firstItem="Jv4-Pi-exn" firstAttribute="bottom" secondItem="zRI-y1-W90" secondAttribute="bottom" constant="30" id="xe0-Bf-VGO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zRI-y1-W90"/>
@@ -2863,7 +2863,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klx-0y-ShH">
-                                <rect key="frame" x="0.0" y="43" width="414" height="36"/>
+                                <rect key="frame" x="0.0" y="42" width="414" height="36"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="s5Q-cM-GFB"/>
@@ -2873,13 +2873,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weitblickLogoCircle" translatesAutoresizingMaskIntoConstraints="NO" id="8fM-4Z-BoQ">
-                                <rect key="frame" x="20" y="45" width="28" height="28"/>
+                                <rect key="frame" x="20" y="44" width="28" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="KZa-tt-0DP"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwZ-zS-eel">
-                                <rect key="frame" x="263" y="51" width="131" height="24"/>
+                                <rect key="frame" x="263" y="50" width="131" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="131" id="Vqe-3a-Xn4"/>
                                 </constraints>
@@ -2911,11 +2911,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLc-AM-mW2">
-                                <rect key="frame" x="56" y="48" width="59" height="21"/>
+                                <rect key="frame" x="56" y="48" width="53.5" height="19"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Ort, Ort">
                                         <attributes>
-                                            <font key="NSFont" size="15" name="OpenSans-Bold"/>
+                                            <font key="NSFont" metaFont="system" size="15"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -3525,7 +3525,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thq-HD-zUk">
-                                                <rect key="frame" x="63" y="231" width="168" height="20.5"/>
+                                                <rect key="frame" x="63" y="231" width="168" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="168" id="Ivd-1b-dP3"/>
                                                 </constraints>
@@ -3533,7 +3533,7 @@
                                                     <fragment content="Stadt">
                                                         <attributes>
                                                             <color key="NSColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <font key="NSFont" size="15" name="OpenSans-Bold"/>
+                                                            <font key="NSFont" metaFont="system" size="15"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -3579,7 +3579,7 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R0Y-z2-yrq">
-                                                                    <rect key="frame" x="165" y="25" width="196" height="20.5"/>
+                                                                    <rect key="frame" x="165" y="25" width="196" height="18"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="196" id="f3k-11-iJo"/>
                                                                     </constraints>
@@ -3587,13 +3587,13 @@
                                                                         <fragment content="Label">
                                                                             <attributes>
                                                                                 <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                <font key="NSFont" size="15" name="OpenSans-Bold"/>
+                                                                                <font key="NSFont" metaFont="system" size="15"/>
                                                                             </attributes>
                                                                         </fragment>
                                                                     </attributedString>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2n0-qO-sXm">
-                                                                    <rect key="frame" x="139" y="63.5" width="176" height="22"/>
+                                                                    <rect key="frame" x="139" y="61" width="176" height="22"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="176" id="fXS-iH-R6E"/>
                                                                     </constraints>
@@ -3608,7 +3608,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WBCD_Logo_Location" translatesAutoresizingMaskIntoConstraints="NO" id="PkA-dj-3oQ">
-                                                                    <rect key="frame" x="135" y="96.5" width="26" height="24"/>
+                                                                    <rect key="frame" x="135" y="94" width="26" height="24"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="24" id="MQW-xc-LDE"/>
                                                                         <constraint firstAttribute="height" constant="24" id="lfN-zw-RlJ"/>
@@ -4242,7 +4242,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohU-KE-Wlj">
-                                                    <rect key="frame" x="45" y="184" width="283" height="19.5"/>
+                                                    <rect key="frame" x="45" y="184" width="283" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="283" id="0wU-CB-ND7"/>
                                                     </constraints>
@@ -4250,7 +4250,7 @@
                                                         <fragment content="Ort">
                                                             <attributes>
                                                                 <color key="NSColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <font key="NSFont" size="14" name="OpenSans-Bold"/>
+                                                                <font key="NSFont" metaFont="system" size="14"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -4407,7 +4407,7 @@
                                                         <fragment content="OSNABRÜCK">
                                                             <attributes>
                                                                 <color key="NSColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <font key="NSFont" size="14" name="OpenSans-Bold"/>
+                                                                <font key="NSFont" metaFont="system" size="14"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -4577,7 +4577,7 @@
                                                     <fragment content="OSNABRÜCK">
                                                         <attributes>
                                                             <color key="NSColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <font key="NSFont" size="17" name="OpenSans-Bold"/>
+                                                            <font key="NSFont" metaFont="system" size="17"/>
                                                         </attributes>
                                                     </fragment>
                                                 </attributedString>
@@ -4965,7 +4965,7 @@
                                 <rect key="frame" x="0.0" y="265" width="414" height="401"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="projectCell" rowHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="LaP-8O-XHt" customClass="ProjectTableViewCell" customModule="Weitblick" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="projectCell" rowHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="LaP-8O-XHt" customClass="ProjectTableViewCell" customModule="Weitblick" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LaP-8O-XHt" id="cho-a1-YLx">
@@ -5023,7 +5023,7 @@
                                                         <fragment content="OSNABRÜCK">
                                                             <attributes>
                                                                 <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <font key="NSFont" size="15" name="OpenSans-Bold"/>
+                                                                <font key="NSFont" metaFont="system" size="15"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -5185,12 +5185,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVp-CM-7kU">
-                                                    <rect key="frame" x="49" y="237" width="102" height="21"/>
+                                                    <rect key="frame" x="49" y="240" width="102" height="18"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Ort">
                                                             <attributes>
                                                                 <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <font key="NSFont" size="15" name="OpenSans-Bold"/>
+                                                                <font key="NSFont" metaFont="system" size="15"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -5330,6 +5330,6 @@
         <segue reference="HIy-1P-iki"/>
         <segue reference="Cv5-VS-8qz"/>
         <segue reference="SuE-yg-A6n"/>
-        <segue reference="Xvg-ET-l87"/>
+        <segue reference="Kkg-vc-dTE"/>
     </inferredMetricsTieBreakers>
 </document>
