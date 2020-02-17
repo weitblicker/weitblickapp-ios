@@ -21,11 +21,14 @@ class AGBViewController: UIViewController {
     
     override func viewDidLoad() {
         
+        
         FAQService.loadAGBS { (agbObject) in
+            DispatchQueue.main.async {
             self.textLabel.text = agbObject.getText
             self.agb_image.image = agbObject.getImage
             self.agb_title.text = agbObject.getTitle
             self.textLabel.sizeToFit()
+            }
         }
          super.viewDidLoad()
          print("IN AGB")
