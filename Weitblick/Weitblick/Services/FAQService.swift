@@ -10,6 +10,130 @@ import UIKit
 
 class FAQService{
     
+    static func loadAGBS(completion: @escaping (_ agbObject : AGBObject) -> ()){
+//        private var title: String
+//        private var image : UIImage
+//        private var text : String
+//
+        let url = NSURL(string : Constants.agbURL)
+        let str = "surfer:hangloose"
+        let test2 = Data(str.utf8).base64EncodedString();
+        var request = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+        URLSession.shared.dataTask(with: request, completionHandler: {(data,response,error) -> Void in
+            
+            let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+            if let agbDict = jsondata as? NSDictionary{
+                guard let title = agbDict.value(forKey: "title")  else { return }
+                let titleString = title as! String
+                
+                var image : UIImage
+                guard let imageJSON = agbDict.value(forKey : "image") else { return }
+                if let imageString = imageJSON as? String{
+                    if(imageString == ""){
+                        let size = CGSize.init(width: 334, height: 176)
+                        image = UIImage(named: "Weitblick")!.crop(to: size)
+                    }else{
+                        let imgURL = NSURL(string : Constants.url + imageString)
+                        let data = NSData(contentsOf: (imgURL as URL?)!)
+                        image = UIImage(data: data! as Data)!
+                    }
+                }
+                
+                guard let text = agbDict.value(forKey: "text")  else { return }
+                let textString = text as! String
+                
+                let agbObject = AGBObject(title: titleString, image: image, text: textString)
+                completion(agbObject)
+            }
+            
+        }).resume()
+        
+        
+    }
+    
+    static func loadCredits(completion: @escaping (_ creditObject : Creditobject) -> ()){
+        
+        let url = NSURL(string : Constants.creditURL)
+        let str = "surfer:hangloose"
+        let test2 = Data(str.utf8).base64EncodedString();
+        var request = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+        URLSession.shared.dataTask(with: request, completionHandler: {(data,response,error) -> Void in
+            
+            let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+            if let creditDict = jsondata as? NSDictionary{
+                
+                guard let id = creditDict.value(forKey: "id")  else { return }
+                let idNumber = id as! NSNumber
+                let idInt = Int.init(truncating: idNumber)
+                
+                guard let name = creditDict.value(forKey: "name")  else { return }
+                let nameString = name as! String
+                
+                guard let description = creditDict.value(forKey: "description")  else { return }
+                let descriptionString = description as! String
+                
+                guard let imageURLJSON = creditDict.value(forKey : "image") else { return }
+                var imageURL = ""
+                if let mainImageDict = imageURLJSON as? NSDictionary{
+                    guard let imgURL = mainImageDict.value(forKey: "url") else { return }
+                    imageURL = imgURL as! String
+                }
+                var image : UIImage
+                if(imageURL == ""){
+                    let size = CGSize.init(width: 334, height: 176)
+                    image = UIImage(named: "Weitblick")!.crop(to: size)
+                }else{
+                    let imgURL = NSURL(string : Constants.url + imageURL)
+                    let data = NSData(contentsOf: (imgURL as URL?)!)
+                    image = UIImage(data: data! as Data)!
+                }
+                var memberList : [Member] = []
+                guard let members = creditDict.value(forKey: "member") else { return }
+                if let membersArray = members as? NSArray{
+                    for memberItem in membersArray{
+                        if let memberDict = memberItem as? NSDictionary{
+                            s
+                            guard let name = memberDict.value(forKey: "name") else { return }
+                            let nameString = name as! String
+                            
+                            guard let role = memberDict.value(forKey: "role") else { return }
+                            let roleString = role as! String
+                            
+                            var image : UIImage?
+                            guard let imageJSON = memberDict.value(forKey: "image") else { return }
+                            let imageString = imageJSON as! String
+                            if(imageString == ""){
+                                let size = CGSize.init(width: 334, height: 176)
+                                image = UIImage(named: "Weitblick")!.crop(to: size)
+                            }else{
+                                let imgURL = NSURL(string : Constants.url + imageString)
+                                let data = NSData(contentsOf: (imgURL as URL?)!)
+                                image = UIImage(data: data! as Data)!
+                            }
+                            
+                            guard let email = memberDict.value(forKey: "email") else { return }
+                            let emailString = email as! String
+                            
+                            guard let text = memberDict.value(forKey: "text") else { return }
+                            let textString = text as! String
+                            
+                            let member = Member(name: nameString, role: roleString, image: image!, email: emailString, text: textString)
+                            memberList.append(member)
+                        }
+                    }
+                }
+                let creditObject = Creditobject(id: idInt, name: nameString, description: descriptionString, image: image, members: memberList)
+                completion(creditObject)
+            }
+        }).resume()
+    }
+    
     static func loadFAQ( completion: @escaping (_ questions : [FAQEntry] ) -> ()){
         print("In FAQService")
         var resultArray : [FAQEntry] = []
@@ -22,7 +146,6 @@ class FAQService{
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-        print("<")
         URLSession.shared.dataTask(with: request, completionHandler: {(data,response,error) -> Void in
             
             let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
