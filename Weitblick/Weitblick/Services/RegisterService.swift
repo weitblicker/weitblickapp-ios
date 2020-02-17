@@ -89,7 +89,6 @@ class RegisterService {
                  }
                }
 
-
           task.resume()
 
    
@@ -122,10 +121,10 @@ class RegisterService {
                     return
         }
         else if(description.contains("Verification e-mail sent.")){
-                error("E-mail zur Verifizierung wurde verschickt")
+                error("E-mail zur Verifizierung wurde verschickt.")
                     return
        }else{
-           error("Fehler bei der Registrierung")
+           error("Fehler bei der Registrierung.")
         return
         }
 
