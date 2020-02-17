@@ -70,7 +70,7 @@ class MapViewController: UIViewController {
         
         
         
-        self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop500"), for: UIControl.State.normal)
+        self.stopPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
         super.viewDidLoad()
         checkLocationServices()
         distanceLbl.text = "0.00 km"
@@ -175,12 +175,12 @@ class MapViewController: UIViewController {
             self.timer.fire()
             self.timer.invalidate()
             startTracking = false
-            self.stopPlayButton.setImage(UIImage(named: "orangeButtonStop500"), for: UIControl.State.normal)
+            self.stopPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
         }else{
             startTracking = true
             hasbeenPaused = true;
             setupSegmentations()
-            self.stopPlayButton.setImage(UIImage(named: "greenButtonPlay500"), for: UIControl.State.normal)
+            self.stopPlayButton.setImage(UIImage(named: "play"), for: UIControl.State.normal)
 
         }
     }
