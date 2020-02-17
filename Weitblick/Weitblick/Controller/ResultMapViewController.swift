@@ -67,9 +67,9 @@ class ResultMapViewController: UIViewController ,UITableViewDataSource, UITableV
         self.project_location.text = self.project?.getLocation.getAddress
         for host in self.project!.getHosts{
             if(self.project!.getHosts.count > 1){
-            self.hostList = self.hostList + host.getName + ","
+                self.hostList = self.hostList + host.getCity.uppercased() + ","
             }else{
-                self.hostList = self.hostList + host.getName
+                self.hostList = self.hostList + host.getCity.uppercased()
             }
         }
         self.project_city.text = self.hostList
