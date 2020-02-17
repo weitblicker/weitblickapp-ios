@@ -474,6 +474,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     if(self.blogList.count > 3 && self.more_blog_loaded == false){
                         print("IN BLOG IF 3")
                         let more_cell = cell.blog_tableView.dequeueReusableCell(withIdentifier:"show_more_blog_cell", for: indexPath)as! ShowMoreBlogCell
+                        more_cell.show_more_button.addTarget(self, action: #selector(ProjectDetailViewController.goToBlogFromBlogList), for: .touchUpInside)
                         self.more_blog_loaded = true
                         return more_cell
 
@@ -514,6 +515,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     if(self.project_object!.getNews.count > 3 && self.more_news_loaded == false){
                         print("IN NEWS IF 3")
                         let more_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"show_more_news", for: indexPath)as! ShowMoreNewsCell
+                         more_cell.show_more_button.addTarget(self, action: #selector(ProjectDetailViewController.goToNewsFromNewsList), for: .touchUpInside)
                         self.more_news_loaded = true
                         return more_cell
                     }
@@ -557,6 +559,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     if(self.eventList.count > 3 && self.more_event_loaded == false){
                         print("IN EVENT IF 3")
                         let more_cell = cell.event_tableView.dequeueReusableCell(withIdentifier:"show_more_event_cell", for: indexPath)as! ShowMoreEventsCell
+                         more_cell.show_more_event.addTarget(self, action: #selector(ProjectDetailViewController.goToEventFromEventList), for: .touchUpInside)
                         self.more_event_loaded = true
                        return more_cell
                     }
@@ -567,8 +570,47 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
          return cell
         }
 
+    @objc func goToBlogFromBlogList(sender:UIButton!){
+           
+           self.tabBarController?.selectedIndex = 2
+           
+       }
+    
+    
+    @objc func goToNewsFromNewsList(sender:UIButton!){
+           
+           self.tabBarController?.selectedIndex = 1
+           
+       }
+    
+    
+    
+    @objc func goToEventFromEventList(sender:UIButton!){
+        
+        self.tabBarController?.selectedIndex = 1
+        
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+                 if segue.destination is BlogViewController
+                 {
+                     let blogController = segue.destination as? BlogViewController
+                     blogController?.blogListProjectDetail = self.blogList
 
+                 }
+                if segue.destination is NewsViewController
+                 {
+                  let newsController = segue.destination as? NewsViewController
+                    newsController?.newsListProjectDetail = self.newsList
+                 
+                   }
+               if segue.destination is EventViewController
+                {
+                    let eventController = segue.destination as? EventViewController
+                    eventController?.eventListProjectDetail = self.eventList
 
+               }
+           
+             }
 
 
 

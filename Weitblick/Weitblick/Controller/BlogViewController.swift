@@ -12,6 +12,8 @@ import UIKit
 class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDelegate{
 
     var blogList : [BlogEntry] = []
+    var blogListProjectDetail : [BlogEntry] = []
+    var switch_counter = 0
     var count = 0
     var postCount = 3
     var blog_object : BlogEntry?
@@ -23,29 +25,54 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if(self.switch_counter == 1){
+            return self.blogListProjectDetail.count
+        }
         return blogList.count
     
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier:"blog_cell", for: indexPath)as! BlogTableViewCell
-
-        cell.blog_image.image = self.blogList[indexPath.row].getImage
-        cell.blog_description.text = blogList[indexPath.row].getTeaser
+        
+        if(self.switch_counter == 1){
+        cell.blog_image.image = self.blogListProjectDetail[indexPath.row].getImage
+        cell.blog_description.text = blogListProjectDetail[indexPath.row].getTeaser
         cell.blog_description.sizeToFit()
-        cell.blog_date.text = blogList[indexPath.row].getCreationDate.dateAndTimetoString()
-        cell.blog_title.text = blogList[indexPath.row].getTitle
-        cell.blog_description.text = blogList[indexPath.row].getText
+        cell.blog_date.text = blogListProjectDetail[indexPath.row].getCreationDate.dateAndTimetoString()
+        cell.blog_title.text = blogListProjectDetail[indexPath.row].getTitle
+        cell.blog_description.text = blogListProjectDetail[indexPath.row].getText
         cell.triangle.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
         cell.blog_title.sizeToFit()
-        if(blogList[indexPath.row].getLocation.getAddress == ""){
+        if(blogListProjectDetail[indexPath.row].getLocation.getAddress == ""){
                   cell.blog_location_marker.alpha = 0
                   cell.blog_country.text = "     "
              
               }else{
-                  cell.blog_country.text = blogList[indexPath.row].getLocation.getAddress
+                  cell.blog_country.text = blogListProjectDetail[indexPath.row].getLocation.getAddress
                   
               }
+        }else{
+            
+            cell.blog_image.image = self.blogList[indexPath.row].getImage
+            cell.blog_description.text = blogList[indexPath.row].getTeaser
+            cell.blog_description.sizeToFit()
+            cell.blog_date.text = blogList[indexPath.row].getCreationDate.dateAndTimetoString()
+            cell.blog_title.text = blogList[indexPath.row].getTitle
+            cell.blog_description.text = blogList[indexPath.row].getText
+            cell.triangle.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
+            cell.blog_title.sizeToFit()
+            if(blogList[indexPath.row].getLocation.getAddress == ""){
+                      cell.blog_location_marker.alpha = 0
+                      cell.blog_country.text = "     "
+                 
+                  }else{
+                      cell.blog_country.text = blogList[indexPath.row].getLocation.getAddress
+                      
+                  }
+            
+        }
         
         //cell.blog_button_detail.tag = indexPath.row
         
@@ -63,6 +90,10 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if(blogListProjectDetail.count > 0){
+            self.switch_counter = 1
+        }
+      //  print("SWITCH COUNTER: "+self.switch_counter.description)
         BlogService.loadBlogs(date: self.date) { (list) in
             self.blogList = list
             DispatchQueue.main.async {

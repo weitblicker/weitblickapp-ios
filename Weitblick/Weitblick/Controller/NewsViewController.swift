@@ -17,6 +17,8 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var postCount : Int = 5
     var count : Int = 0
     var newsList : [NewsEntry] = []
+    var newsListProjectDetail: [NewsEntry] = []
+    var switch_counter = 0
     var news_title = ""
     var news_description = ""
     var news_location = ""
@@ -28,6 +30,9 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return 1
     }
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(self.switch_counter == 1){
+            return self.newsListProjectDetail.count
+        }
         return newsList.count
     }
 
@@ -35,6 +40,8 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
      func tableView(_ tableView: UITableView,
                              cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if(self.switch_counter != 1){
 
         // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
         let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! NewsTableViewCell
@@ -58,6 +65,31 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.news_button_detail.tag = indexPath.row
          cell.triangle.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
         return cell
+        }else{
+            // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
+             let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! NewsTableViewCell
+             // Zelle konfigurieren
+           cell.news_image.image = newsListProjectDetail[indexPath.row].getImage
+            // cell.formlabel.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
+             // TODO If TEASER = NIL OR ""
+             let date = newsListProjectDetail[indexPath.row].getCreationDate
+             if(date.isToDate()){
+                 cell.news_date.text = "Heute"
+             }else if(date.isYesterDate()){
+                 cell.news_date.text = "Gestern"
+             }else{
+                 cell.news_date.text =  date.dateAndTimetoString()
+             }
+             cell.news_hostLbl.text = newsListProjectDetail[indexPath.row].getHost.getCity.uppercased()
+             cell.news_description.text = newsListProjectDetail[indexPath.row].getTeaser.html2String
+             cell.news_description.sizeToFit()
+             cell.news_title.text = newsListProjectDetail[indexPath.row].getTitle.html2String
+             cell.news_title.sizeToFit()
+             cell.news_button_detail.tag = indexPath.row
+              cell.triangle.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
+             return cell
+            
+        }
     }
 
 
@@ -86,6 +118,11 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
 override func viewDidLoad() {
     super.viewDidLoad()
+    if(newsListProjectDetail.count > 0){
+               self.switch_counter = 1
+           }
+           print("SWITCH COUNTER: "+self.switch_counter.description)
+    
     DataService.loadNews(date: self.date) { (list) in
         self.newsList = list
         self.date = self.newsList.last!.getCreationDate
