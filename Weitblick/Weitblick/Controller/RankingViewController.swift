@@ -57,7 +57,6 @@ class RankingViewController: UIViewController ,UITableViewDataSource, UITableVie
             
            case 0:
           
-            
             //nach km anzeigen
                       print("KM FILTER ON")
                       //people = people.sorted(by: { $0.email > $1.email })

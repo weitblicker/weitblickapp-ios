@@ -15,6 +15,8 @@ class Author{
     
     init(image : UIImage, name : String){
         self.image = image
+        let size = CGSize.init(width: 100, height: 100)
+        self.image = self.image.crop(to: size)
         self.name = name
     }
 

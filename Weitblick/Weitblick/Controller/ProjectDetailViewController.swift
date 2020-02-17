@@ -91,6 +91,10 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
        var event_loaded : Bool = false
        var event_head : Bool = false
        var event_list : Bool = false
+       var more_news_loaded : Bool = false
+       var more_event_loaded : Bool = false
+    var more_blog_loaded : Bool = false
+    
 
     @IBOutlet weak var ButtonFav: UIButton!
 
@@ -247,9 +251,17 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 self.event_loaded  = false
                 self.event_head  = false
                 self.event_list  = false
-                self.counter_partner = 0
-                self.counter_sponsor = 0
+                self.more_blog_loaded = false
+                self.more_news_loaded = false
+                self.more_event_loaded = false
+                
+                self.postCount = 0
                 self.counter_milestones = 0
+                self.counter_news = 0
+                self.counter_events = 0
+                self.counter_blogs = 0
+                self.counter_sponsor = 0
+                self.counter_partner = 0
                 print("PARTNERLOADED AB HIER")
                 self.project_tableView.reloadData()
                  
@@ -330,7 +342,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 }
                     
                  //spenden
-                 if (self.spenden_loaded == false){
+        if (self.spenden_loaded == false && self.project_object?.getDonationGlobal.getDonationGoal != 0.0) {
                     print("IN Spenden")
                     let cell = tableView.dequeueReusableCell(withIdentifier:"spenden_cell", for: indexPath)as! P_DetailSpendenCell
                     cell.spendenkonto.text = self.project_object?.getDonationGlobal.getDonationAccount.getIban
@@ -355,9 +367,9 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         //                   }
 
                     cell.gefahren.text = project_object!.getCycleObject.getkmSum.description + " km"
-                    cell.spendenstand.text = project_object!.getCycleObject.getEuroSum.description
-                    cell.spendenziel.text = project_object!.getCycleObject.getEuroGoal.description
-                    cell.radfahrer_anzahl.text = "34"
+                    cell.spendenstand.text = project_object!.getCycleObject.getEuroSum.description + " €"
+                    cell.spendenziel.text = project_object!.getCycleObject.getEuroGoal.description + " €"
+                    cell.radfahrer_anzahl.text = project_object!.getCycleObject.getCyclists.description
                     counter = 3
                     self.fahrrad_loaded = true
 
@@ -385,6 +397,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                             //mehrere Sponsoren könnten sein
                         splist_cell.splist_sponsor.text = self.project_object?.getCycleObject.getDonations[0].getSponsor.getName
                         splist_cell.splist_description.text = self.project_object?.getCycleObject.getDonations[0].getSponsor.getDescription
+                            splist_cell.splist_image.image = self.project_object?.getCycleObject.getDonations[0].getSponsor.getLogo
                         self.counter_sponsor += 1
                         return splist_cell
                         }else {
@@ -456,10 +469,10 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                         
                        
                         }
-                     if(self.blogList.count > 3){
+                    if(self.blogList.count > 3 && self.more_blog_loaded == false){
                         print("IN BLOG IF 3")
                         let more_cell = cell.blog_tableView.dequeueReusableCell(withIdentifier:"show_more_blog_cell", for: indexPath)as! ShowMoreBlogCell
-                            counter = 6
+                        self.more_blog_loaded = true
                         return more_cell
 
                     }
@@ -484,18 +497,22 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                             nelist_cell.nelist_date.text = self.newsList[self.counter_news].getCreationDate.dateAndTimetoString();
                             nelist_cell.nelist_author.text = self.newsList[self.counter_news].getAuthor.getName
                             nelist_cell.nelist_description.text = self.newsList[self.counter_news].getText
+                            print("NEWS DES: "+self.newsList[self.counter_news].getText)
                             nelist_cell.nelist_title.text = self.newsList[self.counter_news].getTitle
                             nelist_cell.nelist_location.text = self.newsList[self.counter_news].getHost.getLocation.getAddress
                             nelist_cell.nelist_image!.image = self.newsList[self.counter_news].getImage
+                            nelist_cell.nelist_profileimg.image = self.newsList[self.counter_news].getAuthor.getImage
+                            
                             self.counter_news += 1
                             return nelist_cell
                         }else{
                              self.news_list = true
                         }
                     }
-                    else if(self.newsList.count > 3){
+                    if(self.project_object!.getNews.count > 3 && self.more_news_loaded == false){
                         print("IN NEWS IF 3")
                         let more_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"show_more_news", for: indexPath)as! ShowMoreNewsCell
+                        self.more_news_loaded = true
                         return more_cell
                     }
                     self.news_loaded = true
@@ -535,9 +552,10 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
 
                     }
-                    else if(self.eventList.count > 3){
+                    if(self.eventList.count > 3 && self.more_event_loaded == false){
                         print("IN EVENT IF 3")
                         let more_cell = cell.event_tableView.dequeueReusableCell(withIdentifier:"show_more_event_cell", for: indexPath)as! ShowMoreEventsCell
+                        self.more_event_loaded = true
                        return more_cell
                     }
                     self.event_loaded = true
