@@ -38,7 +38,7 @@ class FAQService{
                     }else{
                         let imgURL = NSURL(string : Constants.url + imageString)
                         let data = NSData(contentsOf: (imgURL as URL?)!)
-                        image = UIImage(data: data! as Data)!
+                         image = UIImage(data: data! as Data)!
                     }
                 }
                 
@@ -98,7 +98,7 @@ class FAQService{
                 if let membersArray = members as? NSArray{
                     for memberItem in membersArray{
                         if let memberDict = memberItem as? NSDictionary{
-                            s
+                            
                             guard let name = memberDict.value(forKey: "name") else { return }
                             let nameString = name as! String
                             
