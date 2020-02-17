@@ -101,6 +101,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
     var project_object: Project?
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.project_tableView.delegate = self
         self.project_tableView.dataSource = self
@@ -244,8 +245,10 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                }
                project_detail_description.attributedText = markdownParser.parse(project_object!.getDescription)
                project_detail_title.text = project_object?.getName
-               project_detail_location.text = project_object?.getLocation.getAddress
+        project_detail_location.text = project_object?.getHosts[0].getCity//project_object?.getLocation.getAddress
+              project_detail_maplocation.text = project_object?.getLocation.getAddress
         project_detail_date.text = project_object?.getPublished.dateAndTimetoString()
+       // annotation.title = project_object?.getLocation.getAddress
             
                // project_detail_image.image = img
                print("GALLERY COUNT")
@@ -468,6 +471,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                         let nelist_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"nelist_cell", for: indexPath)as! NeListCell
                         if(self.counter_news < self.newsList.count && self.counter_news < 3){
                             print("IN NEWS IF COUNTER")
+                            nelist_cell.nelist_date.text = self.newsList[self.counter_news].getCreationDate.dateAndTimetoString();
                             nelist_cell.nelist_author.text = self.newsList[self.counter_news].getAuthor.getName
                             nelist_cell.nelist_description.text = self.newsList[self.counter_news].getText
                             nelist_cell.nelist_title.text = self.newsList[self.counter_news].getTitle
