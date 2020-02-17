@@ -503,6 +503,16 @@ class DataService{
                     }
                 }
                 
+                var eventIDArray : [Int] = []
+                guard let events = projectDict.value(forKey: "events") else { return }
+                if let eventArray = events as? NSArray{
+                    cellcount = cellcount + 1
+                    for eventID in eventArray{
+                        cellcount = cellcount + 1
+                        eventIDArray.append(eventID as! Int)
+                    }
+                }
+                
                 // TODO EVENTS WIE BEI BLOG UND NEWS
                 
 //                    private var name : String
@@ -672,7 +682,7 @@ class DataService{
                                 
                                 // TODO Zelle mit donation account, donation description, donation goal, donbnation current +1Zelle wenn vorhanden
 
-                let project = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleObject: cycleObject, news: newsIDArray, blog: blogIDArray, milestones: milestoneList, partners: partnerList, cellCount: cellcount, donationGlobal: donationGlobal)
+                let project = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleObject: cycleObject, news: newsIDArray, blog: blogIDArray, milestones: milestoneList, partners: partnerList, cellCount: cellcount, donationGlobal: donationGlobal, events : eventIDArray)
                 resultimages = []
                 cellcount = 0;
                 print("Project with ID successfully fetched!\n")
@@ -863,6 +873,16 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                         }
                     }
                     
+                    var eventIDArray : [Int] = []
+                    guard let events = projectDict.value(forKey: "events") else { return }
+                    if let eventArray = events as? NSArray{
+                        cellcount = cellcount + 1
+                        for eventID in eventArray{
+                            cellcount = cellcount + 1
+                            eventIDArray.append(eventID as! Int)
+                        }
+                    }
+                    
                     // TODO EVENTS WIE BEI BLOG UND NEWS
                     
 //                    private var name : String
@@ -1032,7 +1052,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                     
                     // TODO Zelle mit donation account, donation description, donation goal, donbnation current +1Zelle wenn vorhanden
 
-                    let project = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleObject: cycleObject, news: newsIDArray, blog: blogIDArray, milestones: milestoneList, partners: partnerList, cellCount: cellcount, donationGlobal: donationGlobal)
+                    let project = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleObject: cycleObject, news: newsIDArray, blog: blogIDArray, milestones: milestoneList, partners: partnerList, cellCount: cellcount, donationGlobal: donationGlobal, events: eventIDArray)
                     projectList.append(project)
                     resultimages = []
                     cellcount = 0;

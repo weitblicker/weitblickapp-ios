@@ -30,8 +30,9 @@ class Project{
     
     private var news : [Int] = []
     private var blog : [Int] = []
+    private var events : [Int] = []
     
-    init(id : Int,published : Date, name : String, image: UIImage, gallery : [UIImage], hosts : [Host], description : String, location : Location, partnerID : [Int], cycleObject : CycleEntry, news : [Int], blog : [Int], milestones : [Milestone], partners : [Partner], cellCount : Int, donationGlobal : DonationGlobal ){
+    init(id : Int,published : Date, name : String, image: UIImage, gallery : [UIImage], hosts : [Host], description : String, location : Location, partnerID : [Int], cycleObject : CycleEntry, news : [Int], blog : [Int], milestones : [Milestone], partners : [Partner], cellCount : Int, donationGlobal : DonationGlobal , events : [Int]){
         self.id = id
         self.published = published
         self.name = name
@@ -46,6 +47,7 @@ class Project{
         self.partners = partners
         self.cellCount = cellCount
         self.donationGlobal = donationGlobal
+        self.events = events
         
         self.cycleObject = cycleObject
         
@@ -56,6 +58,10 @@ class Project{
         
         self.gallery = gallery
        
+    }
+    
+    public var getEvents : [Int]{
+        return self.events
     }
     
     public var getDonationGlobal : DonationGlobal{
