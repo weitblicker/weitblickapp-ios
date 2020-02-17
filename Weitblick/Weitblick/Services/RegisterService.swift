@@ -64,6 +64,7 @@ class RegisterService {
                    }
 
                    print("The Recieved Message is: " + received.description)
+              //     completion(received["detail"] as! String)
 
                  guard let userKey = received["key"] as? String else {
                      user.set(false, forKey: "isRegisterd")
@@ -120,7 +121,14 @@ class RegisterService {
                 error("Gib eine gültige E-Mail Adresse an.")
                     return
         }
-        
+        else if(description.contains("Verification e-mail sent.")){
+                error("E-mail zur Verifizierung wurde verschickt")
+                    return
+       }else{
+           error("Fehler bei der Registrierung")
+        return
+        }
+
            
      }
   

@@ -13,6 +13,7 @@ import UIKit
 class ProjectCycleViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate {
     
     var projectList : [Project] = []
+    var project_object : Project?
     var date = Date.init()
     var projectListCycle : [Project] = []
     var viewController : BikeViewController?
@@ -52,6 +53,10 @@ class ProjectCycleViewController: UIViewController, UITableViewDataSource, UITab
                        }
     }
   
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+           self.project_object = projectList[indexPath.row]
+           self.performSegue(withIdentifier: "goToProjectDetail", sender: self)
+       }
     
     
     
@@ -82,18 +87,6 @@ class ProjectCycleViewController: UIViewController, UITableViewDataSource, UITab
            
            return cell
        }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       //self.blog_object = projectList[indexPath.row]
-//        let projectID = self.projectList[indexPath.row].getID
-//        let projectName = self.projectList[indexPath.row].getName
-//
-//        UserDefaults.standard.set(projectID, forKey: "projectID")
-//        UserDefaults.standard.set(projectName, forKey: "projectName")
-//        print("ProjectName")
-//        print(projectName)
-//
-     //  self.performSegue(withIdentifier: "goToBikeView", sender: self)
-       }
     
     @objc func goToCycle(sender:UIButton!){
            
@@ -111,6 +104,18 @@ class ProjectCycleViewController: UIViewController, UITableViewDataSource, UITab
             }
         })
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+          if segue.destination is ProjectDetailViewController
+          {
+              let projectDetailViewController = segue.destination as? ProjectDetailViewController
+              projectDetailViewController?.project_object = self.project_object
+          //    projectDetailViewController?.count = self.count
+
+          }
+    
+      }
+    
 }
     
     
