@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wHH-Vk-rTy">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -2605,7 +2605,7 @@
                                     <fragment content="OSNABRÜCK">
                                         <attributes>
                                             <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <font key="NSFont" size="15" name="OpenSans-Bold"/>
+                                            <font key="NSFont" metaFont="system" size="15"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -3210,11 +3210,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mUm-g2-ekR">
-                                <rect key="frame" x="20" y="187" width="20" height="19"/>
+                                <rect key="frame" x="20" y="189" width="20" height="19"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMk-2k-27Z">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMk-2k-27Z">
                                 <rect key="frame" x="46" y="188" width="348" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="348" id="8cX-iY-B9z"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -3222,21 +3225,24 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="08h-C9-IwX" firstAttribute="top" secondItem="xMk-2k-27Z" secondAttribute="bottom" constant="49" id="3iJ-To-IC8"/>
                             <constraint firstItem="3se-4Y-FfD" firstAttribute="leading" secondItem="FP1-7X-qhF" secondAttribute="leadingMargin" id="8Ob-ZI-ucm"/>
-                            <constraint firstItem="mUm-g2-ekR" firstAttribute="top" secondItem="3se-4Y-FfD" secondAttribute="bottom" constant="23.5" id="AmS-fK-x38"/>
-                            <constraint firstItem="08h-C9-IwX" firstAttribute="top" secondItem="3se-4Y-FfD" secondAttribute="bottom" constant="96" id="Iyp-Qq-HKB"/>
+                            <constraint firstItem="mUm-g2-ekR" firstAttribute="top" secondItem="3se-4Y-FfD" secondAttribute="bottom" constant="25.5" id="AmS-fK-x38"/>
                             <constraint firstItem="3se-4Y-FfD" firstAttribute="leading" secondItem="mUm-g2-ekR" secondAttribute="leading" id="Mih-8B-Ikv"/>
                             <constraint firstItem="xMk-2k-27Z" firstAttribute="top" secondItem="3se-4Y-FfD" secondAttribute="bottom" constant="25" id="PMO-qw-nZ4"/>
                             <constraint firstItem="3se-4Y-FfD" firstAttribute="top" secondItem="FP1-7X-qhF" secondAttribute="top" constant="141" id="gYd-e6-kfT"/>
                             <constraint firstItem="xMk-2k-27Z" firstAttribute="trailing" secondItem="08h-C9-IwX" secondAttribute="trailing" id="gud-fA-zuz"/>
                             <constraint firstItem="08h-C9-IwX" firstAttribute="leading" secondItem="igL-sB-RDy" secondAttribute="leading" constant="46" id="ihh-Ay-42j"/>
                             <constraint firstItem="08h-C9-IwX" firstAttribute="trailing" secondItem="FP1-7X-qhF" secondAttribute="trailingMargin" id="kMk-gw-0cv"/>
+                            <constraint firstItem="08h-C9-IwX" firstAttribute="top" secondItem="xMk-2k-27Z" secondAttribute="bottom" constant="49" id="pCo-G6-2W4"/>
                             <constraint firstItem="xMk-2k-27Z" firstAttribute="leading" secondItem="08h-C9-IwX" secondAttribute="leading" id="tbz-zS-bMG"/>
                             <constraint firstItem="igL-sB-RDy" firstAttribute="trailing" secondItem="3se-4Y-FfD" secondAttribute="trailing" constant="50" id="ycg-8f-tkH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="igL-sB-RDy"/>
                     </view>
-                    <navigationItem key="navigationItem" id="aEG-Af-zg4"/>
+                    <navigationItem key="navigationItem" id="aEG-Af-zg4">
+                        <barButtonItem key="backBarButtonItem" title="Zurück" id="yZH-Um-aCw"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="answer" destination="08h-C9-IwX" id="riq-83-nmi"/>
                         <outlet property="question" destination="xMk-2k-27Z" id="Ejr-a4-i0V"/>
@@ -3538,7 +3544,7 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R0Y-z2-yrq">
-                                                                    <rect key="frame" x="165" y="25" width="196" height="20.5"/>
+                                                                    <rect key="frame" x="165" y="25" width="196" height="18"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="196" id="f3k-11-iJo"/>
                                                                     </constraints>
@@ -3546,13 +3552,13 @@
                                                                         <fragment content="Label">
                                                                             <attributes>
                                                                                 <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                <font key="NSFont" size="15" name="OpenSans-Bold"/>
+                                                                                <font key="NSFont" metaFont="system" size="15"/>
                                                                             </attributes>
                                                                         </fragment>
                                                                     </attributedString>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2n0-qO-sXm">
-                                                                    <rect key="frame" x="139" y="63.5" width="176" height="22"/>
+                                                                    <rect key="frame" x="139" y="61" width="176" height="22"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="176" id="fXS-iH-R6E"/>
                                                                     </constraints>
@@ -3567,7 +3573,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marker" translatesAutoresizingMaskIntoConstraints="NO" id="PkA-dj-3oQ">
-                                                                    <rect key="frame" x="135" y="96.5" width="26" height="24"/>
+                                                                    <rect key="frame" x="135" y="94" width="26" height="24"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="24" id="MQW-xc-LDE"/>
                                                                         <constraint firstAttribute="height" constant="24" id="lfN-zw-RlJ"/>
@@ -3802,43 +3808,41 @@
                                 <rect key="frame" x="20" y="150" width="374" height="712"/>
                                 <color key="sectionIndexColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="faq_cell" rowHeight="136" id="0ts-Wk-Gdp" customClass="FAQTableViewCell" customModule="Weitblick" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="136"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="faq_cell" rowHeight="77" id="0ts-Wk-Gdp" customClass="FAQTableViewCell" customModule="Weitblick" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="77"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0ts-Wk-Gdp" id="FOt-xh-1te">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="136"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="77"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frage zu Weitblick" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ohl-9s-DFd">
-                                                    <rect key="frame" x="45" y="27" width="309" height="83"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="83" id="8kb-z7-E72"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="45" y="24" width="309" height="24"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                                     <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Antwort zu den Fragen über Weitblick........................................................................" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bcs-q4-Oct">
-                                                    <rect key="frame" x="20" y="140" width="342.5" height="63"/>
+                                                    <rect key="frame" x="20" y="82.5" width="342.5" height="61.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="paperclip.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LQw-Cy-4dj">
-                                                    <rect key="frame" x="6" y="53" width="31" height="31"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paperclip.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LQw-Cy-4dj">
+                                                    <rect key="frame" x="6" y="22" width="20" height="31"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Ohl-9s-DFd" firstAttribute="leading" secondItem="FOt-xh-1te" secondAttribute="leading" constant="45" id="3PT-rh-BOd"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Bcs-q4-Oct" secondAttribute="bottom" constant="-78" id="BMr-ds-93M"/>
-                                                <constraint firstItem="Ohl-9s-DFd" firstAttribute="top" secondItem="FOt-xh-1te" secondAttribute="topMargin" constant="16" id="Dc9-gH-zkq"/>
+                                                <constraint firstItem="Ohl-9s-DFd" firstAttribute="top" secondItem="FOt-xh-1te" secondAttribute="topMargin" constant="13" id="Dc9-gH-zkq"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Ohl-9s-DFd" secondAttribute="bottom" constant="18" id="KXD-1X-wpv"/>
                                                 <constraint firstItem="LQw-Cy-4dj" firstAttribute="leading" secondItem="FOt-xh-1te" secondAttribute="leading" constant="6" id="TEh-fV-W5w"/>
-                                                <constraint firstItem="LQw-Cy-4dj" firstAttribute="top" secondItem="FOt-xh-1te" secondAttribute="top" constant="52.5" id="XLW-Yj-J40"/>
+                                                <constraint firstAttribute="bottom" secondItem="LQw-Cy-4dj" secondAttribute="bottom" constant="23.5" id="UmV-Bb-m6n"/>
+                                                <constraint firstItem="LQw-Cy-4dj" firstAttribute="top" secondItem="FOt-xh-1te" secondAttribute="top" constant="21.5" id="XLW-Yj-J40"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ohl-9s-DFd" secondAttribute="trailing" constant="20" id="c6h-rH-5kB"/>
-                                                <constraint firstAttribute="bottom" secondItem="Ohl-9s-DFd" secondAttribute="bottom" constant="26" id="ixg-7t-JuX"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ohl-9s-DFd" secondAttribute="bottom" constant="29" id="ixg-7t-JuX"/>
                                                 <constraint firstItem="Bcs-q4-Oct" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FOt-xh-1te" secondAttribute="leadingMargin" id="tah-nL-yuY"/>
-                                                <constraint firstItem="Bcs-q4-Oct" firstAttribute="top" secondItem="Ohl-9s-DFd" secondAttribute="bottom" constant="30" id="vdv-JI-IyI"/>
                                                 <constraint firstAttribute="trailing" secondItem="Bcs-q4-Oct" secondAttribute="trailing" constant="11.5" id="yiB-th-pmQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -4176,7 +4180,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohU-KE-Wlj">
-                                                    <rect key="frame" x="45" y="184" width="283" height="19.5"/>
+                                                    <rect key="frame" x="45" y="184" width="283" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="283" id="0wU-CB-ND7"/>
                                                     </constraints>
@@ -4184,7 +4188,7 @@
                                                         <fragment content="Ort">
                                                             <attributes>
                                                                 <color key="NSColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <font key="NSFont" size="14" name="OpenSans-Bold"/>
+                                                                <font key="NSFont" metaFont="system" size="14"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -4341,7 +4345,7 @@
                                                         <fragment content="OSNABRÜCK">
                                                             <attributes>
                                                                 <color key="NSColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <font key="NSFont" size="14" name="OpenSans-Bold"/>
+                                                                <font key="NSFont" metaFont="system" size="14"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -4731,11 +4735,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5t-Wi-upZ">
-                                                    <rect key="frame" x="20" y="24" width="24" height="22"/>
+                                                    <rect key="frame" x="20" y="24" width="24" height="19.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="1">
                                                             <attributes>
-                                                                <font key="NSFont" size="16" name="OpenSans-Bold"/>
+                                                                <font key="NSFont" metaFont="system" size="16"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -5064,7 +5068,7 @@
                                                         <fragment content="OSNABRÜCK">
                                                             <attributes>
                                                                 <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <font key="NSFont" size="15" name="OpenSans-Bold"/>
+                                                                <font key="NSFont" metaFont="system" size="15"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
