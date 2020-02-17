@@ -31,6 +31,7 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
     @IBOutlet weak var profile_password: UILabel!
     @IBOutlet weak var profile_donation: UILabel!
     @IBOutlet weak var profile_route: UILabel!
+    @IBOutlet weak var profile_username: UILabel!
     
     @IBOutlet weak var chooseButton: UIButton!
     
@@ -51,8 +52,9 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
         
         if (UserDefaults.standard.bool(forKey: "isLogged") == true){
             profile_email.text = UserDefaults.standard.string(forKey: "email")
-           profile_route.text = UserDefaults.standard.string(forKey: "route")
-           profile_donation.text = UserDefaults.standard.string(forKey: "donation")
+           profile_route.text = "0,02 km"// UserDefaults.standard.string(forKey: "route")
+           profile_donation.text = "0,00 €"// UserDefaults.standard.string(forKey: "donation")
+            //profile_username.text = UserDefaults.standard.string(forKey: "username")
         }
         profile_image.layer.cornerRadius = profile_image.frame.size.width/2
         profile_image.clipsToBounds = true

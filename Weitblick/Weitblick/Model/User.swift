@@ -21,7 +21,7 @@ class User{
         if(image == ""){
             self.image = UIImage(named: "profileBlack100")!
         }else{
-            let imgURL = NSURL(string : Constants.url + image)
+            let imgURL = NSURL(string :  image)
             let data = NSData(contentsOf: (imgURL as URL?)!)
             self.image = UIImage(data: data! as Data)!
             
