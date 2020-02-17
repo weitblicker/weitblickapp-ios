@@ -25,12 +25,13 @@ class Project{
     private var cycleObject : CycleEntry
     private var partners : [Partner]
     private var cellCount : Int
+    private var donationGlobal : DonationGlobal
   
     
     private var news : [Int] = []
     private var blog : [Int] = []
     
-    init(id : Int,published : Date, name : String, image: UIImage, gallery : [UIImage], hosts : [Host], description : String, location : Location, partnerID : [Int], cycleObject : CycleEntry, news : [Int], blog : [Int], milestones : [Milestone], partners : [Partner], cellCount : Int){
+    init(id : Int,published : Date, name : String, image: UIImage, gallery : [UIImage], hosts : [Host], description : String, location : Location, partnerID : [Int], cycleObject : CycleEntry, news : [Int], blog : [Int], milestones : [Milestone], partners : [Partner], cellCount : Int, donationGlobal : DonationGlobal ){
         self.id = id
         self.published = published
         self.name = name
@@ -44,6 +45,7 @@ class Project{
         self.milestones = milestones
         self.partners = partners
         self.cellCount = cellCount
+        self.donationGlobal = donationGlobal
         
         self.cycleObject = cycleObject
         
@@ -54,6 +56,10 @@ class Project{
         
         self.gallery = gallery
        
+    }
+    
+    public var getDonationGlobal : DonationGlobal{
+        return self.donationGlobal
     }
     
     public var getCelLCount : Int{
