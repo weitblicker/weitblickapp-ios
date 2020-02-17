@@ -60,7 +60,8 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
     @IBOutlet weak var project_detail_date: UILabel!
     
-
+    @IBOutlet weak var project_detail_maplocation: UILabel!
+    
     @IBOutlet weak var map: MKMapView!
    var count = 0
     var postCount = 0

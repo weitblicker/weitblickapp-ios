@@ -25,6 +25,7 @@ class NeListCell: UITableViewCell {
     
     @IBOutlet weak var nelist_description: UILabel!
     
+    @IBOutlet weak var nelist_date: UILabel!
     override func awakeFromNib() {
             super.awakeFromNib()
             // Initialization code
