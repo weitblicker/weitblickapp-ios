@@ -13,6 +13,8 @@ class LoginService{
     
     static func loginWithData(email : String, password : String, completion: @escaping (_ responseString : String) -> ()){
         print("In LoginWithData")
+//        var key : String = ""
+//        key = UserDefaults.standard.string(forKey: "key")!
         let url = NSURL(string: Constants.loginURL)
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();
@@ -22,6 +24,7 @@ class LoginService{
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
       //  request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
+    
         
     
         let user = UserDefaults.standard

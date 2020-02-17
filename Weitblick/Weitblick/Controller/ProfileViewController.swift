@@ -47,6 +47,8 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
             
             DispatchQueue.main.async {
                 self.profile_image.image = user.getImage
+                self.profile_username.text =
+                user.getUsername
             }
         }
         
@@ -54,7 +56,8 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
             profile_email.text = UserDefaults.standard.string(forKey: "email")
            profile_route.text = "0,02 km"// UserDefaults.standard.string(forKey: "route")
            profile_donation.text = "0,00 €"// UserDefaults.standard.string(forKey: "donation")
-            //profile_username.text = UserDefaults.standard.string(forKey: "username")
+        
+            
         }
         profile_image.layer.cornerRadius = profile_image.frame.size.width/2
         profile_image.clipsToBounds = true
