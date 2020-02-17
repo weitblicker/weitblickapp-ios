@@ -3347,7 +3347,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fa3-JH-5Ly">
-                                        <rect key="frame" x="0.0" y="0.0" width="406" height="774"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="406" height="352.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffn-2s-azU">
                                                 <rect key="frame" x="20" y="243" width="366" height="23.5"/>
@@ -3378,7 +3378,7 @@
                                                     <constraint firstAttribute="width" constant="366" id="YuT-YE-Vm5"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQc-Q4-FVu">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQc-Q4-FVu">
                                                 <rect key="frame" x="20" y="44" width="378" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -3387,7 +3387,6 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstItem="Ffn-2s-azU" firstAttribute="top" secondItem="S5l-iK-99F" secondAttribute="bottom" constant="26" id="0hP-jm-M3U"/>
                                             <constraint firstAttribute="trailing" secondItem="Ffn-2s-azU" secondAttribute="trailing" constant="20" id="8hk-if-utm"/>
                                             <constraint firstAttribute="trailing" secondItem="4gf-PQ-meU" secondAttribute="trailing" constant="40" id="Gug-t5-Xjv"/>
                                             <constraint firstItem="qiI-xZ-vwU" firstAttribute="top" secondItem="fa3-JH-5Ly" secondAttribute="top" constant="17" id="KiD-G3-bdk"/>
@@ -3396,6 +3395,7 @@
                                             <constraint firstItem="4gf-PQ-meU" firstAttribute="top" secondItem="Ffn-2s-azU" secondAttribute="bottom" constant="57" id="brF-R8-e9P"/>
                                             <constraint firstItem="S5l-iK-99F" firstAttribute="top" secondItem="uQc-Q4-FVu" secondAttribute="bottom" constant="24" id="dR8-wJ-2vc"/>
                                             <constraint firstAttribute="trailing" secondItem="qiI-xZ-vwU" secondAttribute="trailing" constant="40" id="gxG-C5-OLD"/>
+                                            <constraint firstItem="Ffn-2s-azU" firstAttribute="top" secondItem="qiI-xZ-vwU" secondAttribute="bottom" constant="20" id="pxr-SJ-Vj5"/>
                                             <constraint firstItem="qiI-xZ-vwU" firstAttribute="leading" secondItem="fa3-JH-5Ly" secondAttribute="leading" constant="40" id="q4N-nS-9V5"/>
                                             <constraint firstAttribute="bottom" secondItem="4gf-PQ-meU" secondAttribute="bottom" constant="185" id="wDU-mF-vQV"/>
                                         </constraints>
@@ -3422,8 +3422,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="Ypc-uY-EWI"/>
                     <connections>
-                        <outlet property="agb_image" destination="S5l-iK-99F" id="sOl-5A-0vu"/>
-                        <outlet property="agb_title" destination="uQc-Q4-FVu" id="G16-N6-clf"/>
+                        <outlet property="agb_image" destination="S5l-iK-99F" id="kPG-5k-mp0"/>
+                        <outlet property="agb_title" destination="uQc-Q4-FVu" id="xKJ-kb-8PM"/>
                         <outlet property="textLabel" destination="Ffn-2s-azU" id="Jb2-TP-wxT"/>
                     </connections>
                 </viewController>
