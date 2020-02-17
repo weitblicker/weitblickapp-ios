@@ -213,6 +213,16 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                        }
                    }
                }
+       // let eventIDs : [Int] = project_object?.ge
+            for id in eventIDs{
+                              dispatchGroup.enter()
+                EventService.getEventByID(id: id) { (event) in
+                                  DispatchQueue.main.async {
+                                      self.eventList.append(event)
+                                      dispatchGroup.leave()
+                                  }
+                              }
+                          }
                dispatchGroup.notify(queue: .main) {
                 print("In Dispatch Group Notify \n")
                 print("NEWSLIST COUNT: " + self.newsList.count.description)
@@ -238,7 +248,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 self.event_list  = false
                 self.counter_partner = 0
                 self.counter_sponsor = 0
-                 self.counter_milestones = 0
+                self.counter_milestones = 0
                 print("PARTNERLOADED AB HIER")
                 self.project_tableView.reloadData()
                  
@@ -265,6 +275,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
     var newsList : [NewsEntry] = []
 
     var blogList : [BlogEntry] = []
+    var eventList : [Event] = []
 
        var projectList : [Project] = []
        var locationList : [Location] = []
