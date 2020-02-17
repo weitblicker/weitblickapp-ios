@@ -54,7 +54,7 @@ class ProjectCycleViewController: UIViewController, UITableViewDataSource, UITab
     }
   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-           self.project_object = projectList[indexPath.row]
+        self.project_object = self.projectListCycle[indexPath.row]
            self.performSegue(withIdentifier: "goToProjectDetail", sender: self)
        }
     
@@ -75,7 +75,7 @@ class ProjectCycleViewController: UIViewController, UITableViewDataSource, UITab
        
                cell.project_title.text = projectListCycle[indexPath.row].getName
               cell.project_location.text = projectListCycle[indexPath.row].getLocation.getAddress
-              //cell.project_partner.text = projectList[indexPath.row].getHosts[0]
+        cell.project_partner.text = projectList[indexPath.row].getHosts[0].getCity.uppercased()
                cell.project_image!.image = projectListCycle[indexPath.row].getImage
         cell.project_cycle_button.addTarget(self, action: #selector(ProjectCycleViewController.goToCycle), for: .touchUpInside)
         cell.project_cycle_button.tag = indexPath.row
