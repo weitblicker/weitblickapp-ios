@@ -42,10 +42,13 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
     }
     
     override func viewDidLoad() {
+        print("In ViewDidload von ProfielView\n")
         super.viewDidLoad()
         UserService.getUserData { (user) in
             
             DispatchQueue.main.async {
+                print("In GetUserdata von ProfielViewController\n")
+                print(user)
                 self.profile_image.image = user.getImage
                 self.profile_username.text =
                 user.getUsername
