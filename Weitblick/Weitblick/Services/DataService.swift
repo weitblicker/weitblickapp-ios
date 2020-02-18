@@ -52,7 +52,7 @@ class DataService{
                     var image : UIImage
                     if(imageURL == ""){
                         let size = CGSize.init(width: 334, height: 176)
-                        image = UIImage(named: "Weitblick")!.crop(to: size)
+                        image = UIImage(named: "news-default")!.crop(to: size)
                     }else{
                         let imgURL = NSURL(string : Constants.url + imageURL)
                         let data = NSData(contentsOf: (imgURL as URL?)!)
@@ -211,7 +211,7 @@ class DataService{
                     var image : UIImage
                     if(imageURL == ""){
                         let size = CGSize.init(width: 334, height: 176)
-                        image = UIImage(named: "Weitblick")!.crop(to: size)
+                        image = UIImage(named: "news-default")!.crop(to: size)
                     }else{
                         let imgURL = NSURL(string : Constants.url + imageURL)
                         let data = NSData(contentsOf: (imgURL as URL?)!)
@@ -361,7 +361,7 @@ class DataService{
                 var image : UIImage
                 if(imageURL == ""){
                     let size = CGSize.init(width: 334, height: 176)
-                    image = UIImage(named: "Weitblick")!.crop(to: size)
+                    image = UIImage(named: "project-default")!.crop(to: size)
                 }else{
                     let imgURL = NSURL(string : Constants.url + imageURL)
                     let data = NSData(contentsOf: (imgURL as URL?)!)
@@ -724,13 +724,13 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                     let projectTitle = title as! String
                     guard let imageURLJSON = projectDict.value(forKey : "image") else { return }
                     var imageURL = ""
-                    var image : UIImage = UIImage(named: "profileBlack100")!
+                    var image : UIImage = UIImage(named: "project-default")!
                     if let mainImageDict = imageURLJSON as? NSDictionary{
                         guard let imgURL = mainImageDict.value(forKey: "url") else { return }
                         if let imageURL = imgURL as? String{
                             if(imageURL == ""){
-                                let size = CGSize.init(width: 334, height: 176)
-                                image = UIImage(named: "Weitblick")!.crop(to: size)
+                                let size = CGSize.init(width: 100, height: 100)
+                                image = UIImage(named: "project-default")!.crop(to: size)
                             }else{
                                 let imgURL = NSURL(string : Constants.url + imageURL)
                                 let data = NSData(contentsOf: (imgURL as URL?)!)

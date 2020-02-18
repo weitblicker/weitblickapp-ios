@@ -111,7 +111,7 @@ class EventService{
                 var image : UIImage
                 if(imageURL == ""){
                     let size = CGSize.init(width: 334, height: 176)
-                    image = UIImage(named: "Weitblick")!.crop(to: size)
+                    image = UIImage(named: "event-default")!.crop(to: size)
                 }else{
                     let imgURL = NSURL(string : Constants.url + imageURL)
                     let data = NSData(contentsOf: (imgURL as URL?)!)
@@ -256,7 +256,7 @@ class EventService{
                         var image : UIImage
                         if(imageURL == ""){
                             let size = CGSize.init(width: 334, height: 176)
-                            image = UIImage(named: "Weitblick")!.crop(to: size)
+                            image = UIImage(named: "event-default")!.crop(to: size)
                         }else{
                             let imgURL = NSURL(string : Constants.url + imageURL)
                             let data = NSData(contentsOf: (imgURL as URL?)!)

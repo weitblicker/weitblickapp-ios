@@ -56,7 +56,7 @@ class BlogService{
                     }
                     var image : UIImage
                     if(imageURL == ""){
-                        image = UIImage(named: "Weitblick")!
+                        image = UIImage(named: "blog-defaults")!
                     }else{
                         let imgURL = NSURL(string : Constants.url + imageURL)
                         let data = NSData(contentsOf: (imgURL as URL?)!)
@@ -233,7 +233,7 @@ class BlogService{
                         }
                         var image : UIImage
                         if(imageURL == ""){
-                            image = UIImage(named: "Weitblick")!
+                            image = UIImage(named: "blog-default")!
                         }else{
                             let imgURL = NSURL(string : Constants.url + imageURL)
                             let data = NSData(contentsOf: (imgURL as URL?)!)
