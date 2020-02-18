@@ -724,21 +724,22 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                     let projectTitle = title as! String
                     guard let imageURLJSON = projectDict.value(forKey : "image") else { return }
                     var imageURL = ""
+                    var image : UIImage = UIImage(named: "profileBlack100")!
                     if let mainImageDict = imageURLJSON as? NSDictionary{
                         guard let imgURL = mainImageDict.value(forKey: "url") else { return }
-                        imageURL = imgURL as! String
+                        if let imageURL = imgURL as? String{
+                            if(imageURL == ""){
+                                let size = CGSize.init(width: 334, height: 176)
+                                image = UIImage(named: "Weitblick")!.crop(to: size)
+                            }else{
+                                let imgURL = NSURL(string : Constants.url + imageURL)
+                                let data = NSData(contentsOf: (imgURL as URL?)!)
+                                image = UIImage(data: data! as Data)!
+                                resultimages.append(image)
+                            }
+                        }
                     }
-                    var image : UIImage
-                    if(imageURL == ""){
-                        let size = CGSize.init(width: 334, height: 176)
-                        image = UIImage(named: "Weitblick")!.crop(to: size)
-                    }else{
-                        let imgURL = NSURL(string : Constants.url + imageURL)
-                        let data = NSData(contentsOf: (imgURL as URL?)!)
-                        image = UIImage(data: data! as Data)!
-                        resultimages.append(image)
-
-                    }
+                    
                     guard let description = projectDict.value(forKey: "description") else { return }
                     var projectDescription = description as! String
                     projectDescription = extractRegex(input: projectDescription, regex: DataService.matches(for: Constants.regexReplace, in: projectDescription))

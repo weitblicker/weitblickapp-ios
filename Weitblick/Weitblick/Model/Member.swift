@@ -26,6 +26,8 @@ class Member{
         self.name = name
         self.role = role
         self.image = image
+        let size = CGSize.init(width: 100, height: 100)
+        self.image = self.image.crop(to: size)
         self.email = email
         self.text = text
     }

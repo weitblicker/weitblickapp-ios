@@ -17,14 +17,18 @@ class User{
     
     init(username : String, image : String, km : Double, euro : Double){
         self.username = username
-        print(image)
-        if(image == ""){
-            self.image = UIImage(named: "profileBlack100")!
+        print("Profilerstellung mit Bild: " + image.description + "\n")
+        if let imageURL = image as? String{
+            if(imageURL == ""){
+                self.image = UIImage(named: "profileBlack100")!
+            }else{
+                let imgURL = NSURL(string :  Constants.url + imageURL)
+                let data = NSData(contentsOf: (imgURL as URL?)!)
+                self.image = UIImage(data: data! as Data)!
+                
+            }
         }else{
-            let imgURL = NSURL(string :  Constants.url + image)
-            let data = NSData(contentsOf: (imgURL as URL?)!)
-            self.image = UIImage(data: data! as Data)!
-            
+            self.image = UIImage(named: "profileBlack100")!
         }
         
         let size = CGSize.init(width: 100, height: 100)

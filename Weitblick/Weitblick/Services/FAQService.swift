@@ -108,8 +108,8 @@ class FAQService{
             if let creditDict = jsondata as? NSDictionary{
                 
                 guard let id = creditDict.value(forKey: "id")  else { return }
-                let idNumber = id as! NSNumber
-                let idInt = Int.init(truncating: idNumber)
+                let idNumber = id as! String
+                let idInt = Int.init(idNumber)
                 
                 guard let name = creditDict.value(forKey: "name")  else { return }
                 let nameString = name as! String
@@ -144,17 +144,19 @@ class FAQService{
                             guard let role = memberDict.value(forKey: "role") else { return }
                             let roleString = role as! String
                             
-                            var image : UIImage?
+                            var image : UIImage = UIImage.init(named: "profileBlack100")!
                             guard let imageJSON = memberDict.value(forKey: "image") else { return }
-                            let imageString = imageJSON as! String
-                            if(imageString == ""){
-                                let size = CGSize.init(width: 334, height: 176)
-                                image = UIImage(named: "Weitblick")!.crop(to: size)
-                            }else{
-                                let imgURL = NSURL(string : Constants.url + imageString)
-                                let data = NSData(contentsOf: (imgURL as URL?)!)
-                                image = UIImage(data: data! as Data)!
+                            if let imageString = imageJSON as? String{
+                                if(imageString == ""){
+                                    let size = CGSize.init(width: 334, height: 176)
+                                    image = UIImage(named: "Weitblick")!.crop(to: size)
+                                }else{
+                                    let imgURL = NSURL(string : Constants.url + imageString)
+                                    let data = NSData(contentsOf: (imgURL as URL?)!)
+                                    image = UIImage(data: data! as Data)!
+                                }
                             }
+                            
                             
                             guard let email = memberDict.value(forKey: "email") else { return }
                             let emailString = email as! String
@@ -162,12 +164,12 @@ class FAQService{
                             guard let text = memberDict.value(forKey: "text") else { return }
                             let textString = text as! String
                             
-                            let member = Member(name: nameString, role: roleString, image: image!, email: emailString, text: textString)
+                            let member = Member(name: nameString, role: roleString, image: image, email: emailString, text: textString)
                             memberList.append(member)
                         }
                     }
                 }
-                let creditObject = Creditobject(id: idInt, name: nameString, description: descriptionString, image: image, members: memberList)
+                let creditObject = Creditobject(id: idInt!, name: nameString, description: descriptionString, image: image, members: memberList)
                 completion(creditObject)
             }
         }).resume()
