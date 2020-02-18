@@ -19,10 +19,10 @@ class LoginService{
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();
         var request = URLRequest(url:url! as URL)
-       // var request = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
+       //var request = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-      //  request.addValue("application/json", forHTTPHeaderField: "Accept")
+       request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
     
         
