@@ -10,7 +10,7 @@ import UIKit
 import SwiftKeychainWrapper
 
 class LoginService{
-    
+
     static func loginWithData(email : String, password : String, completion: @escaping (_ responseString : String) -> ()){
         print("In LoginWithData")
 //        var key : String = ""
@@ -19,14 +19,16 @@ class LoginService{
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();
         var request = URLRequest(url:url! as URL)
-       // var request = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
+       //var request = URLRequest(url : (url as URL?)!,cachePolicy: URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
         request.addValue("application/json", forHTTPHeaderField: "Accept")
+
         request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-    
-        
-    
+
+
+
         let user = UserDefaults.standard
         let postString = ["username": "","email": email, "password": password] as [String: String]
         do{
@@ -57,10 +59,10 @@ class LoginService{
                 print("RECEIVED")
                 print(received)
             //print("The Recieved Message is: " + received.description)
-                
+
                /* let names = userData.value(forKeyPath: "data.username")
                 if !names.isEmpty { print(names[0]) }*/
-                
+
                 guard let userKey = received["key"] as? String else {
                     user.set(false, forKey: "isLogged")
                     //  UserDefaults.standard.synchronize()
@@ -69,23 +71,23 @@ class LoginService{
                         UserDefaults.standard.synchronize()
                         //  LoginService.loginWithData(email: self.email.text!, password: self.password.text!) { (response) in
                         self.checkResponse(description: received.description){ (error) in
-                            
+
                              print(error)
                              completion(error)
                         }
 
-                       
+
                     }
                     return
                 }
-                
-                
+
+
                print("TOKEN: ")
                print (userKey)
                user.set(userKey, forKey: "key")
                user.set(true, forKey: "isLogged")
                user.set(email, forKey: "email")
-               
+
                 if(user.integer(forKey: "tours") == 0){
                     user.set(1, forKey: "tours")
                 }
@@ -100,12 +102,12 @@ class LoginService{
         }
         task.resume()
     }
-    
-    
+
+
  static func checkResponse(description: String, error: @escaping (_ responseString : String) -> ()){
-     
+
       print("in check Response")
-    
+
     if (description.contains("Gib eine gültige E-Mail Adresse an.")){
           error("Gib eine gültige E-Mail Adresse an.")
           return
@@ -114,8 +116,7 @@ class LoginService{
        error("Die angegebenen Zugangsdaten stimmen nicht.")
           return
       }
-        
-  }
-  
-}
 
+  }
+
+}
