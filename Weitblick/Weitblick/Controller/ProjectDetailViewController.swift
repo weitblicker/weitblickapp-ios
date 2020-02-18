@@ -350,6 +350,9 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     cell.spendenziel.text = self.project_object?.getDonationGlobal.getDonationGoal.description
                     cell.spendenbeschreibung.text = self.project_object?.getDonationGlobal.getDescription
                     self.spenden_loaded = true
+         
+           // cell.selectedBackgroundView =  [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:@"cell_pressed.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0] ];
+            cell.backgroundView = UIImageView(image: UIImage(named: "yellowxxxhdpi")!)
 
                     return cell
                 }
@@ -420,6 +423,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                         print ("IN MEILENSTEIN IF 1")
                         let mehed_cell = cell.meilenstein_tableView.dequeueReusableCell(withIdentifier:"mehead_cell", for: indexPath)as! MeHeadCell
                         self.meilenstein_head = true
+                        mehed_cell.backgroundView = UIImageView(image: UIImage(named: "greenxxxhdpi")!)
                         return mehed_cell
                     }
                      if(self.meilenstein_list == false){
@@ -431,12 +435,14 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                             melist_cell.melist_headline.text = self.project_object?.getMilestones[self.counter_milestones].getName
                         melist_cell.melist_description.text = self.project_object?.getMilestones[self.counter_milestones].getDescription
                         self.counter_milestones += 1
+                            melist_cell.backgroundView = UIImageView(image: UIImage(named: "greenxxxhdpi")!)
                          return melist_cell
                         }else{
                             self.meilenstein_list = true
                         }
                         }
                     self.meilenstein_loaded = true
+                    cell.backgroundView = UIImageView(image: UIImage(named: "greenxxxhdpi")!)
                     return cell
                 }
 
@@ -449,6 +455,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                             print ("IN BLOG IF 1")
                             let blhead_cell = cell.blog_tableView.dequeueReusableCell(withIdentifier:"blhead_cell", for: indexPath)as! BlHeadCell
                         self.blog_head = true
+                        blhead_cell.backgroundView = UIImageView(image: UIImage(named: "bluegreyldpi")!)
                         return blhead_cell
                          }
                     else if(self.blog_list == false){
@@ -464,6 +471,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                                 bllist_cell.bllist_description.text = self.blogList[self.counter_blogs].getText
                                 bllist_cell.bllist_image.image = self.blogList[self.counter_blogs].getImage
                                 self.counter_blogs += 1
+                            bllist_cell.backgroundView = UIImageView(image: UIImage(named: "bluegreyldpi")!)
                                 return bllist_cell
                             }else{
                                 self.blog_list = true
@@ -479,6 +487,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                         return more_cell
 
                     }
+                   cell.backgroundView = UIImageView(image: UIImage(named: "bluegreyldpi")!)
                     self.blog_loaded = true
                     return cell
                 }
@@ -533,6 +542,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                       print("IN EVENT IF 1")
                         let evhead_cell = cell.event_tableView.dequeueReusableCell(withIdentifier:"evhead_cell", for: indexPath)as! EvHeadCell
                         self.event_head = true
+                        evhead_cell.backgroundView = UIImageView(image: UIImage(named: "bluegreyldpi")!)
                         return evhead_cell
 
                     }
@@ -548,6 +558,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                             evlist_cell.evlist_time.text = "18 Uhr"//self.eventList[self.counter_events]
                             evlist_cell.evlist_description.text = self.eventList[self.counter_events].getDescription
                             self.counter_events += 1
+                            evlist_cell.backgroundView = UIImageView(image: UIImage(named: "bluegreyldpi")!)
                             return evlist_cell
                         }else{
                         self.event_list = true
@@ -564,6 +575,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                        return more_cell
                     }
                     self.event_loaded = true
+                    cell.backgroundView = UIImageView(image: UIImage(named: "bluegreyldpi")!)
                     return cell
                  }
          let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
