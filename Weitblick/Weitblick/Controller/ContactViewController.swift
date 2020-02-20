@@ -21,20 +21,24 @@ class ContactViewController: UIViewController{
     override func viewDidLoad() {
         print("IN CONTACT VIEW CONTROLLER")
         let markdownParser = MarkdownParser()
-        FAQService.loadContact { (contactObject) in
-             DispatchQueue.main.async {
-                self.contact_title.text =
-                contactObject.getTitle
-                print(contactObject.getTitle)
-                self.contact_title.sizeToFit()
-                self.contact_image.image =
-                contactObject.getImage
-                self.contact_description.attributedText =
-                markdownParser.parse(contactObject.getText)
-                self.contact_description.sizeToFit()
-                
-                       
-                       }
+        FAQService.loadContact { (contactObject, error) in
+            if let contactObject = contactObject{
+                DispatchQueue.main.async {
+                     self.contact_title.text =
+                     contactObject.getTitle
+                     print(contactObject.getTitle)
+                     self.contact_title.sizeToFit()
+                     self.contact_image.image =
+                     contactObject.getImage
+                     self.contact_description.attributedText =
+                     markdownParser.parse(contactObject.getText)
+                     self.contact_description.sizeToFit()
+                }
+            }else{
+                if let error = error{
+                    print(error)
+                }
+            }
         }
         
     }

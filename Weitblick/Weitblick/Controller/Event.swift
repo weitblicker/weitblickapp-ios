@@ -29,6 +29,7 @@ class Event{
         self.title = title
         self.description = description
         self.image = image
+
         self.host = host
         self.location = location
         self.gallery = gallery

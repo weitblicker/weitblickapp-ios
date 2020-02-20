@@ -119,6 +119,7 @@
 		A1F851DF23FAF2320010C9EC /* ContacObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F851DE23FAF2320010C9EC /* ContacObject.swift */; };
 		A1F851E123FB08BC0010C9EC /* CreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F851E023FB08BC0010C9EC /* CreditViewController.swift */; };
 		A1F851E323FB0F3C0010C9EC /* CreditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F851E223FB0F3C0010C9EC /* CreditTableViewCell.swift */; };
+		A1F851F123FDBC320010C9EC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F851F023FDBC320010C9EC /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -247,6 +248,7 @@
 		A1F851DE23FAF2320010C9EC /* ContacObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContacObject.swift; sourceTree = "<group>"; };
 		A1F851E023FB08BC0010C9EC /* CreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditViewController.swift; sourceTree = "<group>"; };
 		A1F851E223FB0F3C0010C9EC /* CreditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditTableViewCell.swift; sourceTree = "<group>"; };
+		A1F851F023FDBC320010C9EC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -457,6 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				A18DA1F523A0EDD4003783D6 /* Extensions.swift */,
+				A1F851F023FDBC320010C9EC /* NetworkManager.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -650,6 +653,7 @@
 				A1E2A66723E71F96003C040A /* Host.swift in Sources */,
 				A1F851D923FAE64B0010C9EC /* Creditobject.swift in Sources */,
 				0FD676F3239D03BE00F88081 /* UserService.swift in Sources */,
+				A1F851F123FDBC320010C9EC /* NetworkManager.swift in Sources */,
 				A123D1C5236B2302004DB13E /* NewsEntry.swift in Sources */,
 				0F8A25C723E19F5300BD8A6A /* MeList.swift in Sources */,
 				3D10C377238D306000722B45 /* StatisticsViewController.swift in Sources */,
@@ -837,7 +841,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = de.weitblick.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -858,7 +862,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = de.weitblick.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -58,6 +58,7 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.news_date.text =  date.dateAndTimetoString()
         }
         cell.news_hostLbl.text = newsList[indexPath.row].getHost.getCity.uppercased()
+        cell.news_hostLbl.font = UIFont(name: "OpenSans-Bold", size: 15)
         cell.news_description.text = newsList[indexPath.row].getTeaser.html2String
         cell.news_description.sizeToFit()
         cell.news_title.text = newsList[indexPath.row].getTitle.html2String
@@ -118,12 +119,18 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
 override func viewDidLoad() {
     super.viewDidLoad()
+    NetworkManager.isUnreachable { networkManagerInstance in
+      return
+    }
     if(newsListProjectDetail.count > 0){
                self.switch_counter = 1
            }
            print("SWITCH COUNTER: "+self.switch_counter.description)
     
     DataService.loadNews(date: self.date) { (list) in
+        if(list.isEmpty){
+            return
+        }
         self.newsList = list
         self.date = self.newsList.last!.getCreationDate
         

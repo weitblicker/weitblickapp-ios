@@ -45,6 +45,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier:"event_cell", for: indexPath)as! EventTableViewCell
         cell.event_date.text = eventListProjectDetail[indexPath.row].getStartDate.dateAndTimetoString()
         cell.event_host.text = eventListProjectDetail[indexPath.row].getHost.getCity.uppercased()
+        cell.event_host.font = UIFont(name: "OpenSans-Bold", size: 15)
         cell.event_location.text = eventListProjectDetail[indexPath.row].getLocation.getAddress
         cell.event_description.text = eventListProjectDetail[indexPath.row].getTitle
         cell.event_image.image = eventListProjectDetail[indexPath.row].getImage
@@ -55,6 +56,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             let cell = tableView.dequeueReusableCell(withIdentifier:"event_cell", for: indexPath)as! EventTableViewCell
              cell.event_date.text = eventList[indexPath.row].getStartDate.dateAndTimetoString()
              cell.event_host.text = eventList[indexPath.row].getHost.getCity.uppercased()
+             cell.event_host.font = UIFont(name: "OpenSans-Bold", size: 15)
              cell.event_location.text = eventList[indexPath.row].getLocation.getAddress
              cell.event_description.text = eventList[indexPath.row].getTitle
              cell.event_image.image = eventList[indexPath.row].getImage
@@ -82,6 +84,9 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NetworkManager.isUnreachable { networkManagerInstance in
+          return
+        }
         if(eventListProjectDetail.count > 0){
                    self.switch_counter = 1
                }

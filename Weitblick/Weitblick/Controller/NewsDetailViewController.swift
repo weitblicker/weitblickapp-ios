@@ -101,6 +101,7 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
         news_detail_date.text = news_object?.getCreationDate.dateAndTimetoString()
         news_detail_title.text = news_object?.getTitle
         news_detail_loaction.text = news_object?.getHost.getCity.uppercased()
+        news_detail_loaction.font = UIFont(name: "OpenSans-Bold", size: 15)
         news_detail_author.text = news_object?.getAuthor.getName
         news_detail_author_image.image = news_object?.getAuthor.getImage
         photoSliderView.configure(with: (self.news_object?.getGallery)!)

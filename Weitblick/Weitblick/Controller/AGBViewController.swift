@@ -21,13 +21,18 @@ class AGBViewController: UIViewController {
     override func viewDidLoad() {
         let markdownParser = MarkdownParser()
         
-        
-        FAQService.loadAGBS { (agbObject) in
-            DispatchQueue.main.async {
-                self.textLabel.attributedText = markdownParser.parse(agbObject.getText)
-            self.agb_image.image = agbObject.getImage
-            self.agb_title.text = agbObject.getTitle
-            self.textLabel.sizeToFit()
+        FAQService.loadAGBS { (agbObject, error) in
+            if let agbObject = agbObject{
+                DispatchQueue.main.async {
+                    self.textLabel.attributedText = markdownParser.parse(agbObject.getText)
+                self.agb_image.image = agbObject.getImage
+                self.agb_title.text = agbObject.getTitle
+                self.textLabel.sizeToFit()
+                }
+            }else{
+                if let error = error{
+                    print(error.description)
+                }
             }
         }
          super.viewDidLoad()

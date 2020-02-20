@@ -62,10 +62,17 @@ class EventDetailViewController: UIViewController {
         event_detail_description.attributedText = markdownParser.parse(event_object!.getDescription)
         event_detail_description.sizeToFit()
         event_detail_title.text = event_object?.getTitle
+        event_detail_title.numberOfLines = 0
+        event_detail_title.sizeToFit()
         event_detail_city.text = event_object!.getHost.getCity.uppercased()
-        event_detail_date.text = event_object?.getStartDate.dateAndTimetoString()
+        event_detail_city.font = UIFont(name: "OpenSans-Bold", size: 15)
+        event_detail_date.text = event_object?.getStartDate.dateAndTimetoStringDayFormat()
         event_detail_location.text = event_object?.getLocation.getAddress
-        event_detail_Location_Title.text = event_object?.getHost.getLocation.getAddress
+        event_detail_location.numberOfLines = 0
+        event_detail_location.sizeToFit()
+        event_detail_Location_Title.text = event_object?.getLocation.getAddress
+        event_detail_Location_Title.numberOfLines = 0
+        event_detail_Location_Title.sizeToFit()
         location_unten.text = event_object?.getLocation.getAddress
         slider.configure(with: [(self.event_object?.getImage)!])
          

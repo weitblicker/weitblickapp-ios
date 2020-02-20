@@ -163,7 +163,8 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
         blog_detail_country.text = blog_object?.getLocation.getAddress
         blog_detail_author_name.text = blog_object?.getAuthor.getName
         blog_detail_author_img.image = blog_object?.getAuthor.getImage
-        blog_detail_host.text = blog_object?.getHost.getName
+        blog_detail_host.text = blog_object?.getHost.getCity.uppercased()
+        blog_detail_host.font = UIFont(name: "OpenSans-Bold", size: 15)
         
         
         

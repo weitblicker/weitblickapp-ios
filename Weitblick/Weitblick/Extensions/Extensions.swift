@@ -137,6 +137,13 @@ extension Date{
     return formatter.string(from: self)
     }
     
+    func dateAndTimetoStringDayFormat(format: String = "HH:mm, dd.MM.yyyy") -> String {
+    let formatter = DateFormatter()
+            formatter.dateStyle = .short
+            formatter.dateFormat = format
+    return formatter.string(from: self)
+    }
+    
     func dateAndTimetoStringRoutes(format: String = "dd.MM.yy") -> String {
     let formatter = DateFormatter()
             formatter.dateStyle = .short

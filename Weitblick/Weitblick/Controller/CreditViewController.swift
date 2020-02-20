@@ -36,19 +36,26 @@ class CreditViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        FAQService.loadCredits { (creditObject) in
-            DispatchQueue.main.async {
-            self.imageView.image = creditObject.getImage
-            self.creditTitle.text = creditObject.getName
-            let markdownParser = MarkdownParser()
-            self.creditDescription.attributedText = markdownParser.parse(creditObject.getDescription)
-            self.creditDescription.sizeToFit()
-            for member in creditObject.getMembers{
-                self.memberList.append(member)
+        FAQService.loadCredits { (creditObject,error)  in
+            if let creditObject = creditObject{
+                DispatchQueue.main.async {
+                self.imageView.image = creditObject.getImage
+                self.creditTitle.text = creditObject.getName
+                let markdownParser = MarkdownParser()
+                self.creditDescription.attributedText = markdownParser.parse(creditObject.getDescription)
+                self.creditDescription.sizeToFit()
+                for member in creditObject.getMembers{
+                    self.memberList.append(member)
+                }
+                
+                    self.tableView.reloadData()
+                }
+            }else{
+                if let error = error{
+                    print(error)
+                }
             }
             
-                self.tableView.reloadData()
-            }
         }
         // Do any additional setup after loading the view.
     }

@@ -35,8 +35,9 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier:"blog_cell", for: indexPath)as! BlogTableViewCell
-        
         if(self.switch_counter == 1){
+            cell.blog_city.text = self.blogListProjectDetail[indexPath.row].getHost.getCity.uppercased()
+            cell.blog_city.font = UIFont(name: "OpenSans-Bold", size: 15)
         cell.blog_image.image = self.blogListProjectDetail[indexPath.row].getImage
         cell.blog_description.text = blogListProjectDetail[indexPath.row].getTeaser
         cell.blog_description.sizeToFit()
@@ -54,7 +55,8 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
                   
               }
         }else{
-            
+            cell.blog_city.text = self.blogList[indexPath.row].getHost.getCity.uppercased()
+            cell.blog_city.font = UIFont(name: "OpenSans-Bold", size: 15)
             cell.blog_image.image = self.blogList[indexPath.row].getImage
             cell.blog_description.text = blogList[indexPath.row].getTeaser
             cell.blog_description.sizeToFit()

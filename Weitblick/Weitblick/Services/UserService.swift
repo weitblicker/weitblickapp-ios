@@ -17,9 +17,9 @@ class UserService{
           let str = "surfer:hangloose"
           let test2 = Data(str.utf8).base64EncodedString();
           var request = URLRequest(url:url! as URL as URL)
-          request.httpMethod = "GET"
+          request.httpMethod = "POST"
           request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Token " + UserDefaults.standard.string(forKey: "key")! , forHTTPHeaderField: "Authorization")
+//        request.addValue("Token " + UserDefaults.standard.string(forKey: "key")! , forHTTPHeaderField: "Authorization")
          let user = UserDefaults.standard
          let postString = ["email": email] as [String: String]
         
@@ -143,7 +143,7 @@ class UserService{
            
     }
     
-    static func getUserData(completion : @escaping (_ user: User) -> ()){
+    static func getUserData(completion : @escaping (_ user: User?, _ error: NSError?) -> ()){
         
         let url = NSURL(string: "https://weitblicker.org/rest/auth/user/")
         let str = "surfer:hangloose"
@@ -166,34 +166,38 @@ class UserService{
             let task = session.dataTask(with: request){
                 (data, response, error) in
                 print("In Get Userdata2\n")
-                let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-                print("In GetUserdata3\n")
-                print(jsondata)
-                if let userDict = jsondata as? NSDictionary{
-                    guard let username = userDict.value(forKey: "username") else { return }
-                    let usernameString = username as! String
-                    var userImageString = ""
-                     print("In GetUserdata4\n")
-                    guard let imgUrl = userDict.value(forKey: "image") else { return }
-                    if let imageString = imgUrl as? String{
-                        userImageString = imageString
+                if let data = data{
+                    let jsondata = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    if let userDict = jsondata as? NSDictionary{
+                        guard let username = userDict.value(forKey: "username") else { return }
+                        let usernameString = username as! String
+                        var userImageString = ""
+                         print("In GetUserdata4\n")
+                        guard let imgUrl = userDict.value(forKey: "image") else { return }
+                        if let imageString = imgUrl as? String{
+                            userImageString = imageString
+                        }
+                         print("In GetUserdata5\n")
+                        guard let firstName = userDict.value(forKey: "first_name") else { return }
+                        let firstNameString = firstName as! String
+                         print("In GetUserdata6\n")
+                        guard let lastName = userDict.value(forKey: "last_name") else { return }
+                        let lastNameString = lastName as! String
+                        
+                         print("In GetUserdata7\n")
+                        UserDefaults.standard.set(firstNameString, forKey: "firstname")
+                        UserDefaults.standard.set(lastNameString, forKey: "lastname")
+                        UserDefaults.standard.set(usernameString, forKey: "username")
+                        print("In Get UserData 8")
+                        let user = User(username: usernameString, image: userImageString, km: 0.0, euro: 0.0)
+                        print(user)
+                        completion(user,nil)
                     }
-                     print("In GetUserdata5\n")
-                    guard let firstName = userDict.value(forKey: "first_name") else { return }
-                    let firstNameString = firstName as! String
-                     print("In GetUserdata6\n")
-                    guard let lastName = userDict.value(forKey: "last_name") else { return }
-                    let lastNameString = lastName as! String
-                    
-                     print("In GetUserdata7\n")
-                    UserDefaults.standard.set(firstNameString, forKey: "firstname")
-                    UserDefaults.standard.set(lastNameString, forKey: "lastname")
-                    UserDefaults.standard.set(usernameString, forKey: "username")
-                    print("In Get UserData 8")
-                    let user = User(username: usernameString, image: userImageString, km: 0.0, euro: 0.0)
-                    print(user)
-                    completion(user)
+                }else{
+                    let error = error as NSError?
+                    completion(nil, error)
                 }
+                
                 
             }
             
@@ -263,7 +267,8 @@ class UserService{
 //
 //        data.append(("last_name: " + firstname! + "\r\n\r\n").data(using: .utf8)!)
 //        data.append(("first_name: " + lastname! + "\r\n\r\n").data(using: .utf8)!)
-//
+// cycle_km
+// cycle_euro
 //
         string = "\r\n--\(boundary)--\r\n"
         data.append(string.data(using: .utf8)!)

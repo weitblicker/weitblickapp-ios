@@ -29,38 +29,42 @@ class RankingService{
          "euro": 0.0
          */
         URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
-            let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+            if let data = data{
+                let jsondata = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
 
-               
-                    if let userDict = jsondata as? NSDictionary{
+                            
+                                 if let userDict = jsondata as? NSDictionary{
 
+                             
+                                     
+                                     if let userArray = userDict.value(forKey: "best_field") as? NSArray{
                 
-                        
-                        if let userArray = userDict.value(forKey: "best_field") as? NSArray{
-   
-                            for user in userArray{
+                                         for user in userArray{
 
-                                if let userDict = user as? NSDictionary{
-                                    let userString = userDict.value(forKey: "username") as? String ?? ""
+                                             if let userDict = user as? NSDictionary{
+                                                 let userString = userDict.value(forKey: "username") as? String ?? ""
 
-                                    var userImage : String = ""
-                                    userImage = userDict.value(forKey: "image") as? String ?? ""
-     
-                                    guard let km = userDict.value(forKey: "km")  else { return }
-                                    let userKM = km as! Double
-                                    guard let euro = userDict.value(forKey: "euro")  else { return }
-                                    let userEuro = euro as! Double
-                                    let userEntry = User(username: userString, image: userImage, km: userKM, euro: userEuro)
-                                     userList.append(userEntry)
-                                 
-                                }                  
-                        
-                            }
-                              
-                        }
-                
+                                                 var userImage : String = ""
+                                                 userImage = userDict.value(forKey: "image") as? String ?? ""
+                  
+                                                 guard let km = userDict.value(forKey: "km")  else { return }
+                                                 let userKM = km as! Double
+                                                 guard let euro = userDict.value(forKey: "euro")  else { return }
+                                                 let userEuro = euro as! Double
+                                                 let userEntry = User(username: userString, image: userImage, km: userKM, euro: userEuro)
+                                                  userList.append(userEntry)
+                                              
+                                             }
+                                     
+                                         }
+                                           
+                                     }
+                             
+                         }
+                         completion(userList)
+            }else{
+                completion([])
             }
-            completion(userList)
         }).resume()
     }
 }

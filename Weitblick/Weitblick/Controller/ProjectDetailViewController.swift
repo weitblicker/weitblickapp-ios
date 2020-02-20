@@ -268,7 +268,8 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                }
                project_detail_description.attributedText = markdownParser.parse(project_object!.getDescription)
                project_detail_title.text = project_object?.getName
-        project_detail_location.text = project_object?.getHosts[0].getCity.uppercased()//project_object?.getLocation.getAddress
+        project_detail_location.text = project_object?.getHosts[0].getCity.uppercased()
+        project_detail_location.font = UIFont(name: "OpenSans-Bold", size: 15)//project_object?.getLocation.getAddress
               project_detail_maplocation.text = project_object?.getLocation.getAddress
         project_detail_date.text = project_object?.getPublished.dateAndTimetoString()
        // annotation.title = project_object?.getLocation.getAddress
