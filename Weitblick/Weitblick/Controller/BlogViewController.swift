@@ -95,7 +95,6 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
         if(blogListProjectDetail.count > 0){
             self.switch_counter = 1
         }
-      //  print("SWITCH COUNTER: "+self.switch_counter.description)
         BlogService.loadBlogs(date: self.date) { (list) in
             self.blogList = list
             DispatchQueue.main.async {

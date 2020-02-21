@@ -8,10 +8,17 @@
 
 import Foundation
 import UIKit
+import LBTAComponents
 
 class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
-
+    let errorMessageLabel: UILabel = {
+        let label = UILabel()
+        label.text = "We've encountered some network issues. Please try again later .."
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
 
     var imagesLoaded : Bool = false
     var postCount : Int = 5
@@ -119,13 +126,10 @@ class NewsViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
 override func viewDidLoad() {
     super.viewDidLoad()
-    NetworkManager.isUnreachable { networkManagerInstance in
-      return
-    }
+    
     if(newsListProjectDetail.count > 0){
                self.switch_counter = 1
            }
-           print("SWITCH COUNTER: "+self.switch_counter.description)
     
     DataService.loadNews(date: self.date) { (list) in
         if(list.isEmpty){

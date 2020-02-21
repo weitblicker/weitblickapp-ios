@@ -26,8 +26,6 @@ class UserService{
         do{
         let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
             request.httpBody = jsonUser
-            print("User: ")
-            print(jsonUser.html2String)
           }catch {
             print("Error: cannot create JSON from password/reset")
             completion("Error: cannot create JSON from password/reset")
@@ -36,6 +34,7 @@ class UserService{
           let session = URLSession.shared
           let task = session.dataTask(with: request){
            (data, response, error) in
+            print(data)
            guard error == nil else{
              print("error calling POST on /password/reset")
              print(error!)
@@ -92,14 +91,11 @@ class UserService{
      /*   let postString = ["key": key,"old_password": password_old, "new_password1": password_new, "new_password2": password_new2] as [String: String]*/
         
         
-        print("POST STRING")
-        print(postString)
+
 
         do{
         let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
             request.httpBody = jsonUser
-            print("User: ")
-            print(jsonUser.html2String)
           }catch {
             print("Error: cannot create JSON from password/change")
             completion("Error: cannot create JSON from password/change")
@@ -147,50 +143,44 @@ class UserService{
         
         let url = NSURL(string: "https://weitblicker.org/rest/auth/user/")
         let str = "surfer:hangloose"
-        let test2 = Data(str.utf8).base64EncodedString();
-        print(test2)
         var request = URLRequest(url:url! as URL as URL)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue(" Token " + UserDefaults.standard.string(forKey: "key")!, forHTTPHeaderField: "Authorization")
-        //print("Basic " + test2 + " Token " + UserDefaults.standard.string(forKey: "key")!)
-        //request.addValue("Token " + UserDefaults.standard.string(forKey: "key")!, forHTTPHeaderField: "Authorization")
-        let user = UserDefaults.standard
-
-        //let postString = ["key": user.string(forKey: "key"), "username": "", "first_name" : "", "last_name" : ""] as! [String: String]
         do{
             //let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
             //request.httpBody = jsonUser
             let session = URLSession.shared
-            print("In Get UserData 1\n")
             let task = session.dataTask(with: request){
                 (data, response, error) in
-                print("In Get Userdata2\n")
                 if let data = data{
                     let jsondata = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    print(jsondata)
                     if let userDict = jsondata as? NSDictionary{
                         guard let username = userDict.value(forKey: "username") else { return }
                         let usernameString = username as! String
                         var userImageString = ""
-                         print("In GetUserdata4\n")
                         guard let imgUrl = userDict.value(forKey: "image") else { return }
                         if let imageString = imgUrl as? String{
                             userImageString = imageString
                         }
-                         print("In GetUserdata5\n")
                         guard let firstName = userDict.value(forKey: "first_name") else { return }
                         let firstNameString = firstName as! String
-                         print("In GetUserdata6\n")
                         guard let lastName = userDict.value(forKey: "last_name") else { return }
                         let lastNameString = lastName as! String
                         
-                         print("In GetUserdata7\n")
+                        guard let cycle_euro = userDict.value(forKey: "cycle_euro") else { return }
+                        let cycleEuroNumber = cycle_euro as! NSNumber
+                        let cycleEuroFloat = Double.init(truncating: cycleEuroNumber)
+                        
+                        guard let cycle_km = userDict.value(forKey: "cycle_km") else { return }
+                        let cycleKmNumber = cycle_km as! NSNumber
+                        let cycleKmFloat = Double.init(truncating: cycleKmNumber)
+                        
                         UserDefaults.standard.set(firstNameString, forKey: "firstname")
                         UserDefaults.standard.set(lastNameString, forKey: "lastname")
                         UserDefaults.standard.set(usernameString, forKey: "username")
-                        print("In Get UserData 8")
-                        let user = User(username: usernameString, image: userImageString, km: 0.0, euro: 0.0)
-                        print(user)
+                        let user = User(username: usernameString, image: userImageString, km: cycleKmFloat, euro: cycleEuroFloat)
                         completion(user,nil)
                     }
                 }else{
@@ -230,29 +220,25 @@ class UserService{
         var string = ""
         let boundstring = "\r\n--\(boundary)\r\n"
         data.append(boundstring.data(using: .utf8)!)
-        print(string)
         string = "Content-Disposition: form-data; name=\"image\"; filename=\"\(filename).png\"\r\n"
         data.append(string.data(using: .utf8)!)
-        print(string)
         string = "Content-Type: image/png\r\n\r\n"
         data.append(string.data(using: .utf8)!)
-        print(string)
         data.append(image.pngData()!)
-        //add data username, firstname, lastname
         
         data.append(boundstring.data(using: .utf8)!)
         string = "Content-Disposition: form-data; name=\"first_name\"\r\n"
         data.append(string.data(using: .utf8)!)
         string = "Content-Type: text/plain; charset=UTF-8\r\n\r\n"
         data.append(string.data(using: .utf8)!)
-        data.append((username!.description + "\r\n").data(using: .utf8)!)
+        data.append((firstname!.description + "\r\n").data(using: .utf8)!)
         
         data.append(boundstring.data(using: .utf8)!)
         string = "Content-Disposition: form-data; name=\"last_name\"\r\n"
         data.append(string.data(using: .utf8)!)
         string = "Content-Type: text/plain; charset=UTF-8\r\n\r\n"
         data.append(string.data(using: .utf8)!)
-        data.append((username!.description + "\r\n").data(using: .utf8)!)
+        data.append((lastname!.description + "\r\n").data(using: .utf8)!)
         
         data.append(boundstring.data(using: .utf8)!)
         string = "Content-Disposition: form-data; name=\"username\"\r\n"
@@ -260,19 +246,8 @@ class UserService{
         string = "Content-Type: text/plain; charset=UTF-8\r\n\r\n"
         data.append(string.data(using: .utf8)!)
         data.append((username!.description + "\r\n").data(using: .utf8)!)
-//        Content-Disposition: form-data; name="file1"; filename="a.txt"
-//        Content-Type: text/plain
-        
-            
-//
-//        data.append(("last_name: " + firstname! + "\r\n\r\n").data(using: .utf8)!)
-//        data.append(("first_name: " + lastname! + "\r\n\r\n").data(using: .utf8)!)
-// cycle_km
-// cycle_euro
-//
         string = "\r\n--\(boundary)--\r\n"
         data.append(string.data(using: .utf8)!)
-        print(string)
         
         
         // Send a POST request to the URL, with the data we created earlier
@@ -280,8 +255,6 @@ class UserService{
             if error == nil {
                 let jsonData = try? JSONSerialization.jsonObject(with: responseData!, options: .allowFragments)
                 if let json = jsonData as? [String: Any] {
-                    print("Success")
-                    print(json)
                 }
             }
         }).resume()

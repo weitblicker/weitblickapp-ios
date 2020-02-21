@@ -36,8 +36,7 @@ class RegisterService {
               do{
                   let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options: .prettyPrinted)
                   urlRequest.httpBody = jsonUser
-                  print("User: ")
-                  print(jsonUser.html2String)
+                 
                 }catch {
                   print("Error: cannot create JSON from user")
                   return
@@ -71,7 +70,6 @@ class RegisterService {
                     // completion(received.description)
                     
                               self.checkResponse(description: received.description){ (error) in
-                              print(error)
                               completion(error)
                                            }
                     
@@ -97,8 +95,6 @@ class RegisterService {
     
     static func checkResponse(description: String, error: @escaping (_ responseString : String) -> ()){
         
-         print("in check Response")
-         print(description)
        
        if (description.contains("Dieses Passwort ist zu kurz. Es muss mindestens 8 Zeichen enthalten.")){
              error("Dieses Passwort ist zu kurz. Es muss mindestens 8 Zeichen enthalten.")

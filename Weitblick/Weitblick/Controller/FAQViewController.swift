@@ -40,8 +40,6 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        print("IN NUMBER OF ROWS IN SECTION")
-        print(arr[section].count)
         return arr[section].count
     }
     
@@ -68,10 +66,8 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
         super.viewDidLoad()
       
         self.navigationController!.navigationBar.topItem!.title = "Zurück"
-        print("FAQService executing")
         FAQService.loadFAQ { (list) in
             for faq in list{
-                print(faq.title)
                 self.questionsAll.append(faq)
                 if(faq.title == "Mitmachen & Spenden"){
                 self.questions1.append(faq)

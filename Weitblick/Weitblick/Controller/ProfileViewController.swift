@@ -42,16 +42,15 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
     }
     
     override func viewDidLoad() {
-        print("In ViewDidload von ProfielView\n")
         super.viewDidLoad()
         UserService.getUserData { (user,error) in
             if let user = user{
                 DispatchQueue.main.async {
-                    print("In GetUserdata von ProfielViewController\n")
-                    print(user)
                     self.profile_image.image = user.getImage
                     self.profile_username.text =
                     user.getUsername
+                    self.profile_route.text = user.getKm.description + " km"
+                    self.profile_donation.text = user.getEuro.description + " €"
                 }
             }else{
                 if let error = error{
@@ -63,8 +62,6 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
         
         if (UserDefaults.standard.bool(forKey: "isLogged") == true){
             profile_email.text = UserDefaults.standard.string(forKey: "email")
-           profile_route.text = "0,02 km"// UserDefaults.standard.string(forKey: "route")
-           profile_donation.text = "0,00 €"// UserDefaults.standard.string(forKey: "donation")
         
             
         }
@@ -115,7 +112,6 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
           self.profile_image.image = image
         let param = "image"
         UserService.uploadImage(paramName: param, fileName: "param_" + Date().description, image: image, completion: {
-                print("Success")
         })
        }
        else
@@ -123,7 +119,6 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
           self.profile_image.image = image
             let param = "image"
             UserService.uploadImage(paramName: param, fileName: "param_" + Date().description + ".png", image: image, completion: {
-                    print("Success")
             })
         }
         

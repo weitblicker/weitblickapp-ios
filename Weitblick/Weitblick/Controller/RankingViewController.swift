@@ -100,11 +100,9 @@ class RankingViewController: UIViewController ,UITableViewDataSource, UITableVie
            donation = round(donation * 100)/100
             
       if(self.filter == 1){
-                print ("IN if = 1")
            cell.distance.text = distance.description + " km"
        
             }else if(self.filter == 0){
-                 print ("IN if = 0")
                 cell.distance.text = donation.description + " €"
          
             }

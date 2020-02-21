@@ -20,15 +20,6 @@ class RouteService{
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Token: "+UserDefaults.standard.string(forKey: "key")!, forHTTPHeaderField: "Authorization")
         let user = UserDefaults.standard
-//        let token = user.string(forKey: "key")
-//        let postString = ["token": token] as! [String: String]
-//        do{
-//            let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
-//            request.httpBody = jsonUser
-//        }catch {
-//            print("Error: cannot create JSON from todo")
-//            return
-//        }
         let task = URLSession.shared.dataTask(with: request){(data, response, error) in
             if let data = data{
                 let jsondata = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)

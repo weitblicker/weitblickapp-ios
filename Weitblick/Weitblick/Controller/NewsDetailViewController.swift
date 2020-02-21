@@ -119,8 +119,6 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
         DataService.getProjectWithID(id: self.id) { (project) in
             DispatchQueue.main.async {
                 self.project = project
-                print(project.getName)
-                print(project.getDescription)
                 self.tableView.reloadData()
             }
         }

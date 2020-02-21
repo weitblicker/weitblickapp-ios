@@ -87,8 +87,6 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier:"blogproject_cell", for: indexPath)as! BlogDetailProjectCell
         
-        print("IN TABLEVIEW")
-        //cell.project_image!.image = UIImage (named: "Weitblick")
         cell.project_image!.image = self.project?.getImage
         cell.project_title.text = self.project?.getName
         cell.project_partner.text = "Partner"
@@ -100,14 +98,9 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
        }
     
     public func loadProject(){
-        print("IN LOADPROJECTS1")
         self.id = blog_object!.getprojectInt
-        print("PROJECT ID")
-        print(blog_object!.getprojectInt)
         DataService.getProjectWithID(id: self.id) { (project) in
                 self.project = project
-                print("IN LOADPROJECTS2")
-                print (self.project?.getName as Any)
             DispatchQueue.main.async {
                 self.tableView.delegate = self
                 self.tableView.dataSource = self

@@ -23,7 +23,6 @@ class DataService{
         task.addValue("Basic " + dataB64, forHTTPHeaderField: "Authorization")
 
         URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
-            print("Successful GetNewsByID\n");
             if let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments){
                 if let newsDict = jsondata as? NSDictionary{
 
@@ -194,13 +193,10 @@ class DataService{
                                     var newsText = text as! String
                                     newsText = extractRegex(input: newsText, regex: DataService.matches(for: Constants.regexReplace, in: newsText))
 
-                                    guard let created = newsDict.value(forKey: "published") else { return } //from added to published
+                                    guard let created = newsDict.value(forKey: "published") else { return }
                                     let createdString = created as! String
-                                    print(createdString)
                                     let substrings = createdString.split(separator: "Z")
-                                    print(substrings.first!.description + "Z\n")
                                     let newsCreated = self.handleDateWithOutTimeZone(date: substrings.first!.description)
-                //                    print(newsCreated.description + "\n")
 
 
                                     guard let imageURLJSON = newsDict.value(forKey : "image") else { return }
@@ -248,7 +244,6 @@ class DataService{
                                     guard let project = newsDict.value(forKey: "project") else { return }
                                     if let projectString = project as? NSNumber{
                                         projectInt = Int.init(truncating: projectString)
-                                        print(projectInt.description + "\n")
                                     }
                                     
                                     
@@ -256,7 +251,6 @@ class DataService{
                                     var hostObject = Host()
                                     guard let host = newsDict.value(forKey: "host") else { return }
                                     if let hostDict = host as? NSDictionary{
-                                        //init(id : Int, name : String, partners : [Int], bankAccount : BankAccount){
                                         guard let hostID = hostDict.value(forKey: "id") else { return }
                                         let hostIDString = hostID as! String
                                         guard let hostName = hostDict.value(forKey : "name") else { return }
@@ -465,7 +459,6 @@ class DataService{
                                 guard let donationRateEuroKM = donationDict.value(forKey : "rate_euro_km") else { return }
                                 let donationRateEuroKMNumber = donationRateEuroKM as! NSNumber
                                 let donationRateEuroKMFloat = Float.init(truncating: donationRateEuroKMNumber)
-                                print(donationRateEuroKMFloat)
 
                                 donationObject = Donation(id: idInt!, sponsor: sponsorObject, name: donationNameString, description: donationDescriptionString, goal_amount: donationGoalAmountFloat!, rate_euro_km: donationRateEuroKMFloat)
                                 donationList.append(donationObject)
@@ -693,7 +686,6 @@ class DataService{
                 let project = Project(id: projectID!, published: projectPublished, name: projectTitle, image: image, gallery: resultimages, hosts: resultHosts, description: projectDescription, location: location , partnerID: [], cycleObject: cycleObject, news: newsIDArray, blog: blogIDArray, milestones: milestoneList, partners: partnerList, cellCount: cellcount, donationGlobal: donationGlobal, events : eventIDArray)
                 resultimages = []
                 cellcount = 0;
-                print("Project with ID successfully fetched!\n")
                 completion(project)
             }
         
@@ -838,7 +830,6 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                                                     guard let donationRateEuroKM = donationDict.value(forKey : "rate_euro_km") else { return }
                                                     let donationRateEuroKMNumber = donationRateEuroKM as! NSNumber
                                                     let donationRateEuroKMFloat = Float.init(truncating: donationRateEuroKMNumber)
-                                                    print(donationRateEuroKMFloat)
 
                                                     donationObject = Donation(id: idInt!, sponsor: sponsorObject, name: donationNameString, description: donationDescriptionString, goal_amount: donationGoalAmountFloat!, rate_euro_km: donationRateEuroKMFloat)
                                                     donationList.append(donationObject)
@@ -1059,7 +1050,7 @@ static func loadProjects(date : Date,completion: @escaping (_ projectList : [Pro
                                         let bicString = bic as! String
                                         donationBankAccount = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
                                     }
-                                    let donationGlobal = DonationGlobal(goal: donationGoalFloat, description: donationDescriptionString, current: donationCurrentFloat, account: donationBankAccount)
+                                    let donationGlobal = DonationGlobal(goal: donationGoalFloat, description: donationDescriptionString, current:      donationCurrentFloat, account: donationBankAccount)
                                     
                                     // TODO Zelle mit donation account, donation description, donation goal, donbnation current +1Zelle wenn vorhanden
 

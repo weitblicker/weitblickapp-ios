@@ -36,8 +36,6 @@ class LogoutService {
         do{
         let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
             urlRequest.httpBody = jsonUser
-            print("User: ")
-            print(jsonUser.html2String)
           }catch {
             print("Error: cannot create JSON from todo")
             completion("Error: cannot create JSON from todo")

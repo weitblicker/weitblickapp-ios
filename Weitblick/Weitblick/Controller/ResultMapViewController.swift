@@ -78,7 +78,6 @@ class ResultMapViewController: UIViewController ,UITableViewDataSource, UITableV
     }
     
     @IBAction func backButtonClicked(_ sender: Any) {
-        print("Button clicked")
         dismiss(animated: true, completion: nil)
     }
     

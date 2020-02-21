@@ -136,7 +136,6 @@ class EventService{
                 
                 guard let startDateString = eventDict.value(forKey: "start") else { return }
                 let startStringDate = startDateString as! String
-                print(startStringDate)
                 let start = DataService.handleDate(date: startStringDate)
                 
                 guard let endDateString = eventDict.value(forKey: "end") else { return }
@@ -284,7 +283,6 @@ class EventService{
                                 
                                 guard let startDateString = eventDict.value(forKey: "start") else { return }
                                 let startStringDate = startDateString as! String
-                                print(startStringDate)
                                 let start = DataService.handleDate(date: startStringDate)
                                 
                                 guard let endDateString = eventDict.value(forKey: "end") else { return }

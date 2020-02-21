@@ -50,7 +50,7 @@ class LoginViewController: UIViewController {
             return;
         }
             LoginService.loginWithData(email: self.email.text!, password: self.password.text!) { (response) in
-                print("In LoginWithData Handler")
+                print(response)
                 if(UserDefaults.standard.bool(forKey: "isLogged")){
                     DispatchQueue.main.async{
                         self.dismiss(animated: true, completion: nil)
@@ -59,7 +59,6 @@ class LoginViewController: UIViewController {
                 }else{
                     DispatchQueue.main.async {
                        
-                        print(response)
                         self.showErrorMessage(message: response)
                     }
                 }

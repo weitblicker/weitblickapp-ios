@@ -189,10 +189,9 @@ class FAQService{
     }
     
     static func loadFAQ( completion: @escaping (_ questions : [FAQEntry] ) -> ()){
-        print("In FAQService")
+       
         var resultArray : [FAQEntry] = []
         let string = Constants.restURL + "/faq/"
-        print(string)
         let url = NSURL(string: string)
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();

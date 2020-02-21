@@ -90,12 +90,6 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         return false
     }
-    
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        print("anno selected!")
-//        return MKAnnotationView(annotation: annotation, reuseIdentifier: "annoDefault")
-//    }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,8 +104,6 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
                     let CLLCoordType = CLLocationCoordinate2D(latitude: project.getLocation.getLatitude,longitude: project.getLocation.getLongitude)
                     let anno = MKPointAnnotation()
                     anno.coordinate = CLLCoordType
-                    //print("Inbefore addAnnotation")
-                    //self.mapView.addAnnotation(anno)
                     let annoView = MKAnnotationView(annotation: anno, reuseIdentifier: project.getName)
                     self.annotationList.append(annoView)
                     self.mapView.addAnnotation(annoView.annotation!)

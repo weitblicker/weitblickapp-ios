@@ -272,11 +272,6 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
         project_detail_location.font = UIFont(name: "OpenSans-Bold", size: 15)//project_object?.getLocation.getAddress
               project_detail_maplocation.text = project_object?.getLocation.getAddress
         project_detail_date.text = project_object?.getPublished.dateAndTimetoString()
-       // annotation.title = project_object?.getLocation.getAddress
-
-               // project_detail_image.image = img
-               print("GALLERY COUNT")
-               print(project_object?.getGallery.count)
                photoSliderView.configure(with: project_object!.getGallery)
 
 
@@ -307,29 +302,17 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-
-                print("IN TABLEVIEWPROJECT")
-                //partner
-                print("PARTNERCOUNT: "+self.project_object!.getPartners.count.description + "\n")
-                print("PARTNERLOADED: " + self.partner_loaded.description + "\n");
                 if(self.project_object!.getPartners.count > 0 && self.partner_loaded == false){
-                    print("IN PARTNER")
                     let cell =  tableView.dequeueReusableCell(withIdentifier:"partner_cell", for: indexPath)as! P_DetailPartnerCell
                     if(self.partner_head == false){
                         self.partner_head = true
-                        print ("IN PARTNER IF 1")
                         let pahead_cell = cell.partner_tableView.dequeueReusableCell(withIdentifier:"pahead_cell", for: indexPath)as! PaHeadCell
                         return pahead_cell
                     }
                     if(self.partner_list == false){
-                        print("PARTNERLOADED vor drittem mal partner loaded")
-                        print ("IN PARTNER IF 2")
                         let palist_cell = cell.partner_tableView.dequeueReusableCell(withIdentifier:"palist_cell", for: indexPath)as! PaListCell
-                        print("PARTNERLOADED: " + self.counter_partner.description);
-                        print("PARTNERLOADED: " + (self.project_object?.getPartners.count.description)!)
                         if(self.counter_partner < (self.project_object?.getPartners.count)!){
                             palist_cell.palist_name.text = self.project_object?.getPartners[counter_partner].getName
-                            print(palist_cell.palist_name.text)
                             palist_cell.palist_description.text = self.project_object?.getPartners[counter_partner].getDescription
                             palist_cell.palist_image.image = self.project_object?.getPartners[counter_partner].getLogo
                             self.counter_partner = self.counter_partner + 1
@@ -344,15 +327,12 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
                  //spenden
         if (self.spenden_loaded == false && self.project_object?.getDonationGlobal.getDonationGoal != 0.0) {
-                    print("IN Spenden")
                     let cell = tableView.dequeueReusableCell(withIdentifier:"spenden_cell", for: indexPath)as! P_DetailSpendenCell
                     cell.spendenkonto.text = self.project_object?.getDonationGlobal.getDonationAccount.getIban
                     cell.spendenstand.text = self.project_object?.getDonationGlobal.getCurrent.description
                     cell.spendenziel.text = self.project_object?.getDonationGlobal.getDonationGoal.description
                     cell.spendenbeschreibung.text = self.project_object?.getDonationGlobal.getDescription
                     self.spenden_loaded = true
-         
-           // cell.selectedBackgroundView =  [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:@"cell_pressed.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0] ];
             cell.backgroundView = UIImageView(image: UIImage(named: "yellowxxxhdpi")!)
 
                     return cell
@@ -360,16 +340,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
                     //fahrrad
                 else if (project_object!.getCycleObject.getDonations.count  > 0 && self.fahrrad_loaded == false){
-                    print("IN FAHRRAD")
                     let cell = tableView.dequeueReusableCell(withIdentifier:"fahrrad_cell", for: indexPath)as! P_DetailFahrradCell
-        //            if(!(self.project_object?.getCycleObject.getDonations.isEmpty)!){
-        //
-        //                cell.customizeChart(dataPoints: stats, values: goals.map{ Double($0) })
-        //                   } else{
-        //                       PieChart.alpha = 0
-        //
-        //                   }
-
                     cell.gefahren.text = project_object!.getCycleObject.getkmSum.description + " km"
 
                     cell.spendenstand.text = project_object!.getCycleObject.getEuroSum.description + " €"
@@ -384,19 +355,14 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 }
 
                 //sponsor
-                 if (self.project_object!.getCycleObject.getDonations.count > 0 && self.sponsor_loaded == false) {
-
-                    print ("IN SPONSOR")
-                    let cell = tableView.dequeueReusableCell(withIdentifier:"sponsor_cell", for: indexPath)as! P_DetailSponsorCell
-                    if(self.sponsor_head == false){
-                        print("IN SPONSOR IF 1")
-                    let sphead_cell = cell.sponsor_tableView.dequeueReusableCell(withIdentifier:"sphead_cell", for: indexPath)as! SpHeadCell
-                    self.sponsor_head = true
-                    return sphead_cell
-                    }//else if (indexPath.row == self.counter_index_path){
+                    if (self.project_object!.getCycleObject.getDonations.count > 0 && self.sponsor_loaded == false) {
+                        let cell = tableView.dequeueReusableCell(withIdentifier:"sponsor_cell", for: indexPath)as! P_DetailSponsorCell
+                        if(self.sponsor_head == false){
+                        let sphead_cell = cell.sponsor_tableView.dequeueReusableCell(withIdentifier:"sphead_cell", for: indexPath)as! SpHeadCell
+                        self.sponsor_head = true
+                        return sphead_cell
+                    }
                      if(self.sponsor_list == false){
-                        print("IN SPONSOR IF 2")
-
                      let splist_cell = cell.sponsor_tableView.dequeueReusableCell(withIdentifier:"splist_cell", for: indexPath)as! SpListCell
 
                         if(self.counter_sponsor < (self.project_object?.getCycleObject.getDonations.count)!){
@@ -418,17 +384,14 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 //meilensteine
                   if (project_object!.getMilestones.count > 0 && self.meilenstein_loaded == false){
 
-                    print ("IN MEILENSTEIN")
                     let cell = tableView.dequeueReusableCell(withIdentifier:"meilenstein_cell", for: indexPath)as! P_DetailMeilensteinCell
                     if(self.meilenstein_head == false){
-                        print ("IN MEILENSTEIN IF 1")
                         let mehed_cell = cell.meilenstein_tableView.dequeueReusableCell(withIdentifier:"mehead_cell", for: indexPath)as! MeHeadCell
                         self.meilenstein_head = true
                         mehed_cell.backgroundView = UIImageView(image: UIImage(named: "greenxxxhdpi")!)
                         return mehed_cell
                     }
                      if(self.meilenstein_list == false){
-                            print ("IN MEILENSTEIN IF 2")
                             let melist_cell = cell.meilenstein_tableView.dequeueReusableCell(withIdentifier:"melist_cell", for: indexPath)as! MeListCell
                         if(self.counter_milestones < (self.project_object?.getMilestones.count)!){
                             melist_cell.melist_date.text = self.project_object!.getMilestones[self.counter_milestones].getDate.dateAndTimetoString()
@@ -450,21 +413,15 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
                 //blog
                 if (self.project_object!.getBlogs.count >  0 && self.blog_loaded == false){
-                    print("IN BLOG")
                     let cell = tableView.dequeueReusableCell(withIdentifier:"blog_cell", for: indexPath)as! P_DetailBlogCell
                     if(self.blog_head == false){
-                            print ("IN BLOG IF 1")
                             let blhead_cell = cell.blog_tableView.dequeueReusableCell(withIdentifier:"blhead_cell", for: indexPath)as! BlHeadCell
                         self.blog_head = true
                         blhead_cell.backgroundView = UIImageView(image: UIImage(named: "bluegreyldpi")!)
                         return blhead_cell
                          }
                     else if(self.blog_list == false){
-                            print ("IN BLOG IF 2")
-                        print("BLOG COUNT : " + (self.project_object?.getBlogs.count.description)!)
                             let bllist_cell = cell.blog_tableView.dequeueReusableCell(withIdentifier:"bllist_cell", for: indexPath)as! BlListCell
-                        print("COUNTER bloglist: " + self.blogList.count.description)
-                        print("COUNTER: " + (project_object?.getBlogs.count.description)!)
                         if(self.counter_blogs < ((self.project_object?.getBlogs.count)!) && self.blogList.count>0){
                                 bllist_cell.bllist_author.text = self.blogList[self.counter_blogs].getAuthor.getName
                                 bllist_cell.bllist_title.text = self.blogList[self.counter_blogs].getTitle
@@ -481,7 +438,6 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
                         }
                     if(self.blogList.count > 3 && self.more_blog_loaded == false){
-                        print("IN BLOG IF 3")
                         let more_cell = cell.blog_tableView.dequeueReusableCell(withIdentifier:"show_more_blog_cell", for: indexPath)as! ShowMoreBlogCell
                         more_cell.show_more_button.addTarget(self, action: #selector(ProjectDetailViewController.goToBlogFromBlogList), for: .touchUpInside)
                         self.more_blog_loaded = true
@@ -495,22 +451,17 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
                 //news
                  if (self.project_object!.getNews.count > 0 && self.news_loaded == false){
-                    print("IN NEWS")
                     let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! P_DetailNewsCell
                     if(self.news_head == false){
-                        print("IN NEWS IF 1")
                         let nehead_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"nehead_cell", for: indexPath)as! NeHeadCell
                         self.news_head = true
                         return nehead_cell
                     }else if(self.news_list == false){
-                         print("IN NEWS IF 2")
                         let nelist_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"nelist_cell", for: indexPath)as! NeListCell
                         if(self.counter_news < self.newsList.count && self.counter_news < 3){
-                            print("IN NEWS IF COUNTER")
                             nelist_cell.nelist_date.text = self.newsList[self.counter_news].getCreationDate.dateAndTimetoString();
                             nelist_cell.nelist_author.text = self.newsList[self.counter_news].getAuthor.getName
                             nelist_cell.nelist_description.text = self.newsList[self.counter_news].getText
-                            print("NEWS DES: "+self.newsList[self.counter_news].getText)
                             nelist_cell.nelist_title.text = self.newsList[self.counter_news].getTitle
                             nelist_cell.nelist_location.text = self.newsList[self.counter_news].getHost.getLocation.getAddress
                             nelist_cell.nelist_image!.image = self.newsList[self.counter_news].getImage
@@ -523,7 +474,6 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                         }
                     }
                     if(self.project_object!.getNews.count > 3 && self.more_news_loaded == false){
-                        print("IN NEWS IF 3")
                         let more_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"show_more_news", for: indexPath)as! ShowMoreNewsCell
                          more_cell.show_more_button.addTarget(self, action: #selector(ProjectDetailViewController.goToNewsFromNewsList), for: .touchUpInside)
                         self.more_news_loaded = true
@@ -533,14 +483,10 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     return cell
                 }
 
-                //event
-        print("EVENT COUNT : "+self.project_object!.getEvents.count.description)
                  if (self.project_object!.getEvents.count > 0 && self.event_loaded == false){
 
-                    print("IN EVENt")
                     let cell = tableView.dequeueReusableCell(withIdentifier:"event_cell", for: indexPath)as! P_DetailEventCell
                     if(self.event_head == false){
-                      print("IN EVENT IF 1")
                         let evhead_cell = cell.event_tableView.dequeueReusableCell(withIdentifier:"evhead_cell", for: indexPath)as! EvHeadCell
                         self.event_head = true
                         evhead_cell.backgroundView = UIImageView(image: UIImage(named: "bluegreyldpi")!)
@@ -549,10 +495,8 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     }
                     if(self.event_list == false){
 
-                        print("IN EVENT IF 2")
                         let evlist_cell = cell.event_tableView.dequeueReusableCell(withIdentifier:"evlist_cell", for: indexPath)as! EvListCell
                          if(self.counter_events < self.eventList.count && self.counter_events < 3){
-                            print("IN EVENT IF 3")
                             evlist_cell.evlist_date.text = self.eventList[self.counter_events].getStartDate.dateAndTimetoString()
                             evlist_cell.evlist_location.text = self.eventList[self.counter_events].getLocation.getAddress
                             evlist_cell.evlist_title.text = self.eventList[self.counter_events].getTitle
@@ -569,7 +513,6 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
                     }
                     if(self.eventList.count > 3 && self.more_event_loaded == false){
-                        print("IN EVENT IF 3")
                         let more_cell = cell.event_tableView.dequeueReusableCell(withIdentifier:"show_more_event_cell", for: indexPath)as! ShowMoreEventsCell
                          more_cell.show_more_event.addTarget(self, action: #selector(ProjectDetailViewController.goToEventFromEventList), for: .touchUpInside)
                         self.more_event_loaded = true

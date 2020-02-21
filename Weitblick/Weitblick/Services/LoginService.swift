@@ -12,7 +12,6 @@ import SwiftKeychainWrapper
 class LoginService{
 
     static func loginWithData(email : String, password : String, completion: @escaping (_ responseString : String) -> ()){
-        print("In LoginWithData")
 //        var key : String = ""
 //        key = UserDefaults.standard.string(forKey: "key")!
         let url = NSURL(string: Constants.loginURL)
@@ -38,9 +37,7 @@ class LoginService{
             print("Error: cannot create JSON from todo")
             return
         }
-        print("In LoginWithData vor Task")
         let task = URLSession.shared.dataTask(with: request){(data, response, error) in
-            print("In LoginWithData in Task")
             guard error == nil else{
                print("error calling POST in Login")
                print(error!)
@@ -53,15 +50,11 @@ class LoginService{
             do{
                  guard let received = try JSONSerialization.jsonObject(with: responseData,
                               options: []) as? [String: Any] else {
+                                
                     print("Could not get JSON from responseData as dictionary")
                     return
                 }
-                print("RECEIVED")
                 print(received)
-            //print("The Recieved Message is: " + received.description)
-
-               /* let names = userData.value(forKeyPath: "data.username")
-                if !names.isEmpty { print(names[0]) }*/
 
                 guard let userKey = received["key"] as? String else {
                     user.set(false, forKey: "isLogged")
@@ -80,10 +73,6 @@ class LoginService{
                     }
                     return
                 }
-
-
-               print("TOKEN: ")
-               print (userKey)
                user.set(userKey, forKey: "key")
                user.set(true, forKey: "isLogged")
                user.set(email, forKey: "email")
@@ -106,7 +95,6 @@ class LoginService{
 
  static func checkResponse(description: String, error: @escaping (_ responseString : String) -> ()){
 
-      print("in check Response")
 
     if (description.contains("Gib eine gültige E-Mail Adresse an.")){
           error("Gib eine gültige E-Mail Adresse an.")

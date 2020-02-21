@@ -2,7 +2,6 @@ import Foundation
 import Reachability
 
 class NetworkManager: NSObject {
-
     var reachability: Reachability!
 
     // Create a singleton instance

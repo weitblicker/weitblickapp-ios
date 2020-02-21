@@ -78,7 +78,6 @@ class MapViewController: UIViewController {
         SegmentService.getTourID { (id) in
             DispatchQueue.main.async {
                 self.tours = id
-                print("New ID: "+id.description)
                 UserDefaults.standard.set(self.tours, forKey: "tours")
                 UserDefaults.standard.synchronize()
             }
@@ -86,21 +85,15 @@ class MapViewController: UIViewController {
     }
 
     func setupSegmentations(){
-        print("StartTimer")
         timer = Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
         start = Date()
     }
 
     @objc func fireTimer(){
-        print("FIRETIMER")
         let distanceToSent = round(((totalDistance - currentDistance)/1000)*100)/100
-        //self.showErrorMessage(message: "DistanceToSend: " + distanceToSent.description)
-
         currentDistance = totalDistance
         end = Date()
         SegmentService.sendSegment(start: start, end: end, distance: distanceToSent, projectID: projectid, tourID: self.tours) { (response) in
-            print("In SegmentService Completionhandler")
-            print(response)
             self.start = self.end
         }
 
@@ -137,10 +130,8 @@ class MapViewController: UIViewController {
     }
 
     func checkLocationAuthorization(){
-        print("In checkLocationAuthorization")
         switch CLLocationManager.authorizationStatus(){
         case .authorizedWhenInUse:
-            print("AUTHORIZED")
             self.map.showsUserLocation = true
             startTracking = true
             centerViewOnUserLocation()
@@ -148,19 +139,13 @@ class MapViewController: UIViewController {
             locationManager.startUpdatingLocation()
             break
         case .denied:
-            print("DENIED")
-            // SHOW ALERT HOW TO TURN ON PERMISSIONS
             break
         case .notDetermined:
-            print("NOT DETERMINED")
             locationManager.requestAlwaysAuthorization()
             break
         case .restricted:
-            print("RESTRICTED")
-            // SHOW ALERT
             break
         case .authorizedAlways:
-            print("AUTHORIZED ALWAYS")
             startTracking = true
             self.map.showsUserLocation = true
             centerViewOnUserLocation()
@@ -220,28 +205,6 @@ class MapViewController: UIViewController {
     }
 }
 
-/*
- 
- StartTracking True
- hasbeenPaused false
- 
- -> didUpdate() -> 1 Location
-                -> 2 Location -> Distance calculated
-                -> 3 Location -> Distance calculated
-                -> ..         -> Distance calculated
- -> clickPauseContinue()
-                -> FireTimer -> Distance calculated
-                -> StartTracking false
- ..
- -> clickPauseContinue()
-                -> StartTracking true
-                -> hasBeenPaused true
- -> didUpdate() -> 1 Location
-                -> hasbeenPaused false
-                -> 2 Location -> Distance calculated
-                -> ..         -> Distance calculated
- 
- */
 
 
 extension MapViewController : CLLocationManagerDelegate{
@@ -312,24 +275,3 @@ extension MapViewController : CLLocationManagerDelegate{
 }
 
 
-
-
-/*
-
- let url = NSURL(string: "https://new.weitblicker.org/rest/cycle/segment")
-        let str = "surfer:hangloose"
-        let test2 = Data(str.utf8).base64EncodedString();
-        var request = URLRequest(url : (url as URL?)!,cachePolicy:URLRequest.CachePolicy.reloadIgnoringCacheData, timeoutInterval: 20)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-                    // urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        let postString = ["project" : Int, "tour" : Int, "token": String , "distance": float , "start" : YYYY-MM-DDTHH:MM:SS+2:00, "end" : YYYY-MM-DDTHH:MM:SS+2:00 ] as [String: String]
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: postString, options: .prettyPrinted)
-        }catch let error{
-            print(error.localizedDescription)
-            showAlertMess(userMessage: "Irgendwas ist nicht richtig beim Login")
-            return
-        }
- */

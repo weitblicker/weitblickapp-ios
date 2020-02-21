@@ -134,25 +134,7 @@ class RegisterViewController: UIViewController, UIPopoverPresentationControllerD
              return;
 
         }
-            //POST-Request zum Registrieren des Users
-
-        //Store Data
-    /*    UserDefaults.standard.set(self.email.text, forKey:"userEmail")
-        UserDefaults.standard.set(self.password.text, forKey:"userPassword")
-        UserDefaults.standard.synchronize()
-
-            let alertView = UIAlertController(title: "Achtung!", message: "Registrierung erfolgreich. Vielen Dank!", preferredStyle: UIAlertController.Style.alert)
-            let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default){
-                action in
-                self.dismiss(animated: true,completion:nil)
-            }
-            alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-
-            self.present(alertView, animated: true, completion: nil)
-            print("User registriert")*/
-
-
-        //POST-Request zum Registrieren des Users
+            
 
         RegisterService.registerWithData(username: self.username.text!,email: self.email.text!, password1: self.password.text!, password2: self.password2.text!) { (response) in
         
@@ -162,8 +144,6 @@ class RegisterViewController: UIViewController, UIPopoverPresentationControllerD
                     let register = UserDefaults.standard.bool(forKey: "isRegisterd")
 
                                     if(register == true){
-                                       print("IN DER UMLEITUNG")
-                                    //Auf login View umleiten
                                 
                                       DispatchQueue.main.async {
                                           self.reloadInputViews()

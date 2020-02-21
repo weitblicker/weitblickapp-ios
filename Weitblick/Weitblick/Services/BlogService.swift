@@ -11,7 +11,6 @@ import UIKit
 class BlogService{
     
     static func getBlogByID(id : Int, completion: @escaping (_ blog : BlogEntry) -> ()){
-        print("IN BLOG SERVICE")
         
         var resultimages : [UIImage] = []
         let urlString = "https://weitblicker.org/rest/blog/" + id.description
@@ -24,7 +23,6 @@ class BlogService{
         task.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
-            print("Succesfull in Blog By ID\n")
         let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
                 if let blogDict = jsondata as? NSDictionary{
                     guard let id = blogDict.value(forKey: "id")  else { return }
@@ -35,7 +33,6 @@ class BlogService{
                     guard let project = blogDict.value(forKey: "project") else { return }
                     if let projectString = project as? NSNumber{
                         projectInt = Int.init(truncating: projectString)
-                        print(projectInt.description + "\n")
                     }
                     
                     guard let title = blogDict.value(forKey: "title") else { return }
@@ -67,8 +64,6 @@ class BlogService{
                         
                     }
                     
-        print("blog4")
-              
                     
                     guard let range = blogDict.value(forKey: "range") else { return }
                     let blogRange = range as! String
@@ -178,7 +173,6 @@ class BlogService{
                     }
                     
                     let blogEntry = BlogEntry(id: blogID!, title: blogTitle, text: blogText, created: blogCreated, updated: blogCreated, image: image, teaser: blogTeaser, range: blogRange,gallery: resultimages, projectInt: projectInt, author : authorObject, location: location, host : hostObject)
-                    print("BlogEntry CREATED IN BLOG BY ID \n\n\n")
                     completion(blogEntry)
                     }
                 }
@@ -199,14 +193,11 @@ class BlogService{
         task.httpMethod = "GET"
         task.addValue("application/json", forHTTPHeaderField: "Content-Type")
         task.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-        print("blog1")
         URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
             if let data = data{
                 let jsondata = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
                             if let newsArray = jsondata as? NSArray{
-                                print("blog2")
                                 for news in newsArray{
-                                    print("blog3")
                                     if let blogDict = news as? NSDictionary{
                                         guard let id = blogDict.value(forKey: "id")  else { return }
                                         let IDString = id as! String
@@ -216,7 +207,6 @@ class BlogService{
                                         guard let project = blogDict.value(forKey: "project") else { return }
                                         if let projectString = project as? NSNumber{
                                             projectInt = Int.init(truncating: projectString)
-                                            print(projectInt.description + "\n")
                                         }
                                         
                                         guard let title = blogDict.value(forKey: "title") else { return }
@@ -245,8 +235,7 @@ class BlogService{
                                             image = UIImage(data: data! as Data)!
                                             resultimages.append(image)
                                         }
-                                        
-                print("blog4")
+                               
                                   
                                         
                                         guard let range = blogDict.value(forKey: "range") else { return }

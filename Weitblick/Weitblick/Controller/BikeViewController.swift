@@ -36,7 +36,6 @@ class BikeViewController: UIViewController {
     @IBOutlet weak var cycleProjectTitle: UIButton!
     
     @IBAction func startDataTracking(_ sender: Any) {
-        print(UserDefaults.standard.bool(forKey: "isLogged"))
         if(!UserDefaults.standard.bool(forKey: "isLogged")){
             self.performSegue(withIdentifier: "showLogin", sender: self)
         }else{
@@ -76,12 +75,7 @@ class BikeViewController: UIViewController {
     
     
     @IBAction func cycleTitleTApped(_ sender: Any) {
-       
-            print("IN DER IF")
-             self.performSegue(withIdentifier: "goToProjectCycleView", sender: self)
-            
-        
-       
+        self.performSegue(withIdentifier: "goToProjectCycleView", sender: self)
     }
     
     
@@ -95,7 +89,6 @@ class BikeViewController: UIViewController {
             setupLocationManager()
             checkLocationAuthorization()
         }else{
-            // SHOW ALERT TO TURN GPS ON
         }
     }
     
@@ -107,28 +100,20 @@ class BikeViewController: UIViewController {
     }
     
     func checkLocationAuthorization(){
-        print("In checkLocationAuthorization")
         switch CLLocationManager.authorizationStatus(){
         case .authorizedWhenInUse:
-            print("AUTHORIZED")
             self.mapView.showsUserLocation = true
             centerViewOnUserLocation()
             locationManager.startUpdatingLocation()
             break
         case .denied:
-            print("DENIED")
-            // SHOW ALERT HOW TO TURN ON PERMISSIONS
             break
         case .notDetermined:
-            print("NOT DETERMINED")
             locationManager.requestAlwaysAuthorization()
             break
         case .restricted:
-            print("RESTRICTED")
-            // SHOW ALERT
             break
         case .authorizedAlways:
-            print("AUTHORIZED ALWAYS")
             self.mapView.showsUserLocation = true
             centerViewOnUserLocation()
             locationManager.startUpdatingLocation()
@@ -152,7 +137,6 @@ class BikeViewController: UIViewController {
     }
     
     func updateTitle(completion: @escaping (_ answer : Bool) -> ()){
-        print("In UpdateTitle " + UserDefaults.standard.string(forKey: "projectName")!.description)
         self.cycleProjectTitle.setTitle(UserDefaults.standard.string(forKey: "projectName"), for: .normal)
         completion(true)
     }
