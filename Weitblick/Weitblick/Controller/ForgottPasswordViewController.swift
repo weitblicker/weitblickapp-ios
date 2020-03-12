@@ -14,29 +14,25 @@ class ForgottPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-           tap.cancelsTouchesInView = false
-         view.addGestureRecognizer(tap)
-
-
-        //view verschieben bei tastatur
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+        //View verschieben bei tastatur
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil);
-
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil);
-
-        // Do any additional setup after loading the view.
     }
     
     
     @IBOutlet weak var email: UITextField!
+    
+    //Kontrolliert ob E-mail Feld ausgefüllt
+    //Falls ja wird UserService aufgerufen und reset password durchgeführt
+    //Anzeigen von Nachricht
     @IBAction func forgottPassword(_ sender: Any) {
-        
         if(self.email.text!.isEmpty){
                   showErrorMessage(message: "E-Mail Feld darf nicht leer sein")
               }
-              
         UserService.resetPassword(email: self.email.text!) { (response) in
             if(response == "successful" ){
-                
                DispatchQueue.main.async {
                 self.showAlertMess(userMessage: "Passwort wurde erfolgreich geändert")
                 }
@@ -51,16 +47,14 @@ class ForgottPasswordViewController: UIViewController {
       
     }
     
+    //Nachrichtenfenster anzeigen
     func showAlertMess(userMessage: String){
-
               let alertView = UIAlertController(title: "Achtung!", message: userMessage, preferredStyle: UIAlertController.Style.alert)
               alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-
               self.present(alertView, animated: true, completion: nil)
 
           }
-    
-    
+    //Errorfenster anzeigen lassen
     func showErrorMessage(message:String) {
           let alertView = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
           let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
@@ -74,9 +68,6 @@ class ForgottPasswordViewController: UIViewController {
       //Causes the view (or one of its embedded text fields) to resign the first responder status.
       view.endEditing(true)
   }
-
-
-
 
      //view verschieben wenn tastaur erscheint
      @objc func keyboardWillShow(sender: NSNotification) {

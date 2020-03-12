@@ -47,6 +47,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var project_detail_date: UILabel!
     @IBOutlet weak var project_detail_maplocation: UILabel!
     @IBOutlet weak var map: MKMapView!
+    //Alle Variablen müssen auf 0 bzw false gesetzt werden
     var count = 0
     var postCount = 0
     var counter_milestones = 0
@@ -108,14 +109,12 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
 
-
+    //Favoriten Button darstellen
     func setUpButton(){
         ButtonFav.addTarget(self, action: Selector(("favButton:")), for : UIControl.Event.touchUpInside)
     }
-
-
-     var clicked = 0
-    
+    var clicked = 0
+    //Falls Herz angeklickt Icon ändern
     @IBAction func favButton(_ sender: UIButton) {
         if(clicked == 0){
         let image = UIImage(systemName: "heart.fill")
@@ -203,6 +202,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 self.project_tableView.reloadData()
 
                }
+        //Daten für Projektdetailansicht den Labels zuweisen
         project_detail_description.attributedText = markdownParser.parse(project_object!.getDescription)
         project_detail_title.text = project_object?.getName
         project_detail_location.text = project_object?.getHosts[0].getCity.uppercased()
@@ -213,7 +213,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
     }
 
-
+    //Listen anlegen für die kommenden Daten
     var newsList : [NewsEntry] = []
     var blogList : [BlogEntry] = []
     var eventList : [Event] = []
@@ -229,14 +229,18 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
        }
 
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //Prüfen ob Projekt Partners hat und ob diese bereitsgeladen sind
+        //Falls nicht geladen können und Projekt besitzt Partner diese in Zellen anzeigen lassen
         if(self.project_object!.getPartners.count > 0 && self.partner_loaded == false){
             let cell =  tableView.dequeueReusableCell(withIdentifier:"partner_cell", for: indexPath)as! P_DetailPartnerCell
             if(self.partner_head == false){
+                //Zelle zeigt Title an (Bild im Storyboard festgelegt)
                 self.partner_head = true
                 let pahead_cell = cell.partner_tableView.dequeueReusableCell(withIdentifier:"pahead_cell", for: indexPath)as! PaHeadCell
                         return pahead_cell
                     }
             if(self.partner_list == false){
+                //List Zelle zeigt Liste alle Partner mit Logo, Beschreibung und Name an
                 let palist_cell = cell.partner_tableView.dequeueReusableCell(withIdentifier:"palist_cell", for: indexPath)as! PaListCell
                 if(self.counter_partner < (self.project_object?.getPartners.count)!){
                     palist_cell.palist_name.text = self.project_object?.getPartners[counter_partner].getName
@@ -252,7 +256,10 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     return cell
                 }
 
-        //spenden
+        //Spenden Zelle
+        //Prüfen ob Projekt Spenden besitzt und ob diese bereits geladen sind
+        //Falls nicht und Spenden vorhanden, diese anzeigen lassen
+        //Eine Zelle für ganze Spendenbereich hier angelegt
         if (self.spenden_loaded == false && self.project_object?.getDonationGlobal.getDonationGoal != 0.0) {
             let cell = tableView.dequeueReusableCell(withIdentifier:"spenden_cell", for: indexPath)as! P_DetailSpendenCell
             cell.spendenkonto.text = self.project_object?.getDonationGlobal.getDonationAccount.getIban
@@ -264,7 +271,8 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
             return cell
                 }
 
-                    //fahrrad
+        //Fahrrad Zelle
+        //Falls Projekt zum Radeln geeignet Zelle und diese bereits nicht schon anzeigen lassen
         else if (project_object!.getCycleObject.getDonations.count  > 0 && self.fahrrad_loaded == false){
             let cell = tableView.dequeueReusableCell(withIdentifier:"fahrrad_cell", for: indexPath)as! P_DetailFahrradCell
             cell.gefahren.text = project_object!.getCycleObject.getkmSum.description + " km"
@@ -275,15 +283,18 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
             self.fahrrad_loaded = true
             return cell
         }
-        //sponsor
+        //Sponsor Zelle
+        //Falls Projekt Sponsor besitzt und diese nicht geladen, anzeigen lassen
         if (self.project_object!.getCycleObject.getDonations.count > 0 && self.sponsor_loaded == false) {
             let cell = tableView.dequeueReusableCell(withIdentifier:"sponsor_cell", for: indexPath)as! P_DetailSponsorCell
             if(self.sponsor_head == false){
+                //Zelle zeigt Title an (Bild im Storyboard festgelegt)
                 let sphead_cell = cell.sponsor_tableView.dequeueReusableCell(withIdentifier:"sphead_cell", for: indexPath)as! SpHeadCell
                 self.sponsor_head = true
                 return sphead_cell
             }
             if(self.sponsor_list == false){
+                //Zelle zeigt Liste an Sponsoren an
                 let splist_cell = cell.sponsor_tableView.dequeueReusableCell(withIdentifier:"splist_cell", for: indexPath)as! SpListCell
                 if(self.counter_sponsor < (self.project_object?.getCycleObject.getDonations.count)!){
                     //mehrere Sponsoren könnten sein
@@ -300,16 +311,20 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     self.sponsor_loaded = true
                     return cell
                 }
-        //meilensteine
+        //Meilensteine Zelle
+        //Falls Meilensteine im Projekt vorhanden und nicht bereit sgeladen, diese anzeigen
+        
         if (project_object!.getMilestones.count > 0 && self.meilenstein_loaded == false){
             let cell = tableView.dequeueReusableCell(withIdentifier:"meilenstein_cell", for: indexPath)as! P_DetailMeilensteinCell
             if(self.meilenstein_head == false){
+                //Zelle zeigt Title an (Bild im Storyboard festgelegt)
                 let mehed_cell = cell.meilenstein_tableView.dequeueReusableCell(withIdentifier:"mehead_cell", for: indexPath)as! MeHeadCell
                 self.meilenstein_head = true
                 mehed_cell.backgroundView = UIImageView(image: UIImage(named: "greenxxxhdpi")!)
                 return mehed_cell
                     }
             if(self.meilenstein_list == false){
+                //Zelle gibt Liste der Meilensteine an
                 let melist_cell = cell.meilenstein_tableView.dequeueReusableCell(withIdentifier:"melist_cell", for: indexPath)as! MeListCell
                 if(self.counter_milestones < (self.project_object?.getMilestones.count)!){
                     melist_cell.melist_date.text = self.project_object!.getMilestones[self.counter_milestones].getDate.dateAndTimetoString()
@@ -328,16 +343,20 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                 }
 
 
-                //blog
+        //Blog Zelle
+        //Falls Projekt Blogs besitzt und diese nicht bereits geladen, anzeigen lassen
+            
                 if (self.project_object!.getBlogs.count >  0 && self.blog_loaded == false){
                     let cell = tableView.dequeueReusableCell(withIdentifier:"blog_cell", for: indexPath)as! P_DetailBlogCell
                     if(self.blog_head == false){
+                        //Zelle zeigt Title an (Bild im Storyboard festgelegt)
                             let blhead_cell = cell.blog_tableView.dequeueReusableCell(withIdentifier:"blhead_cell", for: indexPath)as! BlHeadCell
                         self.blog_head = true
                         blhead_cell.backgroundView = UIImageView(image: UIImage(named: "bluegreyldpi")!)
                         return blhead_cell
                          }
                     else if(self.blog_list == false){
+                        //Zelle zeigt Liste mit Blogs an
                             let bllist_cell = cell.blog_tableView.dequeueReusableCell(withIdentifier:"bllist_cell", for: indexPath)as! BlListCell
                         if(self.counter_blogs < ((self.project_object?.getBlogs.count)!) && self.blogList.count>0){
                                 bllist_cell.bllist_author.text = self.blogList[self.counter_blogs].getAuthor.getName
@@ -355,6 +374,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
                         }
                     if(self.blogList.count > 3 && self.more_blog_loaded == false){
+                        //Falls Anzahl der zugehörigen Blogs > 3 "Mehr anzeigen" Button sichtbar in seperater Zelle
                         let more_cell = cell.blog_tableView.dequeueReusableCell(withIdentifier:"show_more_blog_cell", for: indexPath)as! ShowMoreBlogCell
                         more_cell.show_more_button.addTarget(self, action: #selector(ProjectDetailViewController.goToBlogFromBlogList), for: .touchUpInside)
                         self.more_blog_loaded = true
@@ -366,14 +386,18 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     return cell
                 }
 
-                //news
+                //News Zelle
+                //Falls Projekt News besitzt und diese nicht bereits geladen, news anzeigen
+                
                  if (self.project_object!.getNews.count > 0 && self.news_loaded == false){
                     let cell = tableView.dequeueReusableCell(withIdentifier:"news_cell", for: indexPath)as! P_DetailNewsCell
                     if(self.news_head == false){
+                        //Zelle zeigt Title an (Bild im Storyboard festgelegt)
                         let nehead_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"nehead_cell", for: indexPath)as! NeHeadCell
                         self.news_head = true
                         return nehead_cell
                     }else if(self.news_list == false){
+                        //Zelle zeigt Liste an News an
                         let nelist_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"nelist_cell", for: indexPath)as! NeListCell
                         if(self.counter_news < self.newsList.count && self.counter_news < 3){
                             nelist_cell.nelist_date.text = self.newsList[self.counter_news].getCreationDate.dateAndTimetoString();
@@ -391,6 +415,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                         }
                     }
                     if(self.project_object!.getNews.count > 3 && self.more_news_loaded == false){
+                        //Falls Newsanzahl > 3 Button "Mehr anzeigen" darstellen in seperater Zelle
                         let more_cell = cell.news_tableView.dequeueReusableCell(withIdentifier:"show_more_news", for: indexPath)as! ShowMoreNewsCell
                          more_cell.show_more_button.addTarget(self, action: #selector(ProjectDetailViewController.goToNewsFromNewsList), for: .touchUpInside)
                         self.more_news_loaded = true
@@ -399,11 +424,13 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     self.news_loaded = true
                     return cell
                 }
+        //Event Zelle
+        //Falls Projekt Events besitzt und diese nicht bereits geladen, events anzeigen
 
                  if (self.project_object!.getEvents.count > 0 && self.event_loaded == false){
-
                     let cell = tableView.dequeueReusableCell(withIdentifier:"event_cell", for: indexPath)as! P_DetailEventCell
                     if(self.event_head == false){
+                        //Zelle zeigt Title an (Bild im Storyboard festgelegt)
                         let evhead_cell = cell.event_tableView.dequeueReusableCell(withIdentifier:"evhead_cell", for: indexPath)as! EvHeadCell
                         self.event_head = true
                         evhead_cell.backgroundView = UIImageView(image: UIImage(named: "bluegreyldpi")!)
@@ -411,7 +438,7 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
 
                     }
                     if(self.event_list == false){
-
+                        //Zelle zeigt Liste an Events zu diesem Projekt an
                         let evlist_cell = cell.event_tableView.dequeueReusableCell(withIdentifier:"evlist_cell", for: indexPath)as! EvListCell
                          if(self.counter_events < self.eventList.count && self.counter_events < 3){
                             evlist_cell.evlist_date.text = self.eventList[self.counter_events].getStartDate.dateAndTimetoString()
@@ -426,10 +453,9 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                         self.event_list = true
 
                         }
-
-
                     }
                     if(self.eventList.count > 3 && self.more_event_loaded == false){
+                         //Falls Eventanzahl > 3 Button "Mehr anzeigen" darstellen in seperater Zelle
                         let more_cell = cell.event_tableView.dequeueReusableCell(withIdentifier:"show_more_event_cell", for: indexPath)as! ShowMoreEventsCell
                          more_cell.show_more_event.addTarget(self, action: #selector(ProjectDetailViewController.goToEventFromEventList), for: .touchUpInside)
                         self.more_event_loaded = true
@@ -442,27 +468,27 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
          let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
          return cell
         }
-
+    
+    
+    
+//TabBarController Icons als aktiv anzeigen lassen beim wechseln vom Projektdetail zu Blog/News/Events
     @objc func goToBlogFromBlogList(sender:UIButton!){
-           
            self.tabBarController?.selectedIndex = 2
-           
        }
     
     
     @objc func goToNewsFromNewsList(sender:UIButton!){
-           
            self.tabBarController?.selectedIndex = 1
-           
        }
     
-    
-    
     @objc func goToEventFromEventList(sender:UIButton!){
-        
         self.tabBarController?.selectedIndex = 1
-        
     }
+    
+    
+    
+//Bei betätigen des Buttons "Mehr anzeigen" bei Blog/Event/News auf anderen View wechseln
+//Diesem View aber die ganze Liste von Blogs/News/Events übergeben damit dieser nur die dazugehörigen zu diesem Projekt vollständig anzeigen kann
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
                  if segue.destination is BlogViewController
                  {
@@ -476,15 +502,10 @@ class ProjectDetailViewController: UIViewController, UITableViewDelegate, UITabl
                     newsController?.newsListProjectDetail = self.newsList
                  
                    }
-               if segue.destination is EventViewController
-                {
+                if segue.destination is EventViewController
+                    {
                     let eventController = segue.destination as? EventViewController
                     eventController?.eventListProjectDetail = self.eventList
-
-               }
-           
+                    }
              }
-
-
-
 }

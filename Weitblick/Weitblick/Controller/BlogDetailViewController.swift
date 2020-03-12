@@ -92,8 +92,6 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
               }
           }
 
-    
-    
     override func viewWillAppear(_ animated: Bool) {
           let nav = self.navigationController?.navigationBar
           nav?.barStyle = UIBarStyle.default
@@ -107,7 +105,6 @@ class BlogDetailViewController: UIViewController , UITableViewDataSource, UITabl
         }
       }
       
-    
     //Alle Blogdaten ihren zugehörigen Labels zuweisen
     func loadDetailBlog(){
         let markdownParser = MarkdownParser()

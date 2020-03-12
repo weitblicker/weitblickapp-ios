@@ -12,11 +12,11 @@ import UIKit
 
 class ProjectBlogViewController: UIViewController {
 
+    //View ändern je nach Auswahl zwischen BlogView und ProjektView
     @IBOutlet weak var ProjectView: UIView!
     @IBOutlet weak var BlogView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
              ProjectView.alpha=1
              BlogView.alpha=0
     }

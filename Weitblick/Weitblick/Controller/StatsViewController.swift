@@ -14,7 +14,7 @@ class StatsViewController: UIViewController {
     @IBOutlet weak var DestinationView: UIView!
     
     
-    //View änder zwischen Rangliste und Strecken
+    //View ändern zwischen Rangliste und Strecken
     @IBAction func swiftView(_ sender: UISegmentedControl) {
         if(sender.selectedSegmentIndex==0){
             statisticsView.alpha=0

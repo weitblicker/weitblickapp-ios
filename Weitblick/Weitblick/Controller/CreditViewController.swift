@@ -10,10 +10,13 @@ import UIKit
 import MarkdownKit
 
 class CreditViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    //Tabellengröße der Entwickler festlegen
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.memberList.count
     }
     
+    //Creditzelle erstellen und ihren labels die Daten zuweisen
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:"creditCell", for: indexPath)as! CreditTableViewCell
         cell.credit_email.text = memberList[indexPath.row].getEmail
@@ -25,13 +28,13 @@ class CreditViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     var memberList : [Member] = []
-    
-    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var creditDescription: UILabel!
     @IBOutlet weak var creditTitle: UILabel!
+    
+    //TableView laden
+    //Daten vom FAQService laden und in den Labels darstellen
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
@@ -47,7 +50,6 @@ class CreditViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 for member in creditObject.getMembers{
                     self.memberList.append(member)
                 }
-                
                     self.tableView.reloadData()
                 }
             }else{
@@ -57,18 +59,6 @@ class CreditViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             
         }
-        // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

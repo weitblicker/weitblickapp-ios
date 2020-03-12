@@ -17,83 +17,65 @@ class ProjectCycleViewController: UIViewController, UITableViewDataSource, UITab
     var date = Date.init()
     var projectListCycle : [Project] = []
     var viewController : BikeViewController?
-
     var counter = 0
     
     
     @IBOutlet weak var tableView: UITableView!
     
+    //Daten vom DataService laden
+    //Projekte die zu eradeln sind in Liste speichern
         override func viewDidLoad() {
         super.viewDidLoad()
-            print("IN VIEW DID LOAD")
-    
             DataService.loadProjects(date: self.date) { (list) in
-                       self.projectList = list
-                       self.date = self.projectList.last?.getPublished ?? self.date
-                      // DispatchQueue.main.async {
-                       //    self.tableView.reloadData()
-                           for project in self.projectList{
-                            if(!project.getCycleObject.getDonations.isEmpty){
-                                print("In append to CycleList")
-                                self.projectListCycle.append(self.projectList[self.counter])
-                                print(self.projectListCycle[0].getName)
-
-                            }
-                            self.counter = self.counter + 1
-                            
-                           DispatchQueue.main.async {
-                            self.tableView.dataSource = self
-                             self.tableView.delegate = self
-                            self.tableView.reloadData()
-                            }
-                              
-                               
-                           }
-             
-                       }
+                self.projectList = list
+                self.date = self.projectList.last?.getPublished ?? self.date
+                for project in self.projectList{
+                    if(!project.getCycleObject.getDonations.isEmpty){
+                        self.projectListCycle.append(self.projectList[self.counter])
+                        
+                    }
+                    self.counter = self.counter + 1
+                    DispatchQueue.main.async {
+                        self.tableView.dataSource = self
+                        self.tableView.delegate = self
+                        self.tableView.reloadData()
+                        
+                    }
+                    
+                }
+                
+            }
     }
   
+    //Falls Zelle ausgewählt wird ProjectDetailView anzeigen
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.project_object = self.projectListCycle[indexPath.row]
-           self.performSegue(withIdentifier: "goToProjectDetail", sender: self)
+        self.performSegue(withIdentifier: "goToProjectDetail", sender: self)
        }
     
     
-    
+    //Größe der TableView festlegen
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("ProjectCycleCount")
-       print(self.projectListCycle.count)
         return self.projectListCycle.count
        }
        
-       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-           let cell = tableView.dequeueReusableCell(withIdentifier:"project_cycle_cell", for: indexPath)as! ProjectCycleCell
-           
-           print("IN TABLE VIEW CELL")
-          cell.project_cycle_button.tag = indexPath.row
-           
-       
-               cell.project_title.text = projectListCycle[indexPath.row].getName
-              cell.project_location.text = projectListCycle[indexPath.row].getLocation.getAddress
+    //ProjectCyclezelle erstellen und ihren labels die Daten zuweisen
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier:"project_cycle_cell", for: indexPath)as! ProjectCycleCell
+        cell.project_cycle_button.tag = indexPath.row
+        cell.project_title.text = projectListCycle[indexPath.row].getName
+        cell.project_location.text = projectListCycle[indexPath.row].getLocation.getAddress
         cell.project_partner.text = projectList[indexPath.row].getHosts[0].getCity.uppercased()
-               cell.project_image!.image = projectListCycle[indexPath.row].getImage
+        cell.project_image!.image = projectListCycle[indexPath.row].getImage
         cell.project_cycle_button.addTarget(self, action: #selector(ProjectCycleViewController.goToCycle), for: .touchUpInside)
         cell.project_cycle_button.tag = indexPath.row
-        
-        print(projectListCycle[indexPath.row].getName)
-           
-           
-           
-           
            return cell
        }
     
+    //Projekname in UserDefaults speichern
     @objc func goToCycle(sender:UIButton!){
-           
-        print("IN GOTOCYCLE")
         let projectID = self.projectListCycle[sender.tag].getID
         let projectName = self.projectListCycle[sender.tag].getName
-        //let nameAlt = "Test"
         UserDefaults.standard.set(projectID, forKey: "projectID")
         UserDefaults.standard.set(projectName, forKey: "projectName")
         self.viewController?.updateTitle(completion: { (answer) in
@@ -104,13 +86,12 @@ class ProjectCycleViewController: UIViewController, UITableViewDataSource, UITab
             }
         })
     }
-    
+    //ProjektDetailController das ausgewählte Projekt übergeben, damit dieser es richtig anzeigen kann
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
           if segue.destination is ProjectDetailViewController
           {
               let projectDetailViewController = segue.destination as? ProjectDetailViewController
               projectDetailViewController?.project_object = self.project_object
-          //    projectDetailViewController?.count = self.count
 
           }
     

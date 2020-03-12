@@ -7,18 +7,14 @@
 //
 
 import UIKit
-
-
 extension UIImageView {
-//Profikbild rund anzeigen 
+//Profilbild rund anzeigen
     func makeRounded() {
-
         self.layer.borderWidth = 1.0
         self.layer.masksToBounds = false
         self.layer.borderColor = UIColor.black.cgColor
         self.layer.cornerRadius = self.frame.size.width/2
         self.clipsToBounds = true
-
   }
 }
 
@@ -61,8 +57,6 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
         
         if (UserDefaults.standard.bool(forKey: "isLogged") == true){
             profile_email.text = UserDefaults.standard.string(forKey: "email")
-        
-            
         }
 
         //Profilbild rund darstellen 
@@ -134,8 +128,5 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
            alertView.addAction(OKAction)
            self.present(alertView, animated: true, completion:nil)
        }
-    
-    
-
 
 }
