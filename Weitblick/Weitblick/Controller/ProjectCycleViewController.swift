@@ -25,8 +25,6 @@ class ProjectCycleViewController: UIViewController, UITableViewDataSource, UITab
     
         override func viewDidLoad() {
         super.viewDidLoad()
-            print("IN VIEW DID LOAD")
-    
             DataService.loadProjects(date: self.date) { (list) in
                        self.projectList = list
                        self.date = self.projectList.last?.getPublished ?? self.date

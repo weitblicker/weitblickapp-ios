@@ -10,6 +10,14 @@ import UIKit
 import MapKit
 import MarkdownKit
 
+
+/*
+ ======================
+ EventDetailController:
+ ======================
+    - displays EventObject
+ */
+
 class EventDetailViewController: UIViewController {
     
     
@@ -31,8 +39,6 @@ class EventDetailViewController: UIViewController {
         super.viewDidLoad()
         loadEventDetail()
         DispatchQueue.main.async {
-           
-          
             let CLLCoordType = CLLocationCoordinate2D(latitude: self.event_object!.getLocation.getLatitude,longitude: self.event_object!.getLocation.getLongitude)
             let anno = MKPointAnnotation()
             anno.coordinate = CLLCoordType
@@ -58,7 +64,7 @@ class EventDetailViewController: UIViewController {
     
     func loadEventDetail(){
          
-         let markdownParser = MarkdownParser()
+        let markdownParser = MarkdownParser()
         event_detail_description.attributedText = markdownParser.parse(event_object!.getDescription)
         event_detail_description.sizeToFit()
         event_detail_title.text = event_object?.getTitle
