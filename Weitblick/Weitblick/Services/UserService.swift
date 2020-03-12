@@ -5,157 +5,114 @@
 //  Created by Zuzanna Mielczarek on 08.12.19.
 //  Copyright © 2019 HS Osnabrueck. All rights reserved.
 //
+/*
+ ============
+ UserService:
+ ============
+    - resetPassword function
+    - changePassword function
+    - getUserData: Fetch User data based on given Token
+    - uploadImage function
+ */
 
 import UIKit
 
 class UserService{
 
     static func resetPassword( email: String, completion: @escaping (_ response : String) -> ()){
-
-          // Reset Password Request
-          let url = NSURL(string: "https://weitblicker.org/rest/auth/password/reset/")
-          let str = "surfer:hangloose"
-          let test2 = Data(str.utf8).base64EncodedString();
-          var request = URLRequest(url:url! as URL as URL)
-          request.httpMethod = "POST"
-          request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//        request.addValue("Token " + UserDefaults.standard.string(forKey: "key")! , forHTTPHeaderField: "Authorization")
-         let user = UserDefaults.standard
-         let postString = ["email": email] as [String: String]
-        
-        do{
+        let url = NSURL(string: "https://weitblicker.org/rest/auth/password/reset/")
+        var request = URLRequest(url:url! as URL as URL)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let postString = ["email": email] as [String: String]
         let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
-            request.httpBody = jsonUser
-          }catch {
-            print("Error: cannot create JSON from password/reset")
-            completion("Error: cannot create JSON from password/reset")
-            return
-          }
-          let session = URLSession.shared
-          let task = session.dataTask(with: request){
-           (data, response, error) in
-            print(data)
-           guard error == nil else{
-             print("error calling POST on /password/reset")
-             print(error!)
-             completion("error calling POST on /password/reset")
-            return
-           }
-           guard let responseData = data else {
-             print("Error: did not receive data")
-             completion("Error: did not receive data")
-             return
-           }
-
-           do{
-             guard let received = try JSONSerialization.jsonObject(with: responseData,
-               options: []) as? [String: Any] else {
-                 print("Could not get JSON from responseData as dictionary")
-                 completion("Could not get JSON from responseData as dictionary")
-                 return
-             }
-             print("The Recieved Message is: " + received.description)
-             completion("successful")
-
-
-           }catch{
-             completion("error parsing response from POST on /password/reset")
-             print("error parsing response from POST on /password/reset")
-             return
-           }
-         }
-         task.resume()
-  
+        request.httpBody = jsonUser
+        let session = URLSession.shared
+        let task = session.dataTask(with: request){
+            (data, response, error) in
+            
+            guard error == nil else{
+                print("error calling POST on /password/reset")
+                completion("error calling POST on /password/reset")
+                return
+            }
+            guard let responseData = data else {
+                print("Error: did not receive data")
+                completion("Error: did not receive data")
+                return
+            }
+            do{
+                guard let received = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any] else {
+                    print("Could not get JSON from responseData as dictionary")
+                    completion("Could not get JSON from responseData as dictionary")
+                    return
+                }
+                print("The Recieved Message is: " + received.description)
+                completion("successful")
+            }catch{
+                completion("error parsing response from POST on /password/reset")
+                print("error parsing response from POST on /password/reset")
+                return
+            }
+        }
+        task.resume()
     }
     
-    
-    
     static func changePassword (password_old: String, password_new: String, password_new2: String, completion: @escaping (_ response : String) -> ()){
-        
-        // Change actual Password Request
-         let url = NSURL(string: "https://weitblicker.org/rest/auth/password/change/")
-         let str = "surfer:hangloose"
-         let test2 = Data(str.utf8).base64EncodedString();
-         var request = URLRequest(url:url! as URL as URL)
-        
+        let url = NSURL(string: "https://weitblicker.org/rest/auth/password/change/")
+        var request = URLRequest(url:url! as URL as URL)
         var key : String = ""
         key = UserDefaults.standard.string(forKey: "key")!
-
-        
-         request.httpMethod = "POST"
-         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        // request.addValue("Basic " + test2, forHTTPHeaderField: "Authorization")
-         request.addValue("Token  " + key, forHTTPHeaderField: "Authorization")
-        
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Token  " + key, forHTTPHeaderField: "Authorization")
         let postString = ["new_password1": password_new, "new_password2": password_new2] as [String: String]
-     /*   let postString = ["key": key,"old_password": password_old, "new_password1": password_new, "new_password2": password_new2] as [String: String]*/
-        
-        
-
-
-        do{
         let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
-            request.httpBody = jsonUser
-          }catch {
-            print("Error: cannot create JSON from password/change")
-            completion("Error: cannot create JSON from password/change")
-            return
-          }
-          let session = URLSession.shared
-          let task = session.dataTask(with: request){
-           (data, response, error) in
-           guard error == nil else{
-             print("error calling POST on /password/change")
-             print(error!)
-             completion("error calling POST on /password/change")
-            return
-           }
-           guard let responseData = data else {
-             print("Error: did not receive data")
-             completion("Error: did not receive data")
-             return
-           }
-
-           // parse the result as JSON, since that's what the API provides
-           do{
-             guard let received = try JSONSerialization.jsonObject(with: responseData,
-               options: []) as? [String: Any] else {
-                 print("Could not get JSON from responseData as dictionary")
-                 completion("Could not get JSON from responseData as dictionary")
-                 return
-             }
-             print("The Recieved Message is: " + received.description)
-      
-             completion(received["detail"] as! String)
-          
-
-           }catch{
-             completion("error parsing response from POST on /password/change")
-             print("error parsing response from POST on /password/change")
-             return
-           }
-         }
-         task.resume()
-           
+        request.httpBody = jsonUser
+        let session = URLSession.shared
+        let task = session.dataTask(with: request){
+            (data, response, error) in
+            guard error == nil else{
+                print("error calling POST on /password/change")
+                print(error!)
+                completion("error calling POST on /password/change")
+                return
+            }
+            guard let responseData = data else {
+                print("Error: did not receive data")
+                completion("Error: did not receive data")
+                return
+            }
+            do{
+                guard let received = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any] else {
+                    print("Could not get JSON from responseData as dictionary")
+                    completion("Could not get JSON from responseData as dictionary")
+                    return
+                }
+                print("The Recieved Message is: " + received.description)
+                completion(received["detail"] as! String)
+            }catch{
+                completion("error parsing response from POST on /password/change")
+                print("error parsing response from POST on /password/change")
+                return
+            }
+        }
+        task.resume()
     }
     
     static func getUserData(completion : @escaping (_ user: User?, _ error: NSError?) -> ()){
         
         let url = NSURL(string: "https://weitblicker.org/rest/auth/user/")
-        let str = "surfer:hangloose"
         var request = URLRequest(url:url! as URL as URL)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue(" Token " + UserDefaults.standard.string(forKey: "key")!, forHTTPHeaderField: "Authorization")
         do{
-            //let  jsonUser = try! JSONSerialization.data(withJSONObject: postString, options:[])
-            //request.httpBody = jsonUser
             let session = URLSession.shared
             let task = session.dataTask(with: request){
                 (data, response, error) in
                 if let data = data{
                     let jsondata = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                    print(jsondata)
                     if let userDict = jsondata as? NSDictionary{
                         guard let username = userDict.value(forKey: "username") else { return }
                         let usernameString = username as! String
@@ -187,10 +144,7 @@ class UserService{
                     let error = error as NSError?
                     completion(nil, error)
                 }
-                
-                
             }
-            
             task.resume()
         }
     }

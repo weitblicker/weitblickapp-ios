@@ -10,6 +10,19 @@ import UIKit
 import MapKit
 import HCKalmanFilter
 
+/*
+ ==================
+ MapViewController:
+ ==================
+    - When Viewdidload donation and distance will be set to 0.
+    - Fetch tour id from Server to send every 30s a segment to server.
+    - Locationmanager stores every second location in locationlist.
+    - When location updated controller compares last location with second last location. last location will be filtered by KalmanFilter.
+    - The resulted distance will be added to totaldistance
+    - When tapping on pause button, startDataTracking will be paused
+    - When tapping on stop button, last segment will be sent to server. View will be changed to ResultViewController
+ */
+
 class MapViewController: UIViewController {
 
     var list : [CLLocation] = []
@@ -52,13 +65,11 @@ class MapViewController: UIViewController {
     @IBAction func showProjectInfo(_ sender: Any) {
         self.performSegue(withIdentifier: "showProjectInfo", sender: self)
     }
-    
-    
+
     override func viewDidLoad() {
         self.navigationItem.hidesBackButton = true
         self.project_name.text = self.project?.getName
         self.project_location.text = self.project?.getLocation.getAddress
-        
         for host in self.project!.getHosts{
             if(self.project!.getHosts.count > 1){
             self.hostList = self.hostList + host.getName + ","
@@ -67,9 +78,6 @@ class MapViewController: UIViewController {
             }
         }
         self.project_partner.text = self.project?.getHosts[0].getCity.uppercased()
-        
-        
-        
         self.stopPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
         super.viewDidLoad()
         checkLocationServices()
@@ -177,17 +185,13 @@ class MapViewController: UIViewController {
         self.timer.invalidate()
         startTracking = false;
         self.trackFinished = true;
-        // PASSING DATA TO RESULTPAGE
         self.performSegue(withIdentifier: "goToTrackResult", sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is ResultMapViewController
         {
-           // let resultMapViewController = segue.destination as? ResultMapViewController
-            // TODO DATA PASSING
-
-            var DestViewController : ResultMapViewController = segue.destination as! ResultMapViewController
+            let DestViewController : ResultMapViewController = segue.destination as! ResultMapViewController
             DestViewController.DistanceText = distanceLbl.text ?? "fehler"
             DestViewController.DonationText = donationLbl.text ?? "fehler"
             DestViewController.project = self.project
@@ -195,7 +199,7 @@ class MapViewController: UIViewController {
         }
         
         if segue.destination is ProjectDetailViewController{
-            var DestViewController : ProjectDetailViewController = segue.destination as! ProjectDetailViewController
+            let DestViewController : ProjectDetailViewController = segue.destination as! ProjectDetailViewController
             DestViewController.project_object = self.project
             
             

@@ -9,6 +9,18 @@
 import UIKit
 import MapKit
 import CoreLocation
+
+/*
+ ===================
+ BikeViewController:
+ ===================
+    - Start tracking location when view did appear. User will get notified if he wants to grant access rights to GPS
+    - When tapping Go-Button, check if user is registeres and logged in. If not, user will be redirected to login page
+    - When tapping Go-Button, check if user has chosen a project to ride. If not so, alert user to choose a project
+    - Change view to MapViewController
+ 
+ */
+
 class BikeViewController: UIViewController {
     
     var list : [CLLocation] = []
@@ -20,7 +32,6 @@ class BikeViewController: UIViewController {
     var distance = CLLocationDistance();
     let locationManager = CLLocationManager()
     let regionInMeters : Double = 1000;
-    //var projectTitle : String = ""
     var projectId : Int = -1;
     var project: Project?
     var isTapped = 0;
@@ -28,13 +39,10 @@ class BikeViewController: UIViewController {
     @IBOutlet weak var speedLbl: UILabel!
     @IBOutlet weak var distanceLbl: UILabel!
     @IBOutlet weak var mapView: MKMapView!
-    
     @IBAction func centerLocationButton(_ sender: UIButton) {
         mapView.setCenter(mapView.userLocation.coordinate, animated: true)
     }
-    
     @IBOutlet weak var cycleProjectTitle: UIButton!
-    
     @IBAction func startDataTracking(_ sender: Any) {
         if(!UserDefaults.standard.bool(forKey: "isLogged")){
             self.performSegue(withIdentifier: "showLogin", sender: self)
@@ -50,7 +58,6 @@ class BikeViewController: UIViewController {
                 self.showAlertMess(userMessage: "Kein Projekt ausgewählt!")
             }
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,22 +69,16 @@ class BikeViewController: UIViewController {
             self.cycleProjectTitle.setTitle("Kein Projekt ausgewählt", for: .normal)
             self.isTapped = 0
         }
-        
-       
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         checkLocationServices()
-        
     }
-    
     
     @IBAction func cycleTitleTApped(_ sender: Any) {
         self.performSegue(withIdentifier: "goToProjectCycleView", sender: self)
     }
-    
     
     func setupLocationManager(){
         locationManager.delegate = self
@@ -122,7 +123,7 @@ class BikeViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let tabbar = self.tabBarController as! TabBarController
+        
         if segue.destination is MapViewController
         {
             let mapViewController = segue.destination as? MapViewController

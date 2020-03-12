@@ -8,6 +8,14 @@
 
 import UIKit
 
+/*
+ =============
+ CycleService:
+ =============
+    - Service to send data from UserDevice to REST API.
+    - Function is handing over Start and End Date, Distance made since last fragment, projectID, unique tourID and Usertoken
+ */
+
 class CycleService{
     
     static func fireSegments(start: Date, end: Date, distance : Double, projectID : Int, tourID: Int, token: String){

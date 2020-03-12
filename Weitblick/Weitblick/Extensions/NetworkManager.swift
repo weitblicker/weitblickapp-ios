@@ -1,3 +1,12 @@
+/*
+ =====================
+ NetworkManager Class:
+ =====================
+ 
+    - NetworkManagerClass was intended to check if Internect Connection is enabled and available
+    - Please check: https://github.com/neoighodaro/Handling-internet-connection-reachability-in-Swift for further information
+ */
+
 import Foundation
 import Reachability
 

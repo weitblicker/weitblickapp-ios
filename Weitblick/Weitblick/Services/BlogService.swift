@@ -6,6 +6,21 @@
 //  Copyright © 2020 HS Osnabrueck. All rights reserved.
 //
 
+/*
+=============
+ BlogService:
+=============
+   - getBlogByID:
+       - Fetching Blogobject Data with specified ID from REST API.
+       - If no image exists for this dataset, a default image will be set.
+       - Blog text will be transformed into clean text. HTML tags will be removed as well as Image tags.
+       - Function will return Blogobject in Completionhandler.
+   - loadBlogs:
+       - Fetching Blogobject datasets
+       - If no image exists for a dataset, a default image will be set.
+       - Function will return Blogobjectlist in Completionhandler.
+*/
+
 import UIKit
 
 class BlogService{
@@ -24,85 +39,118 @@ class BlogService{
         
         URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
         let jsondata = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-                if let blogDict = jsondata as? NSDictionary{
-                    guard let id = blogDict.value(forKey: "id")  else { return }
-                    let IDString = id as! String
-                    let blogID = Int.init(IDString)
+            if let blogDict = jsondata as? NSDictionary{
+                guard let id = blogDict.value(forKey: "id")  else { return }
+                let IDString = id as! String
+                let blogID = Int.init(IDString)
+                
+                var projectInt = 0
+                guard let project = blogDict.value(forKey: "project") else { return }
+                if let projectString = project as? NSNumber{
+                    projectInt = Int.init(truncating: projectString)
+                }
+                
+                guard let title = blogDict.value(forKey: "title") else { return }
+                let blogTitle = title as! String
+                
+                guard let text = blogDict.value(forKey: "text") else { return }
+                let blogText = text as! String
+                
+                guard let created = blogDict.value(forKey: "published") else { return }
+                let createdString = created as! String
+                let blogCreated = DataService.handleDateWithTimeZone(date: createdString)
+                
+                guard let imageURLJSON = blogDict.value(forKey : "image") else { return }
+                var imageURL = ""
+                if let mainImageDict = imageURLJSON as? NSDictionary{
+                    guard let imgURL = mainImageDict.value(forKey: "url") else { return }
+                    imageURL = imgURL as! String
+                }
+                var image : UIImage
+                if(imageURL == ""){
+                    image = UIImage(named: "blog-defaults")!
+                    resultimages.append(image)
+                }else{
+                    let imgURL = NSURL(string : Constants.url + imageURL)
+                    let data = NSData(contentsOf: (imgURL as URL?)!)
+                    image = UIImage(data: data! as Data)!
+                    resultimages.append(image)
                     
-                    var projectInt = 0
-                    guard let project = blogDict.value(forKey: "project") else { return }
-                    if let projectString = project as? NSNumber{
-                        projectInt = Int.init(truncating: projectString)
+                    
+                }
+
+                guard let range = blogDict.value(forKey: "range") else { return }
+                let blogRange = range as! String
+                
+                guard let Dictteaser = blogDict.value(forKey: "teaser") else { return }
+                let blogTeaser = Dictteaser as! String
+                
+                guard let gallery = blogDict.value(forKey: "photos") else { return }
+                if let imageArray = gallery as? NSArray{
+                    for img in imageArray{
+                        if let imgDict = img as? NSDictionary{
+                            guard let url = imgDict.value(forKey : "url") else { return }
+                            let urlString = url as! String
+                            let imgURL = NSURL(string : Constants.url + urlString)
+                            let data = NSData(contentsOf: (imgURL as URL?)!)
+                            let image = UIImage(data: data! as Data)!
+                            resultimages.append(image)
+                        }
                     }
+                }
                     
-                    guard let title = blogDict.value(forKey: "title") else { return }
-                    let blogTitle = title as! String
-                    
-                    guard let text = blogDict.value(forKey: "text") else { return }
-                    let blogText = text as! String
-                    
-                    guard let created = blogDict.value(forKey: "published") else { return }
-                    let createdString = created as! String
-                    let blogCreated = DataService.handleDateWithTimeZone(date: createdString)
-                    
-                    guard let imageURLJSON = blogDict.value(forKey : "image") else { return }
-                    var imageURL = ""
-                    if let mainImageDict = imageURLJSON as? NSDictionary{
-                        guard let imgURL = mainImageDict.value(forKey: "url") else { return }
-                        imageURL = imgURL as! String
-                    }
-                    var image : UIImage
-                    if(imageURL == ""){
-                        image = UIImage(named: "blog-defaults")!
-                        resultimages.append(image)
-                    }else{
-                        let imgURL = NSURL(string : Constants.url + imageURL)
+                guard let author = blogDict.value(forKey: "author") else { return }
+                var authorObject = Author()
+                if let authorDict = author as? NSDictionary{
+                    guard let imageURL = authorDict.value(forKey: "image") else { return }
+                    var image = UIImage(named: "profileBlack100")
+                    if let img = imageURL as? String{
+                        let imgURL = NSURL(string : Constants.url + img)
                         let data = NSData(contentsOf: (imgURL as URL?)!)
                         image = UIImage(data: data! as Data)!
-                        resultimages.append(image)
-                        
-                        
                     }
                     
+                    guard let name = authorDict.value(forKey: "name") else { return }
+                    let nameString = name as! String
                     
-                    guard let range = blogDict.value(forKey: "range") else { return }
-                    let blogRange = range as! String
+                    authorObject = Author(image: image!, name: nameString)
+                }
                     
-                    guard let Dictteaser = blogDict.value(forKey: "teaser") else { return }
-                    let blogTeaser = Dictteaser as! String
+                guard let locationJSON = blogDict.value(forKey: "location") else { return }
+                var location : Location = Location()
+                if let locationDict = locationJSON as? NSDictionary{
+                    guard let id = locationDict.value(forKey: "id")  else { return }
+                    let IDString = id as! String
+                    let locationID = Int.init(IDString)
+                    guard let lat = locationDict.value(forKey: "lat")  else { return }
+                    let latNumber = lat as! NSNumber
+                    let locationLat = Double.init(truncating: latNumber)
+                    guard let lng = locationDict.value(forKey: "lng")  else { return }
+                    let lngNumber = lng as! NSNumber
+                    let locationLng = Double.init(truncating: lngNumber)
+                    guard let address = locationDict.value(forKey: "address")  else { return }
+                    let locationAddress = address as! String
+                    location = Location(id: locationID!, lat: locationLat, lng: locationLng, address: locationAddress)
+                }
                     
-                    guard let gallery = blogDict.value(forKey: "photos") else { return }
-                    if let imageArray = gallery as? NSArray{
-                        for img in imageArray{
-                            if let imgDict = img as? NSDictionary{
-                                guard let url = imgDict.value(forKey : "url") else { return }
-                                let urlString = url as! String
-                                let imgURL = NSURL(string : Constants.url + urlString)
-                                let data = NSData(contentsOf: (imgURL as URL?)!)
-                                let image = UIImage(data: data! as Data)!
-                                resultimages.append(image)
-                            }
+                var hostObject = Host()
+                guard let host = blogDict.value(forKey: "host") else { return }
+                if let hostDict = host as? NSDictionary{
+                    guard let hostID = hostDict.value(forKey: "id") else { return }
+                    let hostIDString = hostID as! String
+                    guard let hostName = hostDict.value(forKey : "name") else { return }
+                    let hostNameString = hostName as! String
+                    guard let city = hostDict.value(forKey: "city") else { return }
+                    let cityString = city as! String
+                    guard let hostPartners = hostDict.value(forKey : "partners") else { return }
+                    var hostPartnerList : [Int] = []
+                    if let hostPartnerArray = hostPartners as? NSArray{
+                        for hostPartner in hostPartnerArray{
+                            hostPartnerList.append(hostPartner as! Int)
                         }
                     }
-                    
-                    guard let author = blogDict.value(forKey: "author") else { return }
-                    var authorObject = Author()
-                    if let authorDict = author as? NSDictionary{
-                        guard let imageURL = authorDict.value(forKey: "image") else { return }
-                        var image = UIImage(named: "profileBlack100")
-                        if let img = imageURL as? String{
-                            let imgURL = NSURL(string : Constants.url + img)
-                            let data = NSData(contentsOf: (imgURL as URL?)!)
-                            image = UIImage(data: data! as Data)!
-                        }
                         
-                        guard let name = authorDict.value(forKey: "name") else { return }
-                        let nameString = name as! String
-                        
-                        authorObject = Author(image: image!, name: nameString)
-                    }
-                    
-                    guard let locationJSON = blogDict.value(forKey: "location") else { return }
+                    guard let locationJSON = hostDict.value(forKey: "location") else { return }
                     var location : Location = Location()
                     if let locationDict = locationJSON as? NSDictionary{
                         guard let id = locationDict.value(forKey: "id")  else { return }
@@ -118,68 +166,26 @@ class BlogService{
                         let locationAddress = address as! String
                         location = Location(id: locationID!, lat: locationLat, lng: locationLng, address: locationAddress)
                     }
-                    
-                    var hostObject = Host()
-                    guard let host = blogDict.value(forKey: "host") else { return }
-                    if let hostDict = host as? NSDictionary{
-                        //init(id : Int, name : String, partners : [Int], bankAccount : BankAccount){
-                        guard let hostID = hostDict.value(forKey: "id") else { return }
-                        let hostIDString = hostID as! String
-                        guard let hostName = hostDict.value(forKey : "name") else { return }
-                        let hostNameString = hostName as! String
-                        guard let city = hostDict.value(forKey: "city") else { return }
-                        let cityString = city as! String
-                        guard let hostPartners = hostDict.value(forKey : "partners") else { return }
-                        var hostPartnerList : [Int] = []
-                        if let hostPartnerArray = hostPartners as? NSArray{
-                            for hostPartner in hostPartnerArray{
-                                hostPartnerList.append(hostPartner as! Int)
-                            }
-                        }
                         
-                        guard let locationJSON = hostDict.value(forKey: "location") else { return }
-                        var location : Location = Location()
-                        if let locationDict = locationJSON as? NSDictionary{
-                            guard let id = locationDict.value(forKey: "id")  else { return }
-                            let IDString = id as! String
-                            let locationID = Int.init(IDString)
-                            guard let lat = locationDict.value(forKey: "lat")  else { return }
-                            let latNumber = lat as! NSNumber
-                            let locationLat = Double.init(truncating: latNumber)
-                            guard let lng = locationDict.value(forKey: "lng")  else { return }
-                            let lngNumber = lng as! NSNumber
-                            let locationLng = Double.init(truncating: lngNumber)
-                            guard let address = locationDict.value(forKey: "address")  else { return }
-                            let locationAddress = address as! String
-                            location = Location(id: locationID!, lat: locationLat, lng: locationLng, address: locationAddress)
-                        }
-                        
-                        var hostbankAcc : BankAccount = BankAccount()
-    //                                "account_holder": "Weitblick Münster e.V.",
-    //                                "iban": "DE64400800400604958800",
-    //                                "bic": "DRESDEFF400"
-                        guard let hostbank = hostDict.value(forKey : "bank_account") else { return }
-                        if let hostbankDict = hostbank as? NSDictionary{
-                            guard let holder = hostbankDict.value(forKey: "account_holder") else { return }
-                            let holderString = holder as! String
-                            guard let iban = hostbankDict.value(forKey: "iban") else { return }
-                            let ibanString = iban as! String
-                            guard let bic = hostbankDict.value(forKey: "bic") else { return }
-                            let bicString = bic as! String
-                            hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
-                        }
-                        hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location, city: cityString)
-                        
+                    var hostbankAcc : BankAccount = BankAccount()
+                    guard let hostbank = hostDict.value(forKey : "bank_account") else { return }
+                    if let hostbankDict = hostbank as? NSDictionary{
+                        guard let holder = hostbankDict.value(forKey: "account_holder") else { return }
+                        let holderString = holder as! String
+                        guard let iban = hostbankDict.value(forKey: "iban") else { return }
+                        let ibanString = iban as! String
+                        guard let bic = hostbankDict.value(forKey: "bic") else { return }
+                        let bicString = bic as! String
+                        hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
                     }
-                    
-                    let blogEntry = BlogEntry(id: blogID!, title: blogTitle, text: blogText, created: blogCreated, updated: blogCreated, image: image, teaser: blogTeaser, range: blogRange,gallery: resultimages, projectInt: projectInt, author : authorObject, location: location, host : hostObject)
-                    completion(blogEntry)
-                    }
+                    hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location, city: cityString)
+                        
                 }
-            
-
-        ).resume()
-        
+                    
+                let blogEntry = BlogEntry(id: blogID!, title: blogTitle, text: blogText, created: blogCreated, updated: blogCreated, image: image, teaser: blogTeaser, range: blogRange,gallery: resultimages, projectInt: projectInt, author : authorObject, location: location, host : hostObject)
+                completion(blogEntry)
+            }
+        }).resume()
     }
     
     static func loadBlogs(date : Date,completion: @escaping (_ blogList : [BlogEntry]) -> ()){
@@ -196,165 +202,157 @@ class BlogService{
         URLSession.shared.dataTask(with: task, completionHandler: {(data,response,error) -> Void in
             if let data = data{
                 let jsondata = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                            if let newsArray = jsondata as? NSArray{
-                                for news in newsArray{
-                                    if let blogDict = news as? NSDictionary{
-                                        guard let id = blogDict.value(forKey: "id")  else { return }
-                                        let IDString = id as! String
-                                        let blogID = Int.init(IDString)
-                                        
-                                        var projectInt = 0
-                                        guard let project = blogDict.value(forKey: "project") else { return }
-                                        if let projectString = project as? NSNumber{
-                                            projectInt = Int.init(truncating: projectString)
-                                        }
-                                        
-                                        guard let title = blogDict.value(forKey: "title") else { return }
-                                        let blogTitle = title as! String
-                                        
-                                        guard let text = blogDict.value(forKey: "text") else { return }
-                                        let blogText = text as! String
-                                        
-                                        guard let created = blogDict.value(forKey: "published") else { return }
-                                        let createdString = created as! String
-                                        let blogCreated = DataService.handleDateWithTimeZone(date: createdString)
-                                        
-                                        guard let imageURLJSON = blogDict.value(forKey : "image") else { return }
-                                        var imageURL = ""
-                                        if let mainImageDict = imageURLJSON as? NSDictionary{
-                                            guard let imgURL = mainImageDict.value(forKey: "url") else { return }
-                                            imageURL = imgURL as! String
-                                        }
-                                        var image : UIImage
-                                        if(imageURL == ""){
-                                            image = UIImage(named: "blog-default")!
-                                            resultimages.append(image)
-                                        }else{
-                                            let imgURL = NSURL(string : Constants.url + imageURL)
+                    if let newsArray = jsondata as? NSArray{
+                        for news in newsArray{
+                            if let blogDict = news as? NSDictionary{
+                                guard let id = blogDict.value(forKey: "id")  else { return }
+                                let IDString = id as! String
+                                let blogID = Int.init(IDString)
+                                
+                                var projectInt = 0
+                                guard let project = blogDict.value(forKey: "project") else { return }
+                                if let projectString = project as? NSNumber{
+                                    projectInt = Int.init(truncating: projectString)
+                                }
+                                
+                                guard let title = blogDict.value(forKey: "title") else { return }
+                                let blogTitle = title as! String
+                                
+                                guard let text = blogDict.value(forKey: "text") else { return }
+                                let blogText = text as! String
+                                
+                                guard let created = blogDict.value(forKey: "published") else { return }
+                                let createdString = created as! String
+                                let blogCreated = DataService.handleDateWithTimeZone(date: createdString)
+                                
+                                guard let imageURLJSON = blogDict.value(forKey : "image") else { return }
+                                var imageURL = ""
+                                if let mainImageDict = imageURLJSON as? NSDictionary{
+                                    guard let imgURL = mainImageDict.value(forKey: "url") else { return }
+                                    imageURL = imgURL as! String
+                                }
+                                var image : UIImage
+                                if(imageURL == ""){
+                                    image = UIImage(named: "blog-default")!
+                                    resultimages.append(image)
+                                }else{
+                                    let imgURL = NSURL(string : Constants.url + imageURL)
+                                    let data = NSData(contentsOf: (imgURL as URL?)!)
+                                    image = UIImage(data: data! as Data)!
+                                    resultimages.append(image)
+                                }
+                                guard let range = blogDict.value(forKey: "range") else { return }
+                                let blogRange = range as! String
+                                
+                                guard let Dictteaser = blogDict.value(forKey: "teaser") else { return }
+                                let blogTeaser = Dictteaser as! String
+                                
+                                guard let gallery = blogDict.value(forKey: "photos") else { return }
+                                if let imageArray = gallery as? NSArray{
+                                    for img in imageArray{
+                                        if let imgDict = img as? NSDictionary{
+                                            guard let url = imgDict.value(forKey : "url") else { return }
+                                            let urlString = url as! String
+                                            let imgURL = NSURL(string : Constants.url + urlString)
                                             let data = NSData(contentsOf: (imgURL as URL?)!)
-                                            image = UIImage(data: data! as Data)!
+                                            let image = UIImage(data: data! as Data)!
                                             resultimages.append(image)
                                         }
-                               
-                                  
-                                        
-                                        guard let range = blogDict.value(forKey: "range") else { return }
-                                        let blogRange = range as! String
-                                        
-                                        guard let Dictteaser = blogDict.value(forKey: "teaser") else { return }
-                                        let blogTeaser = Dictteaser as! String
-                                        
-                                        guard let gallery = blogDict.value(forKey: "photos") else { return }
-                                        if let imageArray = gallery as? NSArray{
-                                            for img in imageArray{
-                                                if let imgDict = img as? NSDictionary{
-                                                    guard let url = imgDict.value(forKey : "url") else { return }
-                                                    let urlString = url as! String
-                                                    let imgURL = NSURL(string : Constants.url + urlString)
-                                                    let data = NSData(contentsOf: (imgURL as URL?)!)
-                                                    let image = UIImage(data: data! as Data)!
-                                                    resultimages.append(image)
-                                                }
-                                            }
-                                        }
-                                        
-                                        guard let author = blogDict.value(forKey: "author") else { return }
-                                        var authorObject = Author()
-                                        if let authorDict = author as? NSDictionary{
-                                            guard let imageURL = authorDict.value(forKey: "image") else { return }
-                                            var image = UIImage(named: "profileBlack100")
-                                            if let img = imageURL as? String{
-                                                let imgURL = NSURL(string : Constants.url + img)
-                                                let data = NSData(contentsOf: (imgURL as URL?)!)
-                                                image = UIImage(data: data! as Data)!
-                                            }
-                                            
-                                            guard let name = authorDict.value(forKey: "name") else { return }
-                                            let nameString = name as! String
-                                            
-                                            authorObject = Author(image: image!, name: nameString)
-                                        }
-                                        
-                                        guard let locationJSON = blogDict.value(forKey: "location") else { return }
-                                        var location : Location = Location()
-                                        if let locationDict = locationJSON as? NSDictionary{
-                                            guard let id = locationDict.value(forKey: "id")  else { return }
-                                            let IDString = id as! String
-                                            let locationID = Int.init(IDString)
-                                            guard let lat = locationDict.value(forKey: "lat")  else { return }
-                                            let latNumber = lat as! NSNumber
-                                            let locationLat = Double.init(truncating: latNumber)
-                                            guard let lng = locationDict.value(forKey: "lng")  else { return }
-                                            let lngNumber = lng as! NSNumber
-                                            let locationLng = Double.init(truncating: lngNumber)
-                                            guard let address = locationDict.value(forKey: "address")  else { return }
-                                            let locationAddress = address as! String
-                                            location = Location(id: locationID!, lat: locationLat, lng: locationLng, address: locationAddress)
-                                        }
-                                        
-                                        var hostObject = Host()
-                                        guard let host = blogDict.value(forKey: "host") else { return }
-                                        if let hostDict = host as? NSDictionary{
-                                            //init(id : Int, name : String, partners : [Int], bankAccount : BankAccount){
-                                            guard let hostID = hostDict.value(forKey: "id") else { return }
-                                            let hostIDString = hostID as! String
-                                            guard let hostName = hostDict.value(forKey : "name") else { return }
-                                            let hostNameString = hostName as! String
-                                            guard let city = hostDict.value(forKey: "city") else { return }
-                                            let cityString = city as! String
-                                            guard let hostPartners = hostDict.value(forKey : "partners") else { return }
-                                            var hostPartnerList : [Int] = []
-                                            if let hostPartnerArray = hostPartners as? NSArray{
-                                                for hostPartner in hostPartnerArray{
-                                                    hostPartnerList.append(hostPartner as! Int)
-                                                }
-                                            }
-                                            
-                                            guard let locationJSON = hostDict.value(forKey: "location") else { return }
-                                            var location : Location = Location()
-                                            if let locationDict = locationJSON as? NSDictionary{
-                                                guard let id = locationDict.value(forKey: "id")  else { return }
-                                                let IDString = id as! String
-                                                let locationID = Int.init(IDString)
-                                                guard let lat = locationDict.value(forKey: "lat")  else { return }
-                                                let latNumber = lat as! NSNumber
-                                                let locationLat = Double.init(truncating: latNumber)
-                                                guard let lng = locationDict.value(forKey: "lng")  else { return }
-                                                let lngNumber = lng as! NSNumber
-                                                let locationLng = Double.init(truncating: lngNumber)
-                                                guard let address = locationDict.value(forKey: "address")  else { return }
-                                                let locationAddress = address as! String
-                                                location = Location(id: locationID!, lat: locationLat, lng: locationLng, address: locationAddress)
-                                            }
-                                            
-                                            var hostbankAcc : BankAccount = BankAccount()
-                        //                                "account_holder": "Weitblick Münster e.V.",
-                        //                                "iban": "DE64400800400604958800",
-                        //                                "bic": "DRESDEFF400"
-                                            guard let hostbank = hostDict.value(forKey : "bank_account") else { return }
-                                            if let hostbankDict = hostbank as? NSDictionary{
-                                                guard let holder = hostbankDict.value(forKey: "account_holder") else { return }
-                                                let holderString = holder as! String
-                                                guard let iban = hostbankDict.value(forKey: "iban") else { return }
-                                                let ibanString = iban as! String
-                                                guard let bic = hostbankDict.value(forKey: "bic") else { return }
-                                                let bicString = bic as! String
-                                                hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
-                                            }
-                                            hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location, city: cityString)
-                                            
-                                        }
-                                        
-                                        let blogEntry = BlogEntry(id: blogID!, title: blogTitle, text: blogText, created: blogCreated, updated: blogCreated, image: image, teaser: blogTeaser, range: blogRange,gallery: resultimages, projectInt: projectInt, author : authorObject, location: location, host: hostObject)
-                                        resultimages = []
-                                        blogList.append(blogEntry)
                                     }
                                 }
-                                completion(blogList)
-            }else{
-                completion([])
+                                        
+                                guard let author = blogDict.value(forKey: "author") else { return }
+                                var authorObject = Author()
+                                if let authorDict = author as? NSDictionary{
+                                    guard let imageURL = authorDict.value(forKey: "image") else { return }
+                                    var image = UIImage(named: "profileBlack100")
+                                    if let img = imageURL as? String{
+                                        let imgURL = NSURL(string : Constants.url + img)
+                                        let data = NSData(contentsOf: (imgURL as URL?)!)
+                                        image = UIImage(data: data! as Data)!
+                                    }
+                                    
+                                    guard let name = authorDict.value(forKey: "name") else { return }
+                                    let nameString = name as! String
+                                    
+                                    authorObject = Author(image: image!, name: nameString)
+                                }
+                                        
+                                guard let locationJSON = blogDict.value(forKey: "location") else { return }
+                                var location : Location = Location()
+                                if let locationDict = locationJSON as? NSDictionary{
+                                    guard let id = locationDict.value(forKey: "id")  else { return }
+                                    let IDString = id as! String
+                                    let locationID = Int.init(IDString)
+                                    guard let lat = locationDict.value(forKey: "lat")  else { return }
+                                    let latNumber = lat as! NSNumber
+                                    let locationLat = Double.init(truncating: latNumber)
+                                    guard let lng = locationDict.value(forKey: "lng")  else { return }
+                                    let lngNumber = lng as! NSNumber
+                                    let locationLng = Double.init(truncating: lngNumber)
+                                    guard let address = locationDict.value(forKey: "address")  else { return }
+                                    let locationAddress = address as! String
+                                    location = Location(id: locationID!, lat: locationLat, lng: locationLng, address: locationAddress)
+                                }
+                                        
+                                var hostObject = Host()
+                                guard let host = blogDict.value(forKey: "host") else { return }
+                                if let hostDict = host as? NSDictionary{
+                                    guard let hostID = hostDict.value(forKey: "id") else { return }
+                                    let hostIDString = hostID as! String
+                                    guard let hostName = hostDict.value(forKey : "name") else { return }
+                                    let hostNameString = hostName as! String
+                                    guard let city = hostDict.value(forKey: "city") else { return }
+                                    let cityString = city as! String
+                                    guard let hostPartners = hostDict.value(forKey : "partners") else { return }
+                                    var hostPartnerList : [Int] = []
+                                    if let hostPartnerArray = hostPartners as? NSArray{
+                                        for hostPartner in hostPartnerArray{
+                                            hostPartnerList.append(hostPartner as! Int)
+                                        }
+                                    }
+                                            
+                                    guard let locationJSON = hostDict.value(forKey: "location") else { return }
+                                    var location : Location = Location()
+                                    if let locationDict = locationJSON as? NSDictionary{
+                                        guard let id = locationDict.value(forKey: "id")  else { return }
+                                        let IDString = id as! String
+                                        let locationID = Int.init(IDString)
+                                        guard let lat = locationDict.value(forKey: "lat")  else { return }
+                                        let latNumber = lat as! NSNumber
+                                        let locationLat = Double.init(truncating: latNumber)
+                                        guard let lng = locationDict.value(forKey: "lng")  else { return }
+                                        let lngNumber = lng as! NSNumber
+                                        let locationLng = Double.init(truncating: lngNumber)
+                                        guard let address = locationDict.value(forKey: "address")  else { return }
+                                        let locationAddress = address as! String
+                                        location = Location(id: locationID!, lat: locationLat, lng: locationLng, address: locationAddress)
+                                    }
+                                    var hostbankAcc : BankAccount = BankAccount()
+                                    guard let hostbank = hostDict.value(forKey : "bank_account") else { return }
+                                    if let hostbankDict = hostbank as? NSDictionary{
+                                        guard let holder = hostbankDict.value(forKey: "account_holder") else { return }
+                                        let holderString = holder as! String
+                                        guard let iban = hostbankDict.value(forKey: "iban") else { return }
+                                        let ibanString = iban as! String
+                                        guard let bic = hostbankDict.value(forKey: "bic") else { return }
+                                        let bicString = bic as! String
+                                        hostbankAcc = BankAccount(holder: holderString, iban: ibanString, bic: bicString)
+                                    }
+                                    hostObject = Host(id: hostIDString, name: hostName as! String, partners: hostPartnerList, bankAccount: hostbankAcc, location: location, city: cityString)
+                                            
+                                }
+                                        
+                                let blogEntry = BlogEntry(id: blogID!, title: blogTitle, text: blogText, created: blogCreated, updated: blogCreated, image: image, teaser: blogTeaser, range: blogRange,gallery: resultimages, projectInt: projectInt, author : authorObject, location: location, host: hostObject)
+                                resultimages = []
+                                blogList.append(blogEntry)
+                            }
+                        }
+                        completion(blogList)
+                    }else{
+                        completion([])
+                }
             }
-            }
-            }).resume()
+        }).resume()
     }
 }

@@ -6,6 +6,15 @@
 //  Copyright © 2019 HS Osnabrueck. All rights reserved.
 //
 
+/*
+ ===============
+ SegmentService:
+ ===============
+    - getTourID: Asking REST API Server for unique Tour ID when User starts Tour
+        -> tour id will be sent whenever user is sending a segment
+    - sendSegment: Sending Segment data to REST API Server with Tour ID.
+ */
+
 import UIKit
 
 class SegmentService{
@@ -27,8 +36,6 @@ class SegmentService{
             }
         }
         task.resume()
-        
-        
     }
     
     static func sendSegment(start: Date, end: Date, distance: Double, projectID: Int, tourID: Int, completion: @escaping (_ response: String) -> ()){
@@ -49,10 +56,6 @@ class SegmentService{
         let task = URLSession.shared.dataTask(with: request){(data, response, error) in
         }
         task.resume()
-        
-        
-        
-        
     }
     
 }

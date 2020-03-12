@@ -6,6 +6,15 @@
 //  Copyright © 2019 HS Osnabrueck. All rights reserved.
 //
 
+/*
+ ===========
+ FAQService:
+ ===========
+    - loadContact: Fetching Contact data from REST API
+    - loadCredits: Fetching Credits data from REST API
+    - loadFAQ:     Fetching FAQs    data from REST API
+ */
+
 import UIKit
 
 class FAQService{
@@ -22,42 +31,35 @@ class FAQService{
         URLSession.shared.dataTask(with: request, completionHandler: {(data,response,error) -> Void in
             if let data = data{
                 let jsondata = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                           if let contactDict = jsondata as? NSDictionary{
-                               
-                               guard let title = contactDict.value(forKey: "title")  else { return }
-                               let titleString = title as! String
-                               
-                               var image : UIImage?
-                               guard let imageJSON = contactDict.value(forKey : "image") else { return }
-                               if let imageString = imageJSON as? String{
-                                   if(imageString == ""){
-                                       let size = CGSize.init(width: 334, height: 176)
-                                       image = UIImage(named: "Weitblick")!.crop(to: size)
-                                   }else{
-                                       let imgURL = NSURL(string : Constants.url + imageString)
-                                       let data = NSData(contentsOf: (imgURL as URL?)!)
-                                       image = UIImage(data: data! as Data)!
-                                   }
-                               }
-                               
-                               guard let text = contactDict.value(forKey: "text")  else { return }
-                               let textString = text as! String
-                               
-                               let contactObject = ContactObject(title: titleString, image: image!, text: textString)
-                               completion(contactObject,nil)
-            }else{
-                let error = error as NSError?
-                completion(nil, error)
-            }
+                if let contactDict = jsondata as? NSDictionary{
+                            
+                    guard let title = contactDict.value(forKey: "title")  else { return }
+                    let titleString = title as! String
+                    var image : UIImage?
+                    guard let imageJSON = contactDict.value(forKey : "image") else { return }
+                    if let imageString = imageJSON as? String{
+                        if(imageString == ""){
+                            let size = CGSize.init(width: 334, height: 176)
+                            image = UIImage(named: "Weitblick")!.crop(to: size)
+                        }else{
+                            let imgURL = NSURL(string : Constants.url + imageString)
+                            let data = NSData(contentsOf: (imgURL as URL?)!)
+                            image = UIImage(data: data! as Data)!
+                        }
+                    }
+                    guard let text = contactDict.value(forKey: "text")  else { return }
+                    let textString = text as! String
+                    let contactObject = ContactObject(title: titleString, image: image!, text: textString)
+                    completion(contactObject,nil)
+                }else{
+                    let error = error as NSError?
+                    completion(nil, error)
+                }
             }
         }).resume()
     }
     
     static func loadAGBS(completion: @escaping (_ agbObject : AGBObject?, _ err : NSError?) -> ()){
-//        private var title: String
-//        private var image : UIImage
-//        private var text : String
-//
         let url = NSURL(string : Constants.agbURL)
         let str = "surfer:hangloose"
         let test2 = Data(str.utf8).base64EncodedString();
@@ -71,7 +73,6 @@ class FAQService{
                 if let agbDict = jsondata as? NSDictionary{
                     guard let title = agbDict.value(forKey: "title")  else { return }
                     let titleString = title as! String
-                    
                     var image : UIImage?
                     guard let imageJSON = agbDict.value(forKey : "image") else { return }
                     if let imageString = imageJSON as? String{
@@ -84,10 +85,8 @@ class FAQService{
                              image = UIImage(data: data! as Data)!
                         }
                     }
-                    
                     guard let text = agbDict.value(forKey: "text")  else { return }
                     let textString = text as! String
-                    
                     let agbObject = AGBObject(title: titleString, image: image!, text: textString)
                     completion(agbObject,nil)
                 }
@@ -95,11 +94,7 @@ class FAQService{
                 let nsurlerror = error as NSError?
                 completion(nil,nsurlerror)
             }
-            
-            
         }).resume()
-        
-        
     }
     
     static func loadCredits(completion: @escaping (_ creditObject : Creditobject?, _ error : NSError?) -> ()){
@@ -189,7 +184,6 @@ class FAQService{
     }
     
     static func loadFAQ( completion: @escaping (_ questions : [FAQEntry] ) -> ()){
-       
         var resultArray : [FAQEntry] = []
         let string = Constants.restURL + "/faq/"
         let url = NSURL(string: string)
@@ -202,35 +196,33 @@ class FAQService{
         URLSession.shared.dataTask(with: request, completionHandler: {(data,response,error) -> Void in
             if let data = data{
                 let jsondata = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                         if let faqArray = jsondata as? NSArray{
+                if let faqArray = jsondata as? NSArray{
+                    for faqSection in faqArray{
+                        if let faqDict = faqSection as? NSDictionary{
+                            guard let title = faqDict.value(forKey: "title")  else { return }
+                            let titleString = title as! String
+                            guard let faqs = faqDict.value(forKey: "faqs")  else { return }
+                            if let questions = faqs as? NSArray{
+                                for question in questions{
+                                    if let questionDict = question as? NSDictionary{
+                                        guard let questionText = questionDict.value(forKey : "question") else { return }
+                                        let questionString = questionText as! String
+                                        guard let answerText = questionDict.value(forKey : "answer")  else { return }
+                                        let answerString = answerText as! String
+                                        let faqQuestion = FAQEntry(title: titleString, question: questionString, answer: answerString)
 
-                             for faqSection in faqArray{
-                
-                                 if let faqDict = faqSection as? NSDictionary{
-                                     guard let title = faqDict.value(forKey: "title")  else { return }
-                                     let titleString = title as! String
-                                     guard let faqs = faqDict.value(forKey: "faqs")  else { return }
-                                     if let questions = faqs as? NSArray{
-                                         for question in questions{
-                                             if let questionDict = question as? NSDictionary{
-                                                 guard let questionText = questionDict.value(forKey : "question") else { return }
-                                                 let questionString = questionText as! String
-                                                 guard let answerText = questionDict.value(forKey : "answer")  else { return }
-                                                 let answerString = answerText as! String
-                                                 let faqQuestion = FAQEntry(title: titleString, question: questionString, answer: answerString)
-                                                 
-                                                 resultArray.append(faqQuestion)                                }
-                                         }
-                                     }
-                                 }
-                             }
-                             DispatchQueue.main.async {
-                                 completion(resultArray)
-                             }
+                                        resultArray.append(faqQuestion)                                }
+                                }
+                            }
+                        }
+                    }
+                DispatchQueue.main.async {
+                    completion(resultArray)
+                }
             }else{
                 completion([])
             }
-            }
+        }
         }).resume()
     }
 }

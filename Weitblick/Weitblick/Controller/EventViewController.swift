@@ -84,23 +84,29 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NetworkManager.isUnreachable { networkManagerInstance in
-          return
-        }
-        if(eventListProjectDetail.count > 0){
-                   self.switch_counter = 1
-               }
-        EventService.loadEvents(date: date) { (list) in
-            self.eventList = list
-            self.date = self.eventList.last!.getStartDate
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 600
+        EventService.loadEvents(date: date) { (list) in
+            DispatchQueue.main.async {
+                if(list.count == 0){
+                    
+                }else{
+                    self.eventList = list
+                    if(self.eventList.count == 0){
+                    }else{
+                        self.date = self.eventList.last!.getStartDate
+                            self.tableView.reloadData()
+                    }
+                }
+            }
+        }
+        
+        if(eventListProjectDetail.count > 0){
+            self.switch_counter = 1
+        }
+        
         
     }
     

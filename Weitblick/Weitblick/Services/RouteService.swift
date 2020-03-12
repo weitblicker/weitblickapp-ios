@@ -6,6 +6,13 @@
 //  Copyright © 2019 HS Osnabrueck. All rights reserved.
 //
 
+/*
+ =============
+ RouteService:
+ =============
+    - getRoutes: Fetching Data from all routes which are made by User.
+ */
+
 import UIKit
 
 class RouteService{
@@ -37,11 +44,10 @@ class RouteService{
                             
                             guard let euro = routeDict.value(forKey: "euro")  else { return }
                             let donationDouble = euro as! Double
-                            //let donationDouble = Double.init(donationString)
                             
                             guard let km = routeDict.value(forKey: "km")  else { return }
                             let distanceDouble = km as! Double
-                            //let distanceDouble = Double.init(distanceString)
+                            
                             guard let tourJSON = routeDict.value(forKey: "tour") else { return }
                             let tour = tourJSON as! Int
                             let routeEntry = RouteEntry.init(tourID: tour, date: endDate, duration: Int(durationInt), distance: distanceDouble, donation: donationDouble)
@@ -53,12 +59,7 @@ class RouteService{
             }else{
                 completion([])
             }
-            
         }
         task.resume()
-        
-    }
-    
-    
-    
+    }  
 }

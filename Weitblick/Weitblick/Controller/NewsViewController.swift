@@ -133,6 +133,13 @@ override func viewDidLoad() {
     
     DataService.loadNews(date: self.date) { (list) in
         if(list.isEmpty){
+            let message:String = "Die Serverdaten sind vorübergehend nicht verfügbar. Wir bitten um Entschuldigung!"
+
+            let alertController:UIAlertController = UIAlertController(title: "", message: message, preferredStyle: UIAlertController.Style.alert)
+
+            let alertAction:UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
             return
         }
         self.newsList = list

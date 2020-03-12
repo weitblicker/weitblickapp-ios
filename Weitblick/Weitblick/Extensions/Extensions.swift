@@ -6,6 +6,13 @@
 //  Copyright © 2019 HS Osnabrueck. All rights reserved.
 //
 
+/*
+ ==========
+ Constants:
+ ==========
+    - static constants for better use of link-urls and static measurements
+ */
+
 import UIKit
 
 struct Constants{
@@ -23,7 +30,6 @@ struct Constants{
     static let agbURL = "https://weitblicker.org/rest/info/agb/"
     static let contactURL = "https://weitblicker.org/rest/info/contact/"
     static let regex = "!\\[(.*?)\\]\\((.*?)\\\""
-    static let regex2 = "" // \[?(!)\[(?<alt>[^\]\[]*\[?[^\]\[]*\]?[^\]\[]*)\]\((?<url>[^\s]+?)(?:\s+(["'])(?<title>.*?)\4)?\)
     static let regexReplace = "!\\[(.*?)\\]\\((.*?)\\)"
     static let rect = CGRect.init(x: 200/2, y: 50/2, width: 400, height: 180)
     static let lineFeed = "\r\n"
@@ -35,6 +41,13 @@ struct FAQEntry{
     let answer : String
     
 }
+
+/*
+ =================
+ Extension : Data:
+ =================
+    - Converting methods for html into String
+ */
 
 extension Data {
     var html2AttributedString: NSAttributedString? {
@@ -48,6 +61,13 @@ extension Data {
         return html2AttributedString?.string ?? ""
     }
 }
+/*
+ ===================
+ Extension : String:
+ ===================
+    - Converting methods from String to NSAttributedString
+    - Converting String of seconds into String of hours:minutes:seconds
+ */
 
 extension String {
     var html2AttributedString: NSAttributedString? {
@@ -70,6 +90,13 @@ extension String {
     }
     
 }
+
+/*
+ ====================
+ Extension : UIImage:
+ ====================
+    - Function crop to center-crop the specified image into CGSize(width,length)
+ */
 
 extension UIImage{
     
@@ -128,6 +155,14 @@ extension UIImage{
       }
     }
 
+/*
+ =================
+ Extension : Date:
+ =================
+    - Conversion methods from DateObject into String with specified format
+    - Checking Dates if specified date is the current date
+ */
+
 extension Date{
     func dateAndTimetoString(format: String = "dd.MM.yyyy") -> String {
     let formatter = DateFormatter()
@@ -149,10 +184,7 @@ extension Date{
             formatter.dateFormat = format
     return formatter.string(from: self)
     }
-    
-}
 
-extension Date{
     func dateAndTimetoStringISO(format: String = "yyyy-MM-dd'T'HH:mm:ss") -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
@@ -166,9 +198,6 @@ extension Date{
        return formatter.string(from: self)
            }
     
-}
-
-extension Date{
     func dateAndTimetoStringUS(format: String = "yyyy-MM-dd") -> String {
         let formatter = DateFormatter()
                 formatter.dateStyle = .short
@@ -200,17 +229,16 @@ extension Date{
     
 }
 
+/*
+ ===========
+ handleDate:
+ ===========
+    - Conversion Method from specified string into DateObject
+ */
+
 func handleDate(date : String) -> Date{
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
     return dateFormatter.date(from:date)!
 }
-
-
-
-
-
-
-
-

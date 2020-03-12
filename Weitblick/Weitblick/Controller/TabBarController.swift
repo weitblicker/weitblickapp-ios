@@ -9,15 +9,20 @@
 import UIKit
 import SwipeableTabBarController
 
+/*
+ =================
+ TabBarController:
+ =================
+    - Root node
+    - Setting up navbar
+ */
+
 class TabBarController: SwipeableTabBarController,UINavigationControllerDelegate {
     
     var defaultProject : Project?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-
         swipeAnimatedTransitioning?.animationType = SwipeAnimationType.sideBySide
     }
     override func viewWillAppear(_ animated: Bool) {
