@@ -34,14 +34,12 @@ class MapViewController: UIViewController {
     var hcKalmanFilter : HCKalmanAlgorithm?
     var hostList: String = ""
     var counter = 0
-    
     @IBOutlet weak var distanceLbl: UILabel!
     @IBOutlet weak var speedLbl: UILabel!
     @IBOutlet weak var donationLbl: UILabel!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var stopPlayButton: UIButton!
     @IBOutlet weak var project_name: UILabel!
-    
     @IBOutlet weak var project_partner: UILabel!
     @IBOutlet weak var project_location: UILabel!
     
@@ -53,12 +51,10 @@ class MapViewController: UIViewController {
         self.performSegue(withIdentifier: "showProjectInfo", sender: self)
     }
     
-    
     override func viewDidLoad() {
         self.navigationItem.hidesBackButton = true
         self.project_name.text = self.project?.getName
         self.project_location.text = self.project?.getLocation.getAddress
-        
         for host in self.project!.getHosts{
             if(self.project!.getHosts.count > 1){
             self.hostList = self.hostList + host.getName + ","
@@ -67,9 +63,6 @@ class MapViewController: UIViewController {
             }
         }
         self.project_partner.text = self.project?.getHosts[0].getCity.uppercased()
-        
-        
-        
         self.stopPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
         super.viewDidLoad()
         checkLocationServices()
@@ -98,8 +91,6 @@ class MapViewController: UIViewController {
         }
 
     }
-
-
 
     override func viewWillAppear(_ animated: Bool) {
         if(self.trackFinished){
@@ -198,8 +189,6 @@ class MapViewController: UIViewController {
             var DestViewController : ProjectDetailViewController = segue.destination as! ProjectDetailViewController
             DestViewController.project_object = self.project
             
-            
-            
         }
         
     }
@@ -262,9 +251,6 @@ extension MapViewController : CLLocationManagerDelegate{
         checkLocationAuthorization()
     }
     
-    
-    
-
     func showErrorMessage(message:String) {
         let alertView = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
