@@ -17,7 +17,7 @@ class ContactViewController: UIViewController{
     @IBOutlet weak var contact_image: UIImageView!
     
     
-    //Daten laden und den Variablen zuweisen 
+    //Daten mithilfe des FAQServices laden und den Variablen zuweisen 
     override func viewDidLoad() {
         let markdownParser = MarkdownParser()
         FAQService.loadContact { (contactObject, error) in
@@ -40,7 +40,5 @@ class ContactViewController: UIViewController{
         }
         
     }
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
+    
 }

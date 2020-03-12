@@ -47,7 +47,6 @@ class MapViewController: UIViewController {
     var hcKalmanFilter : HCKalmanAlgorithm?
     var hostList: String = ""
     var counter = 0
-    
     @IBOutlet weak var distanceLbl: UILabel!
     @IBOutlet weak var speedLbl: UILabel!
     @IBOutlet weak var donationLbl: UILabel!
@@ -56,12 +55,12 @@ class MapViewController: UIViewController {
     @IBOutlet weak var project_name: UILabel!
     @IBOutlet weak var project_partner: UILabel!
     @IBOutlet weak var project_location: UILabel!
-    
-    //Button der die Map wieder auf den aktuellen Standort zentriert 
+
+    //Button der die Map wieder auf den aktuellen Standort zentriert
     @IBAction func toLocationButton(_ sender: UIButton) {
          map.setCenter(map.userLocation.coordinate, animated: true)
     }
-    //Button der Projektinformationen anzeigt 
+    //Button der Projektinformationen anzeigt
     @IBAction func showProjectInfo(_ sender: Any) {
         self.performSegue(withIdentifier: "showProjectInfo", sender: self)
     }
@@ -106,8 +105,6 @@ class MapViewController: UIViewController {
         }
 
     }
-
-
 
     override func viewWillAppear(_ animated: Bool) {
         if(self.trackFinished){
@@ -179,8 +176,8 @@ class MapViewController: UIViewController {
     }
 
     @IBAction func EndTrackingClicked(_ sender: Any) {
-        
-        
+
+
         self.timer.fire()
         self.timer.invalidate()
         startTracking = false;
@@ -197,15 +194,13 @@ class MapViewController: UIViewController {
             DestViewController.project = self.project
 
         }
-        
+
         if segue.destination is ProjectDetailViewController{
             let DestViewController : ProjectDetailViewController = segue.destination as! ProjectDetailViewController
             DestViewController.project_object = self.project
-            
-            
-            
+
         }
-        
+
     }
 }
 
@@ -214,19 +209,19 @@ class MapViewController: UIViewController {
 extension MapViewController : CLLocationManagerDelegate{
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+
         if(startTracking){
-            
+
             // Most recent Location from CLLocationManager
             let lastLocation: CLLocation = locations.first!
-            
+
             // Singleton KalmanFilter
             if hcKalmanFilter == nil {
                self.hcKalmanFilter = HCKalmanAlgorithm(initialLocation: lastLocation)
             }
             else {
                 if let hcKalmanFilter = self.hcKalmanFilter {
-                
+
                     //kalmanLocation : Location filtered by KalmanFilter
                     let kalmanLocation = hcKalmanFilter.processState(currentLocation: lastLocation)
                     // add Location to List
@@ -234,27 +229,21 @@ extension MapViewController : CLLocationManagerDelegate{
                 }
                 // If hasbeenPaused : do not calculate distance causing false results
                 if(!hasbeenPaused && self.list.count >= 2){
-                    
+
                     let start = self.list[self.list.count-2]
                     let end = self.list[self.list.count-1]
-                    
+
                     self.totalDistance += end.distance(from: start)
                     let distanceinKM = self.totalDistance/1000
                     self.distanceLbl.text = (round(distanceinKM*100)/100).description + " km"
                     self.distanceLbl.text = doubleToKm(double: totalDistance)
                     self.donationLbl.text = (round((distanceinKM*0.1)*100)/100).description + " €"
-                    
+
                 }else{
                     hasbeenPaused = false
                 }
             }
         }
-        
-//        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-//        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-//        self.map.setRegion(region, animated: true)
-
-        
     }
 
     func doubleToKm(double : Double) -> String{
@@ -265,9 +254,6 @@ extension MapViewController : CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
     }
-    
-    
-    
 
     func showErrorMessage(message:String) {
         let alertView = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
@@ -277,5 +263,3 @@ extension MapViewController : CLLocationManagerDelegate{
         self.present(alertView, animated: true, completion:nil)
     }
 }
-
-

@@ -10,14 +10,15 @@ import UIKit
 
 class RouteViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
     
-   
     @IBOutlet weak var tableView: UITableView!
     var routeList : [RouteEntry] = []
     
+    //TableView Größe festlegen
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return routeList.count
     }
-    
+    //Routezelle erstellen und Variablen den Labels zuweisen
+    //Liste nach Datum sortieren
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier:"route_cell", for: indexPath)as! RouteTableViewCell
         
@@ -38,10 +39,10 @@ class RouteViewController: UIViewController,UITableViewDataSource, UITableViewDe
         
     }
 
-
+    //RouteServices starten
+    //TableView laden
      override func viewDidLoad() {
            super.viewDidLoad()
-        
         RouteService.getRoutes { (list) in
             for entry in list{
                 self.routeList.append(entry)
@@ -50,10 +51,6 @@ class RouteViewController: UIViewController,UITableViewDataSource, UITableViewDe
                 self.tableView.reloadData()
             }
         }
-/*        self.tableView.dataSource = self
-        self.tableView.delegate = self*/
-
-           // Do any additional setup after loading the view.
        }
        
 

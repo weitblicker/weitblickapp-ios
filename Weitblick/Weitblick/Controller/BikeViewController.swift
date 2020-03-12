@@ -22,7 +22,6 @@ import CoreLocation
  */
 
 class BikeViewController: UIViewController {
-    
     var list : [CLLocation] = []
     var i = 0;
     var totalDistance : Double = 0;
@@ -35,7 +34,6 @@ class BikeViewController: UIViewController {
     var projectId : Int = -1;
     var project: Project?
     var isTapped = 0;
-
     @IBOutlet weak var speedLbl: UILabel!
     @IBOutlet weak var distanceLbl: UILabel!
     @IBOutlet weak var mapView: MKMapView!
@@ -61,7 +59,6 @@ class BikeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         if(UserDefaults.standard.string(forKey: "projectName") != nil){
             self.cycleProjectTitle.setTitle(UserDefaults.standard.string(forKey: "projectName"), for: .normal)
             self.isTapped = 1
@@ -143,7 +140,6 @@ class BikeViewController: UIViewController {
     }
     
     func showAlertMess(userMessage: String){
-
         let alertView = UIAlertController(title: "Achtung!", message: userMessage, preferredStyle: UIAlertController.Style.alert)
         alertView.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alertView, animated: true, completion: nil)

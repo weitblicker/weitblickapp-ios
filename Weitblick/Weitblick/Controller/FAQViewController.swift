@@ -10,8 +10,6 @@ import UIKit
 import Foundation
 
 class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
-    
-    
     var questions1 : [FAQEntry] = []
     var questions2 : [FAQEntry] = []
     var questions3 : [FAQEntry] = []
@@ -21,8 +19,6 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
     var counter_section2 = 0
     let numberOfRowsAtSection: [Int] = [5, 4]
     var arr = [[FAQEntry]]()
-   
-    
     let sections = ["Mitmachen & Spenden", "Struktur & Organisation","Wie benutze ich die App"]
     
   
@@ -30,41 +26,35 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.sections.count
     }
-    
+    //Title der einzelnen Sections festlegen
     func tableView(_ tableView: UITableView, titleForHeaderInSection
                                 section: Int) -> String? {
        return sections[section]
-       
-        
     }
-    
+    //Größe der einzelnen Sections festlegen
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return arr[section].count
     }
-    
+    //Falls Zelle angeklickt wird auf die FAQDetail Ansicht wechseln
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
            self.faq_object = arr[indexPath.section][indexPath.row]
            self.performSegue(withIdentifier: "goFAQDetail", sender: self)
        }
-    
+    //FAQ Daten den Labels in der Zelle zuweisen
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:"faq_cell", for: indexPath)as! FAQTableViewCell
-        
         let question = arr[indexPath.section][indexPath.row].question
         cell.faq_question.text = question
         cell.faq_question.sizeToFit();
         cell.faq_answer.sizeToFit()
         return cell
-         
     }
     
 
     @IBOutlet weak var tableView: UITableView!
+    //FAQ Daten vom FaqService laden und den 3 verschiedenen Listen zuweisen
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-      
         self.navigationController!.navigationBar.topItem!.title = "Zurück"
         FAQService.loadFAQ { (list) in
             for faq in list{
@@ -76,23 +66,19 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
                 }else if (faq.title == "Wie benutze ich die App"){
                     self.questions3.append(faq)
                 }
-          
         }
              DispatchQueue.main.async {
                 self.arr.append(self.questions1)
                 self.arr.append(self.questions2)
                 self.arr.append(self.questions3)
-                 self.tableView.reloadData()
-                 self.tableView.delegate = self
+                self.tableView.reloadData()
+                self.tableView.delegate = self
                 self.tableView.dataSource = self
             }
         }
-       
-
-        // Do any additional setup after loading the view.
     }
     
-    
+    //Falls Zelle angeklickt wird FAQDetailController das FAQ Objekt weiterleiten
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
                  if segue.destination is FAQDetailViewController
                  {
@@ -101,8 +87,4 @@ class FAQViewController: UIViewController,UITableViewDataSource, UITableViewDele
                  }
            
              }
-    
-
-
-
 }

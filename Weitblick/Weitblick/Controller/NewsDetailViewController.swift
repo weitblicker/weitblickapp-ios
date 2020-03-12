@@ -12,30 +12,19 @@ import MarkdownKit
 
 class NewsDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate {
   
-    
-    
-//NEWS Variablen
-   
     @IBOutlet weak var news_detail_loaction: UILabel!
     @IBOutlet weak var news_detail_date: UILabel!
     @IBOutlet weak var news_detail_title: UILabel!
     @IBOutlet weak var news_detail_description: UILabel!
-     @IBOutlet var photoSliderView: PhotoSliderView!
+    @IBOutlet var photoSliderView: PhotoSliderView!
     @IBOutlet weak var news_detail_image: UIImageView!
     @IBOutlet weak var news_detail_author: UILabel!
     @IBOutlet weak var news_detail_author_image: UIImageView!
-    
     @IBOutlet weak var project_label: UILabel!
-    
     @IBOutlet weak var tableView: UITableView!
     var id = -1
     var project : Project?
-    
-    
     @IBOutlet weak var orangeLabel: UILabel!
-    
-    //EVENT Variablen
-  
     var news_object : NewsEntry?
   
     
@@ -45,32 +34,28 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
         self.tableView.dataSource = self
         loadNewsDetail()
         self.navigationController!.navigationBar.topItem!.title = "Zurück"
-        
-       
-        
-      
     }
     
-   
+//TableView nötig um die dazugehörigen Projekte anzeigen zu lassen
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
           1
       }
-      
-      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-          let cell =  tableView.dequeueReusableCell(withIdentifier:"newsproject_cell", for: indexPath)as! NewsDetailProjectCell
+     
+//Allen vorhandenen Labels in der Projektzelle ihre Daten zuweisen
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell =  tableView.dequeueReusableCell(withIdentifier:"newsproject_cell", for: indexPath)as! NewsDetailProjectCell
         cell.project_title.text = self.project?.getName
         cell.project_location.text = self.project?.getLocation.getAddress
         cell.project_partner.text = self.project?.getHosts.first?.getCity.uppercased()
         cell.project_image.image = self.project?.getImage
-        
-          return cell
+        return cell
       }
     
+//Falls Zelle angeklickt wird zu "ProjecDetailView" überleiten
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "goToProjectDetail", sender: self)
     }
-    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,6 +70,7 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
 
     }
     
+    //Falls zu ProjectDetailView gewechselt wird diesem Controller das jeweilige Projekt übergeben
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is ProjectDetailViewController{
             let projectDetailViewController = segue.destination as? ProjectDetailViewController
@@ -92,9 +78,8 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
-    
+    //Newsdetail Daten den zugehörigen Labels zuweisen
     func loadNewsDetail(){
-        
         let markdownParser = MarkdownParser()
         news_detail_description.attributedText = markdownParser.parse(news_object!.getText)
         news_detail_description.sizeToFit()
@@ -114,6 +99,7 @@ class NewsDetailViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    //Projectdaten laden
     public func loadProject(){
         self.id = news_object!.getProjectInt
         DataService.getProjectWithID(id: self.id) { (project) in

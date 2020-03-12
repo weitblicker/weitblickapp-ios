@@ -21,20 +21,13 @@ struct ProjectData : Codable{
     let partner : [Int]?
 }
 
-
-
-
 class NewsEventViewController: UIViewController {
-
     var projectList : [Project] = []
-    
     @IBOutlet weak var segment_control: UISegmentedControl!
-
     @IBOutlet weak var NewsView: UIView!
-
     @IBOutlet weak var EventView: UIView!
 
-
+    //je nach Auswahl des User View zwischen News und Event ändern
     @IBAction func switchView(_ sender: UISegmentedControl) {
         self.segment_control.backgroundColor = .clear
         self.segment_control.tintColor = .clear

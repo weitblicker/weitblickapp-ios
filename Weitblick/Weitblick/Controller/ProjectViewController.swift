@@ -23,33 +23,27 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
     var project_object : Project?
     var delegate = ProjectTableViewCell?.self
     var hostList: String = ""
-    
     @IBOutlet weak var triangle: UILabel!
-    //    var count2 = 0
-//    var postCount2 = 3
     var date = Date.init()
-
-
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
     var clicked = 0
     var counter = 0
     
     
-
+    //TableView Größe festlegen (So groß wie die Anzahl der geladenen Projekte)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return projectList.count
     }
 
-    func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {   // Mit dequeueReusableCell werden Zellen gemäß        der im Storyboard definierten Prototypen erzeugt
+    //Gewünschte Zelle erzeugen und ihren Labels den Inhalt des Projektes zuweisen
+    func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Mit dequeueReusableCell werden Zellen gemäß der im Storyboard definierten Prototypen erzeugt
         let cell = tableView.dequeueReusableCell(withIdentifier: "projectCell", for: indexPath) as! ProjectTableViewCell
-        
         cell.project_image.image = self.projectList[indexPath.row].getImage
         cell.project_title.text = projectList[indexPath.row].getName
-        
         cell.project_city.text = projectList[indexPath.row].getHosts[0].getCity.uppercased()
         cell.project_city.font = UIFont(name: "OpenSans-Bold", size: 15)
-       
         cell.project_location.text = projectList[indexPath.row].getLocation.getAddress
         cell.project_button_bike.tag = indexPath.row
         if(self.projectList[indexPath.row].getCycleObject.getDonations.isEmpty){
@@ -63,12 +57,13 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         return cell
     }
 
+    //Bei Auswahl eines Projektes auf seine Detailansicht weiterleiten
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.project_object = projectList[indexPath.row]
         self.performSegue(withIdentifier: "goToProjectDetail", sender: self)
     }
     
-    
+    //MapView anzeigen lassen mit den zugehörigen Markern
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         var i = 0
         for annoView in self.annotationList{
@@ -89,10 +84,12 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         return false
     }
 
+    //Alle Projekte laden
+    //Koordinaten für Map in annotationList einfügen
+    //TableView laden
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-         triangle.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
+        triangle.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
         DataService.loadProjects(date: self.date) { (list) in
             self.projectList = list
             self.date = self.projectList.last?.getPublished ?? self.date
@@ -105,17 +102,17 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
                     let annoView = MKAnnotationView(annotation: anno, reuseIdentifier: project.getName)
                     self.annotationList.append(annoView)
                     self.mapView.addAnnotation(annoView.annotation!)
-                    
                 }
             }
         }
         self.mapView.delegate = self
         self.tableView.delegate = self
         self.tableView.dataSource = self
-          tableView.rowHeight = UITableView.automaticDimension
-          tableView.estimatedRowHeight = 600
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 600
       }
 
+    //Datum richtig formatieren
     private func handleDate(date : String) -> Date{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
@@ -132,34 +129,24 @@ class ProjectViewController: UIViewController, UITableViewDataSource, UITableVie
         return "Adress not found"
     }
 
-
+    //ProjectDetailController das ausgewählte Projekt zum Anzeigen weiterleiten
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
               if segue.destination is ProjectDetailViewController
               {
-                  let projectDetailViewController = segue.destination as? ProjectDetailViewController
-                  projectDetailViewController?.project_object = self.project_object
-                  projectDetailViewController?.count = self.count
-
+                let projectDetailViewController = segue.destination as? ProjectDetailViewController
+                projectDetailViewController?.project_object = self.project_object
+                projectDetailViewController?.count = self.count
               }
-        
           }
     
-    
+    //Bei Auswahl des Fahrradfahrsymbols auf die Fahrradseite wechseln
     @objc func goToCycle(sender:UIButton!){
-        
-        
         let projectID = self.projectList[sender.tag].getID
         let projectName = self.projectList[sender.tag].getName
-
         UserDefaults.standard.set(projectID, forKey: "projectID")
         UserDefaults.standard.set(projectName, forKey: "projectName")
         self.tabBarController?.selectedIndex = 2
         
     }
-    
-    
-   
-    
-
 
 }
