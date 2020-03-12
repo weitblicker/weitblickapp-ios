@@ -30,7 +30,6 @@ class EventDetailViewController: UIViewController {
     @IBOutlet weak var event_detail_location : UILabel!
     @IBOutlet weak var event_detail_description:
     UILabel!
-    
     @IBOutlet weak var mapView: MKMapView!
     
     var event_object : Event?
@@ -46,7 +45,6 @@ class EventDetailViewController: UIViewController {
             let region = MKCoordinateRegion.init(center: CLLCoordType, latitudinalMeters: 2000, longitudinalMeters: 2000)
             self.mapView.setRegion(region, animated: true)
         }
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,11 +54,8 @@ class EventDetailViewController: UIViewController {
          imageView.contentMode = .scaleAspectFit
          let image = UIImage(named : "Weitblick")
          imageView.image = image
-         
          navigationItem.titleView = imageView
-       
-
-     }
+    }
     
     func loadEventDetail(){
          
@@ -81,11 +76,5 @@ class EventDetailViewController: UIViewController {
         event_detail_Location_Title.sizeToFit()
         location_unten.text = event_object?.getLocation.getAddress
         slider.configure(with: [(self.event_object?.getImage)!])
-         
-         
      }
-    
-
- 
-
 }
