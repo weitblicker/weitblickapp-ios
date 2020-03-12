@@ -12,20 +12,15 @@ class PopOverViewController: UIViewController, UIPopoverPresentationControllerDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
 
     override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
+         super.viewWillAppear(animated)
     }
-    
-    
-      
-
-      func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+   
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
           return .none
-      }
+    }
 
 }

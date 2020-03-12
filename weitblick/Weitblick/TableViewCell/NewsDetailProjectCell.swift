@@ -6,28 +6,22 @@
 //  Copyright © 2020 HS Osnabrueck. All rights reserved.
 //
 
+
+//Projektzelle auf NewsDetailController 
 import Foundation
 import UIKit
 
 
 class NewsDetailProjectCell: UITableViewCell{
-    
-    
+   
     @IBOutlet weak var project_image: UIImageView!
-    
     @IBOutlet weak var project_partner: UILabel!
-    
     @IBOutlet weak var project_location: UILabel!
-    
     @IBOutlet weak var project_title: UILabel!
-    
-  
     @IBOutlet weak var project_ride_button: UIButton!
     
-    
     override func awakeFromNib() {
-               super.awakeFromNib()
-               // Initialization code
-           }
+       super.awakeFromNib()
+    }
     
 }

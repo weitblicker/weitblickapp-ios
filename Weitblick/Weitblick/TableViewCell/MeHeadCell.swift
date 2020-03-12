@@ -6,6 +6,8 @@
 //  Copyright © 2020 HS Osnabrueck. All rights reserved.
 //
 
+//Kopfzelle für Meilensteine in ProjectDetailController Tabelle 
+
 import Foundation
 import UIKit
 
@@ -14,12 +16,9 @@ import UIKit
 class MeHeadCell: UITableViewCell {
     
     @IBOutlet weak var mehead_image: UIImageView!
-    
-    
+  
     override func awakeFromNib() {
             super.awakeFromNib()
-            // Initialization code
-        }
-
+    }
 
 }

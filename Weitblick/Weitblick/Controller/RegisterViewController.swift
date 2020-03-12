@@ -9,17 +9,18 @@
 import UIKit
 
 class RegisterViewController: UIViewController, UIPopoverPresentationControllerDelegate {
-    
-    
+
+
     @IBOutlet weak var checkbox: UIButton!
     @IBOutlet var popover: UIScrollView!
     @IBAction func go(){
+
     }
-    
+
     @IBAction func backToRegister(_ sender: Any) {
         self.popover.removeFromSuperview()
     }
-    
+
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }
@@ -33,7 +34,7 @@ class RegisterViewController: UIViewController, UIPopoverPresentationControllerD
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil);
     }
-    
+
     override func didReceiveMemoryWarning() {
            super.didReceiveMemoryWarning()
        }
@@ -58,12 +59,12 @@ class RegisterViewController: UIViewController, UIPopoverPresentationControllerD
     @IBOutlet weak var password2: UITextField!
     @IBOutlet weak var errorText: UILabel!
     var clicked = 0
-    
+
     //Checkbox image festlegen
     func setUpButton(){
            checkbox.addTarget(self, action: Selector(("chechbox:")), for : UIControl.Event.touchUpInside)
        }
-    
+
     //Bei ausgewählter Checkbox Bild ändern
     @IBAction func checkbox(_ sender: Any) {
         if(clicked == 0){
@@ -77,7 +78,7 @@ class RegisterViewController: UIViewController, UIPopoverPresentationControllerD
             clicked = 0
         }
     }
-    
+
     //Prüfen ob alle Felder ausgewählt und ausfegfüllt
     //Falls ja RegisterService aufrufen und User registriere
     //Bei erfolgreicher Registrierung LoginView anzeigen lassen
@@ -106,9 +107,9 @@ class RegisterViewController: UIViewController, UIPopoverPresentationControllerD
             showAlertMess(userMessage: "Passwörter sind nicht gleich!")
              return;
         }
-        
+
         RegisterService.registerWithData(username: self.username.text!,email: self.email.text!, password1: self.password.text!, password2: self.password2.text!) { (response) in
-        
+
           if(response != "" ){
                 DispatchQueue.main.async {
                     self.showAlertMess(userMessage: response)

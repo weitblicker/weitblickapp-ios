@@ -6,6 +6,8 @@
 //  Copyright © 2019 HS Osnabrueck. All rights reserved.
 //
 
+//Zwischen Projekten und Blog hin und her wechseln
+//je nachdem welcher Controller ausgewählt wird wird der andere jeweils auf alpha 0 gesetzt
 import UIKit
 
 class ProjectBlogViewController: UIViewController {

@@ -11,16 +11,13 @@ import MarkdownKit
 
 class AGBViewController: UIViewController {
 
-
     @IBOutlet weak var textLabel: UILabel!
-    
     @IBOutlet weak var agb_image: UIImageView!
-    
     @IBOutlet weak var agb_title: UILabel!
     
     override func viewDidLoad() {
         let markdownParser = MarkdownParser()
-        
+        //Agbs vom Server laden 
         FAQService.loadAGBS { (agbObject, error) in
             if let agbObject = agbObject{
                 DispatchQueue.main.async {
@@ -35,8 +32,7 @@ class AGBViewController: UIViewController {
                 }
             }
         }
-         super.viewDidLoad()
-         
+         super.viewDidLoad()   
      }
 
 }

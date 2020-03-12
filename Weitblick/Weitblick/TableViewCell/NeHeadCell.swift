@@ -6,21 +6,19 @@
 //  Copyright © 2020 HS Osnabrueck. All rights reserved.
 //
 
+//Kopfzelle für News in ProjectDetailController Tabelle 
+
 import Foundation
 import UIKit
 
 
 class NeHeadCell: UITableViewCell {
-    
-    
+   
     @IBOutlet weak var nehead_image: UIImageView!
-    
-
-    
+  
     override func awakeFromNib() {
             super.awakeFromNib()
-            // Initialization code
-        }
+    }
 
 
 }

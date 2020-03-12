@@ -18,15 +18,10 @@ class ResultMapViewController: UIViewController ,UITableViewDataSource, UITableV
     
     @IBOutlet weak var totalDistance: UILabel!
     @IBOutlet weak var totalDonation: UILabel!
-    
     @IBOutlet weak var project_city: UILabel!
-    
     @IBOutlet weak var projectTitle: UILabel!
-    
     @IBOutlet weak var project_location: UILabel!
     var counter = 0
-    
-    
     @IBOutlet weak var project_image: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     var hostList : String = ""

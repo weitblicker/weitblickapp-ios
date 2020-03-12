@@ -6,28 +6,28 @@
 //  Copyright © 2019 HS Osnabrueck. All rights reserved.
 //
 
+
+//Zelle für Sponsoren auf ResulMapViewController 
 import UIKit
 
 class SponsorTableViewCell: UITableViewCell {
 
      @IBOutlet weak var name: UILabel!
-    
-    @IBOutlet weak var spon_image: UIImageView!
+     @IBOutlet weak var spon_image: UIImageView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+         //Hintergrundfarbe der Zelle immer weis, auch wenn ausgewählt
         if selected {
-                       contentView.backgroundColor = UIColor.white
-                   } else {
-                       contentView.backgroundColor = UIColor.white
-                   }
-            }
+            contentView.backgroundColor = UIColor.white
+        } else {
+            contentView.backgroundColor = UIColor.white
+        }
     }
+ }
 
 
