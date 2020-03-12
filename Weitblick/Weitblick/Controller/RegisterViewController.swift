@@ -12,17 +12,9 @@ class RegisterViewController: UIViewController, UIPopoverPresentationControllerD
     
     
     @IBOutlet weak var checkbox: UIButton!
-    
-
-   
     @IBOutlet var popover: UIScrollView!
-    
     @IBAction func go(){
         
-       /* self.view.addSubview(popover)
-        popover.center = self.view.center*/
-    //    self.performSegue(withIdentifier: "goToAGB", sender: self)
-       
     }
     
     
@@ -30,13 +22,10 @@ class RegisterViewController: UIViewController, UIPopoverPresentationControllerD
         self.popover.removeFromSuperview()
     }
     
-
-
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }
-   
-    
+     
     override func viewDidLoad() {
         super.viewDidLoad()
 

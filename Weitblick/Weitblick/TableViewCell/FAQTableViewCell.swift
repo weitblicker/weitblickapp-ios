@@ -6,6 +6,8 @@
 //  Copyright © 2019 HS Osnabrueck. All rights reserved.
 //
 
+
+//Zelle für Liste von Fragen und Antworten für FAQ
 import Foundation
 import UIKit
 
@@ -14,22 +16,24 @@ class FAQTableViewCell: UITableViewCell{
     
 
     @IBOutlet weak var faq_question: UILabel!
-    
     @IBOutlet weak var faq_answer: UILabel!
+
+
     override func awakeFromNib() {
            super.awakeFromNib()
-           // Initialization code
-       }
+    }
 
    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
-    if selected {
+        //Farbe auch wenn ausgewählt weis und keinen grauen Hintergrund 
+            if selected {
                    contentView.backgroundColor = UIColor.white
-               } else {
+            } else {
                    contentView.backgroundColor = UIColor.white
-               }
-        }
-    }
+             }
+   }
+   
+}
+
 

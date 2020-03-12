@@ -15,10 +15,13 @@ class FAQDetailViewController: UIViewController {
  
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var answer: UILabel!
+
+    //Daten Variablen des Eintrags zuweisen 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.answer.text = faq_object?.answer
         self.question.text = faq_object?.question
+        //Größe des Eintrags an Textlänge anpassen 
         self.question.sizeToFit()
         self.answer.sizeToFit()
       

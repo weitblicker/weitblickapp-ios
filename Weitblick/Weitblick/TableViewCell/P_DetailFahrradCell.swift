@@ -6,50 +6,46 @@
 //  Copyright © 2020 HS Osnabrueck. All rights reserved.
 //
 
+//Zelle für die Fahrradinformationen in der Tabelle auf dem ProjectDetailController 
+
 import Foundation
 import UIKit
 import Charts
 
-import Charts
 
 class P_DetailFahrradCell: UITableViewCell {
     
     @IBOutlet weak var pie_chart: PieChartView!
-    
     @IBOutlet weak var spendenstand: UILabel!
-    
     @IBOutlet weak var radfahrer_anzahl: UILabel!
     @IBOutlet weak var fahrrad_chart: UILabel!
     @IBOutlet weak var spendenziel: UILabel!
     @IBOutlet weak var gefahren: UILabel!
-    
     @IBOutlet weak var fahrrad_button: UIButton!
     
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     
     func customizeChart(dataPoints: [String], values: [Double]) {
-      // TO-DO: customize the chart here
         // 1. Set ChartDataEntry
         var dataEntries: [ChartDataEntry] = []
         for i in 0..<dataPoints.count {
           let dataEntry = PieChartDataEntry(value: values[i], label: dataPoints[i], data: dataPoints[i] as AnyObject)
           dataEntries.append(dataEntry)
         }
-        // 2. Set ChartDataSet
+        // 2. Set ChartDataSet, Farben anpassen für die einzelnen Stücke in PieChart
         let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: nil)
         var  colors: [UIColor] = []
               let colorOne = UIColor(rgb: 0xFF9900)
               let colorTwo = UIColor(rgb: 0x2C2C2C)
         let colorThree = UIColor(rgb : 0x0972b3)
-               colors.append(colorTwo)
+        colors.append(colorTwo)
         colors.append(colorOne)
-         colors.append(colorThree)
+        colors.append(colorThree)
         pieChartDataSet.colors = colors
 
 
@@ -72,13 +68,8 @@ class P_DetailFahrradCell: UITableViewCell {
         //Zahlenangaben auf Chart ausblenden
         //pieChartDataSet.drawValuesEnabled = false
         //Legende ausblenden
-       // PieChart.legend.enabled = false
-       
-        
-      
-        
+       // PieChart.legend.enabled = false    
         
     }
-
 
 }

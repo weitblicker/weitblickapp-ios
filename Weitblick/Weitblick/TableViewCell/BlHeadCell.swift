@@ -6,21 +6,17 @@
 //  Copyright © 2020 HS Osnabrueck. All rights reserved.
 //
 
+
+//Blog Head Cell in ProjectDetailTabelle 
 import Foundation
 import UIKit
 
-
-
 class BlHeadCell: UITableViewCell {
     
-    
-    @IBOutlet weak var blhead_image: UIImageView!
+     @IBOutlet weak var blhead_image: UIImageView!
    
-    
-    override func awakeFromNib() {
+     override func awakeFromNib() {
             super.awakeFromNib()
-            // Initialization code
-        }
-
+     }
 
 }

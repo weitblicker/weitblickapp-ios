@@ -6,19 +6,18 @@
 //  Copyright © 2020 HS Osnabrueck. All rights reserved.
 //
 
-import Foundation
 
+//Zelle für die Sponsoren in der Tabelle auf ProjectDetailController 
+import Foundation
 import  UIKit
 
 class P_DetailSponsorCell: UITableViewCell {
-    
-    
+  
     @IBOutlet weak var sponsor_tableView: UITableView!
     
     override func awakeFromNib() {
             super.awakeFromNib()
-            // Initialization code
-        }
+    }
 
 
 }

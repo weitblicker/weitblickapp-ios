@@ -15,15 +15,14 @@ class TabBarController: SwipeableTabBarController,UINavigationControllerDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-
         swipeAnimatedTransitioning?.animationType = SwipeAnimationType.sideBySide
     }
+
     override func viewWillAppear(_ animated: Bool) {
         loadNavImages()
         self.navigationController!.navigationBar.topItem!.title = "Zurück"
     }
+
 
     @objc func goToProfile(_ sender:UIBarButtonItem!){
         

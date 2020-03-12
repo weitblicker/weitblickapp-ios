@@ -11,15 +11,14 @@ import UIKit
 class RankingViewController: UIViewController ,UITableViewDataSource, UITableViewDelegate {
     
     var filter = 1;
-    
-    
-    
-   override func viewDidLoad() {        super.viewDidLoad()
-    }
+  
+   override func viewDidLoad() {        
+       super.viewDidLoad()
+   }
+
     override func viewWillAppear(_ animated: Bool) {
         loadData()
-    
-    }
+     }
     
     func loadData(){
         userList = []

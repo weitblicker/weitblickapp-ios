@@ -6,6 +6,8 @@
 //  Copyright © 2020 HS Osnabrueck. All rights reserved.
 //
 
+//Kopf Zelle für Events auf ProjectDetailController 
+
 import Foundation
 import UIKit
 
@@ -16,8 +18,7 @@ class EvHeadCell: UITableViewCell {
     
     override func awakeFromNib() {
             super.awakeFromNib()
-            // Initialization code
-        }
+    }
 
 
 }
