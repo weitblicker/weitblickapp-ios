@@ -10,7 +10,7 @@ import UIKit
 
 
 extension UIImageView {
-
+//Profikbild rund anzeigen 
     func makeRounded() {
 
         self.layer.borderWidth = 1.0
@@ -19,8 +19,7 @@ extension UIImageView {
         self.layer.cornerRadius = self.frame.size.width/2
         self.clipsToBounds = true
 
-
-    }
+  }
 }
 
 class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -32,7 +31,6 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
     @IBOutlet weak var profile_donation: UILabel!
     @IBOutlet weak var profile_route: UILabel!
     @IBOutlet weak var profile_username: UILabel!
-    
     @IBOutlet weak var chooseButton: UIButton!
     
     var imagePicker = UIImagePickerController()
@@ -41,6 +39,7 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
 
     }
     
+    //Profildaten laden und anzeigen
     override func viewDidLoad() {
         super.viewDidLoad()
         UserService.getUserData { (user,error) in
@@ -65,6 +64,8 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
         
             
         }
+
+        //Profilbild rund darstellen 
         profile_image.layer.cornerRadius = profile_image.frame.size.width/2
         profile_image.clipsToBounds = true
         profile_image.layer.borderWidth = 0.2
@@ -77,11 +78,9 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
 
     }
 
-
+    //Logout des Users mit Überprüfung ob erfolgreich 
     @IBAction func logOut(_ sender: Any) {
-        
-
-        LogoutService.logout() { (response) in
+    LogoutService.logout() { (response) in
                    if(response == "successful" ){ 
                       DispatchQueue.main.async {
                         self.dismiss(animated: true, completion: nil)
@@ -96,6 +95,7 @@ class ProfileViewController:  UIViewController,UIImagePickerControllerDelegate, 
                }
     }
     
+    //Foto aus Galerie vom Handy als Profilbild auswählen 
     @IBAction func btnClicked(sender: AnyObject) {
         
         var myPickerController = UIImagePickerController()

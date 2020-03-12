@@ -23,7 +23,7 @@ class BlogViewController: UIViewController ,UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var tableView: UITableView!
 
-
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if(self.switch_counter == 1){

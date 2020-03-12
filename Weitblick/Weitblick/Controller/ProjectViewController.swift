@@ -13,8 +13,6 @@ protocol DelegateToCycle{
     func didTapProject (title: String)
 }
 
-
-
 class ProjectViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate, MKMapViewDelegate {
     var count = 0;
     var postCount = 3;

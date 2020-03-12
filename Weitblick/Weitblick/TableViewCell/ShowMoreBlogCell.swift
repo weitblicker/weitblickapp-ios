@@ -6,20 +6,18 @@
 //  Copyright © 2020 HS Osnabrueck. All rights reserved.
 //
 
-import Foundation
 
+//Zelle für den Mehr Anzeigen Button auf ProjectDetailController in der Tabelle für Blogs
+import Foundation
 import UIKit
 
 class ShowMoreBlogCell: UITableViewCell{
-    
-    
+ 
     @IBOutlet weak var show_more_button: UIButton!
     
-    
     override func awakeFromNib() {
-                    super.awakeFromNib()
-                }
-
+        super.awakeFromNib()
+    }
 
 }
 

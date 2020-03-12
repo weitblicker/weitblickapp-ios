@@ -6,20 +6,18 @@
 //  Copyright © 2020 HS Osnabrueck. All rights reserved.
 //
 
+
+//Kopfzelle für Partner in Tabelle auf ProjectDetailController 
 import Foundation
 import UIKit
 
 class PaHeadCell: UITableViewCell {
     
+  @IBOutlet weak var pahead_image: UIImageView!
     
-    
-    @IBOutlet weak var pahead_image: UIImageView!
-    
-    
-    override func awakeFromNib() {
-               super.awakeFromNib()
-               // Initialization code
-           }
+  override func awakeFromNib() {
+      super.awakeFromNib()
+  }
 
 
 }

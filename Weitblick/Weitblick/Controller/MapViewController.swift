@@ -54,14 +54,14 @@ class MapViewController: UIViewController {
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var stopPlayButton: UIButton!
     @IBOutlet weak var project_name: UILabel!
-    
     @IBOutlet weak var project_partner: UILabel!
     @IBOutlet weak var project_location: UILabel!
     
+    //Button der die Map wieder auf den aktuellen Standort zentriert 
     @IBAction func toLocationButton(_ sender: UIButton) {
          map.setCenter(map.userLocation.coordinate, animated: true)
     }
-    
+    //Button der Projektinformationen anzeigt 
     @IBAction func showProjectInfo(_ sender: Any) {
         self.performSegue(withIdentifier: "showProjectInfo", sender: self)
     }
